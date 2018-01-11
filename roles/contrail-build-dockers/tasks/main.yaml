@@ -24,6 +24,7 @@
       CONTRAIL_REPOSITORY=http://{{ site_pulp.fqdn }}/pulp/repos/{{ zuul.change }}-{{ zuul.patchset }}
       OPENSTACK_VERSION={{ openstack_version }}
       OPENSTACK_SUBVERSION={{ openstack_subversion }}
+      LINUX_DISTR={{ distro_name }}
     dest: "{{ docker_build_dir }}/common.env"
 
 - name: Prepare local mirror repo file

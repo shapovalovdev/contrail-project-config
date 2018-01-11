@@ -2,7 +2,7 @@ CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
 REGISTRY_PRIVATE_SECURE: false
 REGISTRY_PRIVATE_INSECURE: true
 contrail_configuration:
-  CONTRAIL_VERSION: "{{ contrail_version }}"
+  CONTRAIL_VERSION: "{{ contrail_version }}-{{ distro_name }}"
   OPENSTACK_VERSION: "{{ openstack_version }}"
   CONTROLLER_NODES: "{{ ansible_all_ipv4_addresses[0] }}"
   CLOUD_ORCHESTRATOR: "{{ cloud_orchestrator }}"
