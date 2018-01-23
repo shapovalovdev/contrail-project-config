@@ -8,9 +8,12 @@
     content: |
       CONTRAIL_VERSION={{ contrail_container_tag }}
       CONTRAIL_REGISTRY={{ docker_registry.fqdn }}:{{ docker_registry.port }}
+      {% if linux_distribution == 'centos' %} {# use default package source when building ubuntu variant #}
       CONTRAIL_REPOSITORY={{ contrail_package_repository }}
+      {% endif %}
       OPENSTACK_VERSION={{ openstack_version }}
       OPENSTACK_SUBVERSION={{ openstack_subversion }}
+      LINUX_DISTR={{ linux_distribution }}
     dest: "{{ docker_build_dir }}/common.env"
 
 - name: copy the repo files to containers build context

@@ -269,10 +269,7 @@
       - systests
     experimental:
       jobs:
-        - contrail-vnc-build-containers-centos74
-        - contrail-systest-centos74-kolla-ocata:
-            dependencies:
-              - contrail-vnc-build-containers-centos74
+        - contrail-vnc-build-containers-ubuntu1604-ocata-nightly
 
 - project:
     name: Juniper/contrail-web-core
