@@ -70,7 +70,7 @@ providers:
             console-log: True
             key-name: ci-infra-shared-key
           - name: ubuntu-trusty-builder
-            flavor-name: m1.16g_40g_8vcpu
+            flavor-name: m1.16g_80g_8vcpu
             diskimage: ubuntu-trusty
             console-log: True
             key-name: ci-infra-shared-key
