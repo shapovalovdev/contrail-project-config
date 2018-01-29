@@ -13,7 +13,7 @@
       - playbooks/base/post-ssh
       - playbooks/base/post-logs
     roles:
-      - zuul: codilime/zuul-jobs
+      - zuul: Juniper/zuul-jobs
     timeout: 28800
     nodeset:
       nodes:
@@ -33,7 +33,7 @@
       - playbooks/base/post-ssh
       - playbooks/base/post-logs
     roles:
-      - zuul: codilime/zuul-jobs
+      - zuul: Juniper/zuul-jobs
     timeout: 28800
     secrets:
       - site_logs
@@ -47,7 +47,7 @@
       as opposed to the contrail-vnc-base job that uses Android repo to prepare the source tree.
     pre-run: playbooks/contrail/src-pre
     roles:
-      - zuul: codilime/zuul-jobs
+      - zuul: Juniper/zuul-jobs
 
 - job:
     name: contrail-vnc-base
