@@ -50,7 +50,7 @@ def main():
         )
         repo_name = "{change}-{patchset}".format(change=change, patchset=patchset)
     elif release_type == ReleaseType.NIGHTLY:
-        version['distrib'] = "nightly-{date}".format(date=date)
+        version['distrib'] = "{date}".format(date=date)
         repo_name = "{upstream}-{date}".format(upstream=version['upstream'],date=date)
     else:
         module.fail_json(
