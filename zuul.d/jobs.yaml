@@ -172,6 +172,14 @@
           label: ubuntu-trusty-builder
 
 - job:
+    name: contrail-vnc-build-unittest-ubuntu-trusty-prebuilt
+    parent: contrail-vnc-build-unittest-ubuntu-trusty
+    run: playbooks/unittest/contrail-prebuilt
+    voting: false
+    vars:
+      prebuild_tests: true
+
+- job:
     name: contrail-vnc-unittest-webui
     parent: contrail-vnc-base
     run: playbooks/unittest/webui
