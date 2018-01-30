@@ -84,9 +84,6 @@
     templates:
       - unittests
       - systests
-    check:
-      jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty-prebuilt
 
 - project:
     name: Juniper/contrail-build
@@ -102,6 +99,9 @@
     experimental-provision:
       jobs:
         - contrail-systest-centos74-kolla-ocata
+    experimental:
+      jobs:
+        - contrail-vnc-build-unittest-ubuntu-trusty-prebuilt
 
 - project:
     name: Juniper/contrail-generateDS

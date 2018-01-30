@@ -62,11 +62,20 @@
 
 - name: Gather unittest target list to prebuild
   shell: "{{ ansible_env.HOME }}/contrail-unittests-gather.rb"
+  args:
+    chdir: "{{ packaging.target_dir }}"
   register: targets
+  environment:
+    WORKSPACE: "{{ ansible_env.HOME }}"
+    UPSTREAM_VERSION: "{{ packaging.version.upstream }}"
+    ZUUL_CHANGES: "{{ zuul.ref }}"
+    ZUUL_PROJECT: "{{ zuul.project.short_name }}"
   when: prebuild_tests == true
 
 - name: Prebuild test targets
   shell: "scons -j {{ ansible_processor_vcpus }} {{ targets.stdout }}"
+  args:
+    chdir: "{{ packaging.target_dir }}"
   become: yes
   become_user: root
   environment:
