@@ -35,9 +35,9 @@
   become: true
 
 - name: Push all containers
-  shell: "docker push $(docker images | grep {{ dockerhub.namespace }})"
+  shell: "docker push $(docker images | grep {{ dockerhub.namespace }} | awk '{printf \"%s:%s\", $1,$2;}')"
   become: true
 
 - name: Cleanup all docker images
-  shell: docker rmi -f $(docker images | grep contrail)
+  shell: docker rmi -f $(docker images | grep contrail | awk '{printf \"%s:%s\", $1,$2;}')
   become: true
