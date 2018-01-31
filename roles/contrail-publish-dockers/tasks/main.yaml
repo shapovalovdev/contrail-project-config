@@ -17,27 +17,27 @@
   no_log: true
   become: true
 
-- name: Retag containers
+- name: Retag containers - add dockerhub namespace
   shell: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item }}"
   with_items: "{{ container_list.stdout_lines }}"
   become: true
 
-- name: Add latest tag to containers
+- name: Retag ocata containers - add master-date tag
+  shell: "docker tag {{ dockerhub.namespace }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace('5.0', 'master') | regex_replace('master-(.[^-]*)-.*', 'master-\\1') }}"
+  when: item | search('ocata')
+  with_items: "{{ container_list.stdout_lines }}"
+  become: true
+
+- name: Retag containers - add latest tag
   shell: "docker tag {{ dockerhub.namespace }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace(':.*$',':latest') }}"
+  when: item | search('ocata')
   with_items: "{{ container_list.stdout_lines }}"
   become: true
 
-- name: Push containers
-  shell: |
-    docker push {{ dockerhub.namespace }}/{{ item }}
-    docker push {{ dockerhub.namespace }}/{{ item | regex_replace(':.*$',':latest') }}
-  with_items: "{{ container_list.stdout_lines }}"
+- name: Push all containers
+  shell: "docker push $(docker images | grep {{ dockerhub.namespace }})"
   become: true
 
-- name: Remove containers
-  shell: |
-    docker rmi {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }}
-    docker rmi {{ dockerhub.namespace }}/{{ item }}
-    docker rmi {{ dockerhub.namespace }}/{{ item | regex_replace(':.*$',':latest') }}
-  with_items: "{{ container_list.stdout_lines }}"
+- name: Cleanup all docker images
+  shell: docker rmi -f $(docker images | grep contrail)
   become: true
