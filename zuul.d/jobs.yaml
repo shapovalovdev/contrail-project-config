@@ -221,12 +221,15 @@
       - specs/.*
     required-projects:
       - Juniper/contrail-ansible-deployer
+    pre-run:
+      - playbooks/docker/setup-docker-registry
     run: playbooks/docker/centos74-systest-kubernetes
     nodeset:
       nodes:
         - name: contrail-aio
           label: centos-7-4-builder
     secrets:
+      - site_pulp
       - docker_registry
 
 - job:
