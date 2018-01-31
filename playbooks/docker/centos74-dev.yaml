@@ -1,0 +1,6 @@
+- hosts: all
+  vars:
+    openstack_version: ocata
+    openstack_subversion: 3
+  roles:
+    - contrail-build-dockers-dev

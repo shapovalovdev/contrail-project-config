@@ -1,0 +1,63 @@
+- name: Start all containers that were stopped during kolla docker daemon restart (pass one - network containers)
+  shell: 'docker ps -a  --format "{% raw %}{{.Names}}{% endraw %}" | while read line; do docker start $line; done'
+  ignore_errors: true
+  become: true
+
+- name: Start all containers that were stopped during kolla docker daemon restart (pass two - all containers)
+  shell: 'docker ps -a  --format "{% raw %}{{.Names}}{% endraw %}" | while read line; do docker start $line; done'
+  ignore_errors: true
+  become: true
+
+- name: Wait for services startup
+  wait_for:
+    timeout: 120
+
+- name: Check if Zuul overrode the registry port
+  stat:
+    path: "{{ zuul.executor.work_root }}/saved_vars.yaml"
+  register: varfile
+  delegate_to: localhost
+
+- name: Get the overridden registry port
+  include_vars:
+    file: "{{ zuul.executor.work_root }}/saved_vars.yaml"
+  when: varfile.stat.isreg is defined and varfile.stat.isreg
+
+- name: Set default registry port if not overridden
+  set_fact:
+    registry_port: "{{ docker_registry.port }}"
+  when: registry_port is not defined
+
+- name: Set variables
+  set_fact:
+    testrunner_image: "{{ contrail_docker_registry }}/contrail-test-test:{{ contrail_version }}-centos7-ocata"
+    repos_dir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper"
+
+- name: Template the testbed.py
+  template:
+    src: testbed.py.j2
+    dest: "{{ ansible_env.HOME}}/testbed.py"
+
+- name: create the directory for VM images
+  file:
+    path: "{{ repos_dir }}/contrail-test-ci/images"
+    state: directory
+
+- name: download the cirros image
+  get_url:
+    url: "http://{{ docker_registry.fqdn }}/static/cirros-0.3.0-x86_64-disk.vmdk"
+    dest: "{{ repos_dir }}/contrail-test-ci/images"
+
+- name: Pull the testrunner image
+  docker_image:
+    name: "{{ testrunner_image }}"
+  become: yes
+
+- name: Run the sanity test
+  command: "{{ repos_dir }}/testrunner.sh run -t {{ ansible_env.HOME }}/testbed.py -m {{ repos_dir }} -k /root/.ssh/id_rsa -f ci_sanity '{{ testrunner_image }}'"
+  become: yes
+  ignore_errors: yes
+
+- name: test the xml report for failures
+  shell: "[ x\"$(grep testsuite /root/contrail-test-runs/*/reports/TESTS-TestSuites.xml  | grep -o  'failures=\\S\\+' | uniq)\" = x'failures=\"0\"' ]"
+  become: yes
