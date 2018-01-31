@@ -303,6 +303,22 @@
       - docker_registry
 
 - job:
+    name: contrail-vnc-build-containers-centos74-ocata-nightly
+    parent: contrail-vnc-build-containers-centos74-nightly
+    vars:
+      linux_release: centos7
+      openstack_version: ocata
+      openstack_subversion: 3
+
+- job:
+    name: contrail-vnc-build-containers-centos74-newton-nightly
+    parent: contrail-vnc-build-containers-centos74-nightly
+    vars:
+      linux_release: centos7
+      openstack_version: newton
+      openstack_subversion: 5
+
+- job:
     name: contrail-vnc-build-package-centos74-nightly
     parent: contrail-vnc-build-package-el-base-nightly
     irrelevant-files:

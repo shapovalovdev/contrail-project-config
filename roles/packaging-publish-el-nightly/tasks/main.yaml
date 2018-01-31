@@ -42,6 +42,6 @@
   zuul_return:
     data:
       contrail_package_repository: "http://{{ site_pulp.fqdn }}/pulp/repos/{{ packaging.repo_name }}"
-      contrail_container_tag: "{{ packaging.version.upstream }}-{{ packaging.version.distrib }}"
+      contrail_container_tag: "{{ packaging.version.upstream }}-{{ packaging.version.distrib }}-{{ linux_release }}-{{ openstack_version }}"
   delegate_to: localhost
 
