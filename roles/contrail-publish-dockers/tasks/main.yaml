@@ -4,6 +4,9 @@
       for tag in $(curl -s {{ docker_registry.fqdn }}:{{ docker_registry.port }}/v2/$repo/tags/list | jq -r '.tags | sort | .[-1]'); do
         echo $repo:$tag
       done
+      for tag in $(curl -s {{ docker_registry.fqdn }}:{{ docker_registry.port }}/v2/$repo/tags/list | jq -r '.tags | sort | .[-2]'); do
+        echo $repo:$tag
+      done
     done
   register: container_list
 
@@ -34,10 +37,19 @@
   with_items: "{{ container_list.stdout_lines }}"
   become: true
 
+- name: Get local container list
+  shell: |
+    for i in `docker images | grep contrail | awk '{printf "%s:%s\n", $1,$2;}'`; do
+      echo $i;
+    done
+  register: local_container_list
+
 - name: Push all containers
-  shell: "docker push $(docker images | grep {{ dockerhub.namespace }} | awk '{printf \"%s:%s\", $1,$2;}')"
+  shell: "docker push {{ item }}"
+  with_items: "{{ local_container_list.stdout_lines }}"
   become: true
 
 - name: Cleanup all docker images
-  shell: docker rmi -f $(docker images | grep contrail | awk '{printf \"%s:%s\", $1,$2;}')
+  shell: "docker rmi -f {{ item }}"
+  with_items: "{{ local_container_list.stdout_lines }}"
   become: true
