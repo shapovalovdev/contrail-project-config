@@ -1,10 +1,9 @@
 - name: Get container list
   shell: |
-    for repo in $(curl -s {{ docker_registry.fqdn }}:{{ docker_registry.port }}/v2/_catalog | jq -r '.[] | join(" ")' | sed -e 's/\S*kolla\S*//g'); do
-      for tag in $(curl -s {{ docker_registry.fqdn }}:{{ docker_registry.port }}/v2/$repo/tags/list | jq -r '.tags | sort | .[-1]'); do
-        echo $repo:$tag
-      done
-      for tag in $(curl -s {{ docker_registry.fqdn }}:{{ docker_registry.port }}/v2/$repo/tags/list | jq -r '.tags | sort | .[-2]'); do
+    # this magical part returns list of containers from the current buildset
+    # e.g. all containers matching '5.0-20180129204006' in their tag
+    for repo in $(curl -s {{ docker_registry.fqdn }}:{{ docker_registry.port }}/v2/_catalog | jq -r '.[] | join(" ")'); do
+      for tag in $(curl -s {{ docker_registry.fqdn }}:{{ docker_registry.port }}/v2/$repo/tags/list | jq -r '.tags | sort | .[] | select( . | contains({{ contrail_container_tag }}))'; do
         echo $repo:$tag
       done
     done
@@ -25,14 +24,9 @@
   with_items: "{{ container_list.stdout_lines }}"
   become: true
 
-- name: Retag ocata containers - add master-date tag
-  shell: "docker tag {{ dockerhub.namespace }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace('5.0', 'master') | regex_replace('master-(.[^-]*)-.*', 'master-\\1') }}"
-  when: item | search('ocata')
-  with_items: "{{ container_list.stdout_lines }}"
-  become: true
-
 - name: Retag containers - add latest tag
   shell: "docker tag {{ dockerhub.namespace }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace(':.*$',':latest') }}"
+  # centos7-ocata release is our current supported latest
   when: item | search('ocata')
   with_items: "{{ container_list.stdout_lines }}"
   become: true
@@ -43,13 +37,20 @@
       echo $i;
     done
   register: local_container_list
+  become: true
 
 - name: Push all containers
   shell: "docker push {{ item }}"
+  # match only containers we want to push to dockerhub - tagged as opencontrailnightly
+  when: "item | search({{ dockerhub.namespace }})"
   with_items: "{{ local_container_list.stdout_lines }}"
   become: true
 
 - name: Cleanup all docker images
   shell: "docker rmi -f {{ item }}"
   with_items: "{{ local_container_list.stdout_lines }}"
+  become: true
+
+- name: Log out of Dockerhub
+  shell: "docker logout"
   become: true
