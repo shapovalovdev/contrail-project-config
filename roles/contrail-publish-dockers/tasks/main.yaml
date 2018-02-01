@@ -3,7 +3,7 @@
     # this magical part returns list of containers from the current buildset
     # e.g. all containers matching '5.0-20180129204006' in their tag
     for repo in $(curl -s {{ docker_registry.fqdn }}:{{ docker_registry.port }}/v2/_catalog | jq -r '.[] | join(" ")'); do
-      for tag in $(curl -s {{ docker_registry.fqdn }}:{{ docker_registry.port }}/v2/$repo/tags/list | jq -r '.tags | sort | .[] | select( . | contains({{ contrail_container_tag }}))'; do
+      for tag in $(curl -s {{ docker_registry.fqdn }}:{{ docker_registry.port }}/v2/$repo/tags/list | jq -r '.tags | sort | .[] | select( . | contains({{ contrail_container_tag }}))'); do
         echo $repo:$tag
       done
     done
