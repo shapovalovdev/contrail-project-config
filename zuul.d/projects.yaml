@@ -311,3 +311,8 @@
     templates:
       - unittests-webui
       - systests
+
+- project:
+    name: Juniper/contrail-server-manager
+    templates:
+      - noops
