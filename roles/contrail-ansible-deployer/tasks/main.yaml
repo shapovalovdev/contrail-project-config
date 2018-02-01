@@ -92,9 +92,13 @@
     state: started
 
 - name: Restart agent after vrouter startup
-  command: docker restart contrailvrouter_vrouter-agent_1
+  command: docker restart {{ item }}
   become: True
   become_user: root
+  with_items:
+    - contrailvrouter_vrouter-agent_1
+    - vrouter_vrouter-agent_1
+  ignore_errors: true
 
 - name: Show the list of running containers
   command: docker ps -a
