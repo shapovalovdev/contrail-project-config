@@ -212,6 +212,38 @@
       - docker_registry
 
 - job:
+    name: contrail-systest-base
+    parent: contrail-src-base
+    pre-run:
+      - playbooks/docker/setup-docker-registry
+    post-run: playbooks/sanitytest/post
+    secrets:
+      - site_pulp
+      - docker_registry
+
+- job:
+    name: contrail-systest-ubuntu1604-base
+    parent: contrail-systest-base
+    nodeset:
+      nodes:
+        - name: ubuntu-xenial
+          label: ubuntu-xenial
+
+- job:
+    name: contrail-systest-ubuntu1604-helm-newton
+    parent: contrail-systest-ubuntu1604-base
+    description: |
+      A job that deploys Contrail and OpenStack containers using contrail-helm-deployer
+    required-projects:
+      - Juniper/contrail-test-ci
+      - Juniper/contrail-test
+    run: playbooks/sanitytest/ubuntu1604-helm-newton
+    roles:
+      - zuul: Juniper/contrail-zuul-jobs
+    secrets:
+      - docker_registry
+
+- job:
     name: contrail-systest-centos74-kubernetes
     parent: contrail-src-base
     description: |
