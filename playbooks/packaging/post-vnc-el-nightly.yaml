@@ -11,6 +11,6 @@
   vars:
     executor_package_dir: "{{ zuul.executor.work_root }}/packages"
   roles:
-    - role: contrail-common-libs
+    - role: contrail-common-libs-nightly
     - role: packaging-publish-el-nightly
 
