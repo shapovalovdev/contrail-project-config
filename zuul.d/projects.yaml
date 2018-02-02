@@ -122,7 +122,6 @@
       - systests
     experimental:
       jobs:
-        - contrail-vnc-build-package-ubuntu-trusty
         - contrail-vnc-build-package-ubuntu-xenial
 
 - project:
