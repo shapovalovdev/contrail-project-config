@@ -286,11 +286,17 @@
     name: contrail-vnc-build-containers-centos74-dev
     parent: contrail-vnc-build-containers-centos74
     run: playbooks/docker/centos74-dev
+    secrets:
+      - site_pulp
+      - docker_registry
 
 - job:
     name: contrail-systest-centos74-kolla-ocata-dev
     parent: contrail-systest-centos74-kolla-ocata
     run: playbooks/kolla/centos74-provision-kolla-dev
+    secrets:
+      - site_pulp
+      - docker_registry
 
 - job:
     name: zuul-jobs-linters
