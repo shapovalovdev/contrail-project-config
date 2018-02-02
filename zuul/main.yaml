@@ -6,9 +6,9 @@
         untrusted-projects:
           - Juniper/zuul-jobs:
               shadow: Juniper/contrail-project-config
-          - codilime/contrail-zuul-jobs
           - Juniper/contrail-api-client
           - Juniper/contrail-nova-extensions
+          - Juniper/contrail-zuul-jobs
       gerrit:
         config-projects:
           - Juniper/contrail-project-config
