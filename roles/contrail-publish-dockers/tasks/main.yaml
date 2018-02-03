@@ -13,6 +13,11 @@
   shell: "docker pull {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }}"
   with_items: "{{ container_list.stdout_lines }}"
   become: true
+  # Due to some mysterious causes, it seems to fail occassionally, so need to retry it
+  register: result
+  retries: 3
+  delay: 10
+  until: result.rc == 0
 
 - name: Log in to dockerhub
   shell: "docker login -u {{ dockerhub.username }} -p {{ dockerhub.password }}"
@@ -24,10 +29,14 @@
   with_items: "{{ container_list.stdout_lines }}"
   become: true
 
+# XXX: perhaps we should manage "centos7-ocata" part via secrets
+- name: Register variable for latest release
+  set_fact:
+    container_latest_release: "{{ contrail_container_tag }}-centos7-ocata"
+
 - name: Retag containers - add latest tag
   shell: "docker tag {{ dockerhub.namespace }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace(':.*$',':latest') }}"
-  # centos7-ocata release is our current supported latest
-  when: item | search('ocata')
+  when: item | search(container_latest_release)
   with_items: "{{ container_list.stdout_lines }}"
   become: true
 
@@ -45,6 +54,11 @@
   when: item | search(dockerhub.namespace)
   with_items: "{{ local_container_list.stdout_lines }}"
   become: true
+  # upload fails a lot :(
+  register: result
+  retries: 3
+  delay: 15
+  until: result.rc == 0
 
 - name: Cleanup all docker images
   shell: "docker rmi -f {{ item }}"
