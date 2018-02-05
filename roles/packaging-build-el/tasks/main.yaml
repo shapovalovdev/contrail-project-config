@@ -78,7 +78,7 @@
       --define "_builddir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/BUILD" \
       --define "_buildTag {{ packaging.version.distrib }}" \
       --define "_srcVer {{ packaging.version.upstream }}" \
-      --bb {{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/common/rpm/{{ item }}.spec
+      --bb {{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/common/rpm/{{ item.name }}.spec
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/contrail-web-core"
   with_items:
