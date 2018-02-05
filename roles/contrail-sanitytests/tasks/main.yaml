@@ -15,27 +15,12 @@
 - name: Set variables
   set_fact:
     testrunner_image: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}/contrail-test:static-centos7-ocata"
-    repos_dir: "{{ ansible_env.HOME }}/mount"
+    repos_dir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper"
 
 - name: Template the testbed.py
   template:
     src: testbed.py.j2
     dest: "{{ ansible_env.HOME}}/testbed.py"
-
-- name: Create the directory with repos
-  file:
-    path: "{{ repos_dir }}"
-    state: directory
-
-# TODO Change this to zuul-merger prepared checkouts
-# TODO Use packaged contrail-test when test container will be built in previous steps
-- name: Clone test repositories
-  git:
-    repo: "https://github.com/Juniper/{{ item }}"
-    dest: "{{ repos_dir }}/{{ item }}"
-  with_items:
-    - contrail-test-ci
-    - contrail-test
 
 - name: create the directory for VM images
   file:
@@ -53,7 +38,7 @@
   become: yes
 
 - name: Run the sanity test
-  command: "{{ ansible_env.HOME }}/mount/contrail-test-ci/testrunner.sh run -t {{ ansible_env.HOME }}/testbed.py -m {{ ansible_env.HOME }}/mount -k /root/.ssh/id_rsa -f ci_sanity '{{ testrunner_image }}'"
+  command: "{{ repos_dir }}/contrail-test-ci/testrunner.sh run -t {{ ansible_env.HOME }}/testbed.py -m {{ repos_dir }} -k /root/.ssh/id_rsa -f ci_sanity '{{ testrunner_image }}'"
   become: yes
   ignore_errors: yes
 
