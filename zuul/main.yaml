@@ -8,11 +8,11 @@
               shadow: Juniper/contrail-project-config
           - Juniper/contrail-api-client
           - Juniper/contrail-nova-extensions
-          - Juniper/contrail-zuul-jobs
       gerrit:
         config-projects:
           - Juniper/contrail-project-config
         untrusted-projects:
+          - Juniper/contrail-zuul-jobs
           - Juniper/contrail-analytics
           - Juniper/contrail-ansible
           - Juniper/contrail-ansible-deployer
