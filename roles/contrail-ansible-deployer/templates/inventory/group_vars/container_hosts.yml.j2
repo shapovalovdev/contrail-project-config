@@ -7,6 +7,7 @@ contrail_configuration:
   CONTROLLER_NODES: "{{ ansible_all_ipv4_addresses[0] }}"
   CLOUD_ORCHESTRATOR: "{{ cloud_orchestrator }}"
   LINUX_DISTR: centos7
+  CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ registry_port }}"
 {% if cloud_orchestrator == 'openstack' %}
   AUTH_MODE: keystone
   KEYSTONE_AUTH_ADMIN_PASSWORD: c0ntrail123
@@ -16,11 +17,13 @@ contrail_configuration:
 roles:
   "{{ ansible_all_ipv4_addresses[0] }}":
     configdb:
+    config_database:
     config:
     control:
     webui:
     analytics:
     analyticsdb:
+    analytics_database:
 {% if cloud_orchestrator == 'kubernetes' %}
     k8s_master:
 {% endif %}
