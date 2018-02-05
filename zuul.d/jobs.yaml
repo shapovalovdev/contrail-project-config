@@ -14,6 +14,7 @@
       - playbooks/base/post-logs
     roles:
       - zuul: Juniper/zuul-jobs
+      - zuul: Juniper/contrail-zuul-jobs
     timeout: 28800
     nodeset:
       nodes:
@@ -34,6 +35,7 @@
       - playbooks/base/post-logs
     roles:
       - zuul: Juniper/zuul-jobs
+      - zuul: Juniper/contrail-zuul-jobs
     timeout: 28800
     secrets:
       - site_logs
@@ -48,6 +50,7 @@
     pre-run: playbooks/contrail/src-pre
     roles:
       - zuul: Juniper/zuul-jobs
+      - zuul: Juniper/contrail-zuul-jobs
 
 - job:
     name: contrail-vnc-base
