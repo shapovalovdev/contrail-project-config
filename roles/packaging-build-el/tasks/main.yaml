@@ -73,7 +73,7 @@
 
 - name: Build binary packages for Contrail WebUI
   shell: |
-    make package REPO=../{{ item }}
+    make package REPO=../{{ item.name }}{{ item.component }}
     rpmbuild \
       --define "_builddir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/BUILD" \
       --define "_buildTag {{ packaging.version.distrib }}" \
@@ -82,8 +82,8 @@
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/contrail-web-core"
   with_items:
-    - contrail-web-core
-    - contrail-web-controller
+    - { name: "contrail-web-core", component: "" }
+    - { name: "contrail-web-controller", component: ",webController" }
 
 - name: Collect all packages from workspace
   synchronize:
