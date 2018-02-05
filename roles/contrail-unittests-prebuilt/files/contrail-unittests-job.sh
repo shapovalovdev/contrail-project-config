@@ -205,10 +205,6 @@ function run_unittest() {
         ci_exit $exit_code
     fi
 
-    if [[ -z $UNIT_TESTS ]]; then
-        UNIT_TESTS=test
-    fi
-
     logfile=$WORKSPACE/scons_test.log
     echo scons --debug=explain -k -j $SCONS_JOBS $UNIT_TESTS
     scons -k --debug=explain -j $SCONS_JOBS $UNIT_TESTS | tee $logfile

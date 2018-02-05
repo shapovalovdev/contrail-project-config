@@ -56,4 +56,8 @@ json.each_pair { |module_name, module_data|
     }
 }
 
-puts @tests.sort.uniq.join(" ") unless @tests.empty?
+if @tests.empty?
+  puts "test"
+else
+  puts @tests.sort.uniq.join(" ")
+end
