@@ -14,6 +14,9 @@
     registry_port: "{{ docker_registry.port }}"
   when: registry_port is not defined
 
+- name: Acquire IP address on the second interface
+  command: dhclient eth1
+
 - name: Install build dependencies
   package:
     name: "{{ item }}"
