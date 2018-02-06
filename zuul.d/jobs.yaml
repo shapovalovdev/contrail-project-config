@@ -123,6 +123,7 @@
     files:
       - ^debian/contrail/.*$
     run: playbooks/packaging/contrail-vnc
+    post-run: playbooks/packaging/post-vnc
 
 - job:
     name: contrail-vnc-build-package-el-base

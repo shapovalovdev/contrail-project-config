@@ -1,0 +1,40 @@
+- name: Prepare packaging variables
+  contrail_packaging:
+    zuul: "{{ zuul }}"
+    release_type: "{{ release_type }}"
+
+- name: Get a list of package files
+  find:
+    paths: "{{ zuul.executor.work_root }}/packages/"
+    recurse: yes
+    patterns:
+      - '*.deb'
+  register: packages
+  delegate_to: localhost
+
+- name: End early if no packages are available
+  meta: end_play
+  when: packages.matched|int == 0
+
+- name: Upload packages to the repository server
+  synchronize:
+    src: "{{ zuul.executor.work_root }}/packages/"
+    dest: "/var/www/ci-repos/deb/{{ packaging.repo_name }}/"
+    # ensure that no files are left after previous builds
+    delete: true
+    recursive: true
+  delegate_to: localhost
+
+- name: Publish packages in APT repository
+  manage_repository:
+    state: present
+    type: deb
+    linux_release: "{{ ansible_distribution_release }}"
+    repository: "{{ packaging.repo_name }}"
+  delegate_to: "{{ site_pulp.fqdn }}"
+
+- name: Set repository facts for Debian-based distributions
+  set_fact:
+    repository_url: "http://{{ site_pulp.fqdn }}/"
+    repository_path: "{{ repository.path }}"
+
