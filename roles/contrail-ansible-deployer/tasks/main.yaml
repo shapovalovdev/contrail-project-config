@@ -15,7 +15,8 @@
   when: registry_port is not defined
 
 - name: Acquire IP address on the second interface
-  command: dhclient eth1
+  command: /usr/sbin/dhclient eth1
+  become: true
 
 - name: Install build dependencies
   package:
