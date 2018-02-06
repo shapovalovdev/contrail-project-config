@@ -319,3 +319,8 @@
     name: Juniper/contrail-server-manager
     templates:
       - noops
+
+- project:
+    name: Juniper/contrail-zuul-jobs
+    templates:
+      - noops
