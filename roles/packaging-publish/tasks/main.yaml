@@ -1,0 +1,14 @@
+- include: deb.yaml
+  when: ansible_distribution == 'Ubuntu'
+
+- include: rpm.yaml
+  when: ansible_distribution == 'CentOS'
+
+- name: Return repository location back to zuul for children jobs
+  zuul_return:
+    data:
+      contrail_repository_url: "{{ repository_url }}"
+      # Used only on Debian-based distributions
+      contrail_repository_path: "{{ repository_path }}"
+  delegate_to: localhost
+

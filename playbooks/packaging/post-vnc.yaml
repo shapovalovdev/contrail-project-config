@@ -1,0 +1,13 @@
+- hosts: localhost
+  roles:
+    - role: add-fileserver
+      fileserver: "{{ site_pulp }}"
+
+- hosts: builder
+  roles:
+    - role: fetch-packages-deb
+
+- hosts: "{{ site_pulp.fqdn }}"
+  roles:
+    - role: contrail-common-libs
+    - role: packaging-publish
