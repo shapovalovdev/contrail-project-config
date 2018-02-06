@@ -38,6 +38,7 @@ def main():
     version = {'epoch': None}
     if branch == 'master':
         version['upstream'] = MASTER_RELEASE
+        docker_version = 'master'
     else:
         version['upstream'] = branch[1:]
 
@@ -71,6 +72,7 @@ def main():
     target_dir = "contrail-%s" % (version['upstream'],)
 
     full_version = "{upstream}~{distrib}".format(**version)
+    docker_version += "-%s" % date
 
     packaging = {
         'name': 'contrail',
@@ -79,6 +81,7 @@ def main():
         'version': version,
         'target_dir': target_dir,
         'repo_name': repo_name,
+        'docker_version': docker_version,
     }
 
     module.exit_json(ansible_facts={'packaging': packaging}, **result)
