@@ -58,6 +58,7 @@ providers:
           - opencontrail-ci-zone
         networks:
           - ci-zuulv3-internal
+          - contrail-dataplane
         labels:
           - name: ubuntu-xenial-small
             flavor-name: m1.small
