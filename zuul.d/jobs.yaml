@@ -127,6 +127,8 @@
       - ^debian/contrail/.*$
     run: playbooks/packaging/contrail-vnc
     post-run: playbooks/packaging/post-vnc
+    secrets:
+      - site_pulp
 
 - job:
     name: contrail-vnc-build-package-el-base
