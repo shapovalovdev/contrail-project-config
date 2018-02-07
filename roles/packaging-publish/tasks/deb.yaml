@@ -34,5 +34,4 @@
 - name: Set repository facts for Debian-based distributions
   set_fact:
     repository_url: "http://{{ site_pulp.fqdn }}/"
-    repository_path: "{{ repository.path }}"
 
