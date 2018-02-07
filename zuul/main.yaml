@@ -28,7 +28,8 @@
           - Juniper/contrail-heat
           - Juniper/contrail-helm-deployer
           - Juniper/contrail-horizon
-          - Juniper/contrail-kolla-ansible
+          - Juniper/contrail-kolla-ansible:
+              include: [] 
           - Juniper/contrail-neutron-plugin
           - Juniper/contrail-nova-vif-driver
           - Juniper/contrail-packages
