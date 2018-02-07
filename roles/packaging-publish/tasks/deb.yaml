@@ -28,7 +28,7 @@
   manage_repository:
     state: present
     type: deb
-    linux_release: "{{ ansible_distribution_release }}"
+    linux_release: "{{ hostvars['builder']['ansible_distribution_release'] }}"
     repository: "{{ packaging.repo_name }}"
 
 - name: Set repository facts for Debian-based distributions
