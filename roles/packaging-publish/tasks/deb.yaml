@@ -23,7 +23,6 @@
     # ensure that no files are left after previous builds
     delete: true
     recursive: true
-  delegate_to: localhost
 
 - name: Publish packages in APT repository
   manage_repository:
