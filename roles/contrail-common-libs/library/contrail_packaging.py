@@ -1,4 +1,5 @@
 import os
+import re
 
 from ansible.module_utils.basic import AnsibleModule
 from datetime import datetime
@@ -16,6 +17,7 @@ result = dict(
 )
 
 MASTER_RELEASE = '5.0'
+version_branch_regex = re.compile(r'^(master)|(R\d+\.\d+(\.\d+)?(\.x)?)$')
 
 class ReleaseType(object):
     CONTINUOUS_INTEGRATION = 'continuous-integration'
@@ -33,6 +35,8 @@ def main():
     release_type = module.params['release_type']
 
     branch = zuul['branch']
+    if not version_branch_regex.match(branch):
+        branch = 'master'
     date = datetime.now().strftime("%Y%m%d%H%M%S")
 
     version = {'epoch': None}
@@ -41,6 +45,7 @@ def main():
         docker_version = 'master'
     else:
         version['upstream'] = branch[1:]
+        docker_version = version['upstream']
 
     if release_type == ReleaseType.CONTINUOUS_INTEGRATION:
         # Versioning in CI consists of change id, pachset and date
