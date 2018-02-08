@@ -11,9 +11,11 @@
         - event: patchset-created
           branch:
             - ^master$
+            - ^contrail/ocata$
         - event: comment-added
           branch:
             - ^master$
+            - ^contrail/ocata$
           comment: (?i)recheck(( (?:bug|lp)[\s#:]*(\d+))|( zuulv3)|( no bug))?(\s+clean)?\s*$
     start:
       gerrit:
@@ -43,7 +45,9 @@
     trigger:
       gerrit:
         - event: comment-added
-          branch: "^master$"
+          branch:
+            - "^master$"
+            - "^contrail/ocata$"
           require-approval:
             - Verified: [1,2]
               username: "^zuulv3$"
@@ -51,7 +55,9 @@
           approval:
             - Approved: 1
         - event: comment-added
-          branch: "^master$"
+          branch:
+            - "^master$"
+            - "^contrail/ocata$"
           require-approval:
             - Verified: [1,2]
               username: "^zuulv3$"
@@ -60,7 +66,9 @@
             - Verified: 1
           username: "^zuulv3$"
         - event: comment-added
-          branch: "^master$"
+          branch:
+            - "^master$"
+            - "^contrail/ocata$"
           require-approval:
             - Verified: [1,2]
               username: "^zuulv3$"
@@ -70,7 +78,9 @@
         # CI bypass path: Verified +2 from opencontrail-admin
         # omits the requirement for Verified vote by Zuul
         - event: comment-added
-          branch: "^master$"
+          branch:
+            - "^master$"
+            - "^contrail/ocata$"
           approval:
             - Verified: 2
           username: "^opencontrail-admin$"
