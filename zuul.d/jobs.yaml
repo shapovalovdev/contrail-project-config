@@ -274,6 +274,7 @@
       - specs/.*
     required-projects:
       - Juniper/contrail-ansible-deployer
+      - Juniper/contrail-kolla-ansible
       - Juniper/contrail-test-ci
       - Juniper/contrail-test
     pre-run:
