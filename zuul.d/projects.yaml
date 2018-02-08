@@ -84,6 +84,9 @@
             dependencies:
               - contrail-vnc-build-containers-centos74-ocata-nightly
               - contrail-vnc-build-containers-centos74-newton-nightly
+    experimental:
+      jobs:
+        - contrail-systest-ubuntu1604-helm-newton
 
 - project:
     name: Juniper/contrail-common
