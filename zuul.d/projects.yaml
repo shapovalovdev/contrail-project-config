@@ -324,3 +324,13 @@
     name: Juniper/contrail-zuul-jobs
     templates:
       - noops
+
+- project:
+    name: Juniper/contrail-kolla-ansible
+    templates:
+      - systests
+
+- project:
+    name: Juniper/contrail-helm-deployer
+    templates:
+      - noops
