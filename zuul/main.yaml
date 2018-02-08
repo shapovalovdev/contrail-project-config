@@ -29,7 +29,8 @@
           - Juniper/contrail-helm-deployer
           - Juniper/contrail-horizon
           - Juniper/contrail-kolla-ansible:
-              include: [] 
+              exclude:
+                - ['pipeline', 'job', 'semaphore', 'project', 'secret', 'project-template', 'nodeset']
           - Juniper/contrail-neutron-plugin
           - Juniper/contrail-nova-vif-driver
           - Juniper/contrail-packages
