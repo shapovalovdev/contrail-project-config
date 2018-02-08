@@ -258,8 +258,8 @@
     parent: contrail-systest-base
     nodeset:
       nodes:
-        - name: ubuntu-xenial
-          label: ubuntu-xenial
+        - name: builder
+          label: ubuntu-xenial-builder
 
 - job:
     name: contrail-systest-ubuntu1604-helm-newton
