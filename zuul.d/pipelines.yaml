@@ -105,6 +105,8 @@
     name: experimental
     description: On-demand pipeline for testing jobs.
     manager: independent
+    success-message: Build succeeded (experimental pipeline).
+    failure-message: Build failed (experimental pipeline).
     precedence: normal
     trigger:
       gerrit:
