@@ -24,6 +24,7 @@
   apt:
     name: repo
     state: present
+  become: True
 
 - name: (Transition) create a temporary distro/third_party/ directory
   file:
