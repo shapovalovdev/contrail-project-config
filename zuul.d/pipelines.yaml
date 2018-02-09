@@ -115,8 +115,10 @@
             - ^contrail/.*$
     success:
       gerrit: {}
+      stats:
     failure:
       gerrit: {}
+      stats:
 
 - pipeline:
     name: experimental-provision
@@ -130,7 +132,9 @@
           branch:
             - ^master$
             - ^contrail/.*$
-    #success:
+    success:
+      stats:
     #  gerrit: {}
-    #failure:
+    failure:
+      stats:
     #  gerrit: {}
