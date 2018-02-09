@@ -20,6 +20,11 @@
   register: deps
   failed_when: "'mk-build-deps: Unable to install all build-dep packages' in deps.stdout"
 
+- name: Install android repo package
+  apt:
+    name: repo
+    state: present
+
 - name: (Transition) create a temporary distro/third_party/ directory
   file:
     path: "{{ packaging.target_dir }}/distro/third_party/"
