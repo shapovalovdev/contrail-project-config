@@ -34,6 +34,17 @@
     - ecdsa-0.13.tar.gz
     - Fabric-1.14.0.tar.gz
 
+- name: (FIXME) Make sure build directory exists
+  file:
+    path: "{{ packaging.target_dir }}/build"
+    state: directory
+
+- name: (FIXME) Symlink tools/provisioning/build/package_configs/ to build/
+  file:
+    src: "{{ packaging.target_dir }}/tools/provisioning/build/package_configs"
+    dest: "{{ packaging.target_dir }}/build/package_configs"
+    state: link
+
 - name: Build auxiliary packages required by contrail-container-builder
   command: "make {{ item }}-deb"
   args:
