@@ -45,9 +45,9 @@
     path: "{{ packaging.target_dir }}/build"
     state: directory
 
-- name: (FIXME) Symlink tools/provisioning/build/package_configs/ to build/
+- name: (FIXME) Symlink tools/packaging/build/package_configs/ to build/
   file:
-    src: "{{ packaging.target_dir }}/tools/provisioning/build/package_configs"
+    src: "{{ packaging.target_dir }}/tools/packaging/build/package_configs"
     dest: "{{ packaging.target_dir }}/build/package_configs"
     state: link
 
