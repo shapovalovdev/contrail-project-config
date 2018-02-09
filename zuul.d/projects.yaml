@@ -126,6 +126,9 @@
     experimental:
       jobs:
         - contrail-vnc-build-package-ubuntu-xenial
+        - contrail-vnc-build-containers-ubuntu16-newton-experimental:
+            dependencies:
+              - contrail-vnc-build-package-ubuntu-xenial
 
 - project:
     name: Juniper/contrail-packaging
