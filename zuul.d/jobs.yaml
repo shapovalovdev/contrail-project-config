@@ -189,6 +189,8 @@
       - Juniper/contrail-generateDS
       - Juniper/contrail-third-party
       - Juniper/contrail-packages
+      - Juniper/contrail-packaging
+      - Juniper/contrail-provisioning
       - Juniper/contrail-sandesh
       - Juniper/contrail-vrouter
       - Juniper/contrail-nova-vif-driver
