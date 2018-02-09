@@ -42,26 +42,26 @@
     failure-message: Build failed (gate pipeline).
     manager: dependent
     precedence: normal
+    require:
+      gerrit:
+        open: True
+        current-patchset: True
+        approval:
+          - Verified: [1, 2]
+            username: "^zuulv3$"
+          - Approved: 1
     trigger:
       gerrit:
         - event: comment-added
           branch:
             - "^master$"
             - "^contrail/ocata$"
-          require-approval:
-            - Verified: [1,2]
-              username: "^zuulv3$"
-              newer-than: 52w
           approval:
             - Approved: 1
         - event: comment-added
           branch:
             - "^master$"
             - "^contrail/ocata$"
-          require-approval:
-            - Verified: [1,2]
-              username: "^zuulv3$"
-              newer-than: 52w
           approval:
             - Verified: 1
           username: "^zuulv3$"
@@ -69,21 +69,8 @@
           branch:
             - "^master$"
             - "^contrail/ocata$"
-          require-approval:
-            - Verified: [1,2]
-              username: "^zuulv3$"
-              newer-than: 52w
           approval:
             - Code-Review: 2
-        # CI bypass path: Verified +2 from opencontrail-admin
-        # omits the requirement for Verified vote by Zuul
-        - event: comment-added
-          branch:
-            - "^master$"
-            - "^contrail/ocata$"
-          approval:
-            - Verified: 2
-          username: "^opencontrail-admin$"
     start:
       gerrit:
         Verified: 0
