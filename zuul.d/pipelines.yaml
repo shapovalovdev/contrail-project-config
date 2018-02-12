@@ -49,6 +49,8 @@
         approval:
           - Verified: [1, 2]
             username: "^zuulv3$"
+          - Verified: [1, 2]
+            username: "^codilime-ci$"
           - Approved: 1
     trigger:
       gerrit:
@@ -64,7 +66,9 @@
             - "^contrail/ocata$"
           approval:
             - Verified: 1
-          username: "^zuulv3$"
+          username:
+           - "^zuulv3$"
+           - "^codilime-ci$"
         - event: comment-added
           branch:
             - "^master$"
