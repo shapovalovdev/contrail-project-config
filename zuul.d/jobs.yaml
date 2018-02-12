@@ -468,4 +468,4 @@
           label: centos-7-4-builder
     vars:
       linux_distribution: ubuntu
-      openstack_release: newton
+      openstack_version: newton
