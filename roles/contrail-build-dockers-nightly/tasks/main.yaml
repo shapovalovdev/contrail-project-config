@@ -16,6 +16,11 @@
       LINUX_DISTR={{ linux_distribution }}
     dest: "{{ docker_build_dir }}/common.env"
 
+- name: (Transition) Ensure that general-base directory exists
+  file:
+    state: directory
+    path: "{{ docker_build_dir }}/containers/general-base"
+
 - name: copy the repo files to containers build context
   synchronize:
     src: "{{ rpm_repo_config_dir }}/"
@@ -24,6 +29,7 @@
   with_items:
     - base
     - test/test
+    - general-base
 
 - name: Create log dir
   file:
