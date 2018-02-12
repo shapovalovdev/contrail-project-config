@@ -447,7 +447,7 @@
 
 - job:
     name: contrail-vnc-build-containers-ubuntu16-newton-experimental
-    parent: contrail-src-base
+    parent: base
     description: |
       Builds the Contrail microservices using contrail-container-builder
       and uploads them to a Docker registry.
