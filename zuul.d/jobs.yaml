@@ -465,7 +465,7 @@
     nodeset:
       nodes:
         - name: builder
-          label: centos-7-4-builder
+          label: ubuntu-xenial-builder
     vars:
       linux_distribution: ubuntu
       openstack_version: newton
