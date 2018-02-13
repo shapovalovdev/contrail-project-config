@@ -308,7 +308,8 @@
       - specs/.*
     required-projects:
       - Juniper/contrail-ansible-deployer
-      - Juniper/contrail-kolla-ansible
+      - name: Juniper/contrail-kolla-ansible
+        override-checkout: contrail/ocata
       - Juniper/contrail-test-ci
       - Juniper/contrail-test
     pre-run:
