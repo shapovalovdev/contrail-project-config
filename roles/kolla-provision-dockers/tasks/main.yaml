@@ -47,6 +47,13 @@
   become: true
   become_user: root
 
+- name: Create ansible configuration
+  copy:
+    content: |
+      [defaults]
+      gather_timeout = 300
+    dest: "{{ kolla_provision_dir }}/ansible/ansible.cfg"
+
 - name: Provision OpenStack cluster with kolla
   command: >
     ansible-playbook -i inventory/all-in-one \
