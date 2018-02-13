@@ -19,6 +19,7 @@
 
 - name: Reload facts after DHCP address setup
   setup:
+    gather_timeout: 300
 
 - name: Template the testbed.py
   template:
