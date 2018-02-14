@@ -46,6 +46,15 @@
               - contrail-vnc-build-containers-centos74
 
 - project-template:
+    name: build
+    check:
+      jobs:
+        - contrail-vnc-build-package-centos74
+        - contrail-vnc-build-containers-centos74:
+            dependencies:
+              - contrail-vnc-build-package-centos74
+
+- project-template:
     name: noops
     check:
       jobs:
@@ -343,3 +352,8 @@
     name: Juniper/contrail-helm-deployer
     templates:
       - noops
+
+- project:
+    name: Juniper/contrail-vnc
+    templates:
+      - build
