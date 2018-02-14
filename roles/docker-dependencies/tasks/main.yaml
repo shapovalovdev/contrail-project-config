@@ -14,12 +14,22 @@
     registry_port: "{{ docker_registry.port }}"
   when: registry_port is not defined
 
+- name: Register docker package name
+  set_fact:
+    docker_pkgname: >-
+      {%- if linux_distribution == 'centos' -%}
+      docker
+      {%- elif linux_distribution == 'ubuntu' -%}
+      docker.io
+      {%- endif -%}
+  when: linux_distribution is defined
+
 - name: Install build dependencies
   package:
     name: "{{ item }}"
     state: latest
   with_items:
-    - docker
+    - "{{ docker_pkgname | default('docker') }}"
     - iproute
   become: True
   become_user: root
