@@ -24,15 +24,25 @@
     registry_port: "{{ docker_registry.port }}"
   when: registry_port is not defined
 
+- name: Force contrail_repository_url to archive.ubuntu.com
+  set_fact:
+    contrail_repository_url: http://archive.ubuntu.com/
+
 - name: Prepare build configuration - common.env
   copy:
     content: |
       CONTRAIL_VERSION={{ contrail_version }}
       CONTRAIL_REGISTRY={{ contrail_docker_registry }}
-      CONTRAIL_REPOSITORY={{ contrail_package_repository }}
+      CONTRAIL_REPOSITORY={{ contrail_repository_url }}
       OPENSTACK_VERSION={{ openstack_version }}
       LINUX_DISTR={{ linux_distribution }}
     dest: "{{ docker_build_dir }}/common.env"
+
+- name: copy repo file to slave system
+  content: |
+    deb [trusted=yes] {{ repository_url }}{{ repository_path }} xenial main
+    deb [trusted=yes] http://repo01-jnpr.opencontrail.org/ubuntu xenial-master main
+  dest: "{{ repo_config_dir }}/contrail.list"
 
 - name: copy the repo files to containers build context
   synchronize:
