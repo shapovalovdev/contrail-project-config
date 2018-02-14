@@ -24,9 +24,16 @@
     registry_port: "{{ docker_registry.port }}"
   when: registry_port is not defined
 
+# FIXME(kklimonda): ubuntu repository handling in c-c-b has to be improved
 - name: Force contrail_repository_url to archive.ubuntu.com
   set_fact:
     contrail_repository_url: http://archive.ubuntu.com/
+
+# FIXME(kklimonda): to be removed once we stop testing this job
+- name: Force contrail_repository_path if not already set
+  set_fact:
+    contrail_repository_path: /ci-repos/deb/37779-2/
+  when: contrail_repository_path is undefined
 
 - name: Prepare build configuration - common.env
   copy:
@@ -41,7 +48,7 @@
 - name: copy repo file to slave system
   copy:
     content: |
-      deb [trusted=yes] {{ repository_url }}{{ repository_path }} xenial main
+      deb [trusted=yes] {{ contrail_repository_url }}{{ contrail_repository_path }} xenial main
       deb [trusted=yes] http://repo01-jnpr.opencontrail.org/ubuntu xenial-master main
     dest: "{{ repo_config_dir }}/contrail_ci.list"
 
