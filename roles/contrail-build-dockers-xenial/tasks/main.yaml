@@ -51,6 +51,7 @@
       deb [trusted=yes] {{ contrail_repository_url }}{{ contrail_repository_path }} xenial main
       deb [trusted=yes] http://repo01-jnpr.opencontrail.org/ubuntu xenial-master main
     dest: "{{ repo_config_dir }}/contrail_ci.list"
+  become: True
 
 - name: copy the repo files to containers build context
   synchronize:
