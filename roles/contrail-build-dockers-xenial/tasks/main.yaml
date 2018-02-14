@@ -39,10 +39,11 @@
     dest: "{{ docker_build_dir }}/common.env"
 
 - name: copy repo file to slave system
-  content: |
-    deb [trusted=yes] {{ repository_url }}{{ repository_path }} xenial main
-    deb [trusted=yes] http://repo01-jnpr.opencontrail.org/ubuntu xenial-master main
-  dest: "{{ repo_config_dir }}/contrail.list"
+  copy:
+    content: |
+      deb [trusted=yes] {{ repository_url }}{{ repository_path }} xenial main
+      deb [trusted=yes] http://repo01-jnpr.opencontrail.org/ubuntu xenial-master main
+    dest: "{{ repo_config_dir }}/contrail_ci.list"
 
 - name: copy the repo files to containers build context
   synchronize:
