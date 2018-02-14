@@ -47,7 +47,7 @@
 - name: Ensure that docker daemon is running
   service:
     name: docker
-    state: started
+    state: restarted
   become: True
   become_user: root
 
