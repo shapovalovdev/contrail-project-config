@@ -45,10 +45,12 @@ control_data = {
 }
 
 env.keystone = {
-    'keystone_ip': '{{ contrail_host_ip }}'
+    'keystone_ip': '{{ contrail_host_ip }}',
+    'version': 'v3'
 }
 
 env.test = {
+    'use_project_scoped_token': True,
     'webserver_host': '{{ contrail_host_ip }}',
     'webserver_user': 'zuul',
     'webserver_log_path': '{{ ansible_env.HOME }}/logs',
