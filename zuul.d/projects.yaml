@@ -76,6 +76,9 @@
              - specs/.*
     periodic-nightly:
       jobs:
+        - contrail-vnc-build-package-ubuntu-xenial:
+            vars:
+              release_type: nightly
         - contrail-vnc-build-package-centos74-nightly:
             vars:
               release_type: nightly
