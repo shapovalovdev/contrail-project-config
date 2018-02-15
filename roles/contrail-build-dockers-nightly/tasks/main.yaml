@@ -14,6 +14,8 @@
       OPENSTACK_VERSION={{ openstack_version }}
       OPENSTACK_SUBVERSION={{ openstack_subversion }}
       LINUX_DISTR={{ linux_distribution }}
+      BUILD_TEST_CONTAINER=1
+      CONTRAIL_TEST_REGISTRY=opencontrailnightly
     dest: "{{ docker_build_dir }}/common.env"
 
 - name: (Transition) Ensure that general-base directory exists
