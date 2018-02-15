@@ -32,6 +32,7 @@
 
       For more information about the OpenContrail CI system, see:
       https://github.com/Juniper/contrail-project-config/wiki/OpenContrail-CI
+      Job live status page: http://zuulv3.opencontrail.org/
 
 - pipeline:
     name: gate
@@ -87,6 +88,7 @@
 
       For more information about the OpenContrail CI system, see:
       https://github.com/Juniper/contrail-project-config/wiki/OpenContrail-CI
+      Job live status page: http://zuulv3.opencontrail.org/
     window-floor: 20
     window-increase-factor: 2
 
