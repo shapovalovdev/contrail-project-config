@@ -19,6 +19,16 @@
   delay: 10
   until: result.rc == 0
 
+- name: Retag containers to add latest tag
+  shell: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item | regex_replace(':.*$',':latest') }}"
+  with_items: "{{ container_list.stdout_lines }}"
+  become: true
+
+- name: Push containers with latest tag back to their origin
+  shell: "docker push {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item | regex_replace(':.*$',':latest') }}"
+  with_items: "{{ container_list.stdout_lines }}"
+  become: true
+
 - name: Log in to dockerhub
   shell: "docker login -u {{ dockerhub.username }} -p {{ dockerhub.password }}"
   no_log: true
