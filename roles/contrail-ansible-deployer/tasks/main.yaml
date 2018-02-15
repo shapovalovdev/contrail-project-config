@@ -100,7 +100,6 @@
   become: True
   become_user: root
   with_items:
-    - contrailvrouter_vrouter-agent_1
     - vrouter_vrouter-agent_1
   ignore_errors: true
 
