@@ -42,7 +42,7 @@
   become: yes
 
 - name: Run the sanity test
-  command: "{{ repos_dir }}/contrail-test-ci/testrunner.sh run -t {{ ansible_env.HOME }}/testbed.py -m {{ repos_dir }} -k /root/.ssh/id_rsa -f ci_sanity '{{ testrunner_image }}'"
+  command: "{{ repos_dir }}/contrail-test-ci/testrunner.sh run -t {{ ansible_env.HOME }}/testbed.py -m {{ repos_dir }} -k /root/.ssh/id_rsa -f {{ test_target }} '{{ testrunner_image }}'"
   become: yes
   ignore_errors: yes
 

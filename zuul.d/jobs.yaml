@@ -325,6 +325,12 @@
       - docker_registry
 
 - job:
+    name: contrail-systest-full-centos74-kolla-ocata
+    parent: contrail-systest-centos74-kolla-ocata
+    vars:
+      test_target: sanity
+
+- job:
     name: contrail-vnc-build-containers-centos74-dev
     parent: contrail-vnc-build-containers-centos74
     run: playbooks/docker/centos74-dev

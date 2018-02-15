@@ -75,28 +75,6 @@
         - contrail-vnc-specs-linter:
            files:
              - specs/.*
-    periodic-nightly:
-      jobs:
-        - contrail-vnc-build-package-ubuntu-xenial:
-            vars:
-              release_type: nightly
-        - contrail-vnc-build-package-centos74-nightly:
-            vars:
-              release_type: nightly
-        - contrail-vnc-build-containers-centos74-ocata-nightly:
-            dependencies:
-              - contrail-vnc-build-package-centos74-nightly
-            vars:
-              release_type: nightly
-        - contrail-vnc-build-containers-centos74-newton-nightly:
-            dependencies:
-              - contrail-vnc-build-package-centos74-nightly
-            vars:
-              release_type: nightly
-        - contrail-vnc-publish-containers-nightly:
-            dependencies:
-              - contrail-vnc-build-containers-centos74-ocata-nightly
-              - contrail-vnc-build-containers-centos74-newton-nightly
     experimental:
       jobs:
         - contrail-systest-ubuntu1604-helm-newton
@@ -129,6 +107,37 @@
         - contrail-vnc-build-package-ubuntu-xenial:
             vars:
               release_type: nightly
+        - contrail-vnc-build-package-centos74-nightly:
+            vars:
+              release_type: nightly
+        - contrail-vnc-build-containers-centos74-ocata-nightly:
+            dependencies:
+              - contrail-vnc-build-package-centos74-nightly
+            vars:
+              release_type: nightly
+        - contrail-vnc-build-containers-centos74-newton-nightly:
+            dependencies:
+              - contrail-vnc-build-package-centos74-nightly
+            vars:
+              release_type: nightly
+        - contrail-vnc-publish-containers-nightly:
+            dependencies:
+              - contrail-vnc-build-containers-centos74-ocata-nightly
+              - contrail-vnc-build-containers-centos74-newton-nightly
+    periodic-sanity:
+      jobs:
+        - contrail-vnc-build-package-centos74-nightly:
+            vars:
+              release_type: nightly
+        - contrail-vnc-build-containers-centos74-ocata-nightly:
+            dependencies:
+              - contrail-vnc-build-package-centos74-nightly
+        - contrail-systest-centos74-kolla-ocata:
+            dependencies:
+              - contrail-vnc-build-containers-centos74-ocata-nightly
+        - contrail-systest-full-centos74-kolla-ocata:
+            dependencies:
+              - contrail-vnc-build-containers-centos74-ocata-nightly
 
 - project:
     name: Juniper/contrail-generateDS
