@@ -10,6 +10,7 @@ contrail_configuration:
   CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ registry_port }}"
   PHYSICAL_INTERFACE: eth1
   VROUTER_GATEWAY: 172.16.8.1
+  LOG_LEVEL: SYS_DEBUG
 {% if cloud_orchestrator == 'openstack' %}
   AUTH_MODE: keystone
   KEYSTONE_AUTH_ADMIN_PASSWORD: c0ntrail123
