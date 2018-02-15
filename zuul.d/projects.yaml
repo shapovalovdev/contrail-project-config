@@ -366,7 +366,7 @@
 - project:
     name: Juniper/contrail-kolla-ansible
     templates:
-      - systests
+      - systests-nogate
 
 - project:
     name: Juniper/contrail-helm-deployer
