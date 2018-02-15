@@ -71,6 +71,17 @@
   become: true
   become_user: root
 
+- name: "Build binary package for ironic-notification-manager"
+  shell: |
+    rpmbuild \
+      --define "_topdir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/" \
+      --define "_builddir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/controller" \
+      --define "_buildTag {{ packaging.version.distrib }}" \
+      --define "_srcVer {{ packaging.version.upstream }}" \
+      -bb {{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/common/rpm/ironic-notification-manager.spec
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/"
+
 - name: Build binary packages for Contrail WebUI
   shell: |
     make package REPO=../{{ item.name }}{{ item.component }}
