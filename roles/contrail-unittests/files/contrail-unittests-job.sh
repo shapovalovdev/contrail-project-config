@@ -50,6 +50,7 @@ function archive_failed_test_logs() {
     find . -name '*.log' | xargs gzip -S .txt.gz
     mkdir "$LOGDIR"
     find . -name '*.txt.gz' -exec cp --parents '{}' "$LOGDIR" \;
+    chmod -R ugo+rX "$LOGDIR"
 }
 
 function display_test_results() {
