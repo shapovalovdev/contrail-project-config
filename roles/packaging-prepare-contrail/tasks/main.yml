@@ -52,7 +52,8 @@
     rsync_opts:
       - --no-motd
       - --quiet
-  with_items: []
+  with_items:
+    - { src: 'contrail-api-client', dest: 'src' }
   delegate_to: "{{ inventory_hostname }}"
 
 - name: Copy debian/ to enable package building

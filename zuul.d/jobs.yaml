@@ -184,6 +184,7 @@
 - job:
     name: contrail-vnc-build-unittest-ubuntu-trusty
     required-projects:
+      - Juniper/contrail-api-client
       - Juniper/contrail-build
       - Juniper/contrail-controller
       - Juniper/contrail-generateDS
