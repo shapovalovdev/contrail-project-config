@@ -326,7 +326,27 @@
 
 - job:
     name: contrail-systest-full-centos74-kolla-ocata
-    parent: contrail-systest-centos74-kolla-ocata
+    parent: contrail-src-base
+    description: |
+      A job that deploys Contrail containers using contrail-ansible-deployer,
+      OpenStack using Kolla and runs the CI sanity testsuite.
+    irrelevant-files:
+      - specs/.*
+    required-projects:
+      - Juniper/contrail-ansible-deployer
+      - name: Juniper/contrail-kolla-ansible
+        override-checkout: contrail/ocata
+      - Juniper/contrail-test-ci
+      - Juniper/contrail-test
+    run: playbooks/kolla/centos74-provision-kolla
+    post-run: playbooks/sanitytest/post
+    nodeset:
+      nodes:
+        - name: kolla-aio
+          label: centos-7-4-builder-xxlarge
+    secrets:
+      - site_pulp
+      - docker_registry
     vars:
       test_target: sanity
 
