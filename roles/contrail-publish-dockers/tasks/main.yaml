@@ -9,6 +9,11 @@
     done
   register: container_list
 
+# XXX: perhaps we should manage "centos7-ocata" part via secrets
+- name: Register variable for latest release
+  set_fact:
+    container_latest_release: "{{ contrail_container_tag }}-centos7-ocata"
+
 - name: Pull containers
   shell: "docker pull {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }}"
   with_items: "{{ container_list.stdout_lines }}"
@@ -21,11 +26,13 @@
 
 - name: Retag containers to add latest tag
   shell: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item | regex_replace(':.*$',':latest') }}"
+  when: item | search(container_latest_release)
   with_items: "{{ container_list.stdout_lines }}"
   become: true
 
 - name: Push containers with latest tag back to their origin
   shell: "docker push {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item | regex_replace(':.*$',':latest') }}"
+  when: item | search(container_latest_release)
   with_items: "{{ container_list.stdout_lines }}"
   become: true
 
@@ -38,11 +45,6 @@
   shell: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item }}"
   with_items: "{{ container_list.stdout_lines }}"
   become: true
-
-# XXX: perhaps we should manage "centos7-ocata" part via secrets
-- name: Register variable for latest release
-  set_fact:
-    container_latest_release: "{{ contrail_container_tag }}-centos7-ocata"
 
 - name: Retag containers - add latest tag
   shell: "docker tag {{ dockerhub.namespace }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace(':.*$',':latest') }}"
