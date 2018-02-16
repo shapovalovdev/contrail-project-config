@@ -78,30 +78,6 @@
     experimental:
       jobs:
         - contrail-systest-ubuntu1604-helm-newton
-
-- project:
-    name: Juniper/contrail-common
-    templates:
-      - unittests
-      - systests
-
-- project:
-    name: Juniper/contrail-build
-    templates:
-      - unittests
-      - systests
-
-- project:
-    name: Juniper/contrail-controller
-    templates:
-      - unittests
-      - systests
-    experimental-provision:
-      jobs:
-        - contrail-systest-centos74-kolla-ocata
-    experimental:
-      jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty-prebuilt
     periodic-nightly:
       jobs:
         - contrail-vnc-build-package-ubuntu-xenial:
@@ -139,6 +115,30 @@
         - contrail-systest-full-centos74-kolla-ocata:
             dependencies:
               - contrail-vnc-build-containers-centos74-ocata-nightly
+
+- project:
+    name: Juniper/contrail-common
+    templates:
+      - unittests
+      - systests
+
+- project:
+    name: Juniper/contrail-build
+    templates:
+      - unittests
+      - systests
+
+- project:
+    name: Juniper/contrail-controller
+    templates:
+      - unittests
+      - systests
+    experimental-provision:
+      jobs:
+        - contrail-systest-centos74-kolla-ocata
+    experimental:
+      jobs:
+        - contrail-vnc-build-unittest-ubuntu-trusty-prebuilt
 
 - project:
     name: Juniper/contrail-generateDS
