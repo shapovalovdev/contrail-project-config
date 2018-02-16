@@ -8,6 +8,7 @@
               shadow: Juniper/contrail-project-config
           - Juniper/contrail-api-client
           - Juniper/contrail-nova-extensions
+          - Juniper/contrail-dpdk
       gerrit:
         config-projects:
           - Juniper/contrail-project-config
