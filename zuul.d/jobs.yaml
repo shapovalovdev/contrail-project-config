@@ -248,7 +248,7 @@
 
 - job:
     name: contrail-systest-base
-    parent: contrail-src-base
+    parent: base
     pre-run:
       - playbooks/docker/setup-docker-registry
     post-run: playbooks/sanitytest/post
