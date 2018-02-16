@@ -31,14 +31,17 @@
       BUILD_TEST_CONTAINER=1
     dest: "{{ docker_build_dir }}/common.env"
 
+- name: Get list of repo files
+  shell: "ls {{ rpm_repo_config_dir }}/"
+  register: repo_file_list
+
 - name: copy the repo files to containers build context
-  synchronize:
-    src: "{{ rpm_repo_config_dir }}/"
-    dest: "{{ docker_build_dir }}/containers/{{ item }}"
-  delegate_to: "{{ inventory_hostname }}"
+  copy:
+    src: "{{ rpm_repo_config_dir }}/{{ item }}"
+    dest: "{{ docker_build_dir }}/{{ item }}.template"
+    remote_src: true
   with_items:
-    - base
-    - test/test
+    - "{{ repo_file_list.stdout_lines }}"
 
 - name: Create log dir
   file:
