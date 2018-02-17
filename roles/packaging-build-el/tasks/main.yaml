@@ -5,6 +5,17 @@
   become: True
   become_user: root
 
+# XXX(kklimonda): Expand role to install dependencies for all .spec files used
+- name: Install additional DPDK dependencies
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libnl3
+    - liburcu2
+    - libnl3-devel
+    - liburcu-devel
+
 - name: Fetch third-party packages
   shell: python fetch_packages.py
   args:
@@ -61,6 +72,8 @@
     - { name: 'contrail-openstack-vrouter',   workdir: 'controller' }
     - { name: 'contrail-openstack-webui',   workdir: 'controller' }
     - { name: 'contrail-vrouter-init' }
+    - { name: 'contrail-vrouter-dpdk' }
+    - { name: 'contrail-vrouter-dpdk-init' }
 #    - { name: 'contrail-test' }
     - { name: 'fabric-utils' }
     - { name: 'neutron-plugin-contrail' }
