@@ -15,6 +15,7 @@
     - liburcu2
     - libnl3-devel
     - liburcu-devel
+  become: true
 
 - name: Fetch third-party packages
   shell: python fetch_packages.py
