@@ -24,7 +24,7 @@
   delegate_to: localhost
 
 - name: repo init
-  command: ./repo init -u {{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper/contrail-vnc
+  command: ./repo init -u {{ zuul.executor.src_root }}/{{ zuul.project.canonical_hostname }}/Juniper/contrail-vnc
   args:
     chdir: "{{ executor_sandbox_path }}"
   delegate_to: localhost
