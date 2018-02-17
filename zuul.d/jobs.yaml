@@ -80,6 +80,7 @@
       - Juniper/contrail-test
       - Juniper/contrail-test-ci
       - Juniper/contrail-third-party
+      - Juniper/contrail-vnc
       - Juniper/contrail-vrouter
       - Juniper/contrail-web-controller
       - Juniper/contrail-web-core
