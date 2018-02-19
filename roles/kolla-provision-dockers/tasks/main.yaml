@@ -8,6 +8,12 @@
     - "ansible"
     - "python2-jinja2"
 
+- name: Clone contrail-kolla-ansible repository
+  git:
+    repo: 'https://github.com/Juniper/contrail-kolla-ansible'
+    dest: "{{ kolla_provision_dir }}"
+    version: "16a964c5da14c1fb0510074133867efac68694b0"
+
 - name: Copy Kolla config files
   copy:
     src: "{{ item }}.original"
