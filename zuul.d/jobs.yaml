@@ -348,6 +348,7 @@
       - Juniper/contrail-test
     run: playbooks/kolla/centos74-provision-kolla
     post-run: playbooks/sanitytest/post
+    timeout: 86400
     nodeset:
       nodes:
         - name: kolla-aio
