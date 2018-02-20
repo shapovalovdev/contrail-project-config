@@ -11,6 +11,7 @@
     - configure-hosts-entries
     - validate-host
     - yum-repos-prepare
+    - gitlog-upload
 - hosts: all
   roles:
     - role: configure-hosts-entries
