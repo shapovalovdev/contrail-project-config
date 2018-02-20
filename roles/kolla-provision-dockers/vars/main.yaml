@@ -3,7 +3,6 @@ kolla_globals_config:
   kolla_install_type: 'binary'
   openstack_release: "{{ kolla_version }}"
   docker_registry: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
-  enable_keystone_v3: "no"
   keystone_admin_user: 'admin'
   contrail_api_interface_address: "{{ hostvars[inventory_hostname]['ansible_host'] }}"
   kolla_external_vip_address: "{{ hostvars[inventory_hostname]['ansible_host'] }}"
