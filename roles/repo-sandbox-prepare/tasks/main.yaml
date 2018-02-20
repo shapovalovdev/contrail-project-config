@@ -35,8 +35,14 @@
     dest: "{{ executor_sandbox_path }}/zuul_var.yaml"
   delegate_to: localhost
 
+- name: snapshot last commits SHAs into the manifest
+  command: ./manifest_translator.py snapshot ./zuul_var.yaml {{ executor_sandbox_path }}/.repo/manifest.xml {{ zuul.executor.log_root }}/zuul-info/manifest.xml
+  args:
+    chdir: "{{ executor_sandbox_path }}"
+  delegate_to: localhost
+
 - name: apply changes to the manifest.xml
-  command: ./manifest_translator.py ./zuul_var.yaml {{ executor_sandbox_path }}/.repo/manifest.xml
+  command: ./manifest_translator.py translate ./zuul_var.yaml {{ executor_sandbox_path }}/.repo/manifest.xml
   args:
     chdir: "{{ executor_sandbox_path }}"
   delegate_to: localhost
