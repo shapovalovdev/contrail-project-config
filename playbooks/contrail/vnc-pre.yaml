@@ -2,4 +2,3 @@
   roles:
     - contrail-common-libs
     - repo-sandbox-prepare
-    - contrail-upload-git-log

@@ -10,3 +10,4 @@
     - configure-mirrors
     - validate-host
     - prepare-workspace
+    - gitlog-upload

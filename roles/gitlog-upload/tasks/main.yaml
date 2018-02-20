@@ -1,9 +1,9 @@
 - name: Get info on last commits for each repo
-  script: |
+  shell: |
     /usr/bin/git \
     --git-dir={{ item.value.src_dir }}/.git/ \
     log --pretty=format:"%h%x09%ad%x09%aE%x09%s" \
-    --date="format-local:%Y-%m-%d %H:%M:%S UTC" | head -n 10
+    --date="local" | head -n 10
   register: gitlog
   environment:
     TZ: "UTC"
