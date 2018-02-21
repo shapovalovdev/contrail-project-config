@@ -1,4 +1,5 @@
 - name: Get info on last commits for each repo
+  delegate_to: localhost
   shell: |
     /usr/bin/git \
     --git-dir={{ item.value.src_dir }}/.git/ \
