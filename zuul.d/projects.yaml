@@ -121,6 +121,9 @@
     templates:
       - unittests
       - systests
+    experimental:
+      jobs:
+        - contrail-systest-centos74-kolla-ocata-dev
 
 - project:
     name: Juniper/contrail-build
@@ -307,10 +310,6 @@
     experimental:
       jobs:
         - contrail-vnc-build-containers-ubuntu1604-ocata-nightly
-        - contrail-vnc-build-containers-centos74-dev
-        - contrail-systest-centos74-kolla-ocata-dev:
-            dependencies:
-              - contrail-vnc-build-containers-centos74-dev
 
 - project:
     name: Juniper/contrail-web-core

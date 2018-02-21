@@ -12,26 +12,14 @@
   wait_for:
     timeout: 120
 
-- name: Check if Zuul overrode the registry port
-  stat:
-    path: "{{ zuul.executor.work_root }}/saved_vars.yaml"
-  register: varfile
-  delegate_to: localhost
-
-- name: Get the overridden registry port
-  include_vars:
-    file: "{{ zuul.executor.work_root }}/saved_vars.yaml"
-  when: varfile.stat.isreg is defined and varfile.stat.isreg
-
-- name: Set default registry port if not overridden
-  set_fact:
-    registry_port: "{{ docker_registry.port }}"
-  when: registry_port is not defined
-
 - name: Set variables
   set_fact:
-    testrunner_image: "{{ contrail_docker_registry }}/contrail-test-test:{{ contrail_version }}-centos7-ocata"
+    testrunner_image: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}/contrail-test:static-centos7-ocata"
     repos_dir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper"
+
+- name: Reload facts after DHCP address setup
+  setup:
+    gather_timeout: 300
 
 - name: Template the testbed.py
   template:
@@ -54,7 +42,7 @@
   become: yes
 
 - name: Run the sanity test
-  command: "{{ repos_dir }}/contrail-test-ci/testrunner.sh run -t {{ ansible_env.HOME }}/testbed.py -m {{ repos_dir }} -k /root/.ssh/id_rsa -f ci_sanity '{{ testrunner_image }}'"
+  command: "{{ repos_dir }}/contrail-test-ci/testrunner.sh run -t {{ ansible_env.HOME }}/testbed.py -m {{ repos_dir }} -k /root/.ssh/id_rsa -f {{ test_target }} '{{ testrunner_image }}'"
   become: yes
   ignore_errors: yes
 
