@@ -1,0 +1,84 @@
+- name: Set default registry port if not overridden
+  set_fact:
+    registry_port: "5000"
+
+- name: Install build dependencies
+  package:
+    name: "{{ item }}"
+    state: latest
+  become: true
+  with_items:
+    - "centos-release-openstack-{{ openstack_version }}"
+    - "ansible"
+    - "python2-jinja2"
+
+- name: Clone contrail-kolla-ansible repository
+  git:
+    repo: 'https://github.com/Juniper/contrail-kolla-ansible'
+    dest: "{{ kolla_provision_dir }}"
+    version: "16a964c5da14c1fb0510074133867efac68694b0"
+
+- name: Copy Kolla config files
+  copy:
+    src: "{{ item }}.original"
+    dest: "{{ item }}"
+  when: item|is_file
+  with_items:
+    - "{{ kolla_config_dir }}/passwords.yml"
+    - "{{ kolla_config_dir }}/globals.yml"
+
+- name: Provisioning parameters to Kolla globals.yml
+  lineinfile:
+    dest: "{{ kolla_config_dir }}/globals.yml"
+    regexp: "^{{ item.key }}:"
+    line: "{{ item.key }}: {{ item.value }}"
+  with_dict: "{{ kolla_globals_config }}"
+
+- name: Prepare all-in-one inventory for Kolla deployment
+  replace:
+    path: "{{ kolla_provision_dir }}/ansible/inventory/all-in-one"
+    regexp: '^localhost\s+ansible_connection=local\s+$'
+    replace: "{{ hostvars[inventory_hostname]['ansible_host'] }}       ansible_ssh_pass=contrail123"
+
+- name: Ensure SSH key is generated
+  command: ssh-keygen -t rsa -f /root/.ssh/id_rsa -N ''
+  args:
+    creates: /root/.ssh/id_rsa
+  become: true
+  become_user: root
+
+- name: Add key to authorized keys
+  shell: |
+    cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+    chmod 600 /root/.ssh/authorized_keys
+    chmod 600 /root/.ssh/id_rsa
+    chmod 600 /root/.ssh/id_rsa.pub
+    chmod 700 /root/.ssh
+  become: true
+  become_user: root
+
+- name: Create ansible configuration
+  copy:
+    content: |
+      [defaults]
+      gather_timeout = 300
+    dest: "{{ kolla_provision_dir }}/ansible/ansible.cfg"
+
+- name: Provision OpenStack cluster with kolla
+  command: >
+    ansible-playbook -i inventory/all-in-one \
+                     -e@../etc/kolla/globals.yml \
+                     -e@../etc/kolla/passwords.yml \
+                     all.yml -v
+  become: true
+  become_user: root
+  environment:
+    ANSIBLE_HOST_KEY_CHECKING: 'false'
+    ANSIBLE_STDOUT_CALLBACK: debug
+  args:
+    chdir: "{{ kolla_provision_dir }}/ansible"
+
+- name: Show the list of running containers
+  command: docker ps -a
+  become: true
+  become_user: root

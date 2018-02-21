@@ -40,7 +40,17 @@ env.test_verify_on_setup = True
 
 env.http_proxy = ""
 
+control_data = {
+    host1 : { 'ip': '{{ ansible_vhost0.ipv4.address }}/24', 'gw' : '192.168.1.254', 'device':'dummy' },
+}
+
+env.keystone = {
+    'keystone_ip': '{{ contrail_host_ip }}',
+    'version': 'v3'
+}
+
 env.test = {
+    'use_project_scoped_token': True,
     'webserver_host': '{{ contrail_host_ip }}',
     'webserver_user': 'zuul',
     'webserver_log_path': '{{ ansible_env.HOME }}/logs',
