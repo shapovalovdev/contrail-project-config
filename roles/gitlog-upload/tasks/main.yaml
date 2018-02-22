@@ -2,7 +2,7 @@
   delegate_to: localhost
   shell: |
     /usr/bin/git \
-    --git-dir={{ item.value.src_dir }}/.git/ \
+    --git-dir={{ zuul.executor.work_root }}/{{ item.value.src_dir }}/.git/ \
     log --pretty=format:"%h%x09%ad%x09%aE%x09%s" \
     --date="local" | head -n 10
   register: gitlog
