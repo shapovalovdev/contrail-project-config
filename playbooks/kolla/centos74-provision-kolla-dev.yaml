@@ -19,7 +19,7 @@
       cloud_orchestrator: openstack
       openstack_version: ocata
     - role: kolla-provision-dockers-dev
-      kolla_provision_dir: '{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper/contrail-kolla-ansible'
+      kolla_provision_dir: '{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper/contrail-kolla-ansible-dev'
       kolla_config_dir: "{{ kolla_provision_dir }}/etc/kolla"
       kolla_docker_distro: "ubuntu"
       openstack_version: "ocata"
