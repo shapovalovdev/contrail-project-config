@@ -32,6 +32,20 @@
   when: contrail_logdir.stat.isdir is defined and contrail_logdir.stat.isdir
   become: true
 
+- stat:
+    path: /var/lib/docker/volumes/kolla_logs/_data
+  register: kolla_logdir
+  become: true
+
+- name: Fetch kolla logs
+  synchronize:
+    src: /var/lib/docker/volumes/kolla_logs/_data
+    dest: "{{ zuul.executor.log_root }}/sanity-logs"
+    mode: pull
+    recursive: yes
+  when: kolla_logdir.stat.isdir is defined and kolla_logdir.stat.isdir
+  become: true
+
 - name: List running containers
   command: 'docker ps -a --format "{% raw %}{{.Names}}{% endraw %}"'
   become: true
