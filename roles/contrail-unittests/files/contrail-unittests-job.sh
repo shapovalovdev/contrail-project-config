@@ -215,41 +215,17 @@ function run_unittest() {
     scons -k --debug=explain -j $SCONS_JOBS $UNIT_TESTS | tee $logfile
     exit_status=$?
     analyze_test_results $logfile
-
-    # If unit test pass, show the results and exit
+    # If unit test pass, show the results and exit    
     if [[ $exit_status -eq 0 ]]; then
         display_test_results $logfile
-        ci_exit 0
+	ci_exit 0
     fi
-
-    echo "Warn: unit-test failed, will retry failed tests..."
-
-    # if we didn't pass, then we might retry tests that had FAIL|TIMEOUT
+    # if we didn't pass, try to get the list of failed tests
+    echo "Unit-tests failed"
     determine_retry_list $logfile
-    rc=$?
-    if [[ $rc -ne 0 ]]; then # Could not determine a list to retry
-        display_test_results $logfile
-        ci_exit $exit_status
-    fi
-
-    [ -d $PIP_CACHE ] && rm -rf $PIP_CACHE
-    # do retry without -k flag
-    retrylogfile=$WORKSPACE/scons_test_retry.log
-    echo scons -j $SCONS_JOBS $UNIT_TESTS
-    scons -k -j $SCONS_JOBS $UNIT_TESTS 2>&1 | tee $retrylogfile
-    exit_status=$?
-    analyze_test_results $retrylogfile
-
-    [[ $exit_status -eq 0 ]] && echo "SUCCESS on retry of failed unit tests"
-
-    echo "info: displaying original FAIL unit-test results"
+    echo "info: displaying FAIL unit-test results"
     display_test_results $logfile
-
-    echo "info: displaying retry unit-test results"
-    display_test_results $retrylogfile
     ci_exit $exit_status
-
-    _XTRACE_UNITTESTS
 }
 
 function main() {
