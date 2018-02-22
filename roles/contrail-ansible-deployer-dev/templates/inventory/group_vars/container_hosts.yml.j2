@@ -1,4 +1,4 @@
-CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ registry_port }}"
+CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:5000"
 REGISTRY_PRIVATE_SECURE: false
 REGISTRY_PRIVATE_INSECURE: true
 contrail_configuration:
@@ -7,7 +7,7 @@ contrail_configuration:
   CONTROLLER_NODES: "{{ ansible_all_ipv4_addresses[0] }}"
   CLOUD_ORCHESTRATOR: "{{ cloud_orchestrator }}"
   #LINUX_DISTR: centos7
-  CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ registry_port }}"
+  CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:5000"
   PHYSICAL_INTERFACE: eth1
   VROUTER_GATEWAY: 172.16.8.1
   LOG_LEVEL: SYS_DEBUG
