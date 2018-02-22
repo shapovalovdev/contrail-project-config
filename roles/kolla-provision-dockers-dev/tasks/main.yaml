@@ -14,9 +14,9 @@
 
 - name: Clone contrail-kolla-ansible repository
   git:
-    repo: 'https://github.com/Juniper/contrail-kolla-ansible'
+    repo: 'https://github.com/jluk-codi/contrail-kolla-ansible'
     dest: "{{ kolla_provision_dir }}"
-    version: "3abd2bc685e39a34d62dc2bfa33773d4314f7e22"
+    version: "d2302ad05004d5ddd049972d6b1239d68756a9a9"
 
 - name: Copy Kolla config files
   copy:
