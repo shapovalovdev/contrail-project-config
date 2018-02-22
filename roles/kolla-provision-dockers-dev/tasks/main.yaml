@@ -16,7 +16,7 @@
   git:
     repo: 'https://github.com/Juniper/contrail-kolla-ansible'
     dest: "{{ kolla_provision_dir }}"
-    version: "cd97123daa43969d7bade09979f43a3a600d58c1"
+    version: "3abd2bc685e39a34d62dc2bfa33773d4314f7e22"
 
 - name: Copy Kolla config files
   copy:
