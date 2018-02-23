@@ -408,6 +408,7 @@
       - specs/.*
     secrets:
       - site_pulp
+      - build_cache_db
 
 - job:
     name: contrail-vnc-build-containers-nightly
@@ -428,6 +429,7 @@
     secrets:
       - site_pulp
       - docker_registry
+      - build_cache_db
 
 - job:
     name: contrail-vnc-build-containers-centos74-nightly
@@ -484,6 +486,7 @@
       - site_pulp
       - docker_registry
       - dockerhub
+      - build_cache_db
 
 - job:
     name: contrail-vnc-build-containers-ubuntu16-newton-experimental

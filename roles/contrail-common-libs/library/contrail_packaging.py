@@ -19,20 +19,28 @@ result = dict(
 MASTER_RELEASE = '5.0'
 version_branch_regex = re.compile(r'^(master)|(R\d+\.\d+(\.\d+)?(\.x)?)$')
 
+
 class ReleaseType(object):
     CONTINUOUS_INTEGRATION = 'continuous-integration'
     NIGHTLY = 'nightly'
+
+
+def get_build_number(buildset, version, db_connection_info):
+    return 1
+
 
 def main():
     module = AnsibleModule(
         argument_spec=dict(
             zuul=dict(type='dict', required=True),
-            release_type=dict(type='str', required=False, default=ReleaseType.CONTINUOUS_INTEGRATION)
+            release_type=dict(type='str', required=False, default=ReleaseType.CONTINUOUS_INTEGRATION),
+            build_cache_db_connection_info=dict(type='dict', required=False, default={'user': None, 'passwd': None, 'db': None, 'host': None})
         )
     )
 
     zuul = module.params['zuul']
     release_type = module.params['release_type']
+    build_cache_db_connection_info = module.params['build_cache_db_connection_info']
 
     branch = zuul['branch']
     if not version_branch_regex.match(branch):
@@ -56,8 +64,10 @@ def main():
         )
         repo_name = "{change}-{patchset}".format(change=change, patchset=patchset)
     elif release_type == ReleaseType.NIGHTLY:
+        build_number = get_build_number(zuul['buildset'], docker_version, build_cache_db_connection_info)
         version['distrib'] = "{date}".format(date=date)
-        repo_name = "{upstream}-{date}".format(upstream=version['upstream'],date=date)
+        docker_version = '{}-{}'.format(docker_version, build_number)
+        repo_name = docker_version
     else:
         module.fail_json(
             msg="Unknown release_type: %s" % (release_type,), **result
@@ -77,7 +87,6 @@ def main():
     target_dir = "contrail-%s" % (version['upstream'],)
 
     full_version = "{upstream}~{distrib}".format(**version)
-    docker_version += "-%s" % date
 
     packaging = {
         'name': 'contrail',
@@ -90,6 +99,7 @@ def main():
     }
 
     module.exit_json(ansible_facts={'packaging': packaging}, **result)
+
 
 if __name__ == "__main__":
     main()
