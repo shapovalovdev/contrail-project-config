@@ -66,7 +66,7 @@ def main():
     elif release_type == ReleaseType.NIGHTLY:
         build_number = get_build_number(zuul['buildset'], docker_version, build_cache_db_connection_info)
         version['distrib'] = "{date}".format(date=date)
-        docker_version = '{}-{}'.format(docker_version, build_number)
+        docker_version = '{}-{:04}'.format(docker_version, build_number)
         repo_name = docker_version
     else:
         module.fail_json(
