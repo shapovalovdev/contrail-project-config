@@ -157,7 +157,8 @@
     experimental:
       jobs:
         - contrail-vnc-build-containers-ubuntu16-newton-experimental
-        #        - contrail-vnc-build-package-ubuntu-xenial
+        - contrail-vnc-build-package-ubuntu-trusty
+        - contrail-vnc-build-package-ubuntu-xenial
         #        - contrail-vnc-build-containers-ubuntu16-newton-experimental:
         #            dependencies:
         #              - contrail-vnc-build-package-ubuntu-xenial
