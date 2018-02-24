@@ -26,7 +26,26 @@ class ReleaseType(object):
 
 
 def get_build_number(buildset, version, db_connection_info):
-    return 1
+    import MySQLdb
+    # db exceptions should fail the build, as we are not able to generate a proper build number
+    db = MySQLdb.connect(**db_connection_info)
+    cur = db.cursor()
+    cur.execute("SELECT * FROM build_metadata_cache where zuul_buildset_id = %s and version = %s", (buildset, version))
+    results = list(cur)
+    if len(results) == 0:
+        cur.execute("SELECT max(build_number) FROM build_metadata_cache GROUP BY version HAVING version = %s", (version,))
+        results = list(cur)
+        if len(results) == 0:
+            # First build for this version
+            build_number = 1
+        else:
+            build_number = results[0][0] + 1
+        cur.execute("INSERT INTO build_metadata_cache (build_number, zuul_buildset_id, version) VALUES (%s, %s, %s)", (build_number, buildset, version))
+        db.commit()
+    else:
+        build_number = results[0][0]
+    db.close()
+    return build_number
 
 
 def main():
@@ -65,7 +84,7 @@ def main():
         repo_name = "{change}-{patchset}".format(change=change, patchset=patchset)
     elif release_type == ReleaseType.NIGHTLY:
         build_number = get_build_number(zuul['buildset'], docker_version, build_cache_db_connection_info)
-        version['distrib'] = "{date}".format(date=date)
+        version['distrib'] = "{}".format(build_number)
         docker_version = '{}-{:04}'.format(docker_version, build_number)
         repo_name = docker_version
     else:
