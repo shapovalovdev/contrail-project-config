@@ -63,7 +63,7 @@
 - name: Push all containers
   shell: "docker push {{ item }}"
   # match only containers we want to push to dockerhub - tagged as opencontrailnightly
-  when: False # item | search(dockerhub.namespace)
+  when: item | search(dockerhub.namespace)
   with_items: "{{ local_container_list.stdout_lines }}"
   become: true
   # upload fails a lot :(

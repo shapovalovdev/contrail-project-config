@@ -1,3 +1,0 @@
-- name: Install mysqldb
-  command: pip install mysqlclient
-  become: true
