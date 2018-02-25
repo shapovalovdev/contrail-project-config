@@ -24,6 +24,7 @@ def main():
     zuul_buildset_id = module.params['zuul_buildset_id']
     version = module.params['version']
     build_cache_db_connection_info = module.params['build_cache_db_connection_info']
+    build_cache_db_connection_info['port'] = int(build_cache_db_connection_info['port'])
 
     import MySQLdb
     # db exceptions should fail the build, as we are not able to generate a proper build number
