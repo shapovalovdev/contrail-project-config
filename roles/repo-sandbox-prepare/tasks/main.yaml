@@ -2,6 +2,10 @@
   contrail_packaging:
     zuul: "{{ zuul }}"
     release_type: "{{ release_type }}"
+  delegate_to: localhost
+
+- debug:
+    var: packaging
 
 - set_fact:
     executor_sandbox_path: "{{ zuul.executor.work_root }}/{{ packaging.target_dir }}"
