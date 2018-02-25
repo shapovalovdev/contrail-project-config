@@ -80,10 +80,13 @@
         - contrail-systest-ubuntu1604-helm-newton
     periodic-nightly:
       jobs:
+        - build-variables-init
         - contrail-vnc-build-package-ubuntu-xenial:
             vars:
               release_type: nightly
         - contrail-vnc-build-package-centos74-nightly:
+            dependencies:
+              - build-variables-init
             vars:
               release_type: nightly
         - contrail-vnc-build-containers-centos74-ocata-nightly:

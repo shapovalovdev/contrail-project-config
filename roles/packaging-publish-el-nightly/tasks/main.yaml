@@ -2,7 +2,6 @@
   contrail_packaging:
     zuul: "{{ zuul }}"
     release_type: "{{ release_type }}"
-    build_cache_db_connection_info: "{{ build_cache_db }}"
 
 - name: get a list of package files
   find:

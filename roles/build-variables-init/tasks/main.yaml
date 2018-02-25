@@ -1,0 +1,20 @@
+- name: Prepare packaging variable
+  contrail_packaging:
+    zuul: "{{ zuul }}"
+    release_type: "nightly"
+
+- name: Print the packaging variables
+  debug:
+    var: packaging
+
+- name: Generate the build number
+  build_number:
+
+- name: Print the packaging variables
+  debug:
+    var: build_number
+
+- name: Save the build tag for subsequent jobs in the pipeline
+  zuul_return:
+    data:
+      build_number: "{{ build_number }}"

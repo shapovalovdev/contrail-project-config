@@ -393,6 +393,14 @@
       - docker_registry
 
 # XXX(kklimonda): temporary jobs to test periodic pipelines
+
+- job:
+    name: build-variables-init
+    parent: contrail-base
+    run: playbooks/contrail/build-variables-init
+    secrets:
+      - build_cache_db
+
 - job:
     name: contrail-vnc-build-package-el-base-nightly
     parent: contrail-vnc-base
@@ -408,7 +416,6 @@
       - specs/.*
     secrets:
       - site_pulp
-      - build_cache_db
 
 - job:
     name: contrail-vnc-build-containers-nightly
@@ -429,7 +436,6 @@
     secrets:
       - site_pulp
       - docker_registry
-      - build_cache_db
 
 - job:
     name: contrail-vnc-build-containers-centos74-nightly
@@ -486,7 +492,6 @@
       - site_pulp
       - docker_registry
       - dockerhub
-      - build_cache_db
 
 - job:
     name: contrail-vnc-build-containers-ubuntu16-newton-experimental
