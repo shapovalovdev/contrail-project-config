@@ -72,13 +72,8 @@ def main():
     for project in zuul['projects']:
         if project['short_name'] == 'contrail-packages':
             debian_dir = project['src_dir']
-
-    if not debian_dir:
-        module.fail_json(
-            msg="Could not find contrail-packages repository" % (release_type,), **result
-        )
-
-    debian_dir = os.path.join(debian_dir, "debian/contrail/debian")
+    if debian_dir:
+        debian_dir = os.path.join(debian_dir, "debian/contrail/debian")
     target_dir = "contrail-%s" % (version['upstream'],)
 
     full_version = "{upstream}~{distrib}".format(**version)
