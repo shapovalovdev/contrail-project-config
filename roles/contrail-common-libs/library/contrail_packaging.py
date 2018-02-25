@@ -46,9 +46,11 @@ def main():
     version = {'epoch': None}
     if branch == 'master':
         version['upstream'] = MASTER_RELEASE
+        version['public'] = 'master'
         docker_version = 'master'
     else:
         version['upstream'] = branch[1:]
+        version['public'] = branch[1:]
         docker_version = version['upstream']
 
     if release_type == ReleaseType.CONTINUOUS_INTEGRATION:

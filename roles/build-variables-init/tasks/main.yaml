@@ -9,6 +9,9 @@
 
 - name: Generate the build number
   build_number:
+    zuul_buildset_id: "{{ zuul.buildset }}"
+    version: "{{ packaging.version.public }}"
+    build_cache_db_connection_info: "{{ build_cache_db }}"
 
 - name: Print the packaging variables
   debug:
