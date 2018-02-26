@@ -13,6 +13,7 @@
         config-projects:
           - Juniper/contrail-project-config
         untrusted-projects:
+          - Juniper/contrail
           - Juniper/contrail-zuul-jobs:
               shadow: Juniper/contrail-project-config
           - Juniper/contrail-analytics
