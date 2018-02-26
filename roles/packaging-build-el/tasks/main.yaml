@@ -15,6 +15,7 @@
     - liburcu2
     - libnl3-devel
     - liburcu-devel
+    - numactl-devel
   become: true
 
 - name: Fetch third-party packages
