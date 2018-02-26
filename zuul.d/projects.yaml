@@ -375,3 +375,8 @@
     name: Juniper/contrail-vnc
     templates:
       - build
+
+- project:
+    name: Juniper/contrail
+    templates:
+      - noops
