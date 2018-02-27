@@ -31,10 +31,13 @@
     path: "{{ repos_dir }}/contrail-test-ci/images"
     state: directory
 
-- name: download the cirros image
+- name: download the cirros images
   get_url:
-    url: "http://{{ docker_registry.fqdn }}/static/cirros-0.3.0-x86_64-disk.vmdk"
+    url: "http://{{ docker_registry.fqdn }}/static/{{ item }}"
     dest: "{{ repos_dir }}/contrail-test-ci/images"
+  with_items:
+    - cirros-0.3.0-x86_64-disk.vmdk.gz
+    - cirros-in-net.vmdk.gz
 
 - name: Pull the testrunner image
   docker_image:
