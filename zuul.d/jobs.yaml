@@ -517,3 +517,11 @@
     vars:
       linux_distribution: ubuntu
       openstack_version: newton
+
+- job:
+    name: cluster-c-test
+    parent: build-variables-init
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-c

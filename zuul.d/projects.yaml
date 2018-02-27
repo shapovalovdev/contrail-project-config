@@ -133,6 +133,9 @@
     templates:
       - unittests
       - systests
+    experimental:
+      jobs:
+        - cluster-c-test
 
 - project:
     name: Juniper/contrail-controller
