@@ -52,6 +52,12 @@
   with_items: "{{ container_list.stdout_lines }}"
   become: true
 
+# XXX: ugly hack until we get a proper solution in container-builder
+- name: Retag containers - BNG build number
+  shell: "docker tag {{ dockerhub.namespace }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace('([^:]+):([^-]+)-([^-]+)-([^-]+)-(.+)$', '\\g<1>:\\g<2>-\\g<4>-\\g<5>-bld-\\g<3>') }}"
+  with_items: "{{ container_list.stdout_lines }}"
+  become: true
+
 - name: Get local container list
   shell: |
     for i in `docker images | grep contrail | awk '{printf "%s:%s\n", $1,$2;}'`; do
