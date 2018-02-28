@@ -9,6 +9,8 @@
     - contrail-vrouter
     - contrail-sandesh
     - contrail-generateDS
+    - contrail-common
+    - contrail-analytics
 
 - name: Fetch all remotes
   shell: git fetch --all
@@ -20,6 +22,8 @@
     - contrail-vrouter
     - contrail-sandesh
     - contrail-generateDS
+    - contrail-common
+    - contrail-analytics
 
 - name: Checkout Juniper/contrail-nova-extensions from github.com
   git:
