@@ -1,7 +1,7 @@
 - name: Get container list
   shell: |
     # this magical part returns list of containers from the current buildset
-    # e.g. all containers matching '5.0-20180129204006' in their tag
+    # e.g. all containers matching 'master-5' in their tag
     for repo in $(curl -s {{ docker_registry.fqdn }}:{{ docker_registry.port }}/v2/_catalog | jq -r '.[] | join(" ")'); do
       for tag in $(curl -s {{ docker_registry.fqdn }}:{{ docker_registry.port }}/v2/$repo/tags/list | jq -r '.tags | sort | .[] | select( . | contains("{{ contrail_container_tag }}"))'); do
         echo $repo:$tag
@@ -24,38 +24,35 @@
   delay: 10
   until: result.rc == 0
 
-- name: Retag containers to add latest tag
+- name: Retag containers - ci-repo/latest
+  # ci-repo/master-5-centos7-ocata -> ci-repo/latest
   shell: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item | regex_replace(':.*$',':latest') }}"
   when: item | search(container_latest_release)
   with_items: "{{ container_list.stdout_lines }}"
   become: true
 
-- name: Push containers with latest tag back to their origin
-  shell: "docker push {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item | regex_replace(':.*$',':latest') }}"
+- name: Retag containers - ci-repo/release-tag
+  # ci-repo:5000/master-5-centos7-ocata -> ci-repo/master-centos7-ocata-bld-5
+  shell: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item | regex_replace('([^:]+):([^-]+)-([^-]+)-([^-]+)-(.+)$', '\\g<1>:\\g<2>-\\g<4>-\\g<5>-bld-\\g<3>') }}"
+  with_items: "{{ container_list.stdout_lines }}"
+  become: true
+
+- name: Retag containers - dockerhub/latest
+  # ci-repo/master-5-centos7-ocata -> opencontrailnightly/latest
+  shell: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace(':.*$', ':latest') }}"
   when: item | search(container_latest_release)
+  with_items: "{{ container_list.stdout_lines }}"
+  become: true
+
+- name: Retag containers - dockerhub/release-tag
+  # ci-repo/master-5-centos7-ocata -> opencontrailnightly/master-centos7-ocata-bld-5
+  shell: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace('([^:]+):([^-]+)-([^-]+)-([^-]+)-(.+)$', '\\g<1>:\\g<2>-\\g<4>-\\g<5>-bld-\\g<3>') }}"
   with_items: "{{ container_list.stdout_lines }}"
   become: true
 
 - name: Log in to dockerhub
   shell: "docker login -u {{ dockerhub.username }} -p {{ dockerhub.password }}"
   no_log: true
-  become: true
-
-- name: Retag containers - add dockerhub namespace
-  shell: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item }}"
-  with_items: "{{ container_list.stdout_lines }}"
-  become: true
-
-- name: Retag containers - add latest tag
-  shell: "docker tag {{ dockerhub.namespace }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace(':.*$',':latest') }}"
-  when: item | search(container_latest_release)
-  with_items: "{{ container_list.stdout_lines }}"
-  become: true
-
-# XXX: ugly hack until we get a proper solution in container-builder
-- name: Retag containers - BNG build number
-  shell: "docker tag {{ dockerhub.namespace }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace('([^:]+):([^-]+)-([^-]+)-([^-]+)-(.+)$', '\\g<1>:\\g<2>-\\g<4>-\\g<5>-bld-\\g<3>') }}"
-  with_items: "{{ container_list.stdout_lines }}"
   become: true
 
 - name: Get local container list
@@ -68,8 +65,6 @@
 
 - name: Push all containers
   shell: "docker push {{ item }}"
-  # match only containers we want to push to dockerhub - tagged as opencontrailnightly
-  when: item | search(dockerhub.namespace)
   with_items: "{{ local_container_list.stdout_lines }}"
   become: true
   # upload fails a lot :(
