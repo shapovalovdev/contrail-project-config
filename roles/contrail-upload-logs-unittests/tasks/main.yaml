@@ -29,7 +29,8 @@
     dest: "{{ zuul.executor.log_root }}/"
   with_items: "{{ loglist.files }}"
 
-- stat:
+- name: Register log directory variable
+  stat:
     path: "{{ ansible_env.HOME }}/unittests-logs"
   register: logdir
 
