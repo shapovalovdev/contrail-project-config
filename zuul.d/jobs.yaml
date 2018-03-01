@@ -159,8 +159,6 @@
     secrets:
       - site_pulp
 
-# this job should probably be moved to contrail-zuul-jobs when we refactor
-# secret usage out of it.
 - job:
     name: contrail-vnc-build-package-el-base
     parent: contrail-vnc-base
@@ -176,6 +174,16 @@
       - specs/.*
     secrets:
       - site_pulp
+
+- job:
+    name: contrail-vnc-build-package-centos74
+    parent: contrail-vnc-build-package-el-base
+    irrelevant-files:
+      - specs/.*
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-builder
 
 - job:
     name: contrail-vnc-build-package-ubuntu-trusty
@@ -470,7 +478,6 @@
       nodes:
         - name: builder
           label: centos-7-4-builder
-
 - job:
     name: contrail-vnc-publish-containers-nightly
     parent: contrail-src-base
