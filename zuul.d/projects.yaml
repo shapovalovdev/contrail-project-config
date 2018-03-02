@@ -297,8 +297,14 @@
 
 - project:
     name: Juniper/contrail-project-config
-    templates:
-      - noops
+    check:
+      jobs:
+        - zuul-jobs-linters:
+            voting: false
+    gate:
+      jobs:
+        - zuul-jobs-linters:
+            voting: false
 
 - project:
     name: Juniper/contrail-ansible-deployer
