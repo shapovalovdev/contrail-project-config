@@ -9,6 +9,7 @@
   environment:
     TZ: "UTC"
   with_dict: "{{ zuul._projects }}"
+  no_log: true
 
 - name: Write git log output
   delegate_to: localhost
