@@ -79,3 +79,6 @@
       mv contrail_{{ packaging.full_version }}.orig.tar.gz ../
   args:
     chdir: "{{ packaging.target_dir }}"
+  environment:
+    DEB_BUILD_OPTIONS: "parallel={{ ansible_processor_vcpus }} site-mirror={{ zuul_site_mirror_fqdn }}"
+

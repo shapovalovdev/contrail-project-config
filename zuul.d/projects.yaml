@@ -160,6 +160,10 @@
     name: Juniper/contrail-packages
     templates:
       - systests
+    check:
+      jobs:
+        - contrail-vnc-build-package-ubuntu-trusty:
+            voting: False
     experimental:
       jobs:
         - contrail-vnc-build-containers-ubuntu16-newton-experimental
