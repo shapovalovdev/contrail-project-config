@@ -77,6 +77,17 @@
       - zuul: Juniper/contrail-zuul-jobs
 
 - job:
+    name: contrail-src-publish-package-el-base
+    parent: contrail-src-base
+    description: |
+      Job that tests source code based building and packaging.
+    post-run: playbooks/packaging/post-src-el
+    irrelevant-files:
+      - specs/.*
+    secrets:
+      - site_pulp
+
+- job:
     name: contrail-vnc-base
     parent: contrail-base
     description: |
