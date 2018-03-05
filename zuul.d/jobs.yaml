@@ -525,3 +525,20 @@
       nodes:
         - name: builder
           label: centos-7-4-c
+
+# Transition to contrail-base when all jobs are ported
+- job:
+    name: contrail-base2
+    description: |
+      A base job that prepares job environment to run contrail
+      jobs (e.g. making version information available) as well as any
+      post tasks like uploading packages to the repository host, and
+      containers to docker registries.
+    pre-run: playbooks/contrail-base2/pre
+    roles:
+      - zuul: Juniper/zuul-jobs
+      - zuul: Juniper/contrail-zuul-jobs
+    timeout: 28800
+    secrets:
+      - site_pulp
+
