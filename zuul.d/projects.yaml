@@ -393,3 +393,9 @@
     name: Juniper/contrail
     templates:
       - noops
+
+- project:
+    name: Juniper/contrail-api-client
+    templates:
+      - unittests
+      - systests
