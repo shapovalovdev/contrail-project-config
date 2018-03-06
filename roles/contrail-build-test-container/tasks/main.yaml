@@ -1,0 +1,43 @@
+- name: Set paths
+  set_fact:
+    test_container_build_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-test"
+    rpm_repo_config_dir: /etc/yum.repos.d
+
+- name: Get list of repo files
+  find:
+    paths: "{{ rpm_repo_config_dir }}/"
+  register: repo_file_list
+
+- name: Copy the repo files to containers build context
+  copy:
+    src: "{{ rpm_repo_config_dir }}/{{ item.path }}"
+    # XXX(lukaszl): test-base doesn't have repo files support
+    dest: "{{ test_container_build_dir }}/docker/test/{{ item.path }}"
+    remote_src: true
+  with_items:
+    - "{{ repo_file_list.files }}"
+
+- name: Build container contrail-test-base
+  shell: |
+    ./build-container.sh base \
+    --tag {{ contrail_container_tag }}-{{ linux_distribution }}-{{ openstack_version }} \
+    --registry-server {{ docker_registry.fqdn }}:{{ docker_registry.port }}
+  become: true
+  args:
+    chdir: "{{ test_container_build_dir }}"
+  tags:
+    - skip_ansible_lint # ANSIBLE0013
+
+- name: Build container contrail-test-test
+  shell: |
+    ./build-container.sh test \
+    --tag {{ contrail_container_tag }}-{{ linux_distribution }}-{{ openstack_version }} \
+    --registry-server {{ docker_registry.fqdn }}:{{ docker_registry.port }} \
+    --sku {{ openstack_version }} \
+    --contrail-repo {{ contrail_package_repository }} \
+    --post
+  become: true
+  args:
+    chdir: "{{ test_container_build_dir }}"
+  tags:
+    - skip_ansible_lint # ANSIBLE0013

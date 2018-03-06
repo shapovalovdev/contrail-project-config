@@ -438,6 +438,7 @@
       - specs/.*
     required-projects:
       - Juniper/contrail-container-builder
+      - Juniper/contrail-test
     pre-run: playbooks/docker/docker-pre
     run: playbooks/docker/centos74-nightly
     nodeset:
