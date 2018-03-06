@@ -240,8 +240,12 @@
       - systests
     check:
       jobs:
-        - contrail-vnc-build-test-container-centos74-ocata
-        - contrail-vnc-build-test-container-centos74-newton
+        - contrail-vnc-build-test-container-centos74-ocata:
+            dependencies:
+              - contrail-vnc-build-package-centos74
+        - contrail-vnc-build-test-container-centos74-newton:
+            dependencies:
+              - contrail-vnc-build-package-centos74
 
 - project:
     name: Juniper/contrail-fabric-utils
