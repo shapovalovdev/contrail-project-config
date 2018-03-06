@@ -40,6 +40,7 @@
     - { src: 'contrail-provisioning/', dest: 'tools/provisioning' }
     - { src: 'contrail-nova-extensions/', dest: 'openstack/nova_extensions' }
     - { src: 'contrail-nova-vif-driver/', dest: 'openstack/nova_contrail_vif' }
+    - { src: 'contrail-api-client', dest: 'src' }
     - { src: 'contrail-common', dest: 'src' }
     - { src: 'contrail-build/SConstruct', dest: '' }
     - { src: 'contrail-analytics', dest: 'src' }
@@ -52,8 +53,7 @@
     rsync_opts:
       - --no-motd
       - --quiet
-  with_items:
-    - { src: 'contrail-api-client', dest: 'src' }
+  with_items: []
   delegate_to: "{{ inventory_hostname }}"
 
 - name: Copy debian/ to enable package building
