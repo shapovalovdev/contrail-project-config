@@ -6,7 +6,6 @@
         untrusted-projects:
           - Juniper/zuul-jobs:
               shadow: Juniper/contrail-project-config
-          - Juniper/contrail-api-client
           - Juniper/contrail-nova-extensions
           - Juniper/contrail-dpdk
       gerrit:
@@ -20,6 +19,7 @@
           - Juniper/contrail-ansible
           - Juniper/contrail-ansible-deployer
           - Juniper/contrail-ansible-internal
+          - Juniper/contrail-api-client
           - Juniper/contrail-build
           - Juniper/contrail-common
           - Juniper/contrail-community-docs
