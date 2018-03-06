@@ -1,0 +1,8 @@
+- name: Trigger full sanity jenkins job
+  uri:
+    url: "http://{{ sanity_jenkins.fqdn }}/job/test_job"
+    method: POST
+    user: "{{ sanity_jenkins.user }}"
+    password: "{{ sanity_jenkins.password }}"
+    body: "TAG={{ build_number }}"
+    force_basic_auth: yes
