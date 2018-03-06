@@ -10,9 +10,9 @@
 
 - name: Copy the repo files to containers build context
   copy:
-    src: "{{ rpm_repo_config_dir }}/{{ item.path }}"
+    src: "{{ item.path }}"
     # XXX(lukaszl): test-base doesn't have repo files support
-    dest: "{{ test_container_build_dir }}/docker/test/{{ item.path }}"
+    dest: "{{ test_container_build_dir }}/docker/test/{{ item.path | basename }}"
     remote_src: true
   with_items:
     - "{{ repo_file_list.files }}"
