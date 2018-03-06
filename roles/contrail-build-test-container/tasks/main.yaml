@@ -11,11 +11,26 @@
 - name: Copy the repo files to containers build context
   copy:
     src: "{{ item.path }}"
-    # XXX(lukaszl): test-base doesn't have repo files support
     dest: "{{ test_container_build_dir }}/docker/test/{{ item.path | basename }}"
     remote_src: true
   with_items:
     - "{{ repo_file_list.files }}"
+
+- name: Check if Zuul overrode the registry port
+  stat:
+    path: "{{ zuul.executor.work_root }}/saved_vars.yaml"
+  register: varfile
+  delegate_to: localhost
+
+- name: Get the overridden registry port
+  include_vars:
+    file: "{{ zuul.executor.work_root }}/saved_vars.yaml"
+  when: varfile.stat.isreg is defined and varfile.stat.isreg
+
+- name: Set default registry port if not overridden
+  set_fact:
+    registry_port: "{{ docker_registry.port }}"
+  when: registry_port is not defined
 
 - name: Build container contrail-test-base
   shell: "./build-container.sh base --registry-server {{ docker_registry.fqdn }}:{{ docker_registry.port }}"
@@ -28,8 +43,8 @@
 - name: Build container contrail-test-test (and push it)
   shell: |
     ./build-container.sh test \
-    --tag {{ contrail_container_tag | default(contrail_version) }}-{{ linux_distribution }}-{{ openstack_version }} \
-    --registry-server {{ docker_registry.fqdn }}:{{ docker_registry.port }} \
+    --tag {{ contrail_container_tag }}-{{ linux_distribution }}-{{ openstack_version }} \
+    --registry-server {{ contrail_docker_registry }} \
     --sku {{ openstack_version }} \
     --contrail-repo {{ contrail_package_repository }} \
     --post
