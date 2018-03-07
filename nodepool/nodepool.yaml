@@ -38,6 +38,14 @@ labels:
     min-ready: 0
     provides:
       - name: juniper-contrail-ci
+  - name: centos-7-4-builder-c
+    min-ready: 0
+    provides:
+      - name: juniper-contrail-ci-c
+  - name: centos-7-4-builder-xxlarge-c
+    min-ready: 0
+    provides:
+      - name: juniper-contrail-ci-c
 
 providers:
   - name: juniper-contrail-ci
@@ -91,6 +99,38 @@ providers:
             key-name: ci-infra-shared-key
           - name: centos-7-4-builder-xxlarge
             flavor-name: m1.ci-systest
+            diskimage: centos-7-4
+            console-log: True
+            key-name: ci-infra-shared-key
+  - name: juniper-contrail-ci-c
+    region-name: "RegionOne"
+    cloud: jnpr-contrail-ci-c
+    api-timeout: 60
+    boot-timeout: 120
+    clean-floating-ips: true
+    rate: 1.0
+    ipv6-preferred: false
+    image-type: 'qcow2'
+    image-name-format: 'template-{image_name}-{timestamp}'
+    hostname-format: '{label.name}-{provider.name}-{node.id}'
+    diskimages:
+      - name: centos-7-4
+    pools:
+      - name: ci-zuulv3-c
+        max-servers: 50
+        availability-zones:
+          - nova
+        networks:
+          - ci-zuulv3-internal
+          - contrail-dataplane
+        labels:
+          - name: centos-7-4-builder-c
+            flavor-name: m1.16g_80g_8vcpu
+            diskimage: centos-7-4
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: centos-7-4-builder-xxlarge-c
+            flavor-name: m1.32g_80g_8vcpu
             diskimage: centos-7-4
             console-log: True
             key-name: ci-infra-shared-key
