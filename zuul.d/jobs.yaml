@@ -592,3 +592,13 @@
     secrets:
       - site_pulp
 
+- job:
+    name: trigger-nightly-sanity
+    voting: False
+    parent: contrail-base2
+    description: |
+      Triggers nightly sanity jobs on Anamika (BNG QA Jenkins server)
+    run: playbooks/trigger-nightly-sanity/run
+    secrets:
+      - sanity_jenkins
+
