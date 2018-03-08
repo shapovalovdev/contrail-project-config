@@ -38,7 +38,7 @@
     - ack-grep
 
 - name: Install package dependencies for the build
-  shell: |
+  command: |
     mk-build-deps -r -i debian/control \
       --tool="apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes"
   args:
@@ -61,7 +61,7 @@
     LC_ALL: "C"
 
 - name: Run unittest script
-  shell: "{{ ansible_env.HOME }}/contrail-unittests-job.sh"
+  command: "{{ ansible_env.HOME }}/contrail-unittests-job.sh"
   become: yes
   become_user: root
   environment:
