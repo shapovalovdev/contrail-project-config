@@ -99,12 +99,12 @@
               - contrail-vnc-build-package-centos74-nightly
             vars:
               release_type: nightly
-        - contrail-vnc-build-test-container-centos74-ocata:
+        - contrail-vnc-build-test-container-centos74-ocata-nightly:
             dependencies:
               - contrail-vnc-build-package-centos74-nightly
             vars:
               release_type: nightly
-        - contrail-vnc-build-test-container-centos74-newton:
+        - contrail-vnc-build-test-container-centos74-newton-nightly:
             dependencies:
               - contrail-vnc-build-package-centos74-nightly
             vars:
