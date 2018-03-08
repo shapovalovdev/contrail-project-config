@@ -292,7 +292,6 @@
     name: contrail-systest-base
     parent: base
     pre-run:
-      - playbooks/sanitytest/pre.yaml
       - playbooks/docker/setup-docker-registry
     post-run: playbooks/sanitytest/post
     secrets:
@@ -302,6 +301,8 @@
 - job:
     name: contrail-systest-ubuntu1604-base
     parent: contrail-systest-base
+    pre-run:
+      - playbooks/sanitytest/pre.yaml
     nodeset:
       nodes:
         - name: helm-aio
