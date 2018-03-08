@@ -24,6 +24,6 @@ kolla_globals_config:
   rabbitmq_cluster_port: "25673"
   rabbitmq_epmd_port: "4370"
   openstack_service_workers: 1
-  neutron_opencontrail_init_image_full: "{{ docker_registry.fqdn }}:{{ registry_port }}/contrail-openstack-neutron-init:{{ zuul.change }}-{{ zuul.patchset }}-centos7-ocata"
-  nova_compute_opencontrail_init_image_full: "{{ docker_registry.fqdn }}:{{ registry_port }}/contrail-openstack-compute-init:{{ zuul.change }}-{{ zuul.patchset }}-centos7-ocata"
-  ironic_notification_manager_image_full: "{{ docker_registry.fqdn }}:{{ registry_port }}/contrail-openstack-ironic-notification-manager:{{ zuul.change }}-{{ zuul.patchset }}-centos7-ocata"
+  neutron_opencontrail_init_image_full: "{{ docker_registry.fqdn }}:{{ registry_port }}/contrail-openstack-neutron-init:ocata-{{ zuul.change }}-{{ zuul.patchset }}"
+  nova_compute_opencontrail_init_image_full: "{{ docker_registry.fqdn }}:{{ registry_port }}/contrail-openstack-compute-init:ocata-{{ zuul.change }}-{{ zuul.patchset }}"
+  ironic_notification_manager_image_full: "{{ docker_registry.fqdn }}:{{ registry_port }}/contrail-openstack-ironic-notification-manager:ocata-{{ zuul.change }}-{{ zuul.patchset }}"
