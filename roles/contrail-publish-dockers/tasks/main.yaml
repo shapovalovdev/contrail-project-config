@@ -12,7 +12,7 @@
 # XXX: perhaps we should manage "centos7-ocata" part via secrets
 - name: Register variable for latest release
   set_fact:
-    container_latest_release: "{{ contrail_container_tag }}-centos7-ocata"
+    container_latest_release: "ocata-{{ contrail_container_tag }}"
 
 - name: Pull containers
   shell: "docker pull {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }}"
@@ -31,22 +31,10 @@
   with_items: "{{ container_list.stdout_lines }}"
   become: true
 
-- name: Retag containers - ci-repo/release-tag
-  # ci-repo:5000/master-5-centos7-ocata -> ci-repo/master-centos7-ocata-bld-5
-  shell: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item | regex_replace('([^:]+):([^-]+)-([^-]+)-([^-]+)-(.+)$', '\\g<1>:\\g<2>-\\g<4>-\\g<5>-bld-\\g<3>') }}"
-  with_items: "{{ container_list.stdout_lines }}"
-  become: true
-
 - name: Retag containers - dockerhub/latest
   # ci-repo/master-5-centos7-ocata -> opencontrailnightly/latest
   shell: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace(':.*$', ':latest') }}"
   when: item | search(container_latest_release)
-  with_items: "{{ container_list.stdout_lines }}"
-  become: true
-
-- name: Retag containers - dockerhub/release-tag
-  # ci-repo/master-5-centos7-ocata -> opencontrailnightly/master-centos7-ocata-bld-5
-  shell: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace('([^:]+):([^-]+)-([^-]+)-([^-]+)-(.+)$', '\\g<1>:\\g<2>-\\g<4>-\\g<5>-bld-\\g<3>') }}"
   with_items: "{{ container_list.stdout_lines }}"
   become: true
 
