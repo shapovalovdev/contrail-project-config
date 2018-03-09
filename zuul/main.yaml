@@ -57,7 +57,9 @@
           - Juniper/contrail-vnc
           - Juniper/horizon
           - Juniper/nova
-          - Juniper/openstack-helm
-          - Juniper/openstack-helm-infra
+          - Juniper/openstack-helm:
+              exclude:  ['pipeline', 'job', 'semaphore', 'project', 'secret', 'project-template', 'nodeset']
+          - Juniper/openstack-helm-infra:
+              exclude:  ['pipeline', 'job', 'semaphore', 'project', 'secret', 'project-template', 'nodeset']
           - Juniper/puppet-contrail
           - Juniper/vijava
