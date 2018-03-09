@@ -410,3 +410,23 @@
     templates:
       - unittests
       - systests
+
+- project:
+    name: Juniper/contrail-java-api
+    templates:
+      - noops
+
+- project:
+    name: Juniper/vijava
+    templates:
+      - noops
+
+- project:
+    name: Juniper/openstack-helm
+    templates:
+      - noops
+
+- project:
+    name: Juniper/openstack-helm-infra
+    templates:
+      - noops
