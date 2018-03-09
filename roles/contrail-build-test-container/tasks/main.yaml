@@ -33,22 +33,26 @@
   when: registry_port is not defined
 
 - name: Build container contrail-test-base
-  shell: "./build-container.sh base --registry-server {{ docker_registry.fqdn }}:{{ docker_registry.port }}"
+  shell: |
+    ./build-container.sh base \
+    --registry-server {{ contrail_docker_registry }}
   become: true
   args:
     chdir: "{{ test_container_build_dir }}"
   tags:
     - skip_ansible_lint # ANSIBLE0013
+  when: zuul.project.short_name == "contrail-test" or release_type == "nightly"
 
 - name: Build container contrail-test-test (and push it)
   shell: |
     ./build-container.sh test \
-    --tag {{ contrail_container_tag }}-{{ linux_distribution }}-{{ openstack_version }} \
+    --tag {{ item }}-{{ contrail_container_tag }} \
     --registry-server {{ contrail_docker_registry }} \
-    --sku {{ openstack_version }} \
+    --sku {{ item }} \
     --contrail-repo {{ contrail_package_repository }} \
     --post
   become: true
+  with_items: "{{ openstack_version }}"
   args:
     chdir: "{{ test_container_build_dir }}"
   tags:
