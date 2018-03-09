@@ -488,7 +488,6 @@
       - specs/.*
     required-projects:
       - Juniper/contrail-test
-    pre-run: playbooks/docker/docker-pre
     run: playbooks/docker/contrail-test
     nodeset:
       nodes:
@@ -504,7 +503,9 @@
 - job:
     name: contrail-vnc-build-test-container
     parent: contrail-vnc-build-test-container-base
-    pre-run: playbooks/docker/setup-docker-registry
+    pre-run:
+      - playbooks/docker/setup-docker-registry
+      - playbooks/docker/docker-pre
     secrets:
       - site_pulp
       - docker_registry
@@ -516,6 +517,11 @@
 - job:
     name: contrail-vnc-build-test-container-nightly
     parent: contrail-vnc-build-test-container-base
+    pre-run:
+      - playbooks/docker/docker-pre
+    secrets:
+      - site_pulp
+      - docker_registry
     vars:
       openstack_version:
         - ocata

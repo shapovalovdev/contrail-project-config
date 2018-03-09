@@ -238,6 +238,12 @@
         - contrail-vnc-build-test-container:
             dependencies:
               - contrail-vnc-build-package-centos74
+    experimental:
+      jobs:
+        - contrail-vnc-build-package-centos74
+        - contrail-vnc-build-test-container:
+            dependencies:
+              - contrail-vnc-build-package-centos74
 
 - project:
     name: Juniper/contrail-fabric-utils
