@@ -152,7 +152,7 @@
         - contrail-systest-centos74-kolla-ocata
     experimental:
       jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty-prebuilt
+        - contrail-vnc-unittest-centos7
 
 - project:
     name: Juniper/contrail-generateDS
