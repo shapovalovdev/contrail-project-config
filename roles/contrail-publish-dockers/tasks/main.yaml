@@ -15,7 +15,7 @@
     container_latest_release: "ocata-{{ contrail_container_tag }}"
 
 - name: Pull containers
-  shell: "docker pull {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }}"
+  command: "docker pull {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }}"
   with_items: "{{ container_list.stdout_lines }}"
   become: true
   # Due to some mysterious causes, it seems to fail occassionally, so need to retry it
@@ -26,20 +26,25 @@
 
 - name: Retag containers - ci-repo/latest
   # ci-repo/master-5-centos7-ocata -> ci-repo/latest
-  shell: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item | regex_replace(':.*$',':latest') }}"
+  command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item | regex_replace(':.*$',':latest') }}"
   when: item | search(container_latest_release)
+  with_items: "{{ container_list.stdout_lines }}"
+  become: true
+
+- name: Retag containers - add dockerhub namespace
+  command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item }}"
   with_items: "{{ container_list.stdout_lines }}"
   become: true
 
 - name: Retag containers - dockerhub/latest
   # ci-repo/master-5-centos7-ocata -> opencontrailnightly/latest
-  shell: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace(':.*$', ':latest') }}"
+  command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace(':.*$', ':latest') }}"
   when: item | search(container_latest_release)
   with_items: "{{ container_list.stdout_lines }}"
   become: true
 
 - name: Log in to dockerhub
-  shell: "docker login -u {{ dockerhub.username }} -p {{ dockerhub.password }}"
+  command: "docker login -u {{ dockerhub.username }} -p {{ dockerhub.password }}"
   no_log: true
   become: true
 
@@ -52,7 +57,7 @@
   become: true
 
 - name: Push all containers
-  shell: "docker push {{ item }}"
+  command: "docker push {{ item }}"
   with_items: "{{ local_container_list.stdout_lines }}"
   become: true
   # upload fails a lot :(
@@ -62,10 +67,10 @@
   until: result.rc == 0
 
 - name: Cleanup all docker images
-  shell: "docker rmi -f {{ item }}"
+  command: "docker rmi -f {{ item }}"
   with_items: "{{ local_container_list.stdout_lines }}"
   become: true
 
 - name: Log out of Dockerhub
-  shell: "docker logout"
+  command: "docker logout"
   become: true
