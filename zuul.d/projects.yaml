@@ -108,6 +108,7 @@
             dependencies:
               - contrail-vnc-build-containers-centos74-ocata-nightly
               - contrail-vnc-build-containers-centos74-newton-nightly
+              - contrail-vnc-build-test-container-nightly
         - trigger-nightly-sanity:
             dependencies:
               - contrail-vnc-publish-containers-nightly
