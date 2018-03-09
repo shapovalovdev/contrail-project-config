@@ -31,6 +31,7 @@
           - Juniper/contrail-heat
           - Juniper/contrail-helm-deployer
           - Juniper/contrail-horizon
+          - Juniper/contrail-java-api
           - Juniper/contrail-kolla-ansible:
               exclude:  ['pipeline', 'job', 'semaphore', 'project', 'secret', 'project-template', 'nodeset']
           - Juniper/contrail-neutron-plugin
@@ -56,4 +57,7 @@
           - Juniper/contrail-vnc
           - Juniper/horizon
           - Juniper/nova
+          - Juniper/openstack-helm
+          - Juniper/openstack-helm-infra
           - Juniper/puppet-contrail
+          - Juniper/vijava
