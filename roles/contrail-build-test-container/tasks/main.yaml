@@ -16,6 +16,15 @@
   with_items:
     - "{{ repo_file_list.files }}"
 
+#XXX: finish seperating mirror preparation role
+- name: Copy the repo files to containers build context
+  copy:
+    src: "{{ item.path }}"
+    dest: "{{ test_container_build_dir }}/docker/base/{{ item.path | basename }}"
+    remote_src: true
+  with_items:
+    - "{{ repo_file_list.files }}"
+
 - name: Check if Zuul overrode the registry port
   stat:
     path: "{{ zuul.executor.work_root }}/saved_vars.yaml"
