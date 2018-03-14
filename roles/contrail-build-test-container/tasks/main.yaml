@@ -36,6 +36,7 @@
   shell: |
     ./build-container.sh base \
     --registry-server {{ contrail_docker_registry }}
+    --tag {{ contrail_container_tag }}
   become: true
   args:
     chdir: "{{ test_container_build_dir }}"
