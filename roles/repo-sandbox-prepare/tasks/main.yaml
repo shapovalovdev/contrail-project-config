@@ -71,3 +71,8 @@
     src: "{{ executor_sandbox_path }}"
     dest: "{{ ansible_env.HOME }}"
 
+- name: upload manifest to the worker node
+  copy:
+    src: "{{ zuul.executor.log_root }}/zuul-info/manifest.xml"
+    dest: "{{ ansible_env.HOME }}/manifest.xml"
+
