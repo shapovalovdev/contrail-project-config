@@ -9,6 +9,9 @@
       queue: contrail-vnc
       jobs:
         - noop
+    experimental:
+      jobs:
+        - contrail-vnc-unittest-ubuntu-trusty
 
 - project-template:
     name: unittests-webui
