@@ -482,7 +482,6 @@
 - job:
     name: contrail-vnc-build-test-container-base
     parent: contrail-src-base
-    voting: false
     description: Builds contrail-test-base and contrail-test-test containers.
     irrelevant-files:
       - specs/.*
