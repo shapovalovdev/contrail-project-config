@@ -11,6 +11,7 @@ contrail_configuration:
   LOG_LEVEL: SYS_DEBUG
 {% if cloud_orchestrator == 'openstack' %}
   AUTH_MODE: keystone
+  AAA_MODE: cloud-admin
   KEYSTONE_AUTH_ADMIN_PASSWORD: c0ntrail123
   KEYSTONE_AUTH_HOST: "{{ ansible_all_ipv4_addresses[0] }}"
   KEYSTONE_AUTH_URL_VERSION: "/v3"
