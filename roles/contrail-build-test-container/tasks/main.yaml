@@ -44,7 +44,7 @@
 - name: Build container contrail-test-base
   shell: |
     ./build-container.sh base \
-    --registry-server {{ contrail_docker_registry }}
+    --registry-server {{ contrail_docker_registry }} \
     --tag {{ contrail_container_tag }}
   become: true
   args:
