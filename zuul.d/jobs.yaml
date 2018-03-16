@@ -606,4 +606,6 @@
       - playbooks/base-minimal/post-logs
     secrets:
       - sanity_jenkins
+    nodeset:
+      nodes: []
 
