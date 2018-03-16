@@ -42,7 +42,7 @@ labels:
     min-ready: 0
     provides:
       - name: juniper-contrail-ci-c
-  - name: centos-7-4-builder-xxlarge-c
+  - name: c7-systest-c
     min-ready: 0
     provides:
       - name: juniper-contrail-ci-c
@@ -129,7 +129,7 @@ providers:
             diskimage: centos-7-4
             console-log: True
             key-name: ci-infra-shared-key
-          - name: centos-7-4-builder-xxlarge-c
+          - name: c7-systest-c
             flavor-name: m1.32g_80g_8vcpu
             diskimage: centos-7-4
             console-log: True
