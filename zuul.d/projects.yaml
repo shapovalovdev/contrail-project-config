@@ -150,6 +150,11 @@
     experimental-provision:
       jobs:
         - contrail-systest-centos74-kolla-ocata
+    experimental:
+      jobs:
+        - trigger-nightly-sanity:
+            vars:
+              build_number: 30
 
 - project:
     name: Juniper/contrail-generateDS
