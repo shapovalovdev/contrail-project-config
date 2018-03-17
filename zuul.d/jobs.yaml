@@ -602,8 +602,6 @@
     description: |
       Triggers nightly sanity jobs on Anamika (BNG QA Jenkins server)
     run: playbooks/trigger-nightly-sanity/run
-    post-run:
-      - playbooks/base-minimal/post-logs
     secrets:
       - sanity_jenkins
     nodeset:
