@@ -445,3 +445,8 @@
     name: Juniper/openstack-helm-infra
     templates:
       - noops
+
+- project:
+    name: Juniper/contrail-dpdk
+    templates:
+      - systests
