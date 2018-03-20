@@ -49,6 +49,7 @@
           - Juniper/contrail-third-party
           - Juniper/contrail-third-party-cache
           - Juniper/contrail-vrouter
+          - Juniper/contrail-vrouter-java-api
           - Juniper/contrail-webui-third-party
           - Juniper/contrail-web-controller
           - Juniper/contrail-web-core
