@@ -26,7 +26,6 @@
           - Juniper/contrail-container-builder
           - Juniper/contrail-controller
           - Juniper/contrail-docker
-          - Juniper/contrail-dpdk
           - Juniper/contrail-fabric-utils
           - Juniper/contrail-generateDS
           - Juniper/contrail-heat
