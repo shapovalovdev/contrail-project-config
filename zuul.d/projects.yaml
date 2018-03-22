@@ -314,6 +314,8 @@
 
 - project:
     name: Juniper/contrail-project-config
+    templates:
+      - noops
     check:
       jobs:
         - zuul-jobs-linters:
