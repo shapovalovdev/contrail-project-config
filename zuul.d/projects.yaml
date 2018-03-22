@@ -27,11 +27,6 @@
         - contrail-systest-centos74-kolla-ocata:
             dependencies:
               - contrail-vnc-build-containers-centos74
-        - contrail-vnc-build-test-container:
-            vars:
-              voting: False
-            dependencies:
-              - contrail-vnc-build-package-centos74
         #- contrail-systest-centos74-kubernetes:
         #    dependencies:
         #      - contrail-vnc-build-containers-centos74
@@ -460,4 +455,3 @@
     name: Juniper/contrail-vrouter-java-api
     templates:
       - noops
-
