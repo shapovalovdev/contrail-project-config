@@ -41,6 +41,13 @@
     registry_port: "{{ docker_registry.port }}"
   when: registry_port is not defined
 
+- name: Pull contrail-test-base from ci-repo
+  shell: |
+    docker pull {{ site_pulp.fqdn }}:{{ site_pulp.registry_port }}/contrail-test-base:latest
+    docker tag {{ site_pulp.fqdn }}:{{ site_pulp.registry_port }}/contrail-test-base:latest \
+    {{ contrail_docker_registry }}/contrail-test-base:latest
+  when: release_type == "continuous-integration" and zuul.project.short_name != "contrail-test"
+
 - name: Build container contrail-test-base
   shell: |
     ./build-container.sh base \
