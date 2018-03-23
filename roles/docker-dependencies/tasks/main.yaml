@@ -38,7 +38,8 @@
   copy:
     content: |
       {
-        "insecure-registries": ["{{ contrail_docker_registry }}"]
+        "insecure-registries": ["{{ contrail_docker_registry }}",
+                                "{{ site_pulp.fqdn }}:{{ site_pulp.registry_port }}"]
       }
     dest: /etc/docker/daemon.json
   become: True
