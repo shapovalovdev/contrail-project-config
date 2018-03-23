@@ -25,6 +25,7 @@
           - Juniper/contrail-community-docs
           - Juniper/contrail-container-builder
           - Juniper/contrail-controller
+          - Juniper/contrail-dev-env
           - Juniper/contrail-docker
           - Juniper/contrail-fabric-utils
           - Juniper/contrail-generateDS
