@@ -6,6 +6,7 @@ require 'json'
 exit(0) if ENV["ZUUL_CHANGES"] !~ /refs\/changes\/([^^]*)$/
 change_set = $1
 
+STDERR.puts "contrail-unittest-gather.rb: Choosing tests to execute\n"
 contrail_sources = "#{ENV["WORKSPACE"]}/contrail-#{ENV["UPSTREAM_VERSION"]}"
 
 json_file = "#{contrail_sources}/controller/ci_unittests.json"
@@ -17,6 +18,10 @@ project = "tools/generateds" if ENV["ZUUL_PROJECT"] =~ /contrail-generateDS/
 project = "vrouter" if ENV["ZUUL_PROJECT"] =~ /contrail-vrouter/
 project = "src/contrail-common" if ENV["ZUUL_PROJECT"] =~ /contrail-common/
 project = "src/contrail-analytics" if ENV["ZUUL_PROJECT"] =~ /contrail-analytics/
+project = "src/contrail-api-client" if ENV["ZUUL_PROJECT"] =~ /contrail-api-client/
+
+STDERR.puts "contrail-unittest-gather.rb: Review for project #{ENV["ZUUL_PROJECT"]}\n"
+STDERR.puts "contrail-unittest-gather.rb: Check for commits for #{project}\n"
 
 Dir.chdir("#{contrail_sources}/#{project}")
 
@@ -27,6 +32,10 @@ cmd = %{git ls-remote gerrit 2>/dev/null | \grep #{change_set} | \grep refs | aw
 `#{cmd}`.split.each { |file|
     next if "#{project}/#{file}" !~ /(.*?\/.*?\/.*?)\//
     @dirs[$1] = true
+}
+STDERR.puts "contrail-unittest-gather.rb: List of directories changed:\n"
+@dirs.each_key { |dir|
+    STDERR.puts "contrail-unittest-gather.rb:\t#{dir}\n"
 }
 
 # Always test for changes to generateds and vrouter projects.
@@ -54,6 +63,11 @@ json.each_pair { |module_name, module_data|
     module_data["misc_test_targets"].each { |m|
         @tests += json[m]["scons_test_targets"]
     }
+}
+
+STDERR.puts "contrail-unittest-gather.rb: SCons targets to run:\n"
+@tests.sort.uniq.each { |target|
+    STDERR.puts "contrail-unittest-gather.rb:\t#{target}\n"
 }
 
 puts @tests.sort.uniq.join(" ") unless @tests.empty?
