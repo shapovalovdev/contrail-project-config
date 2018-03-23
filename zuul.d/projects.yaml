@@ -466,3 +466,8 @@
     name: Juniper/contrail-vrouter-java-api
     templates:
       - noops
+
+- project:
+    name: Juniper/contrail-dev-env
+    templates:
+      - noops
