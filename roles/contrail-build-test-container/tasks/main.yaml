@@ -47,6 +47,7 @@
     docker tag {{ site_pulp.fqdn }}:{{ site_pulp.registry_port }}/contrail-test-base:latest \
     {{ contrail_docker_registry }}/contrail-test-base:latest
   when: release_type == "continuous-integration" and zuul.project.short_name != "contrail-test"
+  become: true
 
 - name: Build container contrail-test-base
   shell: |
