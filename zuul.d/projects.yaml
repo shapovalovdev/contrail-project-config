@@ -469,5 +469,3 @@
 
 - project:
     name: Juniper/contrail-dev-env
-    templates:
-      - noops
