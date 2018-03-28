@@ -8,6 +8,6 @@
     follow_redirects: all
     force_basic_auth: yes
   with_items:
-    - { job_name: "SVL_VT_Centos-7.4_Ocata_Ansible_master_Sanity", tag_prefix: "master-ocata" }
-    - { job_name: "SVL_VT_Centos-7.4_k8s_ansible_master_Sanity", tag_prefix: "master-ocata" }
-    - { job_name: "SVL_VT_Ubuntu-16.04.3_Newton_Helm_master_Sanity", tag_prefix: "master-newton" }
+    - { job_name: "SVL_VT_Centos-7.4_Ocata_Ansible_master_Sanity", tag_prefix: "ocata-master" }
+    - { job_name: "SVL_VT_Centos-7.4_k8s_ansible_master_Sanity", tag_prefix: "ocata-master" }
+    - { job_name: "SVL_VT_Ubuntu-16.04.3_Newton_Helm_master_Sanity", tag_prefix: "newton-master" }
