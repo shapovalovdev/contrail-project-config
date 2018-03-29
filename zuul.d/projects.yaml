@@ -460,7 +460,7 @@
 - project:
     name: Juniper/contrail-dpdk
     templates:
-      - systests
+      - noops
 
 - project:
     name: Juniper/contrail-vrouter-java-api
