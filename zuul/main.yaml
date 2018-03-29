@@ -7,7 +7,6 @@
           - Juniper/zuul-jobs:
               shadow: Juniper/contrail-project-config
           - Juniper/contrail-nova-extensions
-          - Juniper/contrail-dpdk
       gerrit:
         config-projects:
           - Juniper/contrail-project-config
@@ -27,6 +26,7 @@
           - Juniper/contrail-controller
           - Juniper/contrail-dev-env
           - Juniper/contrail-docker
+          - Juniper/contrail-dpdk
           - Juniper/contrail-fabric-utils
           - Juniper/contrail-generateDS
           - Juniper/contrail-heat
