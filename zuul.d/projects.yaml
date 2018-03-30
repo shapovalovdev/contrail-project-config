@@ -28,7 +28,6 @@
             dependencies:
               - contrail-vnc-build-containers-centos74
         - contrail-vnc-build-test-container:
-            voting: False
             dependencies:
               - contrail-vnc-build-package-centos74
         #- contrail-systest-centos74-kubernetes:
