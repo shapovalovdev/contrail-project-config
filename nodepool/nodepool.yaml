@@ -46,6 +46,10 @@ labels:
     min-ready: 0
     provides:
       - name: juniper-contrail-ci-c
+  - name: xenial-small-c
+    min-ready: 0
+    provides:
+      - name: juniper-contrail-ci-c
 
 providers:
   - name: juniper-contrail-ci
@@ -134,6 +138,12 @@ providers:
             diskimage: centos-7-4
             console-log: True
             key-name: ci-infra-shared-key
+          - name: xenial-small-c
+            flavor-name: m1.small
+            diskimage: ubuntu-xenial
+            console-log: True
+            key-name: ci-infra-shared-key
+
 
 diskimages:
   - name: centos-7-4
