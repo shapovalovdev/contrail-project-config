@@ -357,6 +357,7 @@
         - contrail-sanity-centos7-kolla-ocata:
             dependencies:
               - contrail-vnc-build-containers-centos74
+            voting: true
     experimental:
       jobs:
         - contrail-vnc-build-package-centos74
