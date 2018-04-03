@@ -7,6 +7,8 @@
   roles:
     - contrail-common-libs2
     - configure-hosts-entries
+    - setup-docker-registry
+      when: setup_docker_registry == true
 
 - hosts: all
   roles:
