@@ -3,12 +3,15 @@
     - role: emit-job-header
       zuul_log_url: "http://logs.opencontrail.org"
 
+- hosts: "{{ site_pulp.fqdn }}"
+  roles:
+    - role: setup-docker-registry
+      when: setup_docker_registry == true
+
 - hosts: all
   roles:
     - contrail-common-libs2
     - configure-hosts-entries
-    - role: setup-docker-registry
-      when: setup_docker_registry == true
 
 - hosts: all
   roles:
