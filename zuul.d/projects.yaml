@@ -476,3 +476,8 @@
 
 - project:
     name: Juniper/contrail-dev-env
+
+- project:
+    name: Juniper/contrail-vro-plugin
+    templates:
+      - noops
