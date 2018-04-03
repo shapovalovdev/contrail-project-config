@@ -598,6 +598,8 @@
     roles:
       - zuul: Juniper/zuul-jobs
       - zuul: Juniper/contrail-zuul-jobs
+    vars:
+      setup_docker_registry: false
     timeout: 28800
     secrets:
       - site_pulp
