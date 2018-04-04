@@ -24,35 +24,38 @@
   delay: 10
   until: result.rc == 0
 
-- name: Retag containers - ci-repo/latest
-  # ci-repo/master-5-centos7-ocata -> ci-repo/latest
-  command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item | regex_replace(':.*$',':latest') }}"
-  when: item | search(container_latest_release)
-  with_items: "{{ container_list.stdout_lines }}"
-  become: true
 
-- name: Retag containers - add dockerhub namespace
-  command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item }}"
-  with_items: "{{ container_list.stdout_lines }}"
-  become: true
+- name: Retag containers for master branch
+  block:
+    # ci-repo/container -> dockerhub/container
+    - name: Retag containers - add dockerhub namespace
+      command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item }}"
+      with_items: "{{ container_list.stdout_lines }}"
 
-- name: Retag containers - dockerhub/no-openstack-tag
-  # ci-repo/ocata-master-5 -> opencontrailnightly/master-5
-  command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace('([^:]+):([^-]+)-([^-]+)-(.+)$', '\\g<1>:\\g<3>-\\g<4>') }}"
-  when: item | search(container_latest_release)
-  with_items: "{{ container_list.stdout_lines }}"
+    # ci-repo/ocata-master-5 -> ci-repo/latest
+    - name: Retag containers - ci-repo/latest
+      command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item | regex_replace(':.*$',':latest') }}"
+      when: item | search(container_latest_release)
+      with_items: "{{ container_list.stdout_lines }}"
+
+    # ci-repo/ocata-master-5 -> dockerhub/latest
+    - name: Retag containers - dockerhub/latest
+      command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace(':.*$', ':latest') }}"
+      when: item | search(container_latest_release)
+      with_items: "{{ container_list.stdout_lines }}"
+
+    # ci-repo/ocata-master-5 -> opencontrailnightly/master-5
+    - name: Retag containers - dockerhub/no-openstack-tag
+      command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace('([^:]+):([^-]+)-([^-]+)-(.+)$', '\\g<1>:\\g<3>-\\g<4>') }}"
+      when: item | search(container_latest_release)
+      with_items: "{{ container_list.stdout_lines }}"
+
   become: true
+  when: zuul.branch == 'master'
 
 - name: Retag containers - ci-repo/no-openstack-tag
   # ci-repo/ocata-master-5 -> opencontrailnightly/master-5
   command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item | regex_replace('([^:]+):([^-]+)-([^-]+)-(.+)$', '\\g<1>:\\g<3>-\\g<4>') }}"
-  when: item | search(container_latest_release)
-  with_items: "{{ container_list.stdout_lines }}"
-  become: true
-
-- name: Retag containers - dockerhub/latest
-  # ci-repo/master-5-centos7-ocata -> opencontrailnightly/latest
-  command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace(':.*$', ':latest') }}"
   when: item | search(container_latest_release)
   with_items: "{{ container_list.stdout_lines }}"
   become: true
