@@ -11,12 +11,14 @@
         - event: patchset-created
           branch:
             - ^master$
+            - ^R5.0$
             - ^contrail/ocata$
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
         - event: comment-added
           branch:
             - ^master$
+            - ^R5.0$
             - ^contrail/ocata$
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
@@ -53,37 +55,40 @@
         current-patchset: True
         approval:
           - Verified: [1, 2]
-            username: "^zuulv3$"
+            username: ^zuulv3$
           - Verified: [1, 2]
-            username: "^codilime-ci$"
+            username: ^codilime-ci$
           - Approved: 1
     trigger:
       gerrit:
         - event: comment-added
           branch:
-            - "^master$"
-            - "^contrail/ocata$"
-            - "^contrail_dpdk_17_02$"
-            - "^contrail_dpdk_17_11$"
+            - ^master$
+            - ^R5.0$
+            - ^contrail/ocata$
+            - ^contrail_dpdk_17_02$
+            - ^contrail_dpdk_17_11$
           approval:
             - Approved: 1
         - event: comment-added
           branch:
-            - "^master$"
-            - "^contrail/ocata$"
-            - "^contrail_dpdk_17_02$"
-            - "^contrail_dpdk_17_11$"
+            - ^master$
+            - ^R5.0$
+            - ^contrail/ocata$
+            - ^contrail_dpdk_17_02$
+            - ^contrail_dpdk_17_11$
           approval:
             - Verified: 1
           username:
-           - "^zuulv3$"
-           - "^codilime-ci$"
+           - ^zuulv3$
+           - ^codilime-ci$
         - event: comment-added
           branch:
-            - "^master$"
-            - "^contrail/ocata$"
-            - "^contrail_dpdk_17_02$"
-            - "^contrail_dpdk_17_11$"
+            - ^master$
+            - ^R5.0$
+            - ^contrail/ocata$
+            - ^contrail_dpdk_17_02$
+            - ^contrail_dpdk_17_11$
           approval:
             - Code-Review: 2
     start:
@@ -143,6 +148,7 @@
           comment: (?i)^(Patch Set [0-9]+:)?( [\w\\+-]*)*(\n\n)?\s*check experimental\s*$
           branch:
             - ^master$
+            - ^R5.0$
             - ^contrail/.*$
     success:
       gerrit: {}
@@ -162,6 +168,7 @@
           comment: (?i)^(Patch Set [0-9]+:)?( [\w\\+-]*)*(\n\n)?\s*check experimental-provision\s*$
           branch:
             - ^master$
+            - ^R5.0$
             - ^contrail/.*$
     success:
       stats:
