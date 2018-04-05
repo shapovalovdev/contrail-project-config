@@ -1,13 +1,13 @@
 - name: Trigger full sanity jenkins job
   uri:
-    url: "http://{{ sanity_jenkins.fqdn }}:8080/job/start_sanity/buildWithParameters"
+    url: "http://{{ item.0 }}:8080/job/start_sanity/buildWithParameters"
     method: POST
     user: "{{ sanity_jenkins.user }}"
     password: "{{ sanity_jenkins.password }}"
-    body: "TAG={{ item }}-{{ build_number }}&\
+    body: "TAG={{ item.1 }}-{{ contrail_container_tag }}&\
            DOCKER_BUILD=1"
     follow_redirects: all
     force_basic_auth: yes
-  with_items:
-    - "ocata-{{ zuul.branch }}"
-    - "newton-{{ zuul.branch }}"
+  with_cartesian:
+    - "{{ sanity_jenkins_fqdn }}"
+    - [ "ocata", "newton" ]
