@@ -2,6 +2,8 @@
   roles:
     - role: emit-job-header
       zuul_log_url: "http://logs.opencontrail.org"
+    - role: add-fileserver
+      fileserver: "{{ site_pulp }}"
 
 - hosts: all
   roles:
