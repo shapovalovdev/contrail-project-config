@@ -119,6 +119,8 @@ providers:
     hostname-format: '{label.name}-{provider.name}-{node.id}'
     diskimages:
       - name: centos-7-4
+      - name: ubuntu-xenial
+      - name: ubuntu-trusty
     pools:
       - name: ci-zuulv3-c
         max-servers: 50
