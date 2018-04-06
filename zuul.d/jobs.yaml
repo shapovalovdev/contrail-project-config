@@ -616,4 +616,6 @@
       - sanity_jenkins
     nodeset:
       nodes: []
+    vars:
+      release_type: nightly
 
