@@ -101,7 +101,7 @@
       - Juniper/contrail-controller
       - Juniper/contrail-fabric-utils
       - name: Juniper/contrail-dpdk
-        override-checkout: contrail_dpdk_17_02
+        override-checkout: contrail_dpdk_17_11
       - Juniper/contrail-generateDS
       - Juniper/contrail-heat
       - Juniper/contrail-java-api
@@ -147,7 +147,7 @@
       - Juniper/contrail-common
       - Juniper/contrail-controller
       - name: Juniper/contrail-dpdk
-        override-checkout: contrail_dpdk_17_02
+        override-checkout: contrail_dpdk_17_11
       - Juniper/contrail-fabric-utils
       - Juniper/contrail-generateDS
       - Juniper/contrail-java-api
@@ -237,7 +237,7 @@
       - Juniper/contrail-build
       - Juniper/contrail-controller
       - name: Juniper/contrail-dpdk
-        override-checkout: contrail_dpdk_17_02
+        override-checkout: contrail_dpdk_17_11
       - Juniper/contrail-generateDS
       - Juniper/contrail-third-party
       - Juniper/contrail-packages
