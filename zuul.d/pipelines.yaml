@@ -48,7 +48,7 @@
     success-message: Build succeeded (gate pipeline).
     failure-message: Build failed (gate pipeline).
     manager: dependent
-    precedence: normal
+    precedence: high
     require:
       gerrit:
         open: True
