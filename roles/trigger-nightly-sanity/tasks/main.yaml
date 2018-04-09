@@ -1,13 +1,45 @@
-- name: Trigger full sanity jenkins job
+- name: Trigger Anamika jobs
   uri:
-    url: "http://{{ item.0 }}:8080/job/start_sanity/buildWithParameters"
+    url: http://anamika.englab.juniper.net:8080/job/start_sanity/buildWithParameters
     method: POST
     user: "{{ sanity_jenkins.user }}"
     password: "{{ sanity_jenkins.password }}"
-    body: "TAG={{ item.1 }}-{{ contrail_container_tag }}&\
+    body: "TAG={{ item }}-{{ contrail_container_tag }}&\
            DOCKER_BUILD=1"
     follow_redirects: all
     force_basic_auth: yes
-  with_cartesian:
-    - "{{ sanity_jenkins_fqdn }}"
-    - [ "ocata", "newton" ]
+  with_items:
+    - ocata
+    - newton
+
+- name: Get crumb from Zephyrine
+  uri:
+    url: http://zephyrine.englab.juniper.net:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)
+    method: GET
+    user: "{{ sanity_jenkins.user }}"
+    password: "{{ sanity_jenkins.password }}"
+    follow_redirects: all
+    force_basic_auth: true
+    return_content: true
+  register: crumb
+
+- name: Prepare headers for Zephyrine
+  set_fact:
+    crumb_header: "{{ crumb_header | default({}) | combine({crumb.content.split(':')[0]: crumb.content.split(':')[1]}) }}"
+
+- name: Trigger zephyrine jobs
+  uri:
+    url: http://zephyrine.englab.juniper.net:8080/job/start_sanity/buildWithParameters
+    method: POST
+    headers: "{{ crumb_header }}"
+    user: "{{ sanity_jenkins.user }}"
+    password: "{{ sanity_jenkins.password }}"
+    body: "TAG={{ item }}-{{ contrail_container_tag }}&\
+           DOCKER_BUILD=1"
+    follow_redirects: all
+    force_basic_auth: true
+  # We need to ignore errors - Jenkins sends 201 after enqueuing the job
+  ignore_errors: true
+  with_items:
+    - ocata
+    - newton
