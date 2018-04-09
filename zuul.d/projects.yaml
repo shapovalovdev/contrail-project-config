@@ -27,16 +27,17 @@
         - contrail-vnc-build-containers-centos74:
             dependencies:
               - contrail-vnc-build-package-centos74
+        - contrail-vnc-build-test-container:
+            dependencies:
+              - contrail-vnc-build-package-centos74
         - contrail-systest-centos74-kolla-ocata:
             dependencies:
               - contrail-vnc-build-containers-centos74
+            voting: False
         - contrail-sanity-centos7-kolla-ocata:
             dependencies:
               - contrail-vnc-build-containers-centos74
               - contrail-vnc-build-test-container
-        - contrail-vnc-build-test-container:
-            dependencies:
-              - contrail-vnc-build-package-centos74
         #- contrail-systest-centos74-kubernetes:
         #    dependencies:
         #      - contrail-vnc-build-containers-centos74
@@ -53,9 +54,13 @@
         - contrail-vnc-build-containers-centos74:
             dependencies:
               - contrail-vnc-build-package-centos74
-        - contrail-systest-centos74-kolla-ocata:
+        - contrail-vnc-build-test-container:
+            dependencies:
+              - contrail-vnc-build-package-centos74
+        - contrail-sanity-centos7-kolla-ocata:
             dependencies:
               - contrail-vnc-build-containers-centos74
+              - contrail-vnc-build-test-container
 
 - project-template:
     name: build
@@ -159,7 +164,7 @@
       - systests
     experimental-provision:
       jobs:
-        - contrail-systest-centos74-kolla-ocata
+        - contrail-sanity-centos7-kolla-ocata
     experimental:
       jobs:
         - trigger-nightly-sanity:
@@ -245,16 +250,6 @@
     name: Juniper/contrail-test
     templates:
       - systests
-    check:
-      jobs:
-        - contrail-vnc-build-test-container:
-            dependencies:
-              - contrail-vnc-build-package-centos74
-        - contrail-sanity-centos7-kolla-ocata:
-            dependencies:
-              - contrail-vnc-build-containers-centos74
-            voting: False
-
     experimental:
       jobs:
         - contrail-vnc-build-package-centos74
@@ -360,17 +355,13 @@
         - contrail-vnc-build-containers-centos74:
             dependencies:
               - contrail-vnc-build-package-centos74
+        - contrail-vnc-build-test-container:
+            dependencies:
+              - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-kolla-ocata-dev
         - contrail-sanity-centos7-kolla-ocata:
             dependencies:
               - contrail-vnc-build-containers-centos74
-        - contrail-vnc-build-test-container:
-            dependencies:
-              - contrail-vnc-build-package-centos74
-        - contrail-systest-centos74-kolla-ocata:
-            dependencies:
-              - contrail-vnc-build-containers-centos74
-              - contrail-vnc-build-test-container
 
 - project:
     name: Juniper/contrail-container-builder
