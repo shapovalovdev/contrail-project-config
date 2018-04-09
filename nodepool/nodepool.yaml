@@ -50,6 +50,11 @@ labels:
     min-ready: 0
     provides:
       - name: juniper-contrail-ci-c
+  - name: rhel-7-4-builder
+    image: rhel-7
+    min-ready: 0
+    provides:
+      - name: juniper-contrail-ci
 
 providers:
   - name: juniper-contrail-ci
@@ -67,6 +72,7 @@ providers:
       - name: ubuntu-xenial
       - name: ubuntu-trusty
       - name: centos-7-4
+      - name: rhel-7
     pools:
       - name: ci-zuulv3
         max-servers: 30
@@ -96,6 +102,11 @@ providers:
             diskimage: ubuntu-trusty
             console-log: True
             key-name: ci-infra-shared-key
+          - name: rhel-7-4-builder
+            flavor-name: m1.16g_40g_8vcpu
+            diskimage: rhel-7
+            console-log: True
+            key-name: ci-infra-shared-key
           - name: centos-7-4-builder
             flavor-name: m1.16g_40g_8vcpu
             diskimage: centos-7-4
@@ -121,6 +132,7 @@ providers:
       - name: centos-7-4
       - name: ubuntu-xenial
       - name: ubuntu-trusty
+      - name: rhel-7
     pools:
       - name: ci-zuulv3-c
         max-servers: 50
@@ -166,6 +178,30 @@ diskimages:
       DIB_EPEL_DISABLED: '0'
       DIB_YUM_MINIMAL_CREATE_INTERFACES: '0'
       DIB_INSTALLTYPE_pip_and_virtualenv: package
+  - name: rhel-7
+    elements:
+      - rhel7
+      - rhel-common
+      - vm
+      - growroot
+      - epel
+      - cloud-init
+      - openssh-server
+      - nodepool-base
+      - contrail-builder
+    env-vars:
+      TMPDIR: /opt/dib_tmp
+      DIB_CHECKSUM: '1'
+      DIB_IMAGE_CACHE: /opt/dib_cache
+      DIB_GRUB_TIMEOUT: '0'
+      DIB_EPEL_DISABLED: '0'
+      DIB_YUM_MINIMAL_CREATE_INTERFACES: '0'
+      DIB_INSTALLTYPE_pip_and_virtualenv: package
+      REG_USER: username
+      REG_PASSWORD: password
+      REG_METHOD: portal
+      REG_POOL_ID: 12345
+      DIB_LOCAL_IMAGE: /opt/cloud_images/image.qcow2
   - name: ubuntu-xenial
     elements:
       - ubuntu
