@@ -98,6 +98,9 @@
     periodic-nightly:
       jobs:
         - build-variables-init
+        - contrail-build-vro-plugin:
+            vars:
+              release_type: nightly
         - contrail-vnc-build-package-ubuntu-xenial:
             vars:
               release_type: nightly
