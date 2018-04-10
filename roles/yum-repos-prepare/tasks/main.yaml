@@ -1,13 +1,16 @@
+- name: Include OS-specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution | lower}}.yaml"
+    - "{{ ansible_os_family | lower }}.yaml"
+    - "default.yaml"
+
 - name: Remove the upstream yum repos
   yum_repository:
     name: "{{ item.name }}"
     file: "{{ item.file }}"
     state: absent
-  with_items:
-    - { name: base, file: CentOS-Base }
-    - { name: updates, file: CentOS-Base }
-    - { name: extras, file: CentOS-Base }
-    - { name: epel, file: epel }
+  with_items: "{{ repos_remove }}"
   become: yes
   become_user: root
 
@@ -15,14 +18,11 @@
   yum_repository:
     name: "{{ item.name }}"
     description: "{{ item.description }}"
-    file: CentOS-Base
-    baseurl: "http://{{ site_pulp.fqdn }}/pulp/repos/{{ item.repo }}/"
+    file: "{{ repos_file }}"
+    baseurl: "{{ repos_baseurl }}/{{ item.repo }}/"
     enabled: yes
     gpgcheck: no
-  with_items:
-    - { name: updates-mirror, repo: centos74-updates, description: CentOS updates mirror }
-    - { name: extras-mirror, repo: centos74-extras, description: CentOS extras mirror }
-    - { name: base-mirror, repo: centos74, description: CentOS base mirror }
+  with_items: "{{ repos_add }}"
   become: yes
   become_user: root
 
@@ -32,7 +32,7 @@
     description: CentOS epel mirror
     file: epel
     baseurl: "http://{{ site_pulp.fqdn }}/pulp/repos/centos74-epel/"
-    enabled: yes
+    enabled: "{{ use_epel }}"
     gpgcheck: no
   become: yes
   become_user: root
