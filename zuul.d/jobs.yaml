@@ -615,7 +615,9 @@
     secrets:
       - sanity_jenkins
     nodeset:
-      nodes: []
+      nodes:
+        - name: ubuntu-xenial
+          label: ubuntu-xenial
     vars:
       release_type: nightly
 
