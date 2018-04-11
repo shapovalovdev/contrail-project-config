@@ -30,10 +30,6 @@
         - contrail-vnc-build-test-container:
             dependencies:
               - contrail-vnc-build-package-centos74
-        - contrail-systest-centos74-kolla-ocata:
-            dependencies:
-              - contrail-vnc-build-containers-centos74
-            voting: False
         - contrail-sanity-centos7-kolla-ocata:
             dependencies:
               - contrail-vnc-build-containers-centos74
@@ -140,10 +136,6 @@
         - contrail-vnc-build-containers-centos74-ocata-nightly:
             dependencies:
               - contrail-vnc-build-package-centos74-nightly
-# XXX lukl: split systest job to remove docker-registries from pre
-#        - contrail-systest-centos74-kolla-ocata:
-#            dependencies:
-#              - contrail-vnc-build-containers-centos74-ocata-nightly
         - contrail-systest-full-centos74-kolla-ocata:
             dependencies:
               - contrail-vnc-build-containers-centos74-ocata-nightly
