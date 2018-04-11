@@ -50,11 +50,8 @@ labels:
     min-ready: 0
     provides:
       - name: juniper-contrail-ci-c
-  - name: rhel-7-4-builder
-    image: rhel-7
+  - name: rhel-7-builder
     min-ready: 0
-    provides:
-      - name: juniper-contrail-ci
 
 providers:
   - name: juniper-contrail-ci
@@ -102,7 +99,7 @@ providers:
             diskimage: ubuntu-trusty
             console-log: True
             key-name: ci-infra-shared-key
-          - name: rhel-7-4-builder
+          - name: rhel-7-builder
             flavor-name: m1.16g_40g_8vcpu
             diskimage: rhel-7
             console-log: True
@@ -155,6 +152,11 @@ providers:
           - name: xenial-small-c
             flavor-name: m1.small
             diskimage: ubuntu-xenial
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: rhel-7-builder
+            flavor-name: m1.16g_80g_8vcpu
+            diskimage: rhel-7
             console-log: True
             key-name: ci-infra-shared-key
 
