@@ -47,3 +47,9 @@
     gpgcheck: no
   become: yes
   become_user: root
+
+- name: Disable subscription-manager on RHEL
+  command: subscription-manager config --rhsm.manage_repos=0
+  become: yes
+  become_user: root
+  when: 'ansible_distribution == "RedHat"'
