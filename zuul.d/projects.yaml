@@ -92,9 +92,13 @@
       jobs:
         - build-variables-init
         - contrail-build-vro-plugin:
+            dependencies:
+              - build-variables-init
             vars:
               release_type: nightly
         - contrail-go-docker:
+            dependencies:
+              - build-variables-init
             vars:
               release_type: nightly
         - contrail-vnc-build-package-ubuntu-xenial:
