@@ -34,9 +34,6 @@
             dependencies:
               - contrail-vnc-build-containers-centos74
               - contrail-vnc-build-test-container
-        #- contrail-systest-centos74-kubernetes:
-        #    dependencies:
-        #      - contrail-vnc-build-containers-centos74
     gate:
       queue: contrail-vnc
       jobs:
@@ -347,6 +344,7 @@
         - contrail-systest-centos74-kubernetes:
             dependencies:
               - contrail-vnc-build-containers-centos74
+            voting: false
     experimental:
       jobs:
         - contrail-vnc-build-package-centos74
