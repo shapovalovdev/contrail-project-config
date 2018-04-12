@@ -101,6 +101,9 @@
         - contrail-build-vro-plugin:
             vars:
               release_type: nightly
+        - contrail-go-docker:
+            vars:
+              release_type: nightly
         - contrail-vnc-build-package-ubuntu-xenial:
             vars:
               release_type: nightly
