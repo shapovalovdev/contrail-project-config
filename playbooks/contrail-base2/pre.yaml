@@ -17,6 +17,6 @@
 
 - hosts: "{{ site_pulp.fqdn }}"
   roles:
-    - role: setup-docker-registry
+    - role: setup-docker-registry2
       when: setup_docker_registry == true
 
