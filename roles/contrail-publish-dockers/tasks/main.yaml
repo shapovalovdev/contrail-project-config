@@ -1,3 +1,9 @@
+- name: Install jq
+  yum:
+    name: jq
+    state: present
+  become: true
+
 - name: Get container list
   shell: |
     # this magical part returns list of containers from the current buildset
