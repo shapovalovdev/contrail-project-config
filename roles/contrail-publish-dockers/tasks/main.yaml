@@ -14,6 +14,9 @@
   set_fact:
     container_latest_release: "ocata-{{ contrail_container_tag }}"
 
+- name: Display disk usage
+  command: df -h
+
 - name: Pull containers
   command: "docker pull {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }}"
   with_items: "{{ container_list.stdout_lines }}"
@@ -24,6 +27,8 @@
   delay: 10
   until: result.rc == 0
 
+- name: Display disk usage
+  command: df -h
 
 - name: Retag containers for master branch
   block:
