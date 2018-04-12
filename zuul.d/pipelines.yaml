@@ -115,6 +115,7 @@
     name: periodic-nightly
     description: Periodic pipeline for building OpenContrail every 24h.
     manager: independent
+    precedence: high
     trigger:
       timer:
         - time: "0 8 * * *"
@@ -141,7 +142,7 @@
     manager: independent
     success-message: Build succeeded (experimental pipeline).
     failure-message: Build failed (experimental pipeline).
-    precedence: normal
+    precedence: high
     trigger:
       gerrit:
         - event: comment-added
