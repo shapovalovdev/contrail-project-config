@@ -580,10 +580,7 @@
     run: playbooks/trigger-nightly-sanity/run
     secrets:
       - sanity_jenkins
-    nodeset:
-      nodes:
-        - name: ubuntu-xenial
-          label: ubuntu-xenial
+    nodeset: ubuntu-xenial
     vars:
       release_type: nightly
 
