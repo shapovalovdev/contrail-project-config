@@ -6,4 +6,5 @@
 - hosts: "{{ site_pulp.fqdn }}"
   roles:
     - contrail-common-libs2
+    - fetch-artifacts
     - upload-artifacts
