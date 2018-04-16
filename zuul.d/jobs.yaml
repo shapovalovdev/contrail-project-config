@@ -596,6 +596,7 @@
       post tasks like uploading packages to the repository host, and
       containers to docker registries.
     pre-run: playbooks/contrail-base2/pre
+    post-run: playbooks/contrail-base2/post
     roles:
       - zuul: Juniper/zuul-jobs
       - zuul: Juniper/contrail-zuul-jobs
