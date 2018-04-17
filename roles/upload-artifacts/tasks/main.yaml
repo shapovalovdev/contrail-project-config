@@ -20,5 +20,5 @@
         path: "{{ dest_path }}"
     - name: upload files
       synchronize:
-        src: "{{ executor_package_dir }}"
+        src: "{{ zuul.executor.work_root }}/artifacts"
         dest: "{{ dest_path }}/{{ zuul.buildset[0:10] }}"
