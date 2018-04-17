@@ -3,7 +3,6 @@
     path: "{{ zuul.executor.work_root }}/artifacts"
   register: artifacts_dir
   delegate_to: localhost
-  become: true
 
 - name: upload artifacts to pulp server
   when: artifacts_dir.stat.isdir is defined and artifacts_dir.stat.isdir
