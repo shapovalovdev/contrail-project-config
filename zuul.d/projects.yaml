@@ -358,10 +358,14 @@
         - contrail-vnc-build-test-container:
             dependencies:
               - contrail-vnc-build-package-centos74
-        - contrail-sanity-centos7-kolla-ocata-dev
         - contrail-sanity-centos7-kolla-ocata:
             dependencies:
               - contrail-vnc-build-containers-centos74
+              - contrail-vnc-build-test-container
+        - contrail-sanity-centos7-k8s:
+            dependencies:
+              - contrail-vnc-build-containers-centos74
+              - contrail-vnc-build-test-container
 
 - project:
     name: Juniper/contrail-container-builder
