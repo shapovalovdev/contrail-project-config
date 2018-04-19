@@ -80,6 +80,11 @@ def main():
 
     full_version = "{upstream}~{distrib}".format(**version)
 
+    repo_names = {
+        "CentOS": repo_name + '-centos',
+        "RedHat": repo_name + '-rhel',
+    }
+
     packaging = {
         'name': 'contrail',
         'debian_dir': debian_dir,
@@ -87,6 +92,7 @@ def main():
         'version': version,
         'target_dir': target_dir,
         'repo_name': repo_name,
+        'repo_names': repo_names,
         'docker_version': docker_version,
     }
 
