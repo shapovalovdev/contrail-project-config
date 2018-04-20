@@ -104,21 +104,6 @@
         - contrail-vnc-build-package-ubuntu-xenial:
             vars:
               release_type: nightly
-        - contrail-vnc-build-package-centos74-nightly:
-            dependencies:
-              - build-variables-init
-            vars:
-              release_type: nightly
-        - contrail-vnc-build-containers-centos74-ocata-nightly:
-            dependencies:
-              - contrail-vnc-build-package-centos74-nightly
-            vars:
-              release_type: nightly
-        - contrail-vnc-build-containers-centos74-newton-nightly:
-            dependencies:
-              - contrail-vnc-build-package-centos74-nightly
-            vars:
-              release_type: nightly
         - contrail-vnc-build-test-container-nightly:
             dependencies:
               - contrail-vnc-build-package-centos74-nightly
@@ -139,6 +124,11 @@
               - contrail-vnc-build-package-centos74
             vars:
               release_type: nightly
+        - contrail-vnc-build-containers-centos7-newton:
+            dependencies:
+              - contrail-vnc-build-package-centos74
+            vars:
+              release_type: nightly
         - contrail-vnc-build-containers-rhel7-ocata:
             dependencies:
               - contrail-vnc-build-package-rhel7
@@ -146,9 +136,8 @@
               release_type: nightly
         #- contrail-vnc-publish-containers-nightly:
         #    dependencies:
-        #      - contrail-vnc-build-containers-centos74-ocata-nightly
-        #      - contrail-vnc-build-containers-centos74-newton-nightly
         #      - contrail-vnc-build-containers-centos7-ocata
+        #      - contrail-vnc-build-containers-centos7-newton
         #      - contrail-vnc-build-containers-rhel7-ocata
         #      - contrail-vnc-build-test-container-nightly
         #- trigger-nightly-sanity:
