@@ -121,12 +121,12 @@
               release_type: nightly
         - contrail-vnc-build-containers-centos7-ocata:
             dependencies:
-              - contrail-vnc-build-package-centos74
+              - contrail-vnc-build-package-centos74-nightly
             vars:
               release_type: nightly
         - contrail-vnc-build-containers-centos7-newton:
             dependencies:
-              - contrail-vnc-build-package-centos74
+              - contrail-vnc-build-package-centos74-nightly
             vars:
               release_type: nightly
         - contrail-vnc-build-containers-rhel7-ocata:
