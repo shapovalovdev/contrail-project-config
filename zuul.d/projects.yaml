@@ -104,9 +104,13 @@
         - contrail-vnc-build-package-ubuntu-xenial:
             vars:
               release_type: nightly
+        - contrail-vnc-build-package-centos74:
+            vars:
+              release_type: nightly
         - contrail-vnc-build-test-container-nightly:
             dependencies:
               - contrail-vnc-build-package-centos74-nightly
+              - contrail-vnc-build-package-centos74
             vars:
               release_type: nightly
         - contrail-vnc-build-package-centos74-nightly:
@@ -122,11 +126,13 @@
         - contrail-vnc-build-containers-centos7-ocata:
             dependencies:
               - contrail-vnc-build-package-centos74-nightly
+              - contrail-vnc-build-package-centos74
             vars:
               release_type: nightly
         - contrail-vnc-build-containers-centos7-newton:
             dependencies:
               - contrail-vnc-build-package-centos74-nightly
+              - contrail-vnc-build-package-centos74
             vars:
               release_type: nightly
         - contrail-vnc-build-containers-rhel7-ocata:
