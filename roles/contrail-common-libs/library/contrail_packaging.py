@@ -47,11 +47,9 @@ def main():
     if branch == 'master':
         version['upstream'] = MASTER_RELEASE
         version['public'] = 'master'
-        docker_version = 'master'
     else:
         version['upstream'] = branch[1:]
         version['public'] = branch[1:]
-        docker_version = version['upstream']
 
     if release_type == ReleaseType.CONTINUOUS_INTEGRATION:
         # Versioning in CI consists of change id, pachset and date
@@ -63,8 +61,7 @@ def main():
         repo_name = "{change}-{patchset}".format(change=change, patchset=patchset)
     elif release_type == ReleaseType.NIGHTLY:
         version['distrib'] = "{}".format(build_number)
-        docker_version = '{}-{}'.format(docker_version, build_number)
-        repo_name = docker_version
+        repo_name = '{}-{}'.format(version['upstream'], build_number)
     else:
         module.fail_json(
             msg="Unknown release_type: %s" % (release_type,), **result
@@ -93,7 +90,7 @@ def main():
         'target_dir': target_dir,
         'repo_name': repo_name,
         'repo_names': repo_names,
-        'docker_version': docker_version,
+        'docker_version': repo_name,
     }
 
     module.exit_json(ansible_facts={'packaging': packaging}, **result)
