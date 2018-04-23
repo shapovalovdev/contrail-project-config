@@ -5,4 +5,6 @@
 
 - hosts: "{{ site_pulp.fqdn }}"
   roles:
+    - contrail-common-libs2
+    - zuul-include-vars
     - setup-docker-registry2
