@@ -1,0 +1,8 @@
+- hosts: localhost
+  roles:
+    - role: add-fileserver
+      fileserver: "{{ site_pulp }}"
+
+- hosts: "{{ site_pulp.fqdn }}"
+  roles:
+    - setup-docker-registry2

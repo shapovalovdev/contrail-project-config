@@ -109,7 +109,7 @@
               release_type: nightly
             dependencies:
               - build-variables-init
-        - contrail-vnc-build-test-container:
+        - contrail-vnc-build-test-container-nightly:
             dependencies:
               - contrail-vnc-build-package-centos74
             vars:

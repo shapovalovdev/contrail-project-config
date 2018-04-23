@@ -482,6 +482,7 @@
     name: contrail-vnc-build-test-container-nightly
     parent: contrail-vnc-build-test-container-base
     pre-run:
+      - playbooks/docker/setup-docker-registry2
       - playbooks/docker/docker-pre
     secrets:
       - site_pulp
