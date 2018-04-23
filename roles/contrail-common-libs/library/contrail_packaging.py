@@ -61,7 +61,7 @@ def main():
         repo_name = "{change}-{patchset}".format(change=change, patchset=patchset)
     elif release_type == ReleaseType.NIGHTLY:
         version['distrib'] = "{}".format(build_number)
-        repo_name = '{}-{}'.format(version['upstream'], build_number)
+        repo_name = '{}-{}'.format(version['public'], build_number)
     else:
         module.fail_json(
             msg="Unknown release_type: %s" % (release_type,), **result
