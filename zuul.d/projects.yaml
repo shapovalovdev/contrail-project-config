@@ -364,9 +364,10 @@
       - systests
     check:
       jobs:
-        - contrail-systest-centos74-kubernetes:
+        - contrail-sanity-centos7-k8s:
             dependencies:
               - contrail-vnc-build-containers-centos74
+              - contrail-vnc-build-test-container
             voting: false
     experimental:
       jobs:

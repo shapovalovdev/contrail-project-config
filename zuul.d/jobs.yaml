@@ -322,27 +322,6 @@
       - docker_registry
 
 - job:
-    name: contrail-systest-centos74-kubernetes
-    parent: contrail-src-base
-    description: |
-      A job that deploys Contrail containers and a Kubernetes cluster
-      using contrail-ansible-deployer.
-    irrelevant-files:
-      - specs/.*
-    required-projects:
-      - Juniper/contrail-ansible-deployer
-    pre-run:
-      - playbooks/docker/setup-docker-registry
-    run: playbooks/docker/centos74-systest-kubernetes
-    nodeset:
-      nodes:
-        - name: contrail-aio
-          label: centos-7-4-builder
-    secrets:
-      - site_pulp
-      - docker_registry
-
-- job:
     name: contrail-systest-full-centos74-kolla-ocata
     parent: contrail-src-base
     description: |
