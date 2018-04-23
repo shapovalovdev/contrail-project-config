@@ -85,9 +85,6 @@
         - contrail-vnc-specs-linter:
            files:
              - specs/.*
-    experimental:
-      jobs:
-        - contrail-systest-ubuntu1604-helm-newton
     periodic-nightly:
       jobs:
         - build-variables-init
