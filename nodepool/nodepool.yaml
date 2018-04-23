@@ -89,7 +89,7 @@ providers:
             console-log: True
             key-name: ci-infra-shared-key
           - name: ubuntu-xenial-builder-xxlarge
-            flavor-name: m1.ci-systest
+            flavor-name: m1.32g_80g_8vcpu
             diskimage: ubuntu-xenial
             console-log: True
             key-name: ci-infra-shared-key
