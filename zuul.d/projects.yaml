@@ -351,6 +351,7 @@
         - zuul-jobs-linters:
             voting: false
     gate:
+      queue: contrail-ci
       jobs:
         - zuul-jobs-linters:
             voting: false
