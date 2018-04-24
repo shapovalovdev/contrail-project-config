@@ -1,104 +1,66 @@
-- name: Install jq
-  yum:
-    name: jq
+- name: install packages
+  package:
+    name: "{{ item }}"
     state: present
   become: true
+  with_items:
+    - epel-release
+    - python36
 
-- name: Get container list
+- name: install virtualenv for publisher
+  command: python36 -m venv venv
+  args:
+    chdir: "{{ publisher_path }}"
+
+- name: install requirements
   shell: |
-    # this magical part returns list of containers from the current buildset
-    # e.g. all containers matching 'master-5' in their tag
-    for repo in $(curl -s {{ docker_registry.fqdn }}:{{ docker_registry.port }}/v2/_catalog | jq -r '.[] | join(" ")'); do
-      for tag in $(curl -s {{ docker_registry.fqdn }}:{{ docker_registry.port }}/v2/$repo/tags/list | jq -r '.tags | sort | .[] | select( . | contains("{{ contrail_container_tag }}"))'); do
-        echo $repo:$tag
-      done
-    done
-  register: container_list
+    . venv/bin/activate
+    pip install -r requirements.txt
+  args:
+    chdir: "{{ publisher_path }}"
 
-# XXX: perhaps we should manage "centos7-ocata" part via secrets
-- name: Register variable for latest release
-  set_fact:
-    container_latest_release: "ocata-{{ contrail_container_tag }}"
+- name: copy publisher config
+  copy:
+    src: publisher-{{ item }}-config.yaml
+    dest: "{{ publisher_path }}/publisher-{{ item }}-config.yaml"
+  with_items:
+    - internal
+    - dockerhub
 
-- name: Display disk usage
-  command: df -h
-
-- name: Pull containers
-  command: "docker pull {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }}"
-  with_items: "{{ container_list.stdout_lines }}"
+- name: Push to internal registry
+  shell: |
+    . venv/bin/activate
+    python36 publisher.py --config publisher-internal-config.yaml --build-registry 10.84.5.81:{{ docker_registry_port }} --release {{ contrail_packaging.version.public }} --build {{ build_number }} --openstack_release {{ item }} --dry-run
   become: true
-  # Due to some mysterious causes, it seems to fail occassionally, so need to retry it
-  register: result
-  retries: 3
-  delay: 10
-  until: result.rc == 0
+  args:
+    chdir: "{{ publisher_path }}"
+  with_items:
+    - ocata
+    - newton
 
-- name: Display disk usage
-  command: df -h
-
-- name: Retag containers for master branch
+- name: Push build to dockerhub
+  when: "{{ contrail_packaging.version.public }} == 'master'"
   block:
-    # ci-repo/container -> dockerhub/container
-    - name: Retag containers - add dockerhub namespace
-      command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item }}"
-      with_items: "{{ container_list.stdout_lines }}"
+    - name: Log in to dockerhub
+      command: "docker login -u {{ dockerhub.username }} -p {{ dockerhub.password }}"
+      no_log: true
+      become: true
 
-    # ci-repo/ocata-master-5 -> ci-repo/latest
-    - name: Retag containers - ci-repo/latest
-      command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item | regex_replace(':.*$',':latest') }}"
-      when: item | search(container_latest_release)
-      with_items: "{{ container_list.stdout_lines }}"
+    - name: Push to Dockerhub
+      shell: |
+        . venv/bin/activate
+        python36 publisher.py --config publisher-dockerhub-config.yaml --build-registry 10.84.5.81:{{ docker_registry_port }} --release {{ contrail_packaging.version.public }} --build {{ build_number }} --openstack_release {{ item }} --dry-run
+      become: true
+      args:
+        chdir: "{{ publisher_path }}"
+      with_items:
+        - ocata
+        - newton
 
-    # ci-repo/ocata-master-5 -> dockerhub/latest
-    - name: Retag containers - dockerhub/latest
-      command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace(':.*$', ':latest') }}"
-      when: item | search(container_latest_release)
-      with_items: "{{ container_list.stdout_lines }}"
+    - name: Log out of Dockerhub
+      command: "docker logout"
+      become: true
 
-    # ci-repo/ocata-master-5 -> opencontrailnightly/master-5
-    - name: Retag containers - dockerhub/no-openstack-tag
-      command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ dockerhub.namespace }}/{{ item | regex_replace('([^:]+):([^-]+)-([^-]+)-(.+)$', '\\g<1>:\\g<3>-\\g<4>') }}"
-      when: item | search(container_latest_release)
-      with_items: "{{ container_list.stdout_lines }}"
-
-  become: true
-  when: zuul.branch == 'master'
-
-- name: Retag containers - ci-repo/no-openstack-tag
-  # ci-repo/ocata-master-5 -> opencontrailnightly/master-5
-  command: "docker tag {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item }} {{ docker_registry.fqdn }}:{{ docker_registry.port }}/{{ item | regex_replace('([^:]+):([^-]+)-([^-]+)-(.+)$', '\\g<1>:\\g<3>-\\g<4>') }}"
-  when: item | search(container_latest_release)
-  with_items: "{{ container_list.stdout_lines }}"
-  become: true
-
-- name: Log in to dockerhub
-  command: "docker login -u {{ dockerhub.username }} -p {{ dockerhub.password }}"
-  no_log: true
-  become: true
-
-- name: Get local container list
-  shell: |
-    for i in `docker images | grep contrail | awk '{printf "%s:%s\n", $1,$2;}'`; do
-      echo $i;
-    done
-  register: local_container_list
-  become: true
-
-- name: Push all containers
-  command: "docker push {{ item }}"
-  with_items: "{{ local_container_list.stdout_lines }}"
-  become: true
-  # upload fails a lot :(
-  register: result
-  retries: 3
-  delay: 15
-  until: result.rc == 0
-
-- name: Cleanup all docker images
-  command: "docker rmi -f {{ item }}"
-  with_items: "{{ local_container_list.stdout_lines }}"
-  become: true
-
-- name: Log out of Dockerhub
-  command: "docker logout"
+- name: Show the list of docker images
+  command: docker images
   become: true
