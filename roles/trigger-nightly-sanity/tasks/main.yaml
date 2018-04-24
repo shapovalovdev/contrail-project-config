@@ -14,7 +14,7 @@
   register: result
   retries: 5
   delay: 30
-  until: result.rc == 0
+  until: result | success
   ignore_errors: true
 
 - name: Get crumb from Zephyrine
