@@ -7,6 +7,7 @@
           - Juniper/zuul-jobs:
               shadow: Juniper/contrail-project-config
           - Juniper/contrail-nova-extensions
+          - Juniper/contrail-publisher
       gerrit:
         config-projects:
           - Juniper/contrail-project-config
