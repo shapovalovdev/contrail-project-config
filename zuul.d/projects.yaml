@@ -27,13 +27,13 @@
         - contrail-vnc-build-containers-centos74:
             dependencies:
               - contrail-vnc-build-package-centos74
-        - contrail-vnc-build-test-container:
+        - contrail-vnc-build-test-containers:
             dependencies:
               - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-kolla-ocata:
             dependencies:
               - contrail-vnc-build-containers-centos74
-              - contrail-vnc-build-test-container
+              - contrail-vnc-build-test-containers
     gate:
       queue: contrail-vnc
       jobs:
@@ -47,13 +47,13 @@
         - contrail-vnc-build-containers-centos74:
             dependencies:
               - contrail-vnc-build-package-centos74
-        - contrail-vnc-build-test-container:
+        - contrail-vnc-build-test-containers:
             dependencies:
               - contrail-vnc-build-package-centos74
         - contrail-deploy-ubuntu1604-helm-ocata:
             dependencies:
               - contrail-vnc-build-containers-centos74
-              - contrail-vnc-build-test-container
+              - contrail-vnc-build-test-containers
     gate:
       queue: contrail-vnc
       jobs:
@@ -67,13 +67,13 @@
         - contrail-vnc-build-containers-centos74:
             dependencies:
               - contrail-vnc-build-package-centos74
-        - contrail-vnc-build-test-container:
+        - contrail-vnc-build-test-containers:
             dependencies:
               - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-kolla-ocata:
             dependencies:
               - contrail-vnc-build-containers-centos74
-              - contrail-vnc-build-test-container
+              - contrail-vnc-build-test-containers
 
 - project-template:
     name: build
@@ -131,7 +131,7 @@
               release_type: nightly
             dependencies:
               - build-variables-init
-        - contrail-vnc-build-test-container-nightly:
+        - contrail-vnc-build-test-containers:
             dependencies:
               - contrail-vnc-build-package-centos74
             vars:
@@ -161,7 +161,7 @@
               - contrail-vnc-build-containers-centos7-ocata
               - contrail-vnc-build-containers-centos7-newton
               - contrail-vnc-build-containers-rhel7-ocata
-              - contrail-vnc-build-test-container-nightly
+              - contrail-vnc-build-test-containers
               - contrail-go-docker
             vars:
               release_type: nightly
@@ -288,7 +288,7 @@
     experimental:
       jobs:
         - contrail-vnc-build-package-centos74
-        - contrail-vnc-build-test-container:
+        - contrail-vnc-build-test-containers:
             dependencies:
               - contrail-vnc-build-package-centos74
 
@@ -383,7 +383,7 @@
         - contrail-sanity-centos7-k8s:
             dependencies:
               - contrail-vnc-build-containers-centos74
-              - contrail-vnc-build-test-container
+              - contrail-vnc-build-test-containers
             voting: false
     experimental:
       jobs:
@@ -391,17 +391,17 @@
         - contrail-vnc-build-containers-centos74:
             dependencies:
               - contrail-vnc-build-package-centos74
-        - contrail-vnc-build-test-container:
+        - contrail-vnc-build-test-containers:
             dependencies:
               - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-kolla-ocata:
             dependencies:
               - contrail-vnc-build-containers-centos74
-              - contrail-vnc-build-test-container
+              - contrail-vnc-build-test-containers
         - contrail-sanity-centos7-k8s:
             dependencies:
               - contrail-vnc-build-containers-centos74
-              - contrail-vnc-build-test-container
+              - contrail-vnc-build-test-containers
 
 - project:
     name: Juniper/contrail-container-builder
