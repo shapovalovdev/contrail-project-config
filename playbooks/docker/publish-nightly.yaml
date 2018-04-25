@@ -1,6 +1,8 @@
 - hosts: all
   roles:
-    - install-docker-daemon
+    - zuul-include-vars
     - role: add-insecure-registry
       new_registry: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
+    - role: add-insecure-registry
+      new_registry: "{{ contrail_docker_registry }}"
     - contrail-publish-dockers

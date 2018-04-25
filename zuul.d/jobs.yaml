@@ -509,6 +509,11 @@
     parent: contrail-src-base
     description: |
       A job for publishing Docker containers to DockerHub.
+    required-projects:
+      - Juniper/contrail-publisher
+    pre-run:
+      - playbooks/docker/setup-docker-registry2
+      - playbooks/docker/docker-pre
     run: playbooks/docker/publish-nightly
     nodeset:
       nodes:
