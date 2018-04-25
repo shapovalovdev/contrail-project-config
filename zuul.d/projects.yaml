@@ -146,6 +146,8 @@
               - contrail-vnc-build-containers-rhel7-ocata
               - contrail-vnc-build-test-container-nightly
               - contrail-go-docker
+            vars:
+              release_type: nightly
         #- trigger-nightly-sanity:
         #    dependencies:
         #      - contrail-vnc-publish-containers-nightly
