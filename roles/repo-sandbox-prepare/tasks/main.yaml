@@ -7,7 +7,8 @@
 - debug:
     var: packaging
 
-- set_fact:
+- name: 'Set executor sandbox path'
+  set_fact:
     executor_sandbox_path: "{{ zuul.executor.work_root }}/{{ packaging.target_dir }}"
   delegate_to: localhost
 

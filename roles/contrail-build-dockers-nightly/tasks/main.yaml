@@ -19,7 +19,7 @@
     dest: "{{ docker_build_dir }}/common.env"
 
 - name: Get list of repo files
-  shell: "ls {{ rpm_repo_config_dir }}/"
+  command: "ls {{ rpm_repo_config_dir }}/"
   register: repo_file_list
 
 - name: copy the repo files to containers build context

@@ -4,7 +4,8 @@
     state: directory
   delegate_to: localhost
 
-- stat:
+- name: 'Check whether test runner log dir exists'
+  stat:
     path: "{{ ansible_env.HOME }}/logs"
   register: testrunner_logdir
   become: true
@@ -18,7 +19,8 @@
   when: testrunner_logdir.stat.isdir is defined and testrunner_logdir.stat.isdir
   become: true
 
-- stat:
+- name: 'Check whether test reports dir exists'
+  stat:
     path: "{{ ansible_env.HOME }}/test-reports"
   register: test_reports_dir
   become: true
@@ -32,7 +34,8 @@
   when: test_reports_dir.stat.isdir is defined and test_reports_dir.stat.isdir
   become: true
 
-- stat:
+- name: 'Check whether coverage reports dir exists'
+  stat:
     path: "{{ ansible_env.HOME }}/coverage-reports"
   register: coverage_reports_dir
   become: true
