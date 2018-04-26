@@ -39,7 +39,7 @@
     - newton
 
 - name: Push build to dockerhub
-  when: "{{ contrail_packaging.version.public }} == 'master'"
+  when: "contrail_packaging.version.public == 'master'"
   block:
     - name: Log in to dockerhub
       command: "docker login -u {{ dockerhub.username }} -p {{ dockerhub.password }}"
