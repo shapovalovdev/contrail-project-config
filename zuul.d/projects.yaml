@@ -40,6 +40,26 @@
         - noop
 
 - project-template:
+    name: helm-systests
+    check:
+      jobs:
+        - contrail-vnc-build-package-centos74
+        - contrail-vnc-build-containers-centos74:
+            dependencies:
+              - contrail-vnc-build-package-centos74
+        - contrail-vnc-build-test-container:
+            dependencies:
+              - contrail-vnc-build-package-centos74
+        - contrail-deploy-ubuntu1604-helm-ocata:
+            dependencies:
+              - contrail-vnc-build-containers-centos74
+              - contrail-vnc-build-test-container
+    gate:
+      queue: contrail-vnc
+      jobs:
+        - noop
+
+- project-template:
     name: systests-nogate
     check:
       jobs:
@@ -448,7 +468,7 @@
 - project:
     name: Juniper/contrail-helm-deployer
     templates:
-      - noops
+      - helm-systests
 
 - project:
     name: Juniper/contrail-vnc
@@ -474,12 +494,12 @@
 - project:
     name: Juniper/openstack-helm
     templates:
-      - noops
+      - helm-systests
 
 - project:
     name: Juniper/openstack-helm-infra
     templates:
-      - noops
+      - helm-systests
 
 - project:
     name: Juniper/contrail-dpdk
