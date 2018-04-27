@@ -351,13 +351,11 @@
       - noops
     check:
       jobs:
-        - zuul-jobs-linters:
-            voting: false
+        - zuul-jobs-linters
     gate:
       queue: contrail-ci
       jobs:
-        - zuul-jobs-linters:
-            voting: false
+        - zuul-jobs-linters
 
 - project:
     name: Juniper/contrail-ansible-deployer

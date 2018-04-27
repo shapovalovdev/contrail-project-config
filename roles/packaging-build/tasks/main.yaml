@@ -10,7 +10,7 @@
   become_user: root
 
 - name: Install package dependencies for the build
-  shell: |
+  command: |
     mk-build-deps -r -i debian/control \
       --tool="apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes"
   args:

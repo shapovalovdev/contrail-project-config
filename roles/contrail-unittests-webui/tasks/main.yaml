@@ -47,9 +47,8 @@
     - google-chrome-stable
 
 - name: Run unittest script
-  shell: "{{ ansible_env.HOME }}/contrail-webui-unittest.sh"
+  command: "{{ ansible_env.HOME }}/contrail-webui-unittest.sh"
   become: yes
-  become_user: root
   environment:
     USER: root
     WORKSPACE: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"

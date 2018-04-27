@@ -17,7 +17,8 @@
     dest: "{{ zuul.executor.work_root }}/saved_vars.yaml"
   delegate_to: localhost
 
-- zuul_return:
+- name: 'Return registry location back to zuul for children jobs'
+  zuul_return:
     data:
       docker_registry_port: "{{ registry_port.stdout }}"
       contrail_docker_registry: "{{ docker_registry.fqdn }}:{{ registry_port.stdout }}"
