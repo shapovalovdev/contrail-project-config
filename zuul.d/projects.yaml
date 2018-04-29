@@ -148,9 +148,9 @@
               - contrail-go-docker
             vars:
               release_type: nightly
-        #- trigger-nightly-sanity:
-        #    dependencies:
-        #      - contrail-vnc-publish-containers-nightly
+        - trigger-nightly-sanity:
+            dependencies:
+              - contrail-vnc-publish-containers-nightly
     periodic-sanity:
       jobs:
         - contrail-vnc-build-package-centos74-nightly:
