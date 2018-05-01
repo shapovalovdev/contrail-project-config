@@ -495,3 +495,8 @@
     name: Juniper/contrail-vro-plugin
     templates:
       - noops
+
+- project:
+    name: Juniper/contrail-docs
+    templates:
+      - noops
