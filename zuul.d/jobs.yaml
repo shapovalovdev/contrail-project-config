@@ -266,28 +266,6 @@
           label: centos-7-4-builder
 
 - job:
-    name: contrail-vnc-build-containers-centos74
-    parent: contrail-src-base
-    description: |
-      A job that builds the Contrail containers using contrail-container-builder
-      and uploads them to a Docker registry.
-    irrelevant-files:
-      - specs/.*
-    required-projects:
-      - Juniper/contrail-container-builder
-    pre-run:
-      - playbooks/docker/setup-docker-registry
-      - playbooks/docker/docker-pre
-    run: playbooks/docker/centos74
-    nodeset:
-      nodes:
-        - name: builder
-          label: centos-7-4-builder
-    secrets:
-      - site_pulp
-      - docker_registry
-
-- job:
     name: contrail-systest-base
     parent: base
     pre-run:
@@ -360,56 +338,6 @@
       - site_pulp
 
 - job:
-    name: contrail-vnc-build-containers-nightly
-    parent: contrail-src-base
-    description: |
-      A job that builds the Contrail containers using contrail-container-builder
-      and uploads them to a Docker registry.
-    irrelevant-files:
-      - specs/.*
-    required-projects:
-      - Juniper/contrail-container-builder
-    pre-run: playbooks/docker/docker-pre
-    run: playbooks/docker/centos74-nightly
-    nodeset:
-      nodes:
-        - name: builder
-          label: centos-7-4-builder
-    secrets:
-      - site_pulp
-      - docker_registry
-
-- job:
-    name: contrail-vnc-build-containers-centos74-nightly
-    parent: contrail-vnc-build-containers-nightly
-    vars:
-      linux_release: centos7
-
-- job:
-    name: contrail-vnc-build-containers-centos74-ocata-nightly
-    parent: contrail-vnc-build-containers-centos74-nightly
-    vars:
-      openstack_version: ocata
-      openstack_subversion: 3
-
-- job:
-    name: contrail-vnc-build-containers-centos74-newton-nightly
-    parent: contrail-vnc-build-containers-centos74-nightly
-    vars:
-      openstack_version: newton
-      openstack_subversion: 5
-
-- job:
-    name: contrail-vnc-build-containers-ubuntu1604-ocata-nightly
-    voting: false
-    parent: contrail-vnc-build-containers-nightly
-    vars:
-      linux_distribution: ubuntu
-      linux_release: ubuntu1604
-      openstack_version: ocata
-      openstack_subversion: 3
-
-- job:
     name: contrail-vnc-build-package-centos74-nightly
     parent: contrail-vnc-build-package-el-base-nightly
     irrelevant-files:
@@ -441,31 +369,6 @@
       - docker_registry
       - dockerhub
 
-- job:
-    name: contrail-vnc-build-containers-ubuntu16-newton-experimental
-    parent: base
-    description: |
-      Builds the Contrail microservices using contrail-container-builder
-      and uploads them to a Docker registry.
-    irrelevant-files:
-      - specs/.*
-    required-projects:
-      - Juniper/contrail-container-builder
-    pre-run:
-      - playbooks/docker/setup-docker-registry
-      - playbooks/docker/docker-pre
-    run: playbooks/docker/build-microservices
-    secrets:
-      - site_pulp
-      - docker_registry
-    nodeset:
-      nodes:
-        - name: builder
-          label: ubuntu-xenial-builder
-    vars:
-      linux_distribution: ubuntu
-      openstack_version: newton
-      #
 # Transition to contrail-base when all jobs are ported
 - job:
     name: contrail-base2

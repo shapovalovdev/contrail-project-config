@@ -1,6 +1,0 @@
-- name: "Build container {{ item|replace('/','-') }}"
-  command: "./build.sh {{ item }}"
-  args:
-    chdir: "{{ docker_build_dir }}/containers"
-  become: true
-  become_user: root
