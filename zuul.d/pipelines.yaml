@@ -118,7 +118,7 @@
     precedence: high
     trigger:
       timer:
-        - time: "0 5 * * *"
+        - time: "0 2 * * *"
     success:
       stats:
     failure:
