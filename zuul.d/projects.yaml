@@ -513,3 +513,8 @@
     name: Juniper/contrail-docs
     templates:
       - noops
+
+- project:
+    name: Juniper/contrail-third-party-packages
+    templates:
+      - noops
