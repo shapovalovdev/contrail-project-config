@@ -518,3 +518,8 @@
     name: Juniper/contrail-third-party-packages
     templates:
       - noops
+
+- project:
+    name: Juniper/openshift-ansible
+    templates:
+      - noops
