@@ -63,6 +63,7 @@
           - Juniper/contrail-vnc
           - Juniper/horizon
           - Juniper/nova
+          - Juniper/openshift-ansible
           - Juniper/openstack-helm:
               exclude:  ['pipeline', 'job', 'semaphore', 'project', 'secret', 'project-template', 'nodeset']
           - Juniper/openstack-helm-infra:
