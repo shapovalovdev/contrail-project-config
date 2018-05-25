@@ -516,8 +516,11 @@
 
 - project:
     name: Juniper/contrail-third-party-packages
-    templates:
-      - noops
+    check:
+      jobs:
+        - build-third-party-rpms-centos7:
+            files:
+              - upstream/rpm/.*
 
 - project:
     name: Juniper/openshift-ansible
