@@ -531,3 +531,8 @@
     name: Juniper/contrail-windows-docker-driver
     templates:
       - noops
+
+- project:
+    name: tungstenfabric/contrail-ci-test
+    templates:
+      - noops
