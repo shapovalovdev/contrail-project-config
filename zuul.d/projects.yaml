@@ -533,6 +533,11 @@
       - noops
 
 - project:
+    name: Juniper/contrail-vcenter-manager
+    templates:
+      - noops
+
+- project:
     name: tungstenfabric/contrail-ci-test
     templates:
       - noops
