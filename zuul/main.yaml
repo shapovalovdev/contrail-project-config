@@ -60,6 +60,7 @@
           - Juniper/contrail-web-server-manager
           - Juniper/contrail-web-storage
           - Juniper/contrail-windows-docker-driver
+          - Juniper/contrail-vcenter-manager
           - Juniper/contrail-vcenter-plugin
           - Juniper/contrail-vnc
           - Juniper/horizon
