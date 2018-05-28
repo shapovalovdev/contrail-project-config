@@ -71,3 +71,4 @@
               exclude:  ['pipeline', 'job', 'semaphore', 'project', 'secret', 'project-template', 'nodeset']
           - Juniper/puppet-contrail
           - Juniper/vijava
+          - tungstenfabric/contrail-ci-test
