@@ -526,3 +526,8 @@
     name: Juniper/openshift-ansible
     templates:
       - noops
+
+- project:
+    name: Juniper/contrail-windows-docker-driver
+    templates:
+      - noops
