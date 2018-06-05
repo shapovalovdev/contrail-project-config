@@ -35,21 +35,31 @@ distribution: centos
 #
 image_overrides:
   - image_matcher: ^.*$
+    source_tag: "rhel-{{ openstack_release_lhs }}{{ release }}-{{ build_no }}"
     tag_matcher: ^rhel-.*$
-    registries:
-      - ci-repo-public
     release_tags:
       - "rhel-{{ openstack_release_lhs }}{{ release }}-{{ build_no }}"
       - "rhel-{{ release }}-{{ build_no }}"
+      - "rhel-{{ release }}-latest"
     distribution: rhel
-    source_tag: "rhel-{{ openstack_release_lhs }}{{ release }}-{{ build_no }}"
+    registries:
+      - ci-repo-public
 
-  # contrail-go is pushed with {{ release }}-{{ build_no }}
+  - image_matcher: contrail-go
+    source_tag: "{{ release }}-{{ build_no }}"
+    tag_matcher: "^master-.*$"
+    release_tags:
+      - "master-{{ build_no }}"
+      - "master-latest"
+      - "latest"
+    registries:
+      - ci-repo-public
+
   - image_matcher: contrail-go
     source_tag: "{{ release }}-{{ build_no }}"
     release_tags:
-      - "latest"
       - "{{ release }}-{{ build_no }}"
+      - "{{ release }}-latest"
     registries:
       - ci-repo-public
 
@@ -57,19 +67,24 @@ image_overrides:
     tag_matcher: "^newton-.*$"
     release_tags:
       - "newton-{{ release }}-{{ build_no }}"
+      - "newton-{{ release }}-latest"
 
   - image_matcher: "^.*$"
     tag_matcher: "^ocata-master-.*$"
     release_tags:
-      - "ocata-{{ release }}-{{ build_no }}"
-      - "{{ release }}-{{ build_no }}"
+      - "ocata-master-{{ build_no }}"
+      - "ocata-master-latest"
+      - "master-{{ build_no }}"
+      - "master-latest"
       - "latest"
 
   - image_matcher: "^.*$"
     tag_matcher: "^ocata-.*$"
     release_tags:
       - "ocata-{{ release }}-{{ build_no }}"
+      - "ocata-{{ release }}-latest"
       - "{{ release }}-{{ build_no }}"
+      - "{{ release }}-latest"
 
 # rhel_marker and openstack_release have two variants: _lhs and _rhs depending
 # on how they are used:
