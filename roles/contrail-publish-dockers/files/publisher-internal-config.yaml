@@ -86,6 +86,12 @@ image_overrides:
       - "{{ release }}-{{ build_no }}"
       - "{{ release }}-latest"
 
+  - image_matcher: "^.*$"
+    tag_matcher: "^queens-.*$"
+    release_tags:
+      - "queens-{{ release }}-{{ build_no }}"
+      - "queens-{{ release }}-latest"
+
 # rhel_marker and openstack_release have two variants: _lhs and _rhs depending
 # on how they are used:
 #

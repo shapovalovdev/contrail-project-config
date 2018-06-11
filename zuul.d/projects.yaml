@@ -141,12 +141,17 @@
               - build-variables-init
             vars:
               release_type: nightly
+        - contrail-vnc-build-containers-centos7-newton:
+            dependencies:
+              - contrail-vnc-build-package-centos74
+            vars:
+              release_type: nightly
         - contrail-vnc-build-containers-centos7-ocata:
             dependencies:
               - contrail-vnc-build-package-centos74
             vars:
               release_type: nightly
-        - contrail-vnc-build-containers-centos7-newton:
+        - contrail-vnc-build-containers-centos7-queens:
             dependencies:
               - contrail-vnc-build-package-centos74
             vars:
@@ -156,11 +161,18 @@
               - contrail-vnc-build-package-rhel7
             vars:
               release_type: nightly
+        - contrail-vnc-build-containers-rhel7-queens:
+            dependencies:
+              - contrail-vnc-build-package-rhel7
+            vars:
+              release_type: nightly
         - contrail-vnc-publish-containers-nightly:
             dependencies:
-              - contrail-vnc-build-containers-centos7-ocata
               - contrail-vnc-build-containers-centos7-newton
+              - contrail-vnc-build-containers-centos7-ocata
+              - contrail-vnc-build-containers-centos7-queens
               - contrail-vnc-build-containers-rhel7-ocata
+              - contrail-vnc-build-containers-rhel7-queens
               - contrail-vnc-build-test-containers
               - contrail-go-docker
             vars:
