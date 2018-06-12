@@ -124,15 +124,15 @@
     start:
       stats:
       smtp:
-        subject: "[periodic-nightly] Starting nightly jobs"
+        subject: "[periodic-nightly] Starting jobs - {change.branch}"
     success:
       stats:
       smtp:
-        subject: "[periodic-nightly] SUCCESS"
+        subject: "[periodic-nightly] SUCCESS - {change.branch}"
     failure:
       stats:
       smtp:
-        subject: "[periodic-nightly] FAILURE"
+        subject: "[periodic-nightly] FAILURE - {change.branch}"
 
 - pipeline:
     name: periodic-sanity
