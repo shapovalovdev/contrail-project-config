@@ -26,6 +26,7 @@
     start:
       gerrit:
         Verified: 0
+      stats:
     success:
       gerrit:
         Verified: 1
@@ -94,6 +95,7 @@
     start:
       gerrit:
         Verified: 0
+      stats:
     success:
       gerrit:
         Verified: 2
@@ -119,10 +121,18 @@
     trigger:
       timer:
         - time: "0 2 * * *"
+    start:
+      stats:
+      smtp:
+        subject: "[periodic-nightly] Starting jobs for {branch} branch"
     success:
       stats:
+      smtp:
+        subject: "[periodic-nightly] Success for {branch} branch"
     failure:
       stats:
+      smtp:
+        subject: "[periodic-nightly] Failure for {branch} branch"
 
 - pipeline:
     name: periodic-sanity
