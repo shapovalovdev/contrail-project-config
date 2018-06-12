@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from __future__ import print_function
+import os
 import argparse
 import yaml
 import subprocess
@@ -35,6 +36,35 @@ def get_project(zuul_var, short_name):
     raise RuntimeError(msg)
 
 
+def get_remote_name_for_zuul_project(project):
+    """This generates the names used in remote tags in the manifest.xml file
+    Remote name is hostname+namespace"""
+    namespace = os.path.split(project['name'])[0]
+    remote_name = project['canonical_hostname']
+    if namespace: # skip the join if namespace is empty
+        remote_name = os.path.join(remote_name, namespace)
+    return remote_name
+
+
+def generate_remotes(zuul_var):
+    """This function generates a dict of {remote_name: remote XML node}.
+    The XML nodes will be later added to the manifest file.
+    It also extends the projects in zuul dict to contain the remote name,
+    for future matching against the remote nodes."""
+    remotes = {}
+    for project in zuul_var['projects']:
+        remote_name = get_remote_name_for_zuul_project(project)
+        project['remote_name'] = remote_name
+        remotes[remote_name] = etree.Element(
+            'remote',
+            name=remote_name,
+            fetch='file://' + os.path.join(
+                zuul_var['executor']['src_root'],
+                remote_name))
+        remotes[remote_name].tail = '\n'
+    return remotes
+
+
 def translate(args):
     """This will rewrite manifest to fetch repositories from filesystem locations
     instead of GitHub URLs. This way zuul-merger-prepared checkouts can be used
@@ -52,15 +82,7 @@ def translate(args):
     for default in manifest.xpath('//default'):
         del_node(default)
 
-    remotes = {}
-    for project in zuul_var['projects']:
-        remotes[project['canonical_hostname']] = etree.Element(
-            'remote',
-            name=project['canonical_hostname'],
-            fetch='file://{}/{}/Juniper'.format(
-                zuul_var['executor']['src_root'],
-                project['canonical_hostname']))
-        remotes[project['canonical_hostname']].tail = '\n'
+    remotes = generate_remotes(zuul_var)
 
     for remote in remotes.values():
         manifest.getroot().insert(0, remote)
@@ -68,7 +90,7 @@ def translate(args):
     for project in manifest.xpath('//project'):
         name = project.attrib['name']
         zuul_project = get_project(zuul_var, name)
-        project.attrib['remote'] = zuul_project['canonical_hostname']
+        project.attrib['remote'] = zuul_project['remote_name']
         head = get_head_branch(
             zuul_var['executor']['work_root'] +
             '/' + zuul_project['src_dir'])
