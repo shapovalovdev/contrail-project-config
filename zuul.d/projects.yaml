@@ -136,7 +136,12 @@
               - contrail-vnc-build-package-centos74
             vars:
               release_type: nightly
-        - contrail-vnc-build-package-rhel7:
+        - contrail-vnc-build-package-rhel7-ocata:
+            dependencies:
+              - build-variables-init
+            vars:
+              release_type: nightly
+        - contrail-vnc-build-package-rhel7-queens:
             dependencies:
               - build-variables-init
             vars:
@@ -158,12 +163,12 @@
               release_type: nightly
         - contrail-vnc-build-containers-rhel7-ocata:
             dependencies:
-              - contrail-vnc-build-package-rhel7
+              - contrail-vnc-build-package-rhel7-ocata
             vars:
               release_type: nightly
         - contrail-vnc-build-containers-rhel7-queens:
             dependencies:
-              - contrail-vnc-build-package-rhel7
+              - contrail-vnc-build-package-rhel7-queens
             vars:
               release_type: nightly
         - contrail-vnc-publish-containers-nightly:

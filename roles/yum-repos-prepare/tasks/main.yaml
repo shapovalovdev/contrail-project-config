@@ -5,6 +5,15 @@
     - "{{ ansible_os_family | lower }}.yaml"
     - "default.yaml"
 
+- name: Include OpenStack-specific repos
+  include_vars: "{{ ansible_distribution | lower }}_openstack_{{ openstack_version }}.yaml"
+  when: 'ansible_distribution == "RedHat"'
+
+- name: Add OpenStack repos to repos_add
+  set_fact:
+    repos_add: "{{ repos_add }} + {{ openstack_repos_add }}"
+  when: 'ansible_distribution == "RedHat"'
+
 - name: Disable subscription-manager on RHEL
   command: subscription-manager config --rhsm.manage_repos=0
   become: yes
