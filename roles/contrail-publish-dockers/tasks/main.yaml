@@ -35,8 +35,9 @@
   args:
     chdir: "{{ publisher_path }}"
   with_items:
-    - ocata
     - newton
+    - ocata
+    - queens
 
 - name: Push build to dockerhub
   when: "contrail_packaging.version.public == 'master'"
@@ -54,8 +55,9 @@
       args:
         chdir: "{{ publisher_path }}"
       with_items:
-        - ocata
         - newton
+        - ocata
+        - queens
 
     - name: Log out of Dockerhub
       command: "docker logout"
