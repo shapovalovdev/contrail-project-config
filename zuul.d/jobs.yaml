@@ -139,7 +139,7 @@
       - R5.0
     required-projects:
       - name: Juniper/contrail-dpdk
-        override-checkout: contrail_dpdk_17_02
+        override-checkout: contrail_dpdk_17_11
 
 - job:
     name: contrail-vnc-build-package-ubuntu-base
@@ -195,7 +195,7 @@
       - R5.0
     required-projects:
       - name: Juniper/contrail-dpdk
-        override-checkout: contrail_dpdk_17_02
+        override-checkout: contrail_dpdk_17_11
 
 - job:
     name: contrail-vnc-build-package-el-base
