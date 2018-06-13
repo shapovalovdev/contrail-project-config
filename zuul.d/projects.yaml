@@ -229,14 +229,6 @@
     name: Juniper/contrail-packages
     templates:
       - systests
-    check:
-      jobs:
-        - contrail-vnc-build-package-ubuntu-trusty:
-            voting: False
-    experimental:
-      jobs:
-        - contrail-vnc-build-package-ubuntu-trusty
-        - contrail-vnc-build-package-ubuntu-xenial
 
 - project:
     name: Juniper/contrail-packaging
