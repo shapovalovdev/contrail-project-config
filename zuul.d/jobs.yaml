@@ -134,6 +134,14 @@
     pre-run: playbooks/contrail/vnc-pre
 
 - job:
+    name: contrail-vnc-base
+    branches:
+      - R5.0
+    required-projects:
+      - name: Juniper/contrail-dpdk
+        override-checkout: contrail_dpdk_17_02
+
+- job:
     name: contrail-vnc-build-package-ubuntu-base
     voting: False
     description: |
@@ -180,6 +188,14 @@
     post-run: playbooks/packaging/post-vnc
     secrets:
       - site_pulp
+
+- job:
+    name: contrail-vnc-build-package-ubuntu-base
+    branches:
+      - R5.0
+    required-projects:
+      - name: Juniper/contrail-dpdk
+        override-checkout: contrail_dpdk_17_02
 
 - job:
     name: contrail-vnc-build-package-el-base
