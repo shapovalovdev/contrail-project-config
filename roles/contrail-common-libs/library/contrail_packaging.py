@@ -68,7 +68,6 @@ def main():
         module.fail_json(
             msg="Unknown release_type: %s" % (release_type,), **result
         )
-
     debian_dir = None
     for project in zuul['projects']:
         if project['short_name'] == 'contrail-packages':
@@ -79,13 +78,10 @@ def main():
 
     full_version = "{upstream}~{distrib}".format(**version)
     openstack_suffix = ('-' + openstack_version) if openstack_version else ''
-    repo_name += openstack_suffix
-
     repo_names = {
-        "CentOS": repo_name + '-centos' + openstack_suffix,
+        "CentOS": repo_name + '-centos',
         "RedHat": repo_name + '-rhel' + openstack_suffix,
     }
-
     packaging = {
         'name': 'contrail',
         'debian_dir': debian_dir,
