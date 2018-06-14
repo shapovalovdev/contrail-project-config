@@ -547,6 +547,11 @@
       - noops
 
 - project:
+    name: Juniper/contrail-windows
+    templates:
+      - noops
+
+- project:
     name: tungstenfabric/contrail-ci-test
     templates:
       - noops
