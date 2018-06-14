@@ -6,7 +6,7 @@
     - "default.yaml"
 
 - name: Include OpenStack-specific repos
-  include_vars: "{{ ansible_distribution | lower }}_openstack_{{ openstack_version }}.yaml"
+  include_vars: "{{ ansible_distribution | lower }}_openstack_{{ openstack_version }}{{ openstack_repo_variant | default('') }}.yaml"
   when: 'ansible_distribution == "RedHat"'
 
 - name: Add OpenStack repos to repos_add
