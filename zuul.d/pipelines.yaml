@@ -134,14 +134,17 @@
     start:
       stats:
       smtp:
+        to: cf-test@juniper.net, ci-admin@opencontrail.org
         subject: "[periodic-nightly] Starting jobs - {change.branch}"
     success:
       stats:
       smtp:
+        to: cf-test@juniper.net, ci-admin@opencontrail.org
         subject: "[periodic-nightly] SUCCESS - {change.branch}"
     failure:
       stats:
       smtp:
+        to: cf-test@juniper.net, ci-admin@opencontrail.org
         subject: "[periodic-nightly] FAILURE - {change.branch}"
 
 - pipeline:
