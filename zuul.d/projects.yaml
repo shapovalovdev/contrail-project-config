@@ -86,6 +86,19 @@
         - noop
 
 - project-template:
+    name: build-container
+    check:
+      jobs:
+        - contrail-vnc-build-package-centos74
+        - contrail-vnc-build-containers-centos7-ocata:
+            dependencies:
+              - contrail-vnc-build-package-centos74
+    gate:
+      queue: contrail-vnc
+      jobs:
+        - noop
+
+- project-template:
     name: noops
     check:
       jobs:
@@ -329,7 +342,7 @@
 - project:
     name: Juniper/contrail-vcenter-plugin
     templates:
-      - noops
+      - build-container
 
 - project:
     name: Juniper/contrail-horizon
@@ -552,7 +565,7 @@
 - project:
     name: Juniper/contrail-vcenter-manager
     templates:
-      - noops
+      - build-container
 
 - project:
     name: Juniper/contrail-windows
