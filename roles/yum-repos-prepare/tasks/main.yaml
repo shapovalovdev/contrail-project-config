@@ -1,26 +1,26 @@
-- name: Include OS-specific variables
+- name: include OS-specific variables
   include_vars: "{{ item }}"
   with_first_found:
     - "{{ ansible_distribution | lower }}.yaml"
     - "{{ ansible_os_family | lower }}.yaml"
     - "default.yaml"
 
-- name: Include OpenStack-specific repos
-  include_vars: "{{ ansible_distribution | lower }}_openstack_{{ openstack_version }}{{ openstack_repo_variant | default('') }}.yaml"
+- name: include OpenStack-specific repos
+  include_vars: "{{ ansible_distribution | lower }}_openstack_{{ openstack_version }}.yaml"
   when: 'ansible_distribution == "RedHat"'
 
-- name: Add OpenStack repos to repos_add
+- name: add OpenStack repos to repos_add
   set_fact:
     repos_add: "{{ repos_add }} + {{ openstack_repos_add }}"
   when: 'ansible_distribution == "RedHat"'
 
-- name: Disable subscription-manager on RHEL
+- name: disable subscription-manager on RHEL
   command: subscription-manager config --rhsm.manage_repos=0
   become: yes
   become_user: root
   when: 'ansible_distribution == "RedHat"'
 
-- name: Remove the upstream yum repos
+- name: remove the upstream yum repos
   yum_repository:
     name: "{{ item.name }}"
     file: "{{ item.file }}"
@@ -29,7 +29,7 @@
   become: yes
   become_user: root
 
-- name: Prepare local base yum mirror repo file
+- name: prepare local base yum mirror repo file
   yum_repository:
     name: "{{ item.name }}"
     description: "{{ item.description }}"
@@ -41,7 +41,7 @@
   become: yes
   become_user: root
 
-- name: Prepare epel mirror repo file
+- name: prepare epel mirror repo file
   yum_repository:
     name: epel-mirror
     description: CentOS epel mirror
@@ -52,7 +52,7 @@
   become: yes
   become_user: root
 
-- name: Prepare third party cache yum repo file
+- name: prepare third party cache yum repo file
   yum_repository:
     name: contrail-tpc
     description: Contrail third-party dependencies
