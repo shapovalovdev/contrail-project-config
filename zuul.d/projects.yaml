@@ -574,3 +574,8 @@
     name: tungstenfabric/contrail-ci-test
     templates:
       - noops
+
+- project:
+    name: tungstenfabric/tungsten-test-runner
+    templates:
+      - noops
