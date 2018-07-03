@@ -497,7 +497,7 @@
 - project:
     name: Juniper/contrail-java-api
     templates:
-      - noops
+      - build-container
 
 - project:
     name: Juniper/vijava
