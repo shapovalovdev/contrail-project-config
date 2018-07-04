@@ -196,9 +196,6 @@
               - contrail-go-docker
             vars:
               release_type: nightly
-        - trigger-nightly-sanity:
-            dependencies:
-              - contrail-vnc-publish-containers-nightly
     periodic-sanity:
       jobs:
         - contrail-vnc-build-package-centos74-nightly:
@@ -231,11 +228,6 @@
     experimental-provision:
       jobs:
         - contrail-sanity-centos7-kolla-ocata
-    experimental:
-      jobs:
-        - trigger-nightly-sanity:
-            vars:
-              build_number: 30
 
 - project:
     name: Juniper/contrail-generateDS
