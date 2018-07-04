@@ -40,6 +40,22 @@
         - noop
 
 - project-template:
+    name: systests-queens
+    check:
+      jobs:
+        - contrail-vnc-build-test-containers-queens:
+            dependencies:
+              - contrail-vnc-build-package-centos74
+        - contrail-vnc-build-containers-centos7-queens:
+            dependencies:
+              - contrail-vnc-build-package-centos74
+        - contrail-sanity-centos7-kolla-queens:
+            voting: False
+            dependencies:
+              - contrail-vnc-build-containers-centos7-queens
+              - contrail-vnc-build-test-containers-queens
+
+- project-template:
     name: helm-systests
     check:
       jobs:
@@ -397,6 +413,7 @@
     name: Juniper/contrail-ansible-deployer
     templates:
       - systests
+      - systests-queens
     check:
       jobs:
         - contrail-sanity-centos7-k8s:
@@ -477,6 +494,7 @@
     name: Juniper/contrail-kolla-ansible
     templates:
       - systests
+      - systests-queens
 
 - project:
     name: Juniper/contrail-helm-deployer
