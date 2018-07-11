@@ -182,6 +182,7 @@
             - ^master$
             - ^R5.0$
             - ^contrail/.*$
+            - ^release-.*-contrail$
     success:
       gerrit: {}
       stats:
@@ -202,6 +203,7 @@
             - ^master$
             - ^R5.0$
             - ^contrail/.*$
+            - ^release-.*-contrail$
     success:
       stats:
     #  gerrit: {}
