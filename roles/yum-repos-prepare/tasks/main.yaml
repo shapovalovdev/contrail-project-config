@@ -5,14 +5,27 @@
     - "{{ ansible_os_family | lower }}.yaml"
     - "default.yaml"
 
-- name: include OpenStack-specific repos
-  include_vars: "{{ ansible_distribution | lower }}_openstack_{{ openstack_version }}.yaml"
-  when: 'ansible_distribution == "RedHat"'
+- when:
+    - cloud_orchestrator == 'openstack'
+    - ansible_distribution == 'RedHat'
+  block:
+    - name: include OpenStack-specific repos
+      include_vars: "{{ ansible_distribution | lower }}_openstack_{{ openstack_version }}.yaml"
 
-- name: add OpenStack repos to repos_add
-  set_fact:
-    repos_add: "{{ repos_add }} + {{ openstack_repos_add }}"
-  when: 'ansible_distribution == "RedHat"'
+    - name: add OpenStack repos to repos_add
+      set_fact:
+        repos_add: "{{ repos_add }} + {{ openstack_repos_add }}"
+
+- when:
+    - cloud_orchestrator == 'openshift'
+    - ansible_distribution == 'RedHat'
+  block:
+    - name: include OpenShift-specific repos
+      include_vars: '{{ ansible_distribution | lower }}_openshift_{{ openshift_version }}.yaml'
+
+    - name: add OpenShift repos to repos_add
+      set_fact:
+        repos_add: '{{ repos_add }} + {{ openshift_repos_add }}'
 
 - name: disable subscription-manager on RHEL
   command: subscription-manager config --rhsm.manage_repos=0
