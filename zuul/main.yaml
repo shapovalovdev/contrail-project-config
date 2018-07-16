@@ -22,7 +22,6 @@
           - Juniper/contrail-ansible-internal
           - Juniper/contrail-api-client
           - Juniper/contrail-build
-          - Juniper/contrail-command-deployer
           - Juniper/contrail-common
           - Juniper/contrail-community-docs
           - Juniper/contrail-container-builder
