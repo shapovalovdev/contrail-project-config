@@ -165,6 +165,10 @@
               - contrail-vnc-build-package-centos74
             vars:
               release_type: nightly
+              openstack_version:
+                - newton
+                - ocata
+                - queens
         - contrail-vnc-build-package-rhel7-ocata:
             dependencies:
               - build-variables-init
