@@ -216,7 +216,6 @@
               - contrail-vnc-build-containers-centos7-newton
               - contrail-vnc-build-containers-centos7-ocata
               - contrail-vnc-build-containers-centos7-queens
-              - contrail-vnc-build-containers-rhel7-ocata
               - contrail-vnc-build-test-containers
               - contrail-go-docker
             vars:
