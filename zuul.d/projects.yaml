@@ -200,6 +200,7 @@
             vars:
               release_type: nightly
         - contrail-vnc-build-containers-rhel7-ocata:
+            voting: false
             dependencies:
               - contrail-vnc-build-package-rhel7-ocata
             vars:
