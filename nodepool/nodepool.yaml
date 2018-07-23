@@ -20,6 +20,8 @@ labels:
     min-ready: 0
   - name: rhel-7-builder
     min-ready: 0
+  - name: rhel-7-sanity
+    min-ready: 0
   - name: ubuntu-trusty-builder
     min-ready: 0
   - name: ubuntu-xenial-small
@@ -70,6 +72,11 @@ providers:
             key-name: ci-infra-shared-key
           - name: rhel-7-builder
             flavor-name: m1.16g_80g_8vcpu
+            diskimage: rhel-7
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: rhel-7-sanity
+            flavor-name: m1.32g_80g_8vcpu
             diskimage: rhel-7
             console-log: True
             key-name: ci-infra-shared-key
@@ -141,6 +148,11 @@ providers:
             key-name: ci-infra-shared-key
           - name: rhel-7-builder
             flavor-name: m1.16g_80g_8vcpu
+            diskimage: rhel-7
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: rhel-7-sanity
+            flavor-name: m1.32g_80g_8vcpu
             diskimage: rhel-7
             console-log: True
             key-name: ci-infra-shared-key
