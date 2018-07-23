@@ -179,7 +179,6 @@
             vars:
               release_type: nightly
         - contrail-vnc-build-package-rhel7-queens:
-            voting: false
             dependencies:
               - build-variables-init
             vars:
@@ -200,13 +199,11 @@
             vars:
               release_type: nightly
         - contrail-vnc-build-containers-rhel7-ocata:
-            voting: false
             dependencies:
               - contrail-vnc-build-package-rhel7-ocata
             vars:
               release_type: nightly
         - contrail-vnc-build-containers-rhel7-queens:
-            voting: false
             dependencies:
               - contrail-vnc-build-package-rhel7-queens
             vars:
@@ -216,6 +213,8 @@
               - contrail-vnc-build-containers-centos7-newton
               - contrail-vnc-build-containers-centos7-ocata
               - contrail-vnc-build-containers-centos7-queens
+              - contrail-vnc-build-containers-rhel7-ocata
+              - contrail-vnc-build-containers-rhel7-queens
               - contrail-vnc-build-test-containers
               - contrail-go-docker
             vars:
