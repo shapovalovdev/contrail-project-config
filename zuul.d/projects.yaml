@@ -589,3 +589,9 @@
     name: tungstenfabric/tungsten-test-runner
     templates:
       - noops
+
+- project:
+    name: Juniper/contrail-tripleo-puppet
+    templates:
+      - noops
+
