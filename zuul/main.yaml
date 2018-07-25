@@ -53,6 +53,7 @@
           - Juniper/contrail-third-party
           - Juniper/contrail-third-party-cache
           - Juniper/contrail-third-party-packages
+          - Juniper/contrail-tripleo-puppet
           - Juniper/contrail-vro-plugin
           - Juniper/contrail-vrouter
           - Juniper/contrail-vrouter-java-api
