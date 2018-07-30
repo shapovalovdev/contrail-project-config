@@ -16,6 +16,7 @@
             - ^contrail/queens$
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
+            - ^contrail_dpdk_17_11_3$
             - ^release-3.7-contrail$
             - ^release-3.9-contrail$
         - event: comment-added
@@ -26,6 +27,7 @@
             - ^contrail/queens$
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
+            - ^contrail_dpdk_17_11_3$
             - ^release-3.7-contrail$
             - ^release-3.9-contrail$
           comment: (?i)recheck(( (?:bug|lp)[\s#:]*(\d+))|( zuulv3)|( no bug))?(\s+clean)?\s*$
@@ -76,6 +78,7 @@
             - ^contrail/queens$
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
+            - ^contrail_dpdk_17_11_3$
             - ^release-3.7-contrail$
             - ^release-3.9-contrail$
           approval:
@@ -88,6 +91,7 @@
             - ^contrail/queens$
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
+            - ^contrail_dpdk_17_11_3$
             - ^release-3.7-contrail$
             - ^release-3.9-contrail$
           approval:
@@ -103,6 +107,7 @@
             - ^contrail/queens$
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
+            - ^contrail_dpdk_17_11_3$
             - ^release-3.7-contrail$
             - ^release-3.9-contrail$
           approval:
