@@ -1,3 +1,4 @@
+---
 - name: Gather dmesg output
   command: dmesg
   register: dmesg
