@@ -19,6 +19,9 @@
             - ^contrail_dpdk_17_11_3$
             - ^release-3.7-contrail$
             - ^release-3.9-contrail$
+            - ^stable/queens$
+            - ^stable/ocata$
+            - ^stable/newton$
         - event: comment-added
           branch:
             - ^master$
@@ -30,6 +33,9 @@
             - ^contrail_dpdk_17_11_3$
             - ^release-3.7-contrail$
             - ^release-3.9-contrail$
+            - ^stable/queens$
+            - ^stable/ocata$
+            - ^stable/newton$
           comment: (?i)recheck(( (?:bug|lp)[\s#:]*(\d+))|( zuulv3)|( no bug))?(\s+clean)?\s*$
     start:
       gerrit:
@@ -81,6 +87,9 @@
             - ^contrail_dpdk_17_11_3$
             - ^release-3.7-contrail$
             - ^release-3.9-contrail$
+            - ^stable/queens$
+            - ^stable/ocata$
+            - ^stable/newton$
           approval:
             - Approved: 1
         - event: comment-added
@@ -94,6 +103,9 @@
             - ^contrail_dpdk_17_11_3$
             - ^release-3.7-contrail$
             - ^release-3.9-contrail$
+            - ^stable/queens$
+            - ^stable/ocata$
+            - ^stable/newton$
           approval:
             - Verified: 1
           username:
@@ -110,6 +122,9 @@
             - ^contrail_dpdk_17_11_3$
             - ^release-3.7-contrail$
             - ^release-3.9-contrail$
+            - ^stable/queens$
+            - ^stable/ocata$
+            - ^stable/newton$
           approval:
             - Code-Review: 2
     start:
