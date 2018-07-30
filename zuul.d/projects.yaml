@@ -219,6 +219,12 @@
               - contrail-go-docker
             vars:
               release_type: nightly
+        - generate-build-change-info:
+            voting: false
+            dependencies:
+              - contrail-vnc-publish-containers-nightly
+            vars:
+              release_type: nightly
     periodic-sanity:
       jobs:
         - contrail-vnc-build-package-centos74-nightly:
