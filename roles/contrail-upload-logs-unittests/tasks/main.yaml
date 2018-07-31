@@ -1,3 +1,4 @@
+---
 - name: Ensure that test logs are readable by the zuul user
   shell: |
     find {{ ansible_env.HOME }} -name '*.log*' -type f -exec chmod 0644 {} \;
