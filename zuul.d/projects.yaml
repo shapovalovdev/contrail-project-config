@@ -225,6 +225,8 @@
               - contrail-vnc-publish-containers-nightly
             vars:
               release_type: nightly
+        - publish-dev-env:
+            voting: False
     periodic-sanity:
       jobs:
         - contrail-vnc-build-package-centos74-nightly:
