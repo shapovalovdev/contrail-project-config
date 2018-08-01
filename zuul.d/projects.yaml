@@ -226,6 +226,8 @@
             vars:
               release_type: nightly
         - publish-dev-env:
+            dependencies:
+              - build-variables-init
             voting: False
     periodic-sanity:
       jobs:
