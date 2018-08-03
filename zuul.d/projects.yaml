@@ -106,6 +106,27 @@
         - noop
 
 - project-template:
+    name: openshift-systests
+    check:
+      jobs:
+        - contrail-vnc-build-package-rhel7-ocata
+        - contrail-vnc-build-containers-rhel7-ocata:
+            dependencies:
+              - contrail-vnc-build-package-rhel7-ocata
+        - contrail-vnc-build-test-containers:
+            dependencies:
+              - contrail-vnc-build-package-rhel7-ocata
+        - contrail-sanity-rhel7-openshift-3.9:
+            voting: false
+            dependencies:
+              - contrail-vnc-build-containers-rhel7-ocata
+              - contrail-vnc-build-test-containers
+    gate:
+      queue: contrail-vnc
+      jobs:
+        - noop
+
+- project-template:
     name: systests-nogate
     check:
       jobs:
@@ -601,7 +622,7 @@
 - project:
     name: Juniper/openshift-ansible
     templates:
-      - noops
+      - openshift-systests
 
 - project:
     name: Juniper/contrail-windows-docker-driver
