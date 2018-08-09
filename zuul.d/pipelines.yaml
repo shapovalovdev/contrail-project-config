@@ -150,12 +150,12 @@
 
 - pipeline:
     name: periodic-nightly
-    description: Periodic pipeline for building OpenContrail every 24h.
+    description: Periodic pipeline for building OpenContrail every 12h.
     manager: independent
     precedence: high
     trigger:
       timer:
-        - time: "0 2 * * *"
+        - time: "0 10,22 * * *"
     start:
       stats:
       smtp:
