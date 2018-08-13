@@ -45,6 +45,23 @@ image_overrides:
     registries:
       - ci-repo-public
 
+  - image_matcher: developer-sandbox
+    source_tag: "master-{{ build_no }}"
+    release_tags:
+      - "master-{{ build_no }}"
+      - "master"
+      - "latest"
+    registries:
+      - ci-repo-public
+
+  - image_matcher: developer-sandbox
+    source_tag: "{{ release }}-{{ build_no }}"
+    release_tags:
+      - "{{ release }}-{{ build_no }}"
+      - "{{ release }}"
+    registries:
+      - ci-repo-public
+
   - image_matcher: contrail-go
     source_tag: "{{ release }}-{{ build_no }}"
     tag_matcher: "^master-.*$"
