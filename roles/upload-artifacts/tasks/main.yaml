@@ -22,4 +22,4 @@
     - name: upload files
       synchronize:
         src: "{{ zuul.executor.work_root }}/artifacts"
-        dest: "{{ dest_path }}/{{ zuul.buildset[0:10] }}"
+        dest: "{{ dest_path }}"
