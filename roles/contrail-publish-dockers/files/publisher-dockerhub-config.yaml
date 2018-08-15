@@ -43,6 +43,23 @@ image_overrides:
     registries:
       - dockerhub
 
+  - image_matcher: developer-sandbox
+    source_tag: "master-{{ build_no }}"
+    release_tags:
+      - "latest"
+      - "master"
+      - "master-{{ build_no }}"
+    registries:
+      - dockerhub
+
+  - image_matcher: developer-sandbox
+    source_tag: "{{ release }}-{{ build_no }}"
+    release_tags:
+      - "{{ release }}"
+      - "{{ release }}-{{ build_no }}"
+    registries:
+      - dockerhub
+
   - image_matcher: "^.*$"
     tag_matcher: "^newton-.*$"
     release_tags:
