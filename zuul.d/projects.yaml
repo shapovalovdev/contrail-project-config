@@ -173,6 +173,7 @@
             vars:
               release_type: nightly
         - contrail-build-vro-plugin:
+            voting: False
             dependencies:
               - build-variables-init
             vars:
