@@ -38,31 +38,15 @@
             dependencies:
               - contrail-vnc-build-containers-centos7-ocata
               - contrail-vnc-build-test-containers
-        # non voting queens jobs
         - contrail-vnc-build-containers-centos7-queens:
-            voting: False
             dependencies:
               - contrail-vnc-build-package-centos74
         - contrail-vnc-build-test-containers-queens:
-            voting: False
             dependencies:
               - contrail-vnc-build-package-centos74
-              - contrail-vnc-build-package-rhel7-queens
         - contrail-sanity-centos7-kolla-queens:
-            voting: False
             dependencies:
               - contrail-vnc-build-containers-centos7-queens
-              - contrail-vnc-build-test-containers-queens
-        - contrail-vnc-build-package-rhel7-queens:
-            voting: False
-        - contrail-vnc-build-containers-rhel7-queens:
-            voting: False
-            dependencies:
-              - contrail-vnc-build-package-rhel7-queens
-        - contrail-sanity-rhel7-kolla-queens:
-            voting: False
-            dependencies:
-              - contrail-vnc-build-containers-rhel7-queens
               - contrail-vnc-build-test-containers-queens
     gate:
       queue: contrail-vnc
