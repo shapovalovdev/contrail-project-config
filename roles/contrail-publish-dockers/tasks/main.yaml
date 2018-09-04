@@ -57,6 +57,7 @@
       with_items:
         - newton
         - ocata
+        - queens
 
     - name: Log out of Dockerhub
       command: "docker logout"
