@@ -257,12 +257,12 @@
               - contrail-vnc-publish-containers-nightly
             vars:
               release_type: nightly
-        - publish-dev-env:
-            dependencies:
-              - build-variables-init
-            voting: False
-            vars:
-              release_type: nightly
+              #- publish-dev-env:
+              #dependencies:
+              #- build-variables-init
+              #voting: False
+              #vars:
+              #release_type: nightly
     periodic-sanity:
       jobs:
         - contrail-vnc-build-package-centos74-nightly:
