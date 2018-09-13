@@ -440,6 +440,12 @@
     name: Juniper/contrail-ansible-deployer
     templates:
       - systests
+    check:
+      jobs:
+        - contrail-sanity-centos7-kolla-queens-multinode:
+            dependencies:
+              - contrail-vnc-build-containers-centos7-queens
+              - contrail-vnc-build-test-containers-queens
     experimental:
       jobs:
         - contrail-vnc-build-package-centos74
@@ -513,6 +519,12 @@
     name: Juniper/contrail-kolla-ansible
     templates:
       - systests
+    check:
+      jobs:
+        - contrail-sanity-centos7-kolla-queens-multinode:
+            dependencies:
+              - contrail-vnc-build-containers-centos7-queens
+              - contrail-vnc-build-test-containers-queens
 
 - project:
     name: Juniper/contrail-helm-deployer
