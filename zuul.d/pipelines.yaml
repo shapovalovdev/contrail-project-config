@@ -17,6 +17,7 @@
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
             - ^contrail_dpdk_17_11_3$
+            - ^contrail_dpdk_18_05_1$
             - ^release-3.7-contrail$
             - ^release-3.9-contrail$
             - ^stable/queens$
@@ -31,6 +32,7 @@
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
             - ^contrail_dpdk_17_11_3$
+            - ^contrail_dpdk_18_05_1$
             - ^release-3.7-contrail$
             - ^release-3.9-contrail$
             - ^stable/queens$
@@ -85,6 +87,7 @@
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
             - ^contrail_dpdk_17_11_3$
+            - ^contrail_dpdk_18_05_1$
             - ^release-3.7-contrail$
             - ^release-3.9-contrail$
             - ^stable/queens$
@@ -101,6 +104,7 @@
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
             - ^contrail_dpdk_17_11_3$
+            - ^contrail_dpdk_18_05_1$
             - ^release-3.7-contrail$
             - ^release-3.9-contrail$
             - ^stable/queens$
@@ -120,6 +124,7 @@
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
             - ^contrail_dpdk_17_11_3$
+            - ^contrail_dpdk_18_05_1$
             - ^release-3.7-contrail$
             - ^release-3.9-contrail$
             - ^stable/queens$
