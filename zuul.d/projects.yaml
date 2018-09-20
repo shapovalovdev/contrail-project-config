@@ -251,6 +251,7 @@
             dependencies:
               - build-variables-init
             voting: False
+            branches: master
             vars:
               release_type: nightly
     periodic-sanity:
@@ -638,7 +639,7 @@
     name: Juniper/contrail-tripleo-puppet
     templates:
       - noops
-      
+
 - project:
     name: Juniper/contrail-tripleo-heat-templates
     templates:
