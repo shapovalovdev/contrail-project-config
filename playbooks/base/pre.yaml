@@ -8,6 +8,8 @@
     - add-build-sshkey
     - configure-hosts-entries
     - configure-mirrors
+    - role: configure-maven-proxy
+      maven_repo_mirror_url: 'http://{{ nexus.fqdn }}/repository/maven-public/'
     - validate-host
     - prepare-workspace
     - gitlog-upload

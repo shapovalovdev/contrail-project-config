@@ -1,6 +1,9 @@
 ---
 zuul_site_mirror_fqdn: 10.84.56.27
 #zuul_site_mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.opencontrail.org"
+nexus:
+  fqdn: 'ci-nexus.englab.juniper.net'
+  ip: '10.84.5.85'
 docker_registry:
   fqdn: 10.84.5.81
   port: 5000
