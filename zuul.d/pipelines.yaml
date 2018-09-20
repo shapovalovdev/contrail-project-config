@@ -153,6 +153,7 @@
     description: Periodic pipeline for building OpenContrail every 12h.
     manager: independent
     precedence: high
+    post-review: true
     trigger:
       timer:
         - time: "0 2 * * *"
