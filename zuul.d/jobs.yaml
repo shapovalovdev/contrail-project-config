@@ -390,3 +390,15 @@
     timeout: 28800
     secrets:
       - site_pulp
+
+- job:
+    name: contrail-vnc-build-containers-ci-base
+    description: |
+      A job containing access infomation for docker registry used for reviews.
+    post-run: playbooks/docker/push-images
+    vars:
+      setup_docker_registry: false
+    secrets:
+      - name: docker_registry
+        secret: registry_tungsten_ci
+

@@ -1,0 +1,4 @@
+- hosts: all
+  roles:
+    - role: push-docker-images
+      registry: "{{ docker_registry }}"
