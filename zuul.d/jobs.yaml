@@ -393,6 +393,7 @@
 
 - job:
     name: contrail-vnc-build-containers-ci-base
+    parent: contrail-vnc-build-containers-base
     description: |
       A job containing access infomation for docker registry used for reviews.
     post-run: playbooks/docker/push-images
