@@ -400,6 +400,6 @@
     vars:
       setup_docker_registry: false
     secrets:
-      - name: docker_registry
+      - name: pipeline_docker_registry
         secret: registry_tungsten_ci
 
