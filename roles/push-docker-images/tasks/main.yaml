@@ -1,7 +1,7 @@
 ---
 
 - name: log in to the registry
-  command: docker login -u {{ registry.user }} -p {{ registry.password }} {{ registry.protocol|default('https') }}://{{ registry.host }}:{{ registry.port }}
+  command: docker login -u {{ registry.user }} -p {{ registry.password }} {{ registry.host }}:{{ registry.port }}
   become: true
   when: registry.password and registry.user
 
@@ -18,7 +18,7 @@
 
   always:
     - name: log out of the registry
-      command: docker logout {{ registry.protocol|default('https') }}://{{ registry.address }}
+      command: docker logout {{ registry.host }}:{{ registry.port }}
       become: true
       when: registry.password and registry.user
 
