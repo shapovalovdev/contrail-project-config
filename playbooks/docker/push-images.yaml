@@ -1,4 +1,7 @@
 - hosts: all
   roles:
+    - role: add-insecure-registry
+      new_registry: "{{ pipeline_docker_registry.host }}:{{ pipeline_docker_registry.port }}"
+      when: pipeline_docker_registry.insecure|default(false)
     - role: push-docker-images
       registry: "{{ pipeline_docker_registry }}"
