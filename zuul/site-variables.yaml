@@ -4,6 +4,11 @@ zuul_site_mirror_fqdn: 10.84.56.27
 nexus:
   fqdn: 'ci-nexus.englab.juniper.net'
   ip: '10.84.5.85'
+  registry:
+    tungsten_ci: 5001
+    tungsten_nightly: 5002
+    proxy: 5005
+    access: 5010
 docker_registry:
   fqdn: 10.84.5.81
   port: 5000
