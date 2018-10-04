@@ -242,3 +242,19 @@
     failure:
       stats:
     #  gerrit: {}
+
+- pipeline:
+    name: post-merge
+    description: This pipeline runs jobs after every code merge
+    manager: independent
+    post-review: true
+    trigger:
+      gerrit:
+        - event: ref-updated
+          ref: ^refs/heads/.*$
+    start:
+      stats:
+    success:
+      stats:
+    failure:
+      stats:

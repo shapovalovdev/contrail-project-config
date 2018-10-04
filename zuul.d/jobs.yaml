@@ -404,3 +404,15 @@
       - name: pipeline_docker_registry
         secret: registry_tungsten_ci
 
+- job:
+    name: publish-infra-doc
+    description: |
+      This job is posting infra-doc html.
+    parent: build-infra-doc
+    required-projects:
+      - Juniper/contrail-zuul-jobs
+      - Juniper/contrail-infra-doc
+    post-run: playbooks/publish-infra-doc/post
+    nodeset: builder-centos-7
+    secrets:
+      - site_logs
