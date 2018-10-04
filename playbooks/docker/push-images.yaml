@@ -1,4 +1,5 @@
 - hosts: all
   roles:
     - role: push-docker-images
-      registry: "{{ pipeline_docker_registry }}"
+      credentials: "{{ pipeline_docker_registry }}"
+      registry: "{{ contrail_docker_registry }}"
