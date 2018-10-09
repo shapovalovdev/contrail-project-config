@@ -33,6 +33,7 @@
           - Juniper/contrail-dpdk
           - Juniper/contrail-fabric-utils
           - Juniper/contrail-generateDS
+          - Juniper/contrail-go-api
           - Juniper/contrail-heat
           - Juniper/contrail-helm-deployer
           - Juniper/contrail-horizon
