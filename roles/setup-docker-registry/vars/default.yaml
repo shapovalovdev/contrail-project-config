@@ -1,0 +1,2 @@
+registry_port: '{{ nexus.registry.access }}'
+registry_fqdn: '{{ nexus.fqdn }}'

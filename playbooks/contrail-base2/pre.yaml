@@ -18,6 +18,5 @@
 - hosts: "{{ site_pulp.fqdn }}"
   roles:
     - zuul-include-vars
-    - role: setup-docker-registry2
-      when: setup_docker_registry == true
+    - setup-docker-registry
 

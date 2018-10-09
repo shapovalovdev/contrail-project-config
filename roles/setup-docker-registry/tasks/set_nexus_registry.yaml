@@ -1,0 +1,20 @@
+---
+
+- name: include variables for {{ zuul.pipeline }} pipeline
+  include_vars: '{{ item }}'
+  with_first_found:
+    - '{{ zuul.pipeline }}.yaml'
+    - default.yaml
+
+- name: save variable to a file on executor
+  copy:
+    content: "{{ {\"registry_port\": registry_port } | to_nice_yaml }}"
+    dest: "{{ zuul.executor.work_root }}/saved_vars.yaml"
+  delegate_to: localhost
+
+- name: 'Return registry location back to zuul for children jobs'
+  zuul_return:
+    data:
+      docker_registry_port: "{{ registry_port }}"
+      contrail_docker_registry: "{{ registry_fqdn }}:{{ registry_port }}"
+  delegate_to: localhost

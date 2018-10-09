@@ -1,0 +1,2 @@
+registry_port: '{{ nexus.registry.tungsten_ci }}'
+registry_fqdn: '{{ nexus.fqdn }}'
