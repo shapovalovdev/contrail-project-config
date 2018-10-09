@@ -64,6 +64,7 @@ image_overrides:
     tag_matcher: "^newton-master-.*$"
     release_tags:
       - "newton-master-{{ build_no }}"
+      - "newton-master-latest"
     registries:
       - dockerhub
 
@@ -71,7 +72,9 @@ image_overrides:
     tag_matcher: "^ocata-master-.*$"
     release_tags:
       - "ocata-master-{{ build_no }}"
+      - "ocata-master-latest"
       - "master-{{ build_no }}"
+      - "master-latest"
       - "latest"
     registries:
       - dockerhub
@@ -80,6 +83,7 @@ image_overrides:
     tag_matcher: "^queens-master-.*$"
     release_tags:
       - "queens-master-{{ build_no }}"
+      - "queens-master-latest"
     registries:
       - dockerhub
 
