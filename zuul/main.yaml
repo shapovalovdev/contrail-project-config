@@ -37,6 +37,7 @@
           - Juniper/contrail-heat
           - Juniper/contrail-helm-deployer
           - Juniper/contrail-horizon
+          - Juniper/contrail-infra
           - Juniper/contrail-infra-doc
           - Juniper/contrail-java-api
           - Juniper/contrail-kolla-ansible:
