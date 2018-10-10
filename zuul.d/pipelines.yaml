@@ -23,6 +23,7 @@
             - ^stable/queens$
             - ^stable/ocata$
             - ^stable/newton$
+            - ^production$
         - event: comment-added
           branch:
             - ^master$
@@ -38,6 +39,7 @@
             - ^stable/queens$
             - ^stable/ocata$
             - ^stable/newton$
+            - ^production$
           comment: (?i)recheck(( (?:bug|lp)[\s#:]*(\d+))|( zuulv3)|( no bug))?(\s+clean)?\s*$
     start:
       gerrit:
@@ -93,6 +95,7 @@
             - ^stable/queens$
             - ^stable/ocata$
             - ^stable/newton$
+            - ^production$
           approval:
             - Approved: 1
         - event: comment-added
@@ -110,6 +113,7 @@
             - ^stable/queens$
             - ^stable/ocata$
             - ^stable/newton$
+            - ^production$
           approval:
             - Verified: 1
           username:
@@ -130,6 +134,7 @@
             - ^stable/queens$
             - ^stable/ocata$
             - ^stable/newton$
+            - ^production$
           approval:
             - Code-Review: 2
     start:
