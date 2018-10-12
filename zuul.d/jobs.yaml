@@ -285,8 +285,6 @@
     required-projects:
       - Juniper/contrail-publisher
       - tungsten-infra/containerregistry
-    pre-run:
-      - playbooks/docker/docker-pre
     run: playbooks/docker/publish-nightly
     nodeset:
       nodes:

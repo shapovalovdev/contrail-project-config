@@ -1,1 +1,0 @@
-contrail_docker_registry: "{{ docker_registry.fqdn }}:{{ registry_port }}"
