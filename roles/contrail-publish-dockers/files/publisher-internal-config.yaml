@@ -35,10 +35,11 @@ distribution: centos
 #
 image_overrides:
   - image_matcher: ^.*$
-    source_tag: "rhel-{{ openstack_release_lhs }}{{ release }}-{{ build_no }}"
-    tag_matcher: ^rhel-.*$
+    source_tag: "rhel-queens-{{ release }}-{{ build_no }}"
+    tag_matcher: ^rhel-queens-.*$
     release_tags:
-      - "rhel-{{ openstack_release_lhs }}{{ release }}-{{ build_no }}"
+      - "rhel-queens-{{ release }}-{{ build_no }}"
+      - "rhel-queens-{{ release }}-latest"
       - "rhel-{{ release }}-{{ build_no }}"
       - "rhel-{{ release }}-latest"
     distribution: rhel
