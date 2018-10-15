@@ -10,6 +10,7 @@
           - Juniper/contrail-publisher
           - kklimonda/tungsten-test-runner
           - tungsten-infra/ci-utils
+          - tungsten-infra/containerregistry
       gerrit:
         config-projects:
           - Juniper/contrail-project-config
