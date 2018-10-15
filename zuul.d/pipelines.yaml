@@ -213,14 +213,18 @@
       stats:
 
 - pipeline:
-    name: experimental-provision
-    description: On-demand pipeline for testing jobs.
+    name: experimental-sanity
+    description: |
+      On-demand pipeline for running sanity jobs from available, latest
+      docker images.
     manager: independent
+    success-message: Build succeeded (experimental-sanity pipeline).
+    failure-message: Build failed (experimental-sanity pipeline).
     precedence: normal
     trigger:
       gerrit:
         - event: comment-added
-          comment: (?i)^(Patch Set [0-9]+:)?( [\w\\+-]*)*(\n\n)?\s*check experimental-provision\s*$
+          comment: (?i)^(Patch Set [0-9]+:)?( [\w\\+-]*)*(\n\n)?\s*check experimental-sanity\s*$
           branch:
             - ^master$
             - ^R5.0$
@@ -230,11 +234,11 @@
       gerrit: {}
       stats:
     success:
+      gerrit: {}
       stats:
-    #  gerrit: {}
     failure:
+      gerrit: {}
       stats:
-    #  gerrit: {}
 
 - pipeline:
     name: post-merge
