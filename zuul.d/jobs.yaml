@@ -288,33 +288,6 @@
         - name: helm-aio
           label: ubuntu-xenial-builder-xxlarge
 
-- job:
-    name: contrail-systest-full-centos74-kolla-ocata
-    parent: contrail-src-base
-    description: |
-      A job that deploys Contrail containers using contrail-ansible-deployer,
-      OpenStack using Kolla and runs the CI sanity testsuite.
-    irrelevant-files:
-      - specs/.*
-    required-projects:
-      - Juniper/contrail-ansible-deployer
-      - name: Juniper/contrail-kolla-ansible
-        override-checkout: contrail/ocata
-      - Juniper/contrail-test-ci
-      - Juniper/contrail-test
-    run: playbooks/kolla/centos74-provision-kolla
-    post-run: playbooks/sanitytest/post
-    timeout: 86400
-    nodeset:
-      nodes:
-        - name: kolla-aio
-          label: centos-7-4-builder-xxlarge
-    secrets:
-      - site_pulp
-      - docker_registry
-    vars:
-      test_target: sanity
-
 # XXX(kklimonda): temporary jobs to test periodic pipelines
 
 - job:
@@ -323,34 +296,6 @@
     run: playbooks/contrail/build-variables-init
     secrets:
       - build_cache_db
-
-- job:
-    name: contrail-vnc-build-package-el-base-nightly
-    parent: contrail-vnc-base
-    description: |
-      Job that tests Contrail VNC (controller, analytics, etc.) packaging
-
-      This is a base job for testing packaging of Contrail VNC for Enterprise
-      Linux based distributions (CentOS, RHEL). Release-based variants of this
-      job are then added to the Juniper/contrail-packages project.
-    run: playbooks/packaging/contrail-vnc-el
-    post-run: playbooks/packaging/post-vnc-el-nightly
-    irrelevant-files:
-      - specs/.*
-    secrets:
-      - site_pulp
-
-- job:
-    name: contrail-vnc-build-package-centos74-nightly
-    parent: contrail-vnc-build-package-el-base-nightly
-    irrelevant-files:
-      - specs/.*
-    vars:
-      linux_release: centos7
-    nodeset:
-      nodes:
-        - name: builder
-          label: centos-7-4-builder
 
 - job:
     name: contrail-vnc-publish-containers-nightly

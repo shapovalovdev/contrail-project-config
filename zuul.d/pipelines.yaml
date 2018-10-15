@@ -187,18 +187,6 @@
       Dockerhub: https://hub.docker.com/u/opencontrailnightly/
 
 - pipeline:
-    name: periodic-sanity
-    manager: independent
-    description: Periodic pipeline for weekly OpenContrail sanity tests.
-    trigger:
-      timer:
-        - time: "0 0 */7 * *"
-    success:
-      stats:
-    failure:
-      stats:
-
-- pipeline:
     name: experimental
     description: On-demand pipeline for testing jobs.
     manager: independent

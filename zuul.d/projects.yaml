@@ -247,17 +247,6 @@
             branches: master
             vars:
               release_type: nightly
-    periodic-sanity:
-      jobs:
-        - contrail-vnc-build-package-centos74-nightly:
-            vars:
-              release_type: nightly
-        - contrail-vnc-build-containers-centos7-ocata:
-            dependencies:
-              - contrail-vnc-build-package-centos74-nightly
-        - contrail-systest-full-centos74-kolla-ocata:
-            dependencies:
-              - contrail-vnc-build-containers-centos7-ocata
 
 - project:
     name: Juniper/contrail-common
