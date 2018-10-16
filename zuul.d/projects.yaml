@@ -607,6 +607,11 @@
       - noops
 
 - project:
+    name: tungstenfabric/docs
+    templates:
+      - noops
+
+- project:
     name: tungstenfabric/tungsten-test-runner
     templates:
       - noops
@@ -630,4 +635,5 @@
     name: Juniper/contrail-infra
     templates:
       - noops
+
 
