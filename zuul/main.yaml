@@ -81,4 +81,5 @@
           - Juniper/puppet-contrail
           - Juniper/vijava
           - tungstenfabric/contrail-ci-test
+          - tungstenfabric/docs
           - tungstenfabric/tungsten-test-runner
