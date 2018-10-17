@@ -6,3 +6,9 @@
     - role: add-insecure-registry
       new_registry: "{{ contrail_docker_registry }}"
     - contrail-publish-dockers
+    - role: publish-windows-containers
+      registries:
+        - host: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
+          protocol: http
+        - host: index.docker.io/opencontrailnightly
+          protocol: https

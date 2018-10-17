@@ -284,6 +284,7 @@
       A job for publishing Docker containers to DockerHub.
     required-projects:
       - Juniper/contrail-publisher
+      - tungsten-infra/containerregistry
     pre-run:
       - playbooks/docker/docker-pre
     run: playbooks/docker/publish-nightly
