@@ -268,26 +268,6 @@
         - name: builder
           label: centos-7-4-builder
 
-- job:
-    name: contrail-systest-base
-    parent: base
-    pre-run:
-      - playbooks/docker/setup-docker-registry
-    post-run: playbooks/sanitytest/post
-    secrets:
-      - site_pulp
-      - docker_registry
-
-- job:
-    name: contrail-systest-ubuntu1604-base
-    parent: contrail-systest-base
-    pre-run:
-      - playbooks/sanitytest/pre.yaml
-    nodeset:
-      nodes:
-        - name: helm-aio
-          label: ubuntu-xenial-builder-xxlarge
-
 # XXX(kklimonda): temporary jobs to test periodic pipelines
 
 - job:
@@ -305,7 +285,6 @@
     required-projects:
       - Juniper/contrail-publisher
     pre-run:
-      - playbooks/docker/setup-docker-registry2
       - playbooks/docker/docker-pre
     run: playbooks/docker/publish-nightly
     nodeset:

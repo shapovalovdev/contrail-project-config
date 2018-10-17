@@ -1,4 +1,0 @@
-- name: Install docker daemon on slave VM
-  hosts: all
-  roles:
-    - install-docker-daemon
