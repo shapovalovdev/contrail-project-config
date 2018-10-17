@@ -7,6 +7,7 @@
       new_registry: "{{ contrail_docker_registry }}"
     - contrail-publish-dockers
     - role: publish-windows-containers
+      when: "contrail_packaging.version.public == 'master'"
       registries:
         - host: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
           protocol: http
