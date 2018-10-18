@@ -324,7 +324,6 @@
     post-run: playbooks/docker/push-images
     vars:
       setup_docker_registry: false
-      contrail_docker_registry: '{{ nexus.fqdn }}:{{ nexus.registry.tungsten_ci }}'
     secrets:
       - name: pipeline_docker_registry
         secret: registry_tungsten_ci
