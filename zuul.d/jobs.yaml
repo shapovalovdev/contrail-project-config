@@ -197,6 +197,8 @@
       - specs/.*
     secrets:
       - site_pulp
+      - name: nexus_credentials
+        secret: registry_tungsten_ci
 
 - job:
     name: contrail-vnc-build-package-ubuntu-trusty

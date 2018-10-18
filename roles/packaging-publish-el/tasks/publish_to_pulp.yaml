@@ -1,0 +1,30 @@
+---
+
+- name: upload packages to pulp server
+  synchronize:
+    src: '{{ executor_package_dir }}'
+    dest: '/root/{{ repo_name }}'
+
+- name: delete repo
+  command: 'pulp-admin rpm repo delete --repo-id {{ repo_name }}'
+
+- name: create repo
+  command: 'pulp-admin rpm repo create --repo-id {{ repo_name }} --serve-http true'
+
+- name: add packages to pulp
+  command: 'pulp-admin rpm repo uploads rpm --repo-id {{ repo_name }} --dir /root/{{ repo_name }}/packages'
+
+- name: publish repo
+  command: 'pulp-admin rpm repo publish run --repo-id {{ repo_name }}'
+
+- name: remove package directory from pulp server
+  file:
+    path: '/root/{{ repo_name }}'
+    state: 'absent'
+
+- name: return repository location back to zuul for children jobs
+  zuul_return:
+    data:
+      contrail_package_repository: 'http://{{ site_pulp.fqdn }}/pulp/repos/{{ repo_name }}'
+      contrail_container_tag: '{{ packaging.docker_version }}'
+  delegate_to: localhost
