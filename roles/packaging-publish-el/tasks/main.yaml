@@ -23,8 +23,8 @@
     repo_name: "{{ packaging.repo_names[hostvars['builder'].ansible_distribution] }}"
 
 - include: publish_to_nexus.yaml
-  when: zuul.pipeline != 'periodic-nightly'
+  when: zuul.pipeline == 'experimental'
 
 - include: publish_to_pulp.yaml
-  when: zuul.pipeline == 'periodic-nightly'
+  when: zuul.pipeline != 'experimental'
 
