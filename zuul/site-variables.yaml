@@ -9,6 +9,9 @@ nexus:
     tungsten_nightly: 5002
     proxy: 5005
     access: 5010
+  repos:
+    yum: 'yum-tungsten'
+    maven: 'maven-public'
 docker_registry:
   fqdn: 10.84.5.81
   port: 5000
