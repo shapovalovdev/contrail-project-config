@@ -11,6 +11,7 @@
         - event: patchset-created
           branch:
             - ^master$
+            - ^R6.0-WIP$
             - ^R5.0$
             - ^contrail/ocata$
             - ^contrail/queens$
@@ -27,6 +28,7 @@
         - event: comment-added
           branch:
             - ^master$
+            - ^R6.0-WIP$
             - ^R5.0$
             - ^contrail/ocata$
             - ^contrail/queens$
@@ -84,6 +86,7 @@
           branch:
             - ^master$
             - ^R5.0$
+            - ^R6.0-WIP$
             - ^contrail/ocata$
             - ^contrail/queens$
             - ^contrail_dpdk_17_02$
@@ -102,6 +105,7 @@
           branch:
             - ^master$
             - ^R5.0$
+            - ^R6.0-WIP$
             - ^contrail/ocata$
             - ^contrail/queens$
             - ^contrail_dpdk_17_02$
@@ -123,6 +127,7 @@
           branch:
             - ^master$
             - ^R5.0$
+            - ^R6.0-WIP$
             - ^contrail/ocata$
             - ^contrail/queens$
             - ^contrail_dpdk_17_02$
@@ -200,6 +205,7 @@
           branch:
             - ^master$
             - ^R5.0$
+            - ^R6.0-WIP$
             - ^contrail/.*$
             - ^release-.*-contrail$
     start:
@@ -228,6 +234,7 @@
           branch:
             - ^master$
             - ^R5.0$
+            - ^R6.0-WIP$
             - ^contrail/.*$
             - ^release-.*-contrail$
     start:
