@@ -73,9 +73,6 @@ image_overrides:
     release_tags:
       - "ocata-master-{{ build_no }}"
       - "ocata-master-latest"
-      - "master-{{ build_no }}"
-      - "master-latest"
-      - "latest"
     registries:
       - dockerhub
 
@@ -84,6 +81,9 @@ image_overrides:
     release_tags:
       - "queens-master-{{ build_no }}"
       - "queens-master-latest"
+      - "master-{{ build_no }}"
+      - "master-latest"
+      - "latest"
     registries:
       - dockerhub
 

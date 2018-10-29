@@ -88,27 +88,27 @@ image_overrides:
       - "newton-{{ release }}-latest"
 
   - image_matcher: "^.*$"
-    tag_matcher: "^ocata-master-.*$"
-    release_tags:
-      - "ocata-master-{{ build_no }}"
-      - "ocata-master-latest"
-      - "master-{{ build_no }}"
-      - "master-latest"
-      - "latest"
-
-  - image_matcher: "^.*$"
     tag_matcher: "^ocata-.*$"
     release_tags:
       - "ocata-{{ release }}-{{ build_no }}"
       - "ocata-{{ release }}-latest"
-      - "{{ release }}-{{ build_no }}"
-      - "{{ release }}-latest"
+
+  - image_matcher: "^.*$"
+    tag_matcher: "^queens-master-.*$"
+    release_tags:
+      - "queens-master-{{ build_no }}"
+      - "queens-master-latest"
+      - "master-{{ build_no }}"
+      - "master-latest"
+      - "latest"
 
   - image_matcher: "^.*$"
     tag_matcher: "^queens-.*$"
     release_tags:
       - "queens-{{ release }}-{{ build_no }}"
       - "queens-{{ release }}-latest"
+      - "{{ release }}-{{ build_no }}"
+      - "{{ release }}-latest"
 
 # rhel_marker and openstack_release have two variants: _lhs and _rhs depending
 # on how they are used:
