@@ -247,6 +247,7 @@
       - specs/.*
     run: playbooks/unittest/contrail
     post-run: playbooks/unittest/post
+    timeout: 36000
     nodeset:
       nodes:
         - name: builder
