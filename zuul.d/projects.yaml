@@ -295,6 +295,12 @@
     name: Juniper/contrail-packages
     templates:
       - systests
+    check:
+      jobs:
+        - contrail-vnc-build-package-rhel7-queens
+    gate:
+      jobs:
+        - contrail-vnc-build-package-rhel7-queens
 
 - project:
     name: Juniper/contrail-packaging
