@@ -445,6 +445,9 @@
       queue: contrail-ci
       jobs:
         - zuul-jobs-linters
+    post-merge:
+      jobs:
+        - publish-third-party-packages
 
 - project:
     name: Juniper/contrail-ansible-deployer
