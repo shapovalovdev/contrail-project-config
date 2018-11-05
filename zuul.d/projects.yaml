@@ -445,9 +445,6 @@
       queue: contrail-ci
       jobs:
         - zuul-jobs-linters
-    post-merge:
-      jobs:
-        - publish-third-party-packages
 
 - project:
     name: Juniper/contrail-ansible-deployer
@@ -610,6 +607,9 @@
         - build-third-party-rpms-centos7:
             files:
               - upstream/rpm/.*
+    post-merge:
+      jobs:
+        - publish-third-party-packages
 
 - project:
     name: Juniper/openshift-ansible
