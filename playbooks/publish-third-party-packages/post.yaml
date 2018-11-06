@@ -6,4 +6,5 @@
 - hosts: localhost
   roles:
     - role: publish-rpm-nexus
-      contrail_built_rpms_src: "{{ zuul.executor.work_root }}/packages/"
+      contrail_built_rpms_src: '{{ zuul.executor.work_root }}/packages/'
+      nexus_creds_dest: '{{ zuul.executor.work_root }}/nexus-creds'
