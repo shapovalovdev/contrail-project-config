@@ -6,7 +6,6 @@
         untrusted-projects:
           - Juniper/zuul-jobs:
               shadow: Juniper/contrail-project-config
-          - Juniper/contrail-nova-extensions
           - Juniper/contrail-publisher
           - kklimonda/tungsten-test-runner
           - tungsten-infra/ci-utils
@@ -81,6 +80,5 @@
               exclude:  ['pipeline', 'job', 'semaphore', 'project', 'secret', 'project-template', 'nodeset']
           - Juniper/puppet-contrail
           - Juniper/vijava
-          - tungstenfabric/contrail-ci-test
           - tungstenfabric/docs
           - tungstenfabric/tungsten-test-runner
