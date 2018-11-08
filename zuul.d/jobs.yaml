@@ -275,7 +275,7 @@
 
 - job:
     name: build-variables-init
-    parent: contrail-base2
+    parent: contrail-base
     run: playbooks/contrail/build-variables-init
     secrets:
       - build_cache_db
