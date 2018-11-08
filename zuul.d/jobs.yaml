@@ -18,7 +18,7 @@
     nodeset:
       nodes:
         - name: ubuntu-xenial
-          label: ubuntu-xenial
+          label: ubuntu-xenial-small
     secrets:
       - site_logs
 
@@ -43,7 +43,7 @@
     nodeset:
       nodes:
         - name: ubuntu-xenial
-          label: ubuntu-xenial
+          label: ubuntu-xenial-small
     secrets:
       - site_logs
 
