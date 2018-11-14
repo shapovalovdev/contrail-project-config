@@ -255,7 +255,9 @@
     trigger:
       gerrit:
         - event: ref-updated
-          ref: ^master$
+          ref: 
+            - ^master$
+            - ^R5.0$
     start:
       stats:
     success:
