@@ -480,6 +480,11 @@
       - systests
 
 - project:
+    name: Juniper/contrail-deployers-containers
+    templates:
+      - systests
+
+- project:
     name: Juniper/contrail-web-core
     templates:
       - unittests-webui
