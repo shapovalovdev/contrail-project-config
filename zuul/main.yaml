@@ -8,7 +8,6 @@
               shadow: Juniper/contrail-project-config
           - Juniper/contrail-nova-extensions
           - Juniper/contrail-publisher
-          - kklimonda/tungsten-test-runner
           - tungsten-infra/ci-utils
           - tungsten-infra/containerregistry
       gerrit:
