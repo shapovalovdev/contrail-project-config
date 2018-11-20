@@ -130,8 +130,6 @@
       - Juniper/contrail-webui-third-party
       - Juniper/vijava
       - tungstenfabric/contrail-ci-test
-    irrelevant-files:
-      - specs/.*
     pre-run: playbooks/contrail/vnc-pre
 
 - job:
@@ -193,8 +191,6 @@
       job are then added to the Juniper/contrail-packages project.
     run: playbooks/packaging/contrail-vnc-el
     post-run: playbooks/packaging/post-vnc-el
-    irrelevant-files:
-      - specs/.*
     secrets:
       - site_pulp
       - name: nexus_credentials
