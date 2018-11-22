@@ -182,11 +182,6 @@
     periodic-nightly:
       jobs:
         - build-variables-init
-        - post-nightly-registry-port:
-            dependencies:
-              - build-variables-init
-            vars:
-              release_type: nightly
         - contrail-build-vro-plugin:
             voting: False
             dependencies:
