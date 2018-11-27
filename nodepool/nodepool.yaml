@@ -32,6 +32,10 @@ labels:
     min-ready: 0
   - name: xenial-small-c
     min-ready: 0
+  - name: centos-7-4-m1-large
+    min-ready: 0
+  - name: centos-7-4-m1-medium
+    min-ready: 0
 
 providers:
   - name: juniper-contrail-ci
@@ -62,6 +66,16 @@ providers:
         labels:
           - name: centos-7-4-builder
             flavor-name: m1.16g_40g_8vcpu
+            diskimage: centos-7-4
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: centos-7-4-m1-large
+            flavor-name: m1.large
+            diskimage: centos-7-4
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: centos-7-4-m1-medium
+            flavor-name: m1.medium
             diskimage: centos-7-4
             console-log: True
             key-name: ci-infra-shared-key
@@ -143,6 +157,16 @@ providers:
             key-name: ci-infra-shared-key
           - name: c7-systest-c
             flavor-name: m1.32g_80g_8vcpu
+            diskimage: centos-7-4
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: centos-7-4-m1-large
+            flavor-name: m1.large
+            diskimage: centos-7-4
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: centos-7-4-m1-medium
+            flavor-name: m1.medium
             diskimage: centos-7-4
             console-log: True
             key-name: ci-infra-shared-key
