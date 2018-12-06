@@ -44,7 +44,7 @@
         - contrail-sanity-centos7-k8s:
             dependencies:
               - contrail-build-test-containers
-              - contrail-build-containers-centos7-ocata
+              - contrail-build-containers-centos7-queens
 
     gate:
       queue: contrail-vnc
