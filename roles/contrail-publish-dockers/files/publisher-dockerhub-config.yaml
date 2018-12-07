@@ -35,7 +35,7 @@ distribution: centos
 #
 image_overrides:
   # contrail-go is pushed with {{ release }}-{{ build_no }}
-  - image_matcher: contrail-go
+  - image_matcher: '^.*$'
     source_tag: "master-{{ build_no }}"
     release_tags:
       - "latest"

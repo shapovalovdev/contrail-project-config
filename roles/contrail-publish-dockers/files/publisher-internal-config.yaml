@@ -63,7 +63,7 @@ image_overrides:
     registries:
       - ci-repo-public
 
-  - image_matcher: contrail-go
+  - image_matcher: '^.*$'
     source_tag: "{{ release }}-{{ build_no }}"
     tag_matcher: "^master-.*$"
     release_tags:
@@ -73,7 +73,7 @@ image_overrides:
     registries:
       - ci-repo-public
 
-  - image_matcher: contrail-go
+  - image_matcher: '^.*$'
     source_tag: "{{ release }}-{{ build_no }}"
     release_tags:
       - "{{ release }}-{{ build_no }}"
