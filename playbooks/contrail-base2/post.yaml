@@ -1,3 +1,5 @@
+---
+
 - hosts: all
   roles:
     - fetch-artifacts
@@ -11,3 +13,4 @@
   roles:
     - contrail-common-libs2
     - upload-artifacts
+

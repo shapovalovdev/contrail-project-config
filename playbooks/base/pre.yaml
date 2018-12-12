@@ -1,3 +1,5 @@
+---
+
 - hosts: localhost
   roles:
     - role: emit-job-header
@@ -13,3 +15,4 @@
     - validate-host
     - prepare-workspace
     - gitlog-upload
+

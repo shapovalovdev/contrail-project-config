@@ -16,3 +16,4 @@
     - role: upload-docs
       zuul_docserver_root: '/var/www/static/infra-doc'
       docs_dir: '{{ zuul.executor.work_root }}/build/html/'
+

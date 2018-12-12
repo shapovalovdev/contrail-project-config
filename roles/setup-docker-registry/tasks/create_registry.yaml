@@ -1,3 +1,5 @@
+---
+
 - name: set registry name
   set_fact:
     registry_name: "registry_{{ contrail_packaging.repo_name | replace('-','_') }}_{{ zuul.buildset[0:10] }}"
@@ -25,3 +27,4 @@
       docker_registry_port: "{{ registry_port.stdout }}"
       contrail_docker_registry: "{{ docker_registry.fqdn }}:{{ registry_port.stdout }}"
   delegate_to: localhost
+

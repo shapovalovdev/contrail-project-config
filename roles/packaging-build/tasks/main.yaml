@@ -1,3 +1,5 @@
+---
+
 - name: Ensure that the orig tarball is present
   command: origtargz
   args:

@@ -1,3 +1,5 @@
+---
+
 - name: Ensure that hostname is in /etc/hosts
   lineinfile:
     dest: /etc/hosts

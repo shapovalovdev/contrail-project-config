@@ -6,3 +6,4 @@
   with_items: "{{ hosts_entries }}"
   become: True
   become_user: root
+

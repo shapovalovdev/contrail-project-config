@@ -1,3 +1,5 @@
+---
+
 - name: install packages
   package:
     name: "{{ item }}"
@@ -66,3 +68,4 @@
 - name: Show the list of docker images
   command: docker images
   become: true
+

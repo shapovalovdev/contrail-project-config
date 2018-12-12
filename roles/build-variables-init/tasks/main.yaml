@@ -1,3 +1,5 @@
+---
+
 - name: Prepare packaging variable
   contrail_packaging:
     zuul: "{{ zuul }}"
@@ -21,3 +23,4 @@
   zuul_return:
     data:
       build_number: "{{ build_number }}"
+

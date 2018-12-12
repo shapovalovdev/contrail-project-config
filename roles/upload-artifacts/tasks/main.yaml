@@ -1,3 +1,5 @@
+---
+
 - name: Check if the artifacts source dir exists on executor
   stat:
     path: "{{ zuul.executor.work_root }}/artifacts"
@@ -23,3 +25,4 @@
       synchronize:
         src: "{{ zuul.executor.work_root }}/artifacts"
         dest: "{{ dest_path }}"
+

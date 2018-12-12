@@ -7,3 +7,4 @@
 - name: use registry per-pipeline
   include: set_nexus_registry.yaml
   when: not setup_docker_registry
+

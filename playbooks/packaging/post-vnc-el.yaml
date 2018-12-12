@@ -1,3 +1,5 @@
+---
+
 - hosts: builder
   roles:
     - role: fetch-packages

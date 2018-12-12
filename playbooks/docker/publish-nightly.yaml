@@ -1,3 +1,5 @@
+---
+
 - hosts: all
   roles:
     - zuul-include-vars
@@ -14,3 +16,4 @@
           protocol: http
         - host: index.docker.io/opencontrailnightly
           protocol: https
+

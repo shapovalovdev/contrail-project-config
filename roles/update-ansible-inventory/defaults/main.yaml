@@ -7,3 +7,4 @@ zuul_host_matchers: []
 #    ansible_host_group: openshift-masters
 #  - zuul_prefix: openshift-master
 #    ansible_host_group: openshift-compute
+

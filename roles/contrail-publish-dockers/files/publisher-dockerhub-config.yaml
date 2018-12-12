@@ -1,3 +1,5 @@
+---
+
 # Contrail Publisher configuration
 #
 # This configuration describes a process of copying artifacts
@@ -102,3 +104,4 @@ source_tag: "{{ openstack_release_lhs }}{{ release }}-{{ build_no }}"
 release_tags:
   # 5.0.0-0.27-newton (-ocata is being overridden above)
   - "{{ release }}-0.{{ build_no }}{{ openstack_release_rhs }}"
+

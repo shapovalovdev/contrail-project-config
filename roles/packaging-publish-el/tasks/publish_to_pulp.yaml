@@ -28,3 +28,4 @@
       contrail_package_repository: 'http://{{ site_pulp.fqdn }}/pulp/repos/{{ repo_name }}'
       contrail_container_tag: '{{ packaging.docker_version }}'
   delegate_to: localhost
+

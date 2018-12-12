@@ -1,3 +1,5 @@
+---
+
 - name: Get a list of logs
   find:
     paths: "{{ ansible_env.HOME }}/docker-logs"
@@ -16,3 +18,4 @@
     src: "{{ item.path }}.gz"
     dest: "{{ zuul.executor.log_root }}/docker/"
   with_items: "{{ loglist.files }}"
+

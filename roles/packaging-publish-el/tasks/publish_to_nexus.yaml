@@ -33,3 +33,4 @@
         path: '{{ zuul.executor.work_root }}/nexus-creds'
         state: 'absent'
       no_log: true
+

@@ -1,3 +1,5 @@
+---
+
 - hosts: all
   roles:
     - dump-key
@@ -6,3 +8,4 @@
     - contrail-controller-hacks
     - packaging-prepare-contrail
     - contrail-unittests
+

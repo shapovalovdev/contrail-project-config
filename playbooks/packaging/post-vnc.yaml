@@ -1,3 +1,5 @@
+---
+
 - hosts: localhost
   roles:
     - role: add-fileserver
@@ -11,3 +13,4 @@
   roles:
     - role: contrail-common-libs
     - role: packaging-publish
+
