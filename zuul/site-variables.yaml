@@ -16,3 +16,5 @@ nexus:
 docker_registry:
   fqdn: 10.84.5.81
   port: 5000
+reprepro:
+  fqdn: '10.87.72.46'
