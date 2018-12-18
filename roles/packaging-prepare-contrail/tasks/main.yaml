@@ -10,6 +10,14 @@
     repo: "deb http://repo01-jnpr.opencontrail.org/ubuntu {{ ansible_distribution_release }}-{{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, 'master') }} main"
   become: True
   become_user: root
+  when: zuul.pipeline != 'experimental'
+
+- name: Add reprepro ubuntu third party cache
+  apt_repository:
+    repo: "deb http://{{ reprepro.fqdn }}/ubuntu contrail-{{ ansible_distribution_release }} {{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, 'master') }}"
+  become: true
+  become_user: root
+  when: zuul.pipeline == 'experimental'
 
 # rsync requires that target parent directories are already in place,
 # so create everything ahead of time.
