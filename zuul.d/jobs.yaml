@@ -590,3 +590,20 @@
     secrets:
       - name: nexus_credentials
         secret: registry_tungsten_ci
+
+- job:
+    name: trigger-win-base-2
+    parent: contrail-vnc-base2
+    description: |
+      Triggers Windows CI system.
+      Requires jenkins_job.
+    run: playbooks/trigger-win-base-2/run
+    required-projects:
+      - Juniper/contrail-windows
+      - Juniper/contrail-windows-docker-driver
+    nodeset: ubuntu-xenial
+    vars:
+      setup_docker_registry: true
+      manifest_file: windows.xml
+    secrets:
+      - jenkins_winci_credentials_2
