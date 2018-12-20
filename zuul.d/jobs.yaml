@@ -67,7 +67,7 @@
 
 - job:
     name: contrail-src-base
-    parent: contrail-base
+    parent: contrail-base-untrusted
     description: |
       A base job that directly copies source code prepared by zuul to the builder node,
       as opposed to the contrail-vnc-base job that uses Android repo to prepare the source tree.
@@ -79,7 +79,7 @@
 - job:
     name: contrail-vnc-base
     branches: master
-    parent: contrail-base
+    parent: contrail-base-untrusted
     description: |
       A base job that prepares Contrail VNC sandbox using Android repo,
       as opposed to the contrail-src-base job that copies the sources directly.
@@ -125,7 +125,7 @@
 - job:
     name: contrail-vnc-base
     branches: R6.0-WIP
-    parent: contrail-base
+    parent: contrail-base-untrusted
     description: |
       A base job that prepares Contrail VNC sandbox using Android repo,
       as opposed to the contrail-src-base job that copies the sources directly.
@@ -171,7 +171,7 @@
 - job:
     name: contrail-vnc-base
     branches: R5.0
-    parent: contrail-base
+    parent: contrail-base-untrusted
     description: |
       A base job that prepares Contrail VNC sandbox using Android repo,
       as opposed to the contrail-src-base job that copies the sources directly.
@@ -511,7 +511,7 @@
 
 - job:
     name: build-variables-init
-    parent: contrail-base
+    parent: contrail-base-untrusted
     run: playbooks/contrail/build-variables-init
     secrets:
       - build_cache_db
