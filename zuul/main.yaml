@@ -8,6 +8,8 @@
               shadow: Juniper/contrail-project-config
           - Juniper/contrail-nova-extensions
           - Juniper/contrail-publisher
+          - Juniper/zuul:
+              exclude:  ['pipeline', 'job', 'semaphore', 'project', 'secret', 'project-template', 'nodeset']
           - tungsten-infra/ci-utils
           - tungsten-infra/containerregistry
       gerrit:
