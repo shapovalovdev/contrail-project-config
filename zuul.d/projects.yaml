@@ -49,7 +49,7 @@
     gate:
       queue: contrail-vnc
       jobs:
-        - noop
+        - contrail-vnc-build-package-centos74
     experimental-sanity:
       jobs:
         - contrail-sanity-centos7-kolla-ocata:
