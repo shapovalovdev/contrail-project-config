@@ -451,8 +451,8 @@
             dependencies:
               - contrail-build-containers-centos7-queens
               - contrail-build-test-containers
-        #- contrail-windows-test-cad:
-        #    voting: False
+        - contrail-windows-test-cad:
+            voting: False
     experimental:
       jobs:
         - contrail-vnc-build-package-centos74
