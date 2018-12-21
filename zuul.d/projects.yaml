@@ -579,8 +579,13 @@
 
 - project:
     name: Juniper/contrail-dpdk
-    templates:
-      - noops
+    check:
+      jobs:
+        - contrail-vnc-build-package-centos74
+    gate:
+      queue: contrail-vnc
+      jobs:
+        - contrail-vnc-build-package-centos74
 
 - project:
     name: Juniper/contrail-vrouter-java-api
