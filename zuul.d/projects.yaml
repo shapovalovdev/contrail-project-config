@@ -301,9 +301,6 @@
     name: Juniper/contrail-packaging
     templates:
       - systests
-    experimental:
-      jobs:
-        - contrail-vnc-build-package-ubuntu-xenial
 
 - project:
     name: Juniper/contrail-sandesh
