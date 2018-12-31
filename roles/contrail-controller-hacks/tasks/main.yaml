@@ -35,9 +35,3 @@
     # Ignore ANSIBLE0006: Can not use git module for fetching
     - skip_ansible_lint
 
-- name: Checkout Juniper/contrail-nova-extensions from github.com
-  git:
-    repo: "https://github.com/Juniper/contrail-nova-extensions.git"
-    dest: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-nova-extensions/"
-    version: 'master'
-

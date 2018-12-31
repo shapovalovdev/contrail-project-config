@@ -96,7 +96,6 @@
       - Juniper/contrail-heat
       - Juniper/contrail-java-api
       - Juniper/contrail-neutron-plugin
-      - Juniper/contrail-nova-extensions
       - Juniper/contrail-nova-vif-driver
       - Juniper/contrail-packages
       - Juniper/contrail-packaging
@@ -141,7 +140,6 @@
       - Juniper/contrail-heat
       - Juniper/contrail-java-api
       - Juniper/contrail-neutron-plugin
-      - Juniper/contrail-nova-extensions
       - Juniper/contrail-nova-vif-driver
       - Juniper/contrail-packages
       - Juniper/contrail-packaging
