@@ -46,7 +46,6 @@
     - { src: 'contrail-third-party/', dest: 'third_party' }
     - { src: 'contrail-vrouter/', dest: 'vrouter' }
     - { src: 'contrail-packages/', dest: 'tools/packages' }
-    - { src: 'contrail-packaging/', dest: 'tools/packaging' }
     - { src: 'contrail-provisioning/', dest: 'tools/provisioning' }
     - { src: 'contrail-nova-extensions/', dest: 'openstack/nova_extensions' }
     - { src: 'contrail-nova-vif-driver/', dest: 'openstack/nova_contrail_vif' }
