@@ -98,7 +98,6 @@
       - Juniper/contrail-neutron-plugin
       - Juniper/contrail-nova-vif-driver
       - Juniper/contrail-packages
-      - Juniper/contrail-packaging
       - Juniper/contrail-provisioning
       - Juniper/contrail-sandesh
       - Juniper/contrail-specs
@@ -142,7 +141,6 @@
       - Juniper/contrail-neutron-plugin
       - Juniper/contrail-nova-vif-driver
       - Juniper/contrail-packages
-      - Juniper/contrail-packaging
       - Juniper/contrail-provisioning
       - Juniper/contrail-sandesh
       - Juniper/contrail-specs
@@ -202,7 +200,6 @@
       - Juniper/contrail-generateDS
       - Juniper/contrail-third-party
       - Juniper/contrail-packages
-      - Juniper/contrail-packaging
       - Juniper/contrail-provisioning
       - Juniper/contrail-sandesh
       - Juniper/contrail-vrouter
@@ -230,7 +227,6 @@
       - Juniper/contrail-generateDS
       - Juniper/contrail-third-party
       - Juniper/contrail-packages
-      - Juniper/contrail-packaging
       - Juniper/contrail-provisioning
       - Juniper/contrail-sandesh
       - Juniper/contrail-vrouter

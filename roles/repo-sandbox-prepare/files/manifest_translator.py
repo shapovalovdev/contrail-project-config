@@ -96,22 +96,6 @@ def translate(args):
             '/' + zuul_project['src_dir'])
         project.attrib['revision'] = head
 
-    # XXX(kklimonda): Remove after contrail-packaging
-    # has been added to contrail-vnc
-    for repo_name, repo_path in []:
-        if not manifest.find('//project[@name="%s"]' % (repo_name,)):
-            project = get_project(zuul_var, repo_name)
-            repo_node = etree.Element(
-                "project",
-                name=project['short_name'],
-                remote=project['canonical_hostname'],
-                path=repo_path)
-            repo_node.tail = '\n'
-            head = get_head_branch(
-                zuul_var['executor']['work_root'] +
-                '/' + zuul_project['src_dir'])
-            repo_node.attrib['revision'] = head
-            manifest.getroot().append(repo_node)
     return manifest
 
 
