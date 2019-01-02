@@ -116,7 +116,6 @@
       - Juniper/contrail-web-storage
       - Juniper/contrail-webui-third-party
       - Juniper/vijava
-      - tungstenfabric/contrail-ci-test
     pre-run: playbooks/contrail/vnc-pre
 
 - job:
@@ -160,7 +159,6 @@
       - Juniper/contrail-web-storage
       - Juniper/contrail-webui-third-party
       - Juniper/vijava
-      - tungstenfabric/contrail-ci-test
     pre-run: playbooks/contrail/vnc-pre
 
 - job:
