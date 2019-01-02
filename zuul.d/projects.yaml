@@ -388,11 +388,6 @@
       - systests
 
 - project:
-    name: Juniper/contrail-test-ci
-    templates:
-      - systests
-
-- project:
     name: Juniper/contrail-docker
     templates:
       - systests
