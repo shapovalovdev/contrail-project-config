@@ -383,11 +383,6 @@
       - build-container
 
 - project:
-    name: Juniper/contrail-horizon
-    templates:
-      - systests
-
-- project:
     name: Juniper/contrail-docker
     templates:
       - systests
