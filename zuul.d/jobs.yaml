@@ -8,10 +8,10 @@
       doesn't validate the node and does not generate an ARA report.
       These tasks, if required, can be included by the dependant jobs
       themselves on a need basis.
-    pre-run: playbooks/base-minimal/pre
+    pre-run: playbooks/base-minimal/pre.yaml
     post-run:
-      - playbooks/base-minimal/post-ssh
-      - playbooks/base-minimal/post-logs
+      - playbooks/base-minimal/post-ssh.yaml
+      - playbooks/base-minimal/post-logs.yaml
     roles:
       - zuul: Juniper/zuul-jobs
     timeout: 1800
@@ -32,10 +32,10 @@
       which copy job's git repositories prepared by zuul merger to all
       nodes that are part of the nodeset. It also runs post-playbooks
       that upload logs/ to the logserver.
-    pre-run: playbooks/base/pre
+    pre-run: playbooks/base/pre.yaml
     post-run:
-      - playbooks/base/post-ssh
-      - playbooks/base/post-logs
+      - playbooks/base/post-ssh.yaml
+      - playbooks/base/post-logs.yaml
     roles:
       - zuul: Juniper/zuul-jobs
       - zuul: Juniper/contrail-zuul-jobs
@@ -52,11 +52,11 @@
     parent: null
     description: |
       A base job that prepares the builder
-    pre-run: playbooks/contrail/pre
+    pre-run: playbooks/contrail/pre.yaml
     post-run:
-      - playbooks/contrail/post
-      - playbooks/base/post-ssh
-      - playbooks/base/post-logs
+      - playbooks/contrail/post.yaml
+      - playbooks/base/post-ssh.yaml
+      - playbooks/base/post-logs.yaml
     roles:
       - zuul: Juniper/zuul-jobs
       - zuul: Juniper/contrail-zuul-jobs
@@ -71,7 +71,7 @@
     description: |
       A base job that directly copies source code prepared by zuul to the builder node,
       as opposed to the contrail-vnc-base job that uses Android repo to prepare the source tree.
-    pre-run: playbooks/contrail/src-pre
+    pre-run: playbooks/contrail/src-pre.yaml
     roles:
       - zuul: Juniper/zuul-jobs
       - zuul: Juniper/contrail-zuul-jobs
@@ -115,7 +115,7 @@
       - Juniper/contrail-web-storage
       - Juniper/contrail-webui-third-party
       - Juniper/vijava
-    pre-run: playbooks/contrail/vnc-pre
+    pre-run: playbooks/contrail/vnc-pre.yaml
 
 - job:
     name: contrail-vnc-base
@@ -157,7 +157,7 @@
       - Juniper/contrail-web-storage
       - Juniper/contrail-webui-third-party
       - Juniper/vijava
-    pre-run: playbooks/contrail/vnc-pre
+    pre-run: playbooks/contrail/vnc-pre.yaml
 
 - job:
     name: contrail-vnc-build-package-el-base
@@ -168,8 +168,8 @@
       This is a base job for testing packaging of Contrail VNC for Enterprise
       Linux based distributions (CentOS, RHEL). Release-based variants of this
       job are then added to the Juniper/contrail-packages project.
-    run: playbooks/packaging/contrail-vnc-el
-    post-run: playbooks/packaging/post-vnc-el
+    run: playbooks/packaging/contrail-vnc-el.yaml
+    post-run: playbooks/packaging/post-vnc-el.yaml
     secrets:
       - site_pulp
       - name: nexus_credentials
@@ -178,7 +178,7 @@
 - job:
     name: contrail-vnc-specs-linter
     voting: false
-    run: playbooks/contrail/specs
+    run: playbooks/contrail/specs.yaml
     nodeset:
       nodes:
         - name: builder
@@ -203,8 +203,8 @@
       - Juniper/contrail-analytics
     irrelevant-files:
       - specs/.*
-    run: playbooks/unittest/contrail
-    post-run: playbooks/unittest/post
+    run: playbooks/unittest/contrail.yaml
+    post-run: playbooks/unittest/post.yaml
     timeout: 36000
     nodeset:
       nodes:
@@ -231,8 +231,8 @@
       - Juniper/contrail-analytics
     irrelevant-files:
       - specs/.*
-    run: playbooks/unittest/contrail
-    post-run: playbooks/unittest/post
+    run: playbooks/unittest/contrail.yaml
+    post-run: playbooks/unittest/post.yaml
     timeout: 36000
     nodeset:
       nodes:
@@ -242,7 +242,7 @@
 - job:
     name: contrail-vnc-build-unittest-ubuntu-trusty-prebuilt
     parent: contrail-vnc-build-unittest-ubuntu-trusty
-    run: playbooks/unittest/contrail-prebuilt
+    run: playbooks/unittest/contrail-prebuilt.yaml
     voting: false
     vars:
       prebuild_tests: true
@@ -250,8 +250,8 @@
 - job:
     name: contrail-vnc-unittest-webui
     parent: contrail-vnc-base
-    run: playbooks/unittest/webui
-    post-run: playbooks/unittest/webui-post
+    run: playbooks/unittest/webui.yaml
+    post-run: playbooks/unittest/webui-post.yaml
     nodeset:
       nodes:
         - name: builder
@@ -262,7 +262,7 @@
 - job:
     name: build-variables-init
     parent: contrail-base-untrusted
-    run: playbooks/contrail/build-variables-init
+    run: playbooks/contrail/build-variables-init.yaml
     secrets:
       - build_cache_db
 
@@ -274,7 +274,7 @@
     required-projects:
       - Juniper/contrail-publisher
       - tungsten-infra/containerregistry
-    run: playbooks/docker/publish-nightly
+    run: playbooks/docker/publish-nightly.yaml
     nodeset:
       nodes:
         - name: builder
@@ -292,8 +292,8 @@
       jobs (e.g. making version information available) as well as any
       post tasks like uploading packages to the repository host, and
       containers to docker registries.
-    pre-run: playbooks/contrail-base2/pre
-    post-run: playbooks/contrail-base2/post
+    pre-run: playbooks/contrail-base2/pre.yaml
+    post-run: playbooks/contrail-base2/post.yaml
     roles:
       - zuul: Juniper/zuul-jobs
       - zuul: Juniper/contrail-zuul-jobs
@@ -308,7 +308,7 @@
     parent: contrail-build-containers-base
     description: |
       A job containing access infomation for docker registry used for reviews.
-    post-run: playbooks/contrail-build-containers-ci-base/post
+    post-run: playbooks/contrail-build-containers-ci-base/post.yaml
     vars:
       setup_docker_registry: false
     secrets:
@@ -323,7 +323,7 @@
     required-projects:
       - Juniper/contrail-zuul-jobs
       - Juniper/contrail-infra-doc
-    post-run: playbooks/publish-infra-doc/post
+    post-run: playbooks/publish-infra-doc/post.yaml
     nodeset: builder-centos-7
     secrets:
       - site_logs
@@ -335,7 +335,7 @@
       Publish build rpms to Nexus repository.
     required-projects:
       - Juniper/contrail-zuul-jobs
-    post-run: playbooks/publish-third-party-packages/post
+    post-run: playbooks/publish-third-party-packages/post.yaml
     nodeset: builder-centos-7
     secrets:
       - name: nexus_credentials
@@ -347,7 +347,7 @@
     description: |
       Triggers Windows CI system.
       Requires jenkins_job.
-    run: playbooks/trigger-win-base-2/run
+    run: playbooks/trigger-win-base-2/run.yaml
     required-projects:
       - Juniper/contrail-windows
       - Juniper/contrail-windows-docker-driver
