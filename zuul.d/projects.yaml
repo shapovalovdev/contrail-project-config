@@ -298,12 +298,6 @@
         - contrail-vnc-build-package-rhel7-queens
 
 - project:
-    name: Juniper/contrail-sandesh
-    templates:
-      - unittests
-      - systests
-
-- project:
     name: Juniper/contrail-specs
     templates:
       - noops
