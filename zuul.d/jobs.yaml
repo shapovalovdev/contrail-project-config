@@ -187,6 +187,7 @@
 
 - job:
     name: contrail-vnc-build-unittest-ubuntu-trusty
+    branches: ^(?!master|contrail_dpdk_18_05_1|R6\.0-WIP).*$
     required-projects:
       - Juniper/contrail-api-client
       - Juniper/contrail-build
@@ -214,7 +215,7 @@
 
 - job:
     name: contrail-vnc-build-unittest-ubuntu-trusty
-    branches: (master|contrail_dpdk_18_05_1|R6.0-WIP)
+    branches: (master|contrail_dpdk_18_05_1|R6\.0-WIP)
     required-projects:
       - Juniper/contrail-api-client
       - Juniper/contrail-build
