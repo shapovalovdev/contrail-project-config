@@ -3,8 +3,6 @@
     check:
       jobs:
         - contrail-vnc-build-unittest-ubuntu-trusty
-        - contrail-vnc-unittest-centos7:
-            voting: False
     gate:
       queue: contrail-vnc
       jobs:
@@ -275,6 +273,10 @@
     templates:
       - unittests
       - systests
+    check:
+      jobs:
+        - contrail-vnc-unittest-centos7-tntestr:
+            voting: False
 
 - project:
     name: Juniper/contrail-generateDS
