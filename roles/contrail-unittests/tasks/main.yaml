@@ -38,6 +38,8 @@
   with_items:
     - ruby
     - ack-grep
+    - python-virtualenv
+    - python-pip
 
 - name: Install package dependencies for the build
   command: |
