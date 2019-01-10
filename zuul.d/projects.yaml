@@ -167,6 +167,17 @@
       jobs:
         - noop
 
+- project-template:
+    name: windows-sanity
+    check:
+      jobs:
+        - contrail-sanity-win2016:
+            voting: False
+    gate:
+      queue: contrail-vnc
+      jobs:
+        - noop
+
 - project:
     name: Juniper/contrail-analytics
     templates:
@@ -261,6 +272,7 @@
     templates:
       - unittests
       - systests
+      - windows-sanity
 
 - project:
     name: Juniper/contrail-build
@@ -273,6 +285,7 @@
     templates:
       - unittests
       - systests
+      - windows-sanity
     check:
       jobs:
         - contrail-vnc-unittest-centos7-tntestr:
@@ -318,12 +331,14 @@
     templates:
       - unittests
       - systests
+      - windows-sanity
 
 - project:
     name: Juniper/contrail-third-party
     templates:
       - unittests
       - systests
+      - windows-sanity
 
 - project:
     name: Juniper/contrail-neutron-plugin
@@ -537,6 +552,7 @@
     templates:
       - unittests
       - systests
+      - windows-sanity
     check:
       jobs:
         - linters-go
