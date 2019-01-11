@@ -4,7 +4,6 @@
   roles:
     - contrail-common-libs2
     - configure-hosts-entries
-    - install-pip-virtualenv
 
 - hosts: all
   roles:
