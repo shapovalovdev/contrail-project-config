@@ -40,6 +40,7 @@
     - ack-grep
     - python-virtualenv
     - python-pip
+    - python-tox
 
 - name: Install package dependencies for the build
   command: |
