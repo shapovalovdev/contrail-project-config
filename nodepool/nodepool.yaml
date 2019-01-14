@@ -272,6 +272,8 @@ diskimages:
       - ubuntu
       - vm
       - growroot
+      - pip-and-virtualenv
+      - tox
       - nodepool-base
       - contrail-builder
     release: xenial
@@ -287,6 +289,7 @@ diskimages:
       DIB_DISTRIBUTION_MIRROR: 'http://10.84.5.38:8000/ubuntu'
       DIB_DEBOOTSTRAP_EXTRA_ARGS: '--no-check-gpg'
       DIB_DEBIAN_COMPONENTS: 'main,universe'
+      DIB_TOX_VERSION: '3.1.3'
   - name: ubuntu-trusty
     elements:
       - ubuntu
