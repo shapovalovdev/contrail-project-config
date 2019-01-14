@@ -42,6 +42,16 @@
     - python-pip
     - python-tox
 
+# Last version of pip that is pip-installable on Ubuntu
+# without breaking system pip installation
+- name: Upgrade pip
+  command: pip install --ignore-installed pip==9.0.3
+
+# Version of tox that does not upgrade setuptools to the newest version,
+# breaking Contrail Python package build
+- name: Upgrade tox
+  command: pip install --ignore-installed tox==3.1.3
+
 - name: Install package dependencies for the build
   command: |
     mk-build-deps -r -i debian/control \
