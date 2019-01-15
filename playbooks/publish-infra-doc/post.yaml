@@ -1,8 +1,10 @@
 ---
 - hosts: all
+  vars:
+    src_dir_json_query: "[?short_name=='contrail-infra-doc'].src_dir"
   roles:
     - role: fetch-docs
-      fetch_src_path: "{{ zuul.projects | selectattr('short_name', 'equalto', 'contrail-infra-doc') | map(attribute='src_dir') | list | first }}/build/html"
+      fetch_src_path: "{{ zuul.projects | json_query(src_dir_json_query) | first }}/build/html"
       fetch_dst_path: '{{ zuul.executor.work_root }}/build/'
 
 - hosts: localhost

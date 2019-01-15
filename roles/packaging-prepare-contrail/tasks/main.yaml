@@ -7,7 +7,10 @@
 
 - name: Add a repository with Contrail dependencies
   apt_repository:
-    repo: "deb http://{{ zuul_site_mirror_fqdn }}/ubuntu contrail-{{ ansible_distribution_release }} {{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, 'master') }}"
+    repo: >
+      deb
+      http://{{ zuul_site_mirror_fqdn }}/ubuntu contrail-{{ ansible_distribution_release }}
+      {{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, 'master') }}
   become: true
   become_user: root
 
@@ -58,7 +61,7 @@
 
 - name: Copy debian/ to enable package building
   synchronize:
-    src: "{{ ansible_env.HOME}}/{{ packaging.debian_dir }}"
+    src: "{{ ansible_env.HOME }}/{{ packaging.debian_dir }}"
     dest: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/"
     rsync_opts:
       - --no-motd
@@ -69,7 +72,10 @@
 - name: Update debian/changelog
   shell: |
       dch -v "{{ packaging.full_version }}" -m ""
-      dch --release --distribution "{{ ansible_distribution_release }}" -m "Releasing version {{ packaging.full_version }}."
+      dch \
+      --release \
+      --distribution "{{ ansible_distribution_release }}" \
+      -m "Releasing version {{ packaging.full_version }}."
   args:
     chdir: "{{ packaging.target_dir }}"
 

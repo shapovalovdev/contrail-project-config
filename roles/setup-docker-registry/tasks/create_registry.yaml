@@ -12,7 +12,11 @@
     published_ports: all
 
 - name: get registry port
-  shell: "docker ps --format '{% raw %}{{ .Ports }}{% endraw %}' --filter 'name={{ registry_name }}' 2>&1 | sed -r 's/.*:([0-9]+)->.*/\\1/'"
+  shell: >
+    docker ps
+    --format '{% raw %}{{ .Ports }}{% endraw %}'
+    --filter 'name={{ registry_name }}' 2>&1 |
+    sed -r 's/.*:([0-9]+)->.*/\\1/'
   register: registry_port
 
 - name: save variable to a file on executor

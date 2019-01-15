@@ -29,7 +29,7 @@
 
 - name: Fetch test-reports logs
   synchronize:
-    src: "{{ ansible_env.HOME}}/test-reports"
+    src: "{{ ansible_env.HOME }}/test-reports"
     dest: "{{ zuul.executor.log_root }}/webui-unittests-logs"
     mode: pull
     recursive: yes
@@ -44,7 +44,7 @@
 
 - name: Fetch coverage-reports logs
   synchronize:
-    src: "{{ ansible_env.HOME}}/coverage-reports"
+    src: "{{ ansible_env.HOME }}/coverage-reports"
     dest: "{{ zuul.executor.log_root }}/webui-unittests-logs"
     mode: pull
     recursive: yes
