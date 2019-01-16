@@ -11,6 +11,7 @@ nexus:
     access: 5010
   repos:
     yum: 'yum-tungsten'
+    yum_nightly: 'yum-tungsten-nightly'
     yum_tpc: 'yum-tungsten-tpc'
     maven: 'maven-public'
 docker_registry:
