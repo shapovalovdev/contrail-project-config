@@ -78,7 +78,7 @@
 
 - job:
     name: contrail-vnc-base
-    branches: ^(?!master|contrail_dpdk_18_05_1|R6\.0-WIP).*$
+    branches: ^R5\.0$
     parent: contrail-base-untrusted
     description: |
       A base job that prepares Contrail VNC sandbox using Android repo,
@@ -120,7 +120,7 @@
 
 - job:
     name: contrail-vnc-base
-    branches: (master|contrail_dpdk_18_05_1|R6\.0-WIP)
+    branches: ^(?!R5\.0).*$
     parent: contrail-base-untrusted
     description: |
       A base job that prepares Contrail VNC sandbox using Android repo,
@@ -187,7 +187,7 @@
 
 - job:
     name: contrail-vnc-build-unittest-ubuntu-trusty
-    branches: ^(?!master|contrail_dpdk_18_05_1|R6\.0-WIP).*$
+    branches: ^R5\.0$
     required-projects:
       - Juniper/contrail-api-client
       - Juniper/contrail-build
@@ -215,7 +215,7 @@
 
 - job:
     name: contrail-vnc-build-unittest-ubuntu-trusty
-    branches: (master|contrail_dpdk_18_05_1|R6\.0-WIP)
+    branches: ^(?!R5\.0).*$
     required-projects:
       - Juniper/contrail-api-client
       - Juniper/contrail-build
