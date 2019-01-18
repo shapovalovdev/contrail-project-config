@@ -117,6 +117,8 @@
       - Juniper/contrail-webui-third-party
       - Juniper/vijava
     pre-run: playbooks/contrail/vnc-pre.yaml
+    vars:
+      tpc_branch: 'R5.0'
 
 - job:
     name: contrail-vnc-base
