@@ -6,7 +6,7 @@
 
 - name: test if job reached build packages phase
   meta: end_play
-  when: rpmdir.stat.exists == false
+  when: not rpmdir.stat.exists
 
 - name: create package dir on the executor
   file:

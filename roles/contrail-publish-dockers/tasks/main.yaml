@@ -32,7 +32,12 @@
 - name: Push to internal registry
   shell: |
     . venv/bin/activate
-    python36 publisher.py --config publisher-internal-config.yaml --build-registry 10.84.5.81:{{ docker_registry_port }} --release {{ contrail_packaging.version.public }} --build {{ build_number }} --openstack_release {{ item }}
+    python36 publisher.py \
+    --config publisher-internal-config.yaml \
+    --build-registry 10.84.5.81:{{ docker_registry_port }} \
+    --release {{ contrail_packaging.version.public }} \
+    --build {{ build_number }} \
+    --openstack_release {{ item }}
   become: true
   args:
     chdir: "{{ publisher_path }}"
@@ -52,7 +57,12 @@
     - name: Push to Dockerhub
       shell: |
         . venv/bin/activate
-        python36 publisher.py --config publisher-dockerhub-config.yaml --build-registry 10.84.5.81:{{ docker_registry_port }} --release {{ contrail_packaging.version.public }} --build {{ build_number }} --openstack_release {{ item }}
+        python36 publisher.py \
+          --config publisher-dockerhub-config.yaml \
+          --build-registry 10.84.5.81:{{ docker_registry_port }} \
+          --release {{ contrail_packaging.version.public }} \
+          --build {{ build_number }} \
+          --openstack_release {{ item }}
       become: true
       args:
         chdir: "{{ publisher_path }}"

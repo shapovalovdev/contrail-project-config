@@ -45,7 +45,10 @@
     checked_out_vnc_branch: "{{ checked_out_vnc_branch.stdout }}"
 
 - name: repo init
-  command: ./repo init -u {{ zuul.executor.src_root }}/{{ zuul.project.canonical_hostname }}/Juniper/contrail-vnc -b {{ checked_out_vnc_branch }}
+  command: >
+    ./repo init
+    -u {{ zuul.executor.src_root }}/{{ zuul.project.canonical_hostname }}/Juniper/contrail-vnc
+    -b {{ checked_out_vnc_branch }}
   args:
     chdir: "{{ executor_sandbox_path }}"
   delegate_to: localhost
@@ -57,7 +60,10 @@
   delegate_to: localhost
 
 - name: snapshot last commits SHAs into the manifest
-  command: ./manifest_translator.py snapshot ./zuul_var.yaml {{ executor_sandbox_path }}/.repo/manifest.xml {{ zuul.executor.log_root }}/zuul-info/manifest.xml
+  command: >
+    ./manifest_translator.py snapshot
+    ./zuul_var.yaml {{ executor_sandbox_path }}/.repo/manifest.xml
+    {{ zuul.executor.log_root }}/zuul-info/manifest.xml
   args:
     chdir: "{{ executor_sandbox_path }}"
   delegate_to: localhost
