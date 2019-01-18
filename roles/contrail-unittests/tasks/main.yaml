@@ -51,7 +51,7 @@
 # Version of tox that does not upgrade setuptools to the newest version,
 # breaking Contrail Python package build
 - name: Upgrade tox
-  command: pip install --ignore-installed tox==3.1.3 virtualenv==1.11.4
+  command: pip install --ignore-installed tox==3.1.3 virtualenv<16.2.0
   become: true
 
 - name: Install package dependencies for the build
