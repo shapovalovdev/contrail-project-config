@@ -4,4 +4,5 @@
     - zuul-include-vars
     - install-repo-script
     - repo-sandbox-prepare2
+    - set-zuul-log-path-fact
     - reach-jenkins-with-zuuls-tentacle
