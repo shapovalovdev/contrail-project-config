@@ -88,6 +88,7 @@
     ZUUL_PROJECT: "{{ zuul.project.short_name }}"
     SCONS_JOBS: "1"
     LC_ALL: "C"
+    VIRTUALENV_NO_DOWNLOAD: "1"
     GIT_REFS: >-
       {% set git_refs = [] -%}
       {% for item in zuul['items'] -%}
