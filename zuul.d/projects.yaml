@@ -245,6 +245,7 @@
               - contrail-build-containers-rhel7-queens
               - contrail-build-test-containers
               - contrail-go-docker
+              - create-windows-containers
             vars:
               release_type: nightly
         - generate-build-change-info:
@@ -262,7 +263,6 @@
         - create-windows-containers:
             dependencies:
               - build-variables-init
-            voting: False
             branches: master
             vars:
               release_type: nightly
