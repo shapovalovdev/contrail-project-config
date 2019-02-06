@@ -112,6 +112,18 @@ image_overrides:
       - "{{ release }}-{{ build_no }}"
       - "{{ release }}-latest"
 
+  - image_matcher: "^.*$"
+    tag_matcher: "^rocky-master-.*$"
+    release_tags:
+      - "rocky-master-{{ build_no }}"
+      - "rocky-master-latest"
+
+  - image_matcher: "^.*$"
+    tag_matcher: "^rocky-.*$"
+    release_tags:
+      - "rocky-{{ release }}-{{ build_no }}"
+      - "rocky-{{ release }}-latest"
+
 # rhel_marker and openstack_release have two variants: _lhs and _rhs depending
 # on how they are used:
 #

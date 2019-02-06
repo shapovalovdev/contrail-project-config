@@ -89,6 +89,14 @@ image_overrides:
     registries:
       - dockerhub
 
+  - image_matcher: "^.*$"
+    tag_matcher: "^rocky-master-.*$"
+    release_tags:
+      - "rocky-master-{{ build_no }}"
+      - "rocky-master-latest"
+    registries:
+      - dockerhub
+
 # rhel_marker and openstack_release have two variants: _lhs and _rhs depending
 # on how they are used:
 #

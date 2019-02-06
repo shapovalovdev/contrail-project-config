@@ -15,6 +15,7 @@
             - ^R5.0$
             - ^contrail/ocata$
             - ^contrail/queens$
+            - ^contrail/rocky$
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
             - ^contrail_dpdk_17_11_3$
@@ -32,6 +33,7 @@
             - ^R5.0$
             - ^contrail/ocata$
             - ^contrail/queens$
+            - ^contrail/rocky$
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
             - ^contrail_dpdk_17_11_3$
@@ -89,6 +91,7 @@
             - ^R6.0-WIP$
             - ^contrail/ocata$
             - ^contrail/queens$
+            - ^contrail/rocky$
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
             - ^contrail_dpdk_17_11_3$
@@ -108,6 +111,7 @@
             - ^R6.0-WIP$
             - ^contrail/ocata$
             - ^contrail/queens$
+            - ^contrail/rocky$
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
             - ^contrail_dpdk_17_11_3$
@@ -130,6 +134,7 @@
             - ^R6.0-WIP$
             - ^contrail/ocata$
             - ^contrail/queens$
+            - ^contrail/rocky$
             - ^contrail_dpdk_17_02$
             - ^contrail_dpdk_17_11$
             - ^contrail_dpdk_17_11_3$
