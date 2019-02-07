@@ -40,7 +40,6 @@
     - newton
     - ocata
     - queens
-    - rocky
 
 - name: Push build to dockerhub
   when: "contrail_packaging.version.public == 'master'"
@@ -61,7 +60,6 @@
         - newton
         - ocata
         - queens
-        - rocky
 
     - name: Log out of Dockerhub
       command: "docker logout"
