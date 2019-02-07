@@ -79,8 +79,6 @@
         approval:
           - Verified: [1, 2]
             username: ^zuulv3$
-          - Verified: [1, 2]
-            username: ^codilime-ci$
           - Approved: 1
     trigger:
       gerrit:
