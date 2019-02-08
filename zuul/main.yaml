@@ -84,6 +84,7 @@
           - Juniper/vijava
           - tungstenfabric/docs
           - tungstenfabric/tungsten-test-runner
+          - tungstenfabric-infra/periodic-nightly
 
 - tenant:
     name: tungstenfabric-preview
