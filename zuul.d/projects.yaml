@@ -658,6 +658,8 @@
 
 - project:
     name: tungstenfabric/tungsten-test-runner
+    templates:
+      - noops
     check:
       jobs:
         - contrail-vnc-unittest-centos7-tntestr
