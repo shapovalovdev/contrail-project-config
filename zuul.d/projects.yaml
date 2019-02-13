@@ -223,9 +223,6 @@
       - unittests
       - systests
       # flake8
-    check:
-      jobs:
-        - linters-go
 
 - project:
     name: Juniper/contrail-packages
@@ -479,9 +476,6 @@
       - unittests
       - systests
       - windows-sanity
-    check:
-      jobs:
-        - linters-go
 
 - project:
     name: Juniper/contrail-java-api
@@ -592,9 +586,8 @@
 
 - project:
     name: Juniper/contrail-go-api
-    check:
-      jobs:
-        - linters-go
+    templates:
+      - noops
 
 - project:
     name: Juniper/contrail-infra
