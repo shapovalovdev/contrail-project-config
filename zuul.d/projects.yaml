@@ -662,7 +662,8 @@
       - noops
     check:
       jobs:
-        - contrail-vnc-unittest-centos7-tntestr
+        - contrail-vnc-unittest-centos7-tntestr:
+            voting: False
 
 - project:
     name: Juniper/contrail-tripleo-puppet
