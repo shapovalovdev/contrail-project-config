@@ -199,6 +199,7 @@
     templates:
       - unittests
       - systests
+      - windows-sanity
 
 - project:
     name: Juniper/contrail-controller
@@ -543,7 +544,7 @@
 - project:
     name: Juniper/contrail-windows-docker-driver
     templates:
-      - noops
+      - windows-sanity
 
 - project:
     name: Juniper/contrail-vcenter-manager
@@ -553,7 +554,7 @@
 - project:
     name: Juniper/contrail-windows
     templates:
-      - noops
+      - windows-sanity
 
 - project:
     name: tungstenfabric/docs
