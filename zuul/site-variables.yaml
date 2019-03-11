@@ -14,6 +14,9 @@ nexus:
     yum_nightly: 'yum-tungsten-nightly'
     yum_tpc: 'yum-tungsten-tpc'
     maven: 'maven-public'
+  scripts:
+    yum_tpc:
+      rebuild_metadata: '277418cf-cbc4-4219-a86b-9be48cdd0c2c'
 docker_registry:
   fqdn: 10.84.5.81
   port: 5000
