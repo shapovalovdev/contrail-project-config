@@ -8,6 +8,6 @@
 - hosts: "{{ site_logs.fqdn }}"
   roles:
     - role: upload-logs
-      zuul_log_url: "http://13.53.138.79"
+      zuul_log_url: "http://zuul-test.ddns.net"
       zuul_logserver_root: "/var/www/logs"
 
