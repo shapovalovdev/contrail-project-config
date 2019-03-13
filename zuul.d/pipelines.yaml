@@ -50,15 +50,15 @@
     start:
       gerrit:
         Verified: 0
-      stats:
+#      stats:
     success:
       gerrit:
         Verified: 1
-      stats:
+#      stats:
     failure:
       gerrit:
         Verified: -1
-      stats:
+#      stats:
     footer-message: |
 
       For more information about the OpenContrail CI system, see:
@@ -153,16 +153,16 @@
     start:
       gerrit:
         Verified: 0
-      stats:
+#      stats:
     success:
       gerrit:
         Verified: 2
         submit: true
-      stats:
+#      stats:
     failure:
       gerrit:
         Verified: -2
-      stats:
+#      stats:
     footer-message: |
 
       For more information about the OpenContrail CI system, see:
@@ -180,21 +180,21 @@
     trigger:
       timer:
         - time: "0 7,19 * * *"
-    start:
-      stats:
-      smtp:
-        to: cf-test@juniper.net, ci-admin@opencontrail.org, dl-contrail-sw@juniper.net
-        subject: "[periodic-nightly] Starting jobs - {change.branch}"
-    success:
-      stats:
-      smtp:
-        to: cf-test@juniper.net, ci-admin@opencontrail.org, dl-contrail-sw@juniper.net
-        subject: "[periodic-nightly] SUCCESS - {change.branch}"
-    failure:
-      stats:
-      smtp:
-        to: cf-test@juniper.net, ci-admin@opencontrail.org, dl-contrail-sw@juniper.net
-        subject: "[periodic-nightly] FAILURE - {change.branch}"
+#    start:
+#      stats:
+#      smtp:
+#        to: cf-test@juniper.net, ci-admin@opencontrail.org, dl-contrail-sw@juniper.net
+#        subject: "[periodic-nightly] Starting jobs - {change.branch}"
+#    success:
+#      stats:
+#      smtp:
+#        to: cf-test@juniper.net, ci-admin@opencontrail.org, dl-contrail-sw@juniper.net
+#        subject: "[periodic-nightly] SUCCESS - {change.branch}"
+#    failure:
+#      stats:
+#      smtp:
+#        to: cf-test@juniper.net, ci-admin@opencontrail.org, dl-contrail-sw@juniper.net
+#        subject: "[periodic-nightly] FAILURE - {change.branch}"
     footer-message: |
 
       Dockerhub: https://hub.docker.com/u/opencontrailnightly/
@@ -218,13 +218,13 @@
             - ^release-.*-contrail$
     start:
       gerrit: {}
-      stats:
+#      stats:
     success:
       gerrit: {}
-      stats:
+#      stats:
     failure:
       gerrit: {}
-      stats:
+#      stats:
 
 - pipeline:
     name: experimental-sanity
@@ -247,13 +247,13 @@
             - ^release-.*-contrail$
     start:
       gerrit: {}
-      stats:
+#      stats:
     success:
       gerrit: {}
-      stats:
+#      stats:
     failure:
       gerrit: {}
-      stats:
+#      stats:
 
 - pipeline:
     name: post-merge
@@ -267,9 +267,9 @@
             - ^master$
             - ^R5.0$
             - ^R6.0-WIP$
-    start:
-      stats:
-    success:
-      stats:
-    failure:
-      stats:
+#    start:
+#      stats:
+#    success:
+#      stats:
+#    failure:
+#      stats:

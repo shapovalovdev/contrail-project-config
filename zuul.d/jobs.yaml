@@ -63,7 +63,7 @@
     timeout: 28800
     secrets:
       - site_logs
-      - site_pulp
+#      - site_pulp
 
 - job:
     name: contrail-src-base
@@ -173,10 +173,10 @@
       job are then added to the Juniper/contrail-packages project.
     run: playbooks/packaging/contrail-vnc-el.yaml
     post-run: playbooks/packaging/post-vnc-el.yaml
-    secrets:
-      - site_pulp
-      - name: nexus_credentials
-        secret: registry_tungsten_ci
+#    secrets:
+#      - site_pulp
+#      - name: nexus_credentials
+#        secret: registry_tungsten_ci
 
 - job:
     name: contrail-vnc-specs-linter
@@ -259,26 +259,26 @@
     name: build-variables-init
     parent: contrail-base-untrusted
     run: playbooks/contrail/build-variables-init.yaml
-    secrets:
-      - build_cache_db
+#    secrets:
+#      - build_cache_db
 
-- job:
-    name: contrail-vnc-publish-containers-nightly
-    parent: contrail-src-base
-    description: |
-      A job for publishing Docker containers to DockerHub.
-    required-projects:
-      - Juniper/contrail-publisher
-      - tungsten-infra/containerregistry
-    run: playbooks/docker/publish-nightly.yaml
-    nodeset:
-      nodes:
-        - name: builder
-          label: centos-7-4-builder
-    secrets:
-      - site_pulp
-      - docker_registry
-      - dockerhub
+#- job:
+#    name: contrail-vnc-publish-containers-nightly
+#    parent: contrail-src-base
+#    description: |
+#      A job for publishing Docker containers to DockerHub.
+#    required-projects:
+#      - Juniper/contrail-publisher
+#      - tungsten-infra/containerregistry
+#    run: playbooks/docker/publish-nightly.yaml
+#    nodeset:
+#      nodes:
+#        - name: builder
+#          label: centos-7-4-builder
+#    secrets:
+#      - site_pulp
+#      - docker_registry
+#      - dockerhub
 
 # Transition to contrail-base when all jobs are ported
 - job:
@@ -296,8 +296,8 @@
     vars:
       setup_docker_registry: false
     timeout: 28800
-    secrets:
-      - site_pulp
+#    secrets:
+#      - site_pulp
 
 - job:
     name: contrail-build-containers-ci-base
@@ -307,9 +307,9 @@
     post-run: playbooks/contrail-build-containers-ci-base/post.yaml
     vars:
       setup_docker_registry: false
-    secrets:
-      - name: pipeline_docker_registry
-        secret: registry_tungsten_ci
+#    secrets:
+#      - name: pipeline_docker_registry
+#        secret: registry_tungsten_ci
 
 - job:
     name: publish-infra-doc
@@ -333,9 +333,9 @@
       - Juniper/contrail-zuul-jobs
     post-run: playbooks/publish-third-party-packages/post.yaml
     nodeset: builder-centos-7
-    secrets:
-      - name: nexus_credentials
-        secret: registry_tungsten_ci
+#    secrets:
+#      - name: nexus_credentials
+#        secret: registry_tungsten_ci
 
 - job:
     name: trigger-win-base
@@ -351,5 +351,5 @@
     vars:
       setup_docker_registry: true
       manifest_file: windows.xml
-    secrets:
-      - jenkins_winci_credentials
+#    secrets:
+#      - jenkins_winci_credentials
