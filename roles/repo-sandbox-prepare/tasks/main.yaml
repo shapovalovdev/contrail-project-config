@@ -1,10 +1,10 @@
 ---
 
-- name: Prepare packaging variables
-  contrail_packaging:
-    zuul: "{{ zuul }}"
-    release_type: "{{ release_type }}"
-  delegate_to: localhost
+#- name: Prepare packaging variables
+#  contrail_packaging:
+#    zuul: "{{ zuul }}"
+#    release_type: "{{ release_type }}"
+#  delegate_to: localhost
 
 - debug:
     var: packaging
