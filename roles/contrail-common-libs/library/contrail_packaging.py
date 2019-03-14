@@ -69,7 +69,7 @@ def main():
             msg="Unknown release_type: %s" % (release_type,), **result
         )
     debian_dir = None
-    for project in zuul['projects']:
+    for _, project in zuul['projects'].items():
         if project['short_name'] == 'contrail-packages':
             debian_dir = project['src_dir']
     if debian_dir:
