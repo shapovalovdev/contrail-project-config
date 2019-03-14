@@ -4,7 +4,7 @@
   command: git remote add gerrit {{ gerrit.scheme }}://{{ zuul.project.canonical_hostname }}/Juniper/{{ item }}
   args:
     chdir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper/{{ item }}"
-  failed_when: False
+  failed_when: false
   with_items:
     - contrail-controller
     - contrail-build

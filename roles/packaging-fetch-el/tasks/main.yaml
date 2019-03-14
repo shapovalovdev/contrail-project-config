@@ -17,7 +17,7 @@
 - name: get a list of package files
   find:
     paths: "{{ ansible_env.HOME }}/rpmbuild/RPMS"
-    recurse: yes
+    recurse: true
     patterns:
       - '*.rpm'
   register: package_list
