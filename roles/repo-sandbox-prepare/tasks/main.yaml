@@ -45,14 +45,23 @@
   set_fact:
     checked_out_vnc_branch: "{{ checked_out_vnc_branch.stdout }}"
 
-- shell: python2 --version
+- shell: python --version
   register: result
+  delegate_to: localhost
 
 - debug:
     var: result
 
-- shell: python --version
+- shell: python2 --version
   register: result
+  delegate_to: localhost
+
+- debug:
+    var: result
+
+- shell: python3 --version
+  register: result
+  delegate_to: localhost
 
 - debug:
     var: result
