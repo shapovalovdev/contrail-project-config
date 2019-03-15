@@ -51,12 +51,6 @@
 - debug:
     var: result
 
-- shell: python3 --version
-  register: result
-
-- debug:
-    var: result
-
 - name: repo init
   command: ./repo init -u {{ zuul.executor.src_root }}/{{ zuul.project.canonical_hostname }}/Juniper/contrail-vnc -b {{ checked_out_vnc_branch }}
   args:
