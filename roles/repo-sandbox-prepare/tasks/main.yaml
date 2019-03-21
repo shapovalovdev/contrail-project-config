@@ -45,7 +45,7 @@
   set_fact:
     checked_out_vnc_branch: "{{ checked_out_vnc_branch.stdout }}"
 
-- shell: python --version
+- shell: cat /etc/ssl/certs/ca-certificates.crt
   register: result
   delegate_to: localhost
 
