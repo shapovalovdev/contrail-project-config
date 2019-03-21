@@ -45,7 +45,14 @@
   set_fact:
     checked_out_vnc_branch: "{{ checked_out_vnc_branch.stdout }}"
 
-- shell: cat /etc/ssl/certs/ca-certificates.crt
+- shell: ls /etc/ssl/certs/
+  register: result
+  delegate_to: localhost
+
+- debug:
+    var: result
+
+- shell: hostnamectl
   register: result
   delegate_to: localhost
 
