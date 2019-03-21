@@ -45,9 +45,26 @@
   set_fact:
     checked_out_vnc_branch: "{{ checked_out_vnc_branch.stdout }}"
 
-- shell: hostnamectl
+- shell: la -la /etc/
   register: result
   delegate_to: localhost
+  ignore_errors: True
+
+- debug:
+    var: result
+
+- shell: hostname
+  register: result
+  delegate_to: localhost
+  ignore_errors: True
+
+- debug:
+    var: result
+
+- shell: ip a
+  register: result
+  delegate_to: localhost
+  ignore_errors: True
 
 - debug:
     var: result
