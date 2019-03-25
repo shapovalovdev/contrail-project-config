@@ -63,7 +63,7 @@
     timeout: 28800
     secrets:
       - site_logs
-#      - site_pulp
+      - site_pulp
 
 - job:
     name: contrail-src-base
@@ -175,7 +175,7 @@
 #    post-run: playbooks/packaging/post-vnc-el.yaml
     run: playbooks/packaging/post-vnc-el.yaml
     secrets:
-#      - site_pulp
+      - site_pulp
       - name: nexus_credentials
         secret: registry_tungsten_ci
 
@@ -297,8 +297,8 @@
     vars:
       setup_docker_registry: false
     timeout: 28800
-#    secrets:
-#      - site_pulp
+    secrets:
+      - site_pulp
 
 - job:
     name: contrail-build-containers-ci-base
