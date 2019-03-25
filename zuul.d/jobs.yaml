@@ -174,10 +174,10 @@
 #    run: playbooks/packaging/contrail-vnc-el.yaml
 #    post-run: playbooks/packaging/post-vnc-el.yaml
     run: playbooks/packaging/post-vnc-el.yaml
-#    secrets:
+    secrets:
 #      - site_pulp
-#      - name: nexus_credentials
-#        secret: registry_tungsten_ci
+      - name: nexus_credentials
+        secret: registry_tungsten_ci
 
 - job:
     name: contrail-vnc-specs-linter
@@ -334,9 +334,9 @@
       - Juniper/contrail-zuul-jobs
     post-run: playbooks/publish-third-party-packages/post.yaml
     nodeset: builder-centos-7
-#    secrets:
-#      - name: nexus_credentials
-#        secret: registry_tungsten_ci
+    secrets:
+      - name: nexus_credentials
+        secret: registry_tungsten_ci
 
 - job:
     name: trigger-win-base
