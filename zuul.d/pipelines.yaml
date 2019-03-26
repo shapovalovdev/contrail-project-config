@@ -236,6 +236,7 @@
             - ^R5.0$
             - ^R6.0-WIP$
             - ^contrail/.*$
+            - ^contrail_dpdk_.*$
             - ^release-.*-contrail$
     start:
       gerrit: {}
@@ -265,6 +266,7 @@
             - ^R5.0$
             - ^R6.0-WIP$
             - ^contrail/.*$
+            - ^contrail_dpdk_.*$
             - ^release-.*-contrail$
     start:
       gerrit: {}
