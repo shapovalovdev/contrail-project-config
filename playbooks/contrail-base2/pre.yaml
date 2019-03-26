@@ -21,4 +21,3 @@
   roles:
     - zuul-include-vars
     - setup-docker-registry
-
