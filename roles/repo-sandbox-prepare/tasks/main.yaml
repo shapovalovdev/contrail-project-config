@@ -34,7 +34,6 @@
   command: git symbolic-ref HEAD
   args:
     chdir: "{{ zuul.executor.src_root }}/{{ zuul.project.canonical_hostname }}/Juniper/contrail-vnc"
-#    chdir: "{{ zuul.executor.src_root }}/review.opencontrail.org/Juniper/contrail-vnc"
   register: checked_out_vnc_branch
   delegate_to: localhost
   tags:

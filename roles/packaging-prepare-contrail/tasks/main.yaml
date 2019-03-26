@@ -25,7 +25,7 @@
 
 - name: Hard-link gerrit repositories into expected structure
   synchronize:
-    src: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/{{ item.src }}"
+    src: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper/{{ item.src }}"
     dest: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/{{ item.dest }}"
     rsync_opts:
       - --no-motd

@@ -1,8 +1,8 @@
 ---
 
-- name: Verify connectivity to review.opencontrail.org
+- name: Verify connectivity to remote repo
   wait_for:
-    host: review.opencontrail.org
+    host: "{{ zuul.project.canonical_hostname }}"
     port: 29418
     timeout: 10
 

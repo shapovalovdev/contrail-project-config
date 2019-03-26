@@ -1,9 +1,9 @@
 ---
 
-- name: Add review.opencontrail.org remote
-  command: git remote add gerrit https://review.opencontrail.org/Juniper/{{ item }}
+- name: Add gerrit remote repo
+  command: git remote add gerrit https://{{ zuul.project.canonical_hostname }}/Juniper/{{ item }}
   args:
-    chdir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/{{ item }}"
+    chdir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper/{{ item }}"
   failed_when: False
   with_items:
     - contrail-controller
@@ -21,7 +21,7 @@
 - name: Fetch all remotes
   command: git fetch --all
   args:
-    chdir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/{{ item }}"
+    chdir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper/{{ item }}"
   with_items:
     - contrail-controller
     - contrail-build
