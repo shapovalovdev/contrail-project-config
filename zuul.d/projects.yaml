@@ -34,8 +34,8 @@
 #        - contrail-build-containers-centos7-rocky:
 #            dependencies:
 #              - contrail-vnc-build-package-centos74
-        - contrail-sanity-centos7-kolla-ocata:
-            dependencies:
+        - contrail-sanity-centos7-kolla-ocata
+#            dependencies:
 #              - contrail-build-test-containers
 #              - contrail-build-containers-centos7-ocata
 #        - contrail-sanity-centos7-kolla-queens:
@@ -46,8 +46,8 @@
 #            dependencies:
 #              - contrail-build-test-containers
 #              - contrail-build-containers-centos7-rocky
-        - contrail-sanity-centos7-k8s:
-            dependencies:
+        - contrail-sanity-centos7-k8s
+#            dependencies:
 #              - contrail-build-test-containers
 #              - contrail-build-containers-centos7-queens
 
