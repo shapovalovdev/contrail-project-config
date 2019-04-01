@@ -1,7 +1,7 @@
 ---
 
 - name: Add gerrit remote repo
-  command: git remote add gerrit https://{{ zuul.project.canonical_hostname }}/Juniper/{{ item }}
+  command: git remote add gerrit {{ gerrit.schema }}{{ zuul.project.canonical_hostname }}/Juniper/{{ item }}
   args:
     chdir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper/{{ item }}"
   failed_when: False
