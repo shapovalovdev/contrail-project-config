@@ -7,7 +7,7 @@
 
 - name: Add a repository with Contrail dependencies
   apt_repository:
-    repo: "deb http://{{ zuul_site_mirror_fqdn }}/ubuntu contrail-{{ ansible_distribution_release }} {{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, 'master') }}"
+    repo: "deb http://{{ zuul_site_mirror_fqdn }}/repository/ubuntu contrail-{{ ansible_distribution_release }} {{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, 'master') }}"
   become: true
   become_user: root
 
