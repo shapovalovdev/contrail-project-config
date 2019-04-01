@@ -37,7 +37,7 @@
 
     - name: set registry name
       set_fact:
-        registry_name: "{{ sanity.docker.fqdn | default({{ docker_registry.fqdn }}) }}"
+        registry_name: "{{ sanity.docker.fqdn | default(docker_registry.fqdn) }}"
 
 - name: save variable to a file on executor
   copy:
