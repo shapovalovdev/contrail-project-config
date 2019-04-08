@@ -80,7 +80,7 @@
         current-patchset: True
         approval:
           - Verified: [1, 2]
-            username: ^zuulv3$
+            username: ^zuul$
           - Approved: 1
     trigger:
       gerrit:
@@ -127,7 +127,7 @@
           approval:
             - Verified: 1
           username:
-           - ^zuulv3$
+           - ^zuul$
            - ^codilime-ci$
         - event: comment-added
           branch:
