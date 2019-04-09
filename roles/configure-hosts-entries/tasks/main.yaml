@@ -14,12 +14,12 @@
   lineinfile:
     path: '/etc/hosts'
     line: '127.0.0.1 localhost'
-    regex: '^127\.0\.0\.1'
+    regexp: '^127\.0\.0\.1'
   become: true
 
 - name: ensure that ::1 reverse resolves to only 'localhost'
   lineinfile:
     path: '/etc/hosts'
     line: '::1 localhost'
-    regex: '^::1'
+    regexp: '^::1'
   become: true
