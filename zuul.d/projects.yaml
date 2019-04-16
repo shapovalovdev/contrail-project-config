@@ -543,11 +543,6 @@
             voting: False
 
 - project:
-    name: tungsten-infra/ci-utils
-    templates:
-      - noops
-
-- project:
     name: Juniper/contrail-tripleo-puppet
     templates:
       - noops
