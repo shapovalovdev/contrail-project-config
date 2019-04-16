@@ -171,10 +171,11 @@
       This is a base job for testing packaging of Contrail VNC for Enterprise
       Linux based distributions (CentOS, RHEL). Release-based variants of this
       job are then added to the Juniper/contrail-packages project.
-
+    required-projects:
+      - Juniper/contrail-dev-env
+      - Juniper/contrail-container-builder
+      - Juniper/contrail-deployers-containers
     run: playbooks/packaging/contrail-vnc-el.yaml
-    post-run: playbooks/packaging/post-vnc-el.yaml
-    run: playbooks/packaging/post-vnc-el.yaml
     secrets:
       - site_pulp
       - name: nexus_credentials
