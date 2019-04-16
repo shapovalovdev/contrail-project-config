@@ -175,7 +175,10 @@
       - Juniper/contrail-dev-env
       - Juniper/contrail-container-builder
       - Juniper/contrail-deployers-containers
+    pre-run: playbooks/contrail-base2/pre.yaml
     run: playbooks/packaging/contrail-vnc-el.yaml
+    vars:
+      setup_docker_registry: true
     secrets:
       - site_pulp
       - name: nexus_credentials

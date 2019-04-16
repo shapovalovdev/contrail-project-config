@@ -3,6 +3,7 @@
 - hosts: all
   roles:
     - contrail-common-libs
+    - prepare-workspace
     - repo-sandbox-prepare
     - gitlog-upload
 
