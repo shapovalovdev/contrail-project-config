@@ -1,0 +1,6 @@
+---
+
+- hosts: localhost
+  roles:
+    - contrail-common-libs
+    - ci-variables-init

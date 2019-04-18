@@ -23,4 +23,4 @@
   zuul_return:
     data:
       build_number: "{{ build_number }}"
-
+      contrail_container_tag: '{{ packaging.docker_version }}'

@@ -262,6 +262,11 @@
 # XXX(kklimonda): temporary jobs to test periodic pipelines
 
 - job:
+    name: ci-variables-init
+    parent: contrail-base-untrusted
+    run: playbooks/contrail/ci-variables-init.yaml
+
+- job:
     name: build-variables-init
     parent: contrail-base-untrusted
     run: playbooks/contrail/build-variables-init.yaml
