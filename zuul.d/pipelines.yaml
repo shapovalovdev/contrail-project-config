@@ -13,6 +13,7 @@
             - ^master$
             - ^R6.0-WIP$
             - ^R5.0$
+            - ^R5.1$
             - ^contrail/ocata$
             - ^contrail/queens$
             - ^contrail/rocky$
@@ -32,6 +33,7 @@
             - ^master$
             - ^R6.0-WIP$
             - ^R5.0$
+            - ^R5.1$
             - ^contrail/ocata$
             - ^contrail/queens$
             - ^contrail/rocky$
@@ -89,6 +91,7 @@
           branch:
             - ^master$
             - ^R5.0$
+            - ^R5.1$
             - ^R6.0-WIP$
             - ^contrail/ocata$
             - ^contrail/queens$
@@ -109,6 +112,7 @@
           branch:
             - ^master$
             - ^R5.0$
+            - ^R5.1$
             - ^R6.0-WIP$
             - ^contrail/ocata$
             - ^contrail/queens$
@@ -130,6 +134,7 @@
           branch:
             - ^master$
             - ^R5.0$
+            - ^R5.1$
             - ^R6.0-WIP$
             - ^contrail/ocata$
             - ^contrail/queens$
@@ -154,6 +159,7 @@
           branch:
             - ^master$
             - ^R5.0$
+            - ^R5.1$
             - ^R6.0-WIP$
             - ^contrail/ocata$
             - ^contrail/queens$
@@ -234,6 +240,7 @@
           branch:
             - ^master$
             - ^R5.0$
+            - ^R5.1$
             - ^R6.0-WIP$
             - ^contrail/.*$
             - ^contrail_dpdk_.*$
@@ -264,6 +271,7 @@
           branch:
             - ^master$
             - ^R5.0$
+            - ^R5.1$
             - ^R6.0-WIP$
             - ^contrail/.*$
             - ^contrail_dpdk_.*$
@@ -286,9 +294,10 @@
     trigger:
       gerrit:
         - event: ref-updated
-          ref: 
+          ref:
             - ^master$
             - ^R5.0$
+            - ^R5.1$
             - ^R6.0-WIP$
 #    start:
 #      stats:
