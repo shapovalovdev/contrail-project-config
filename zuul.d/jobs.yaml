@@ -175,6 +175,7 @@
       - Juniper/contrail-dev-env
       - Juniper/contrail-container-builder
       - Juniper/contrail-deployers-containers
+      - Juniper/contrail-test
     pre-run: playbooks/contrail-base2/pre.yaml
     run: playbooks/packaging/contrail-vnc-el.yaml
     vars:
