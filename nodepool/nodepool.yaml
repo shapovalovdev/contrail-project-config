@@ -33,7 +33,7 @@ labels:
 
 providers:
   - name: tf-ci
-    region-name: "ca-ymq-1"
+    region-name: "sjc1"
     cloud: tf-ci
     api-timeout: 60
     boot-timeout: 120
