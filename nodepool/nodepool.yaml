@@ -7,7 +7,7 @@ cron:
 
 zookeeper-servers:
   - host: zuul
-    port: 3389
+    port: 2181
 
 labels:
   - name: centos-7-4-builder
