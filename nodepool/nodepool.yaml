@@ -12,8 +12,6 @@ zookeeper-servers:
 labels:
   - name: centos-7-4-builder
     min-ready: 0
-  - name: centos-7-4-builder-xxlarge
-    min-ready: 0
   - name: centos-7-4-builder-c
     min-ready: 0
   - name: c7-systest-c
@@ -32,15 +30,11 @@ labels:
     min-ready: 0
   - name: xenial-small-c
     min-ready: 0
-  - name: centos-7-4-m1-large
-    min-ready: 0
-  - name: centos-7-4-m1-medium
-    min-ready: 0
 
 providers:
-  - name: juniper-contrail-ci
+  - name: tf-ci
     region-name: "RegionOne"
-    cloud: jnpr-contrail-ci
+    cloud: tf-ci
     api-timeout: 60
     boot-timeout: 120
     clean-floating-ips: true
@@ -65,143 +59,52 @@ providers:
           - contrail-dataplane
         labels:
           - name: centos-7-4-builder
-            flavor-name: m1.16g_40g_8vcpu
-            diskimage: centos-7-4
-            console-log: True
-            key-name: ci-infra-shared-key
-          - name: centos-7-4-m1-large
-            flavor-name: m1.large
-            diskimage: centos-7-4
-            console-log: True
-            key-name: ci-infra-shared-key
-          - name: centos-7-4-m1-medium
-            flavor-name: m1.medium
-            diskimage: centos-7-4
-            console-log: True
-            key-name: ci-infra-shared-key
-          - name: centos-7-4-builder-xxlarge
-            flavor-name: m1.ci-systest
-            diskimage: centos-7-4
-            console-log: True
-            key-name: ci-infra-shared-key
-          - name: rhel-7-builder
-            flavor-name: m1.16g_80g_8vcpu
-            diskimage: rhel-7
-            console-log: True
-            key-name: ci-infra-shared-key
-          - name: rhel-7-sanity
-            flavor-name: m1.32g_80g_8vcpu
-            diskimage: rhel-7
-            console-log: True
-            key-name: ci-infra-shared-key
-          - name: ubuntu-trusty-builder
-            flavor-name: m1.16g_80g_8vcpu
-            diskimage: ubuntu-trusty
-            console-log: True
-            key-name: ci-infra-shared-key
-          - name: ubuntu-xenial-small
-            flavor-name: m1.small
-            diskimage: ubuntu-xenial
-            console-log: True
-            key-name: ci-infra-shared-key
-          - name: ubuntu-xenial-builder
-            flavor-name: m1.16g_40g_8vcpu
-            diskimage: ubuntu-xenial
-            console-log: True
-            key-name: ci-infra-shared-key
-          - name: ubuntu-xenial-builder-xxlarge
-            flavor-name: m1.32g_80g_8vcpu
-            diskimage: ubuntu-xenial
-            console-log: True
-            key-name: ci-infra-shared-key
-  - name: juniper-contrail-ci-c
-    region-name: "RegionOne"
-    cloud: jnpr-contrail-ci-c
-    api-timeout: 60
-    boot-timeout: 120
-    clean-floating-ips: true
-    rate: 1.0
-    ipv6-preferred: false
-    image-type: 'qcow2'
-    image-name-format: 'template-{image_name}-{timestamp}'
-    hostname-format: '{label.name}-{provider.name}-{node.id}'
-    diskimages:
-      - name: centos-7
-      - name: centos-7-4
-      - name: rhel-7
-      - name: ubuntu-trusty
-      - name: ubuntu-xenial
-    pools:
-      - name: ci-zuulv3-c
-        max-servers: 50
-        availability-zones:
-          - nova
-        networks:
-          - ci-zuulv3-internal
-          - contrail-dataplane
-        labels:
-          - name: centos-7-4-builder
-            flavor-name: m1.16g_80g_8vcpu
-            diskimage: centos-7-4
-            console-log: True
-            key-name: ci-infra-shared-key
-          - name: centos-7-4-builder-xxlarge
-            flavor-name: m1.32g_80g_8vcpu
+            flavor-name: v2-standard-4
             diskimage: centos-7-4
             console-log: True
             key-name: ci-infra-shared-key
           - name: centos-7-4-builder-c
-            flavor-name: m1.16g_80g_8vcpu
+            flavor-name: v2-standard-4
             diskimage: centos-7-4
             console-log: True
             key-name: ci-infra-shared-key
           - name: c7-systest-c
-            flavor-name: m1.32g_80g_8vcpu
-            diskimage: centos-7-4
-            console-log: True
-            key-name: ci-infra-shared-key
-          - name: centos-7-4-m1-large
-            flavor-name: m1.large
-            diskimage: centos-7-4
-            console-log: True
-            key-name: ci-infra-shared-key
-          - name: centos-7-4-m1-medium
-            flavor-name: m1.medium
+            flavor-name: v2-standard-8
             diskimage: centos-7-4
             console-log: True
             key-name: ci-infra-shared-key
           - name: rhel-7-builder
-            flavor-name: m1.16g_80g_8vcpu
+            flavor-name: v2-standard-4
             diskimage: rhel-7
             console-log: True
             key-name: ci-infra-shared-key
           - name: rhel-7-sanity
-            flavor-name: m1.32g_80g_8vcpu
+            flavor-name: v2-standard-8
             diskimage: rhel-7
             console-log: True
             key-name: ci-infra-shared-key
           - name: ubuntu-trusty-builder
-            flavor-name: m1.16g_80g_8vcpu
+            flavor-name: v2-standard-4
             diskimage: ubuntu-trusty
             console-log: True
             key-name: ci-infra-shared-key
           - name: ubuntu-xenial-small
-            flavor-name: m1.small
+            flavor-name: v2-standard-1
             diskimage: ubuntu-xenial
             console-log: True
             key-name: ci-infra-shared-key
           - name: ubuntu-xenial-builder
-            flavor-name: m1.16g_80g_8vcpu
+            flavor-name: v2-standard-4
             diskimage: ubuntu-xenial
             console-log: True
             key-name: ci-infra-shared-key
           - name: ubuntu-xenial-builder-xxlarge
-            flavor-name: m1.32g_80g_8vcpu
+            flavor-name: v2-standard-8
             diskimage: ubuntu-xenial
             console-log: True
             key-name: ci-infra-shared-key
           - name: xenial-small-c
-            flavor-name: m1.small
+            flavor-name: v2-standard-1
             diskimage: ubuntu-xenial
             console-log: True
             key-name: ci-infra-shared-key
