@@ -6,7 +6,7 @@ cron:
   check:   '*/15 * * * *'
 
 zookeeper-servers:
-  - host: zuulv3.opencontrail.org
+  - host: zuul
     port: 3389
 
 labels:
@@ -33,7 +33,7 @@ labels:
 
 providers:
   - name: tf-ci
-    region-name: "RegionOne"
+    region-name: "ca-ymq-1"
     cloud: tf-ci
     api-timeout: 60
     boot-timeout: 120
@@ -51,12 +51,13 @@ providers:
       - name: ubuntu-xenial
     pools:
       - name: ci-zuulv3
-        max-servers: 30
+        max-servers: 1
         availability-zones:
-          - opencontrail-ci-zone
+          - nova
         networks:
-          - ci-zuulv3-internal
-          - contrail-dataplane
+          - management
+          - api
+          - data
         labels:
           - name: centos-7-4-builder
             flavor-name: v2-standard-4
