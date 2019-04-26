@@ -53,14 +53,14 @@ providers:
       - name: ubuntu-xenial
     pools:
       - name: ci-zuulv3
-        max-servers: 1
+        #max-servers: 1
+        max-ram: 40
+        max-cores: 12
         availability-zones:
           - nova
         auto-floating-ip: False
         networks:
           - management
-          - api
-          - data
         labels:
           - name: centos-7-4-builder
             flavor-name: v2-standard-4
