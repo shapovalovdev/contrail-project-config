@@ -1,6 +1,8 @@
 elements-dir: /etc/nodepool/elements
 images-dir: /opt/nodepool_dib
 
+build-log-retention: 20
+
 cron:
   cleanup: '*/1 * * * *'
   check:   '*/15 * * * *'
@@ -148,9 +150,19 @@ diskimages:
       DIB_YUM_MINIMAL_CREATE_INTERFACES: '0'
       DIB_INSTALLTYPE_pip_and_virtualenv: package
   - name: rhel-7
+# TODO: Rework rhel7 jobs and image. Now centos-7-4 used instead of rhel7
+#    elements:
+#      - rhel7
+#      - rhel-common
+#      - vm
+#      - growroot
+#      - epel
+#      - cloud-init
+#      - openssh-server
+#      - nodepool-base
+#      - contrail-builder
     elements:
-      - rhel7
-      - rhel-common
+      - centos7
       - vm
       - growroot
       - epel
