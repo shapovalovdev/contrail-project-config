@@ -66,51 +66,61 @@ providers:
             diskimage: centos-7-4
             console-log: True
             key-name: ci-infra-shared-key
+            boot-from-volume: 1
           - name: centos-7-4-builder-c
             flavor-name: v2-standard-4
             diskimage: centos-7-4
             console-log: True
             key-name: ci-infra-shared-key
+            boot-from-volume: 1
           - name: c7-systest-c
             flavor-name: v2-standard-8
             diskimage: centos-7-4
             console-log: True
             key-name: ci-infra-shared-key
+            boot-from-volume: 1
           - name: rhel-7-builder
             flavor-name: v2-standard-4
             diskimage: rhel-7
             console-log: True
             key-name: ci-infra-shared-key
+            boot-from-volume: 1
           - name: rhel-7-sanity
             flavor-name: v2-standard-8
             diskimage: rhel-7
             console-log: True
             key-name: ci-infra-shared-key
+            boot-from-volume: 1
           - name: ubuntu-trusty-builder
             flavor-name: v2-standard-4
             diskimage: ubuntu-trusty
             console-log: True
             key-name: ci-infra-shared-key
+            boot-from-volume: 1
           - name: ubuntu-xenial-small
             flavor-name: v2-standard-1
             diskimage: ubuntu-xenial
             console-log: True
             key-name: ci-infra-shared-key
+            boot-from-volume: 1
           - name: ubuntu-xenial-builder
             flavor-name: v2-standard-4
             diskimage: ubuntu-xenial
             console-log: True
             key-name: ci-infra-shared-key
+            boot-from-volume: 1
           - name: ubuntu-xenial-builder-xxlarge
             flavor-name: v2-standard-8
             diskimage: ubuntu-xenial
             console-log: True
             key-name: ci-infra-shared-key
+            boot-from-volume: 1
           - name: xenial-small-c
             flavor-name: v2-standard-1
             diskimage: ubuntu-xenial
             console-log: True
             key-name: ci-infra-shared-key
+            boot-from-volume: 1
 
 diskimages:
   - name: centos-7
