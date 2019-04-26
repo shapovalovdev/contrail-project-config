@@ -53,9 +53,7 @@ providers:
       - name: ubuntu-xenial
     pools:
       - name: ci-zuulv3
-        #max-servers: 1
-        max-ram: 40
-        max-cores: 12
+        max-servers: 1
         availability-zones:
           - nova
         auto-floating-ip: False
