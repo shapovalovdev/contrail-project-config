@@ -56,6 +56,7 @@ providers:
         max-servers: 1
         availability-zones:
           - nova
+        auto-floating-ip: False
         networks:
           - management
           - api
