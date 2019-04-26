@@ -115,8 +115,9 @@ providers:
 diskimages:
   - name: centos-7
     elements:
-      - centos7
       - vm
+      - block-device-gpt
+      - centos7
       - growroot
       - epel
       - cloud-init
@@ -133,8 +134,9 @@ diskimages:
       DIB_INSTALLTYPE_pip_and_virtualenv: package
   - name: centos-7-4
     elements:
-      - centos7
       - vm
+      - block-device-gpt
+      - centos7
       - growroot
       - epel
       - cloud-init
@@ -162,8 +164,9 @@ diskimages:
 #      - nodepool-base
 #      - contrail-builder
     elements:
-      - centos7
       - vm
+      - block-device-gpt
+      - centos7
       - growroot
       - epel
       - cloud-init
@@ -185,11 +188,12 @@ diskimages:
 #      DIB_LOCAL_IMAGE: /opt/cloud_images/image.qcow2
   - name: ubuntu-xenial
     elements:
-      - ubuntu
       - vm
+      - block-device-gpt
+      - ubuntu
       - growroot
-      - pip-and-virtualenv
-      - tox
+#      - pip-and-virtualenv
+#      - tox
       - nodepool-base
       - contrail-builder
     release: xenial
@@ -205,11 +209,12 @@ diskimages:
 #      DIB_DISTRIBUTION_MIRROR: 'http://10.84.5.38:8000/ubuntu'
 #      DIB_DEBOOTSTRAP_EXTRA_ARGS: '--no-check-gpg'
 #      DIB_DEBIAN_COMPONENTS: 'main,universe'
-      DIB_TOX_VERSION: '3.1.3'
+#      DIB_TOX_VERSION: '3.1.3'
   - name: ubuntu-trusty
     elements:
-      - ubuntu
       - vm
+      - block-device-gpt
+      - ubuntu
       - growroot
       - nodepool-base
       - contrail-builder
