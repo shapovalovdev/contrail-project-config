@@ -3,7 +3,7 @@
 - hosts: localhost
   roles:
     - role: emit-job-header
-      zuul_log_url: "http://zuul.sytes.net"
+      zuul_log_url: "http://zuul.sytes.net:8082"
 
 - hosts: all
   roles:

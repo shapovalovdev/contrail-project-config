@@ -8,6 +8,6 @@
 - hosts: "{{ site_logs.fqdn }}"
   roles:
     - role: upload-logs
-      zuul_log_url: "http://zuul.sytes.net"
+      zuul_log_url: "http://zuul.sytes.net:8082"
       zuul_logserver_root: "/var/www/logs"
 
