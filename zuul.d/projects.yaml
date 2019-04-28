@@ -18,10 +18,10 @@
     name: systests
     check:
       jobs:
-#        - ci-variables-init
+        - ci-variables-init
         - contrail-vnc-build-package-centos74
-#            dependencies:
-#              - ci-variables-init
+            dependencies:
+              - ci-variables-init
         - contrail-sanity-centos7-kolla-ocata:
             dependencies:
               - contrail-vnc-build-package-centos74
