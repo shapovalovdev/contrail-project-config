@@ -20,3 +20,4 @@ nexus:
 docker_registry:
   fqdn: 10.84.5.81
   port: 5000
+zuul_log_url: "http://zuul.sytes.net:8082"
