@@ -215,23 +215,23 @@ diskimages:
 #      DIB_DEBOOTSTRAP_EXTRA_ARGS: '--no-check-gpg'
 #      DIB_DEBIAN_COMPONENTS: 'main,universe'
 #      DIB_TOX_VERSION: '3.1.3'
-#  - name: ubuntu-trusty
-#    elements:
-#      - ubuntu
-#      - vm
-#      - growroot
-#      - nodepool-base
-#      - contrail-builder
-#    release: trusty
-#    formats:
-#      - qcow2
-#    env-vars:
-#      TMPDIR: /opt/dib_tmp
-#      DIB_CHECKSUM: '1'
-#      DIB_IMAGE_CACHE: /opt/dib_cache
-#      DIB_APT_LOCAL_CACHE: '0'
-#      DIB_DISABLE_APT_CLEANUP: '1'
-#      DIB_GRUB_TIMEOUT: '0'
-##      DIB_DISTRIBUTION_MIRROR: 'http://10.84.5.38:8000/ubuntu'
-##      DIB_DEBOOTSTRAP_EXTRA_ARGS: '--no-check-gpg'
-##      DIB_DEBIAN_COMPONENTS: 'main,universe'
+  - name: ubuntu-trusty
+    elements:
+      - ubuntu
+      - vm
+      - growroot
+      - nodepool-base
+      - contrail-builder
+    release: trusty
+    formats:
+      - qcow2
+    env-vars:
+      TMPDIR: /opt/dib_tmp
+      DIB_CHECKSUM: '1'
+      DIB_IMAGE_CACHE: /opt/dib_cache
+      DIB_APT_LOCAL_CACHE: '0'
+      DIB_DISABLE_APT_CLEANUP: '1'
+      DIB_GRUB_TIMEOUT: '0'
+#      DIB_DISTRIBUTION_MIRROR: 'http://10.84.5.38:8000/ubuntu'
+#      DIB_DEBOOTSTRAP_EXTRA_ARGS: '--no-check-gpg'
+#      DIB_DEBIAN_COMPONENTS: 'main,universe'
