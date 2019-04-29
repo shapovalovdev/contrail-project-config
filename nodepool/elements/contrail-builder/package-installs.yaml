@@ -13,3 +13,4 @@ scons:
 unzip:
 wget:
 dhcp-client:
+gdisk:
