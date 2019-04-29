@@ -65,7 +65,7 @@ providers:
             diskimage: centos-7-4
             console-log: True
             key-name: ci-infra-shared-key
-#            boot-from-volume: 1
+            boot-from-volume: 1
           - name: centos-7-4-builder-c
             flavor-name: v2-standard-4
             diskimage: centos-7-4
