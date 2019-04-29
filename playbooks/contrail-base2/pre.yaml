@@ -18,6 +18,7 @@
       fileserver: "{{ site_pulp }}"
 
 #- hosts: "{{ site_pulp.fqdn }}"
-#  roles:
-#    - zuul-include-vars
+- hosts: localhost
+  roles:
+    - zuul-include-vars
 #    - setup-docker-registry
