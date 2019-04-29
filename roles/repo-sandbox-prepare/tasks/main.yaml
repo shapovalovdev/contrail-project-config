@@ -111,6 +111,7 @@
   args:
     chdir: "{{ executor_sandbox_path }}"
   delegate_to: localhost
+  no_log: true
 
 - name: Clean-up auxiliary repo files
   file:
@@ -125,6 +126,7 @@
   synchronize:
     src: "{{ executor_sandbox_path }}"
     dest: "{{ ansible_env.HOME }}"
+  no_log: true
 
 - name: upload manifest to the worker node
   copy:
