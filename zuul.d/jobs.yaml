@@ -179,7 +179,7 @@
     pre-run: playbooks/contrail-base2/pre.yaml
     run: playbooks/packaging/contrail-vnc-el.yaml
     vars:
-      setup_docker_registry: true
+      setup_docker_registry: false
     secrets:
       - site_pulp
       - name: nexus_credentials
