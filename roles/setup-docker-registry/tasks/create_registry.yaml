@@ -1,6 +1,6 @@
 ---
 
-- name: create local registry 
+- name: create local registry
   when: sanity is not defined or sanity.docker is not defined
   block:
     - name: set registry name
@@ -22,13 +22,13 @@
 
     - name: set registry port
       set_fact:
-        registry_port: "{{ registry_port.stdout }}"
+        registry_port: "{{ registry_port_res.stdout }}"
 
     - name: set registry name
       set_fact:
         registry_name: "{{ docker_registry.fqdn }}"
 
-- name: use existing local registry 
+- name: use existing local registry
   when: sanity is defined and sanity.docker is defined
   block:
     - name: set registry port
