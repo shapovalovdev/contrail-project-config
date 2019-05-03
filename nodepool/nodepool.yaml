@@ -53,6 +53,7 @@ providers:
       - name: ubuntu-xenial
     pools:
       - name: ci-zuulv3
+        ignore-provider-quota: True
         max-servers: 1
         availability-zones:
           - nova
