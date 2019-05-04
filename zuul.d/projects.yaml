@@ -186,8 +186,8 @@
 
 - project:
     name: Juniper/contrail-controller
-#    templates:
-#      - unittests
+    templates:
+      - unittests
 #      - systests
 #      - windows-sanity
     check:
