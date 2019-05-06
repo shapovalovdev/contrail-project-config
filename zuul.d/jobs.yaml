@@ -295,7 +295,6 @@
 # Transition to contrail-base when all jobs are ported
 - job:
     name: contrail-base2
-    parent: base-minimal
     description: |
       A base job that prepares job environment to run contrail
       jobs (e.g. making version information available) as well as any
