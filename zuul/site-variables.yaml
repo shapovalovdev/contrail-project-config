@@ -20,4 +20,6 @@ nexus:
 docker_registry:
   fqdn: 10.84.5.81
   port: 5000
-zuul_log_url: "http://zuul.sytes.net:8082"
+zuul_log_url: "http://pnexus.sytes.net:8082"
+gerrit:
+  scheme: "http"
