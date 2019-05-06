@@ -195,7 +195,7 @@
           label: ubuntu-trusty-builder
 
 - job:
-    name: contrail-vnc-build-unittest-ubuntu-trusty
+    name: contrail-vnc-build-unittest-ubuntu-xenial
     branches: ^R5\.0$
     required-projects:
       - Juniper/contrail-api-client
@@ -220,10 +220,10 @@
     nodeset:
       nodes:
         - name: builder
-          label: ubuntu-trusty-builder
+          label: ubuntu-xenial-builder
 
 - job:
-    name: contrail-vnc-build-unittest-ubuntu-trusty
+    name: contrail-vnc-build-unittest-ubuntu-xenial
     branches: ^(?!R5\.0).*$
     required-projects:
       - Juniper/contrail-api-client
@@ -248,7 +248,7 @@
     nodeset:
       nodes:
         - name: builder
-          label: ubuntu-trusty-builder
+          label: ubuntu-xenial-builder
 
 - job:
     name: contrail-vnc-unittest-webui

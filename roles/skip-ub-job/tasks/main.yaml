@@ -10,16 +10,16 @@
   register: current_patch_set
 
 - name: find passed jobs
-  shell: "ssh -i '{{ ansible_env.HOME }}/review-creds' -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 29418 gerrit@{{ zuul.project.canonical_hostname }} gerrit query --comments {{ zuul.change }} | grep 'contrail-vnc-build-unittest-ubuntu-trusty' | grep ': SUCCESS in' | grep '/{{ current_patch_set.stdout_lines[1] }}/' | tr -s ' ' | cut -d ' ' -f3"
+  shell: "ssh -i '{{ ansible_env.HOME }}/review-creds' -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 29418 gerrit@{{ zuul.project.canonical_hostname }} gerrit query --comments {{ zuul.change }} | grep 'contrail-vnc-build-unittest-ubuntu-xenial' | grep ': SUCCESS in' | grep '/{{ current_patch_set.stdout_lines[1] }}/' | tr -s ' ' | cut -d ' ' -f3"
   register: passed_job
 
 - name: display already passed job
   debug:
     msg: "Skipping this job, since it has already been run previously..."
-  when: "( 'contrail-vnc-build-unittest-ubuntu-trusty' in passed_job.stdout )"
+  when: "( 'contrail-vnc-build-unittest-ubuntu-xenial' in passed_job.stdout )"
 
 - meta: end_play
-  when: "( 'contrail-vnc-build-unittest-ubuntu-trusty' in passed_job.stdout )"
+  when: "( 'contrail-vnc-build-unittest-ubuntu-xenial' in passed_job.stdout )"
   become: true
 
 - name: display message that the job has not run before
