@@ -12,12 +12,8 @@
         - fqdn: "{{ ansible_fqdn }}"
           address: "{{ ansible_all_ipv4_addresses[0] }}"
 
+# NOTE: here was site_pulp host
 - hosts: localhost
-  roles:
-    - role: add-fileserver
-      fileserver: "{{ site_pulp }}"
-
-- hosts: "{{ site_pulp.fqdn }}"
   roles:
     - zuul-include-vars
     - setup-docker-registry

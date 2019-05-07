@@ -1,10 +1,20 @@
 ---
 
-- name: create new registry
-  include: create_registry.yaml
-  when: setup_docker_registry
+- name: include variables for {{ zuul.pipeline }} pipeline
+  include_vars: '{{ item }}'
+  with_first_found:
+    - '{{ zuul.pipeline }}.yaml'
+    - default.yaml
 
-- name: use registry per-pipeline
-  include: set_nexus_registry.yaml
-  when: not setup_docker_registry
+- name: save variable to a file on executor
+  copy:
+    content: "{{ {\"registry_port\": nexus_registry_port } | to_nice_yaml }}"
+    dest: "{{ zuul.executor.work_root }}/saved_vars.yaml"
+  delegate_to: localhost
 
+- name: 'Return registry location back to zuul for children jobs'
+  zuul_return:
+    data:
+      docker_registry_port: "{{ nexus_registry_port }}"
+      contrail_docker_registry: "{{ nexus_registry_fqdn }}:{{ nexus_registry_port }}"
+  delegate_to: localhost

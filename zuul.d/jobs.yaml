@@ -63,7 +63,6 @@
     timeout: 28800
     secrets:
       - site_logs
-      - site_pulp
 
 - job:
     name: contrail-src-base
@@ -178,10 +177,7 @@
       - Juniper/contrail-test
     pre-run: playbooks/contrail-base2/pre.yaml
     run: playbooks/packaging/contrail-vnc-el.yaml
-    vars:
-      setup_docker_registry: false
     secrets:
-      - site_pulp
       - name: nexus_credentials
         secret: registry_tungsten_ci
 
@@ -288,7 +284,6 @@
 #        - name: builder
 #          label: centos-7-4-builder
 #    secrets:
-#      - site_pulp
 #      - docker_registry
 #      - dockerhub
 
@@ -305,11 +300,7 @@
     roles:
       - zuul: Juniper/zuul-jobs
       - zuul: Juniper/contrail-zuul-jobs
-    vars:
-      setup_docker_registry: false
     timeout: 28800
-    secrets:
-      - site_pulp
 
 - job:
     name: contrail-build-containers-ci-base
@@ -317,8 +308,6 @@
     description: |
       A job containing access infomation for docker registry used for reviews.
     post-run: playbooks/contrail-build-containers-ci-base/post.yaml
-    vars:
-      setup_docker_registry: false
 #    secrets:
 #      - name: pipeline_docker_registry
 #        secret: registry_tungsten_ci
@@ -361,7 +350,6 @@
       - Juniper/contrail-windows-docker-driver
     nodeset: ubuntu-xenial
     vars:
-      setup_docker_registry: true
       manifest_file: windows.xml
 #    secrets:
 #      - jenkins_winci_credentials
