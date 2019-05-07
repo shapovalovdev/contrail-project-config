@@ -12,4 +12,3 @@
     - role: upload-logs
       zuul_log_url: "{{ zuul_log_url }}"
       zuul_logserver_root: "/var/www/logs"
-
