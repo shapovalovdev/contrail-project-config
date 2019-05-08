@@ -6,10 +6,12 @@
     release_type: "{{ release_type }}"
 
 
-- name: Add an Apt signing key, uses whichever key is at the URL
+- name: Add an Apt signing key
   apt_key:
     url: http://{{ nexus.fqdn }}/repository/contrail-ubuntu/repo.key
     state: present
+  become: true
+  become_user: root
 
 # TODO: maybe different repos are required for different branches
 - name: Add a repository with Contrail dependencies
