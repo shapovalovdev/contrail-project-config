@@ -197,8 +197,8 @@ diskimages:
       - ubuntu
       - vm
       - growroot
-#      - pip-and-virtualenv
-#      - tox
+      - pip-and-virtualenv
+      - tox
       - nodepool-base
       - contrail-builder
     release: xenial
