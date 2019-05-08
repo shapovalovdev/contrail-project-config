@@ -16,7 +16,7 @@
 # TODO: maybe different repos are required for different branches
 - name: Add a repository with Contrail dependencies
   apt_repository:
-    repo: "deb http://{{ nexus-fqdn }}/repository/ubuntu {{ ansible_distribution_release }} main"
+    repo: "deb http://{{ nexus.fqdn }}/repository/ubuntu {{ ansible_distribution_release }} main"
   become: true
   become_user: root
 
