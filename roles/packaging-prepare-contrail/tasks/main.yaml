@@ -5,11 +5,18 @@
     zuul: "{{ zuul }}"
     release_type: "{{ release_type }}"
 
-#- name: Add a repository with Contrail dependencies
-#  apt_repository:
-#    repo: "deb http://{{ zuul_site_mirror_fqdn }}/repository/ubuntu contrail-{{ ansible_distribution_release }} {{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, 'master') }}"
-#  become: true
-#  become_user: root
+
+- name: Add an Apt signing key, uses whichever key is at the URL
+  apt_key:
+    url: http://{{ nexus.fqdn }}/repository/contrail-ubuntu/repo.key
+    state: present
+
+# TODO: maybe different repos are required for different branches
+- name: Add a repository with Contrail dependencies
+  apt_repository:
+    repo: "deb http://{{ nexus-fqdn }}/repository/ubuntu {{ ansible_distribution_release }} main"
+  become: true
+  become_user: root
 
 # rsync requires that target parent directories are already in place,
 # so create everything ahead of time.
