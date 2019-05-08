@@ -44,7 +44,11 @@
     gate:
       queue: contrail-vnc
       jobs:
+        - ci-variables-init
         - contrail-vnc-build-package-centos74
+            dependencies:
+              - ci-variables-init
+
     experimental-sanity:
       jobs:
         - contrail-sanity-centos7-kolla-ocata:
@@ -68,7 +72,10 @@
     name: helm-systests
     check:
       jobs:
+        - ci-variables-init
         - contrail-vnc-build-package-centos74
+            dependencies:
+              - ci-variables-init
         - contrail-sanity-ubuntu1604-helm-ocata:
             dependencies:
               - contrail-vnc-build-package-centos74
@@ -113,7 +120,10 @@
     name: build
     check:
       jobs:
+        - ci-variables-init
         - contrail-vnc-build-package-centos74
+            dependencies:
+              - ci-variables-init
     gate:
       queue: contrail-vnc
       jobs:
@@ -123,7 +133,10 @@
     name: build-container
     check:
       jobs:
+        - ci-variables-init
         - contrail-vnc-build-package-centos74
+            dependencies:
+              - ci-variables-init
     gate:
       queue: contrail-vnc
       jobs:
@@ -255,7 +268,10 @@
       - systests
     experimental:
       jobs:
+        - ci-variables-init
         - contrail-vnc-build-package-centos74
+            dependencies:
+              - ci-variables-init
 
 - project:
     name: Juniper/contrail-fabric-utils
@@ -342,7 +358,10 @@
             voting: False
     experimental:
       jobs:
+        - ci-variables-init
         - contrail-vnc-build-package-centos74
+            dependencies:
+              - ci-variables-init
         - contrail-sanity-centos7-kolla-ocata:
             dependencies:
               - contrail-vnc-build-package-centos74
@@ -457,11 +476,17 @@
     name: Juniper/contrail-dpdk
     check:
       jobs:
+        - ci-variables-init
         - contrail-vnc-build-package-centos74
+            dependencies:
+              - ci-variables-init
     gate:
       queue: contrail-vnc
       jobs:
+        - ci-variables-init
         - contrail-vnc-build-package-centos74
+            dependencies:
+              - ci-variables-init
 
 - project:
     name: Juniper/contrail-vrouter-java-api
