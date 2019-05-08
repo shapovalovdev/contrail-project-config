@@ -69,12 +69,9 @@
     check:
       jobs:
         - contrail-vnc-build-package-centos74
-        - contrail-build-test-containers:
-            dependencies:
-              - contrail-vnc-build-package-centos74
         - contrail-sanity-ubuntu1604-helm-ocata:
             dependencies:
-              - contrail-build-test-containers
+              - contrail-vnc-build-package-centos74
     gate:
       queue: contrail-vnc
       jobs:
@@ -259,9 +256,6 @@
     experimental:
       jobs:
         - contrail-vnc-build-package-centos74
-        - contrail-build-test-containers:
-            dependencies:
-              - contrail-vnc-build-package-centos74
 
 - project:
     name: Juniper/contrail-fabric-utils
@@ -343,22 +337,18 @@
       jobs:
         - contrail-sanity-centos7-kolla-queens-multinode:
             dependencies:
-              - contrail-build-containers-centos7-queens
-              - contrail-build-test-containers
+              - contrail-vnc-build-package-centos74
         - contrail-windows-test-cad:
             voting: False
     experimental:
       jobs:
         - contrail-vnc-build-package-centos74
-        - contrail-build-test-containers:
-            dependencies:
-              - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-kolla-ocata:
             dependencies:
-              - contrail-build-test-containers
+              - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-k8s:
             dependencies:
-              - contrail-build-test-containers
+              - contrail-vnc-build-package-centos74
 
 - project:
     name: Juniper/contrail-container-builder
@@ -424,8 +414,7 @@
       jobs:
         - contrail-sanity-centos7-kolla-queens-multinode:
             dependencies:
-              - contrail-build-containers-centos7-queens
-              - contrail-build-test-containers
+              - contrail-vnc-build-package-centos74
 
 - project:
     name: Juniper/contrail-helm-deployer

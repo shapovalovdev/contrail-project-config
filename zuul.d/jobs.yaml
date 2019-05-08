@@ -175,7 +175,7 @@
       - Juniper/contrail-container-builder
       - Juniper/contrail-deployers-containers
       - Juniper/contrail-test
-    pre-run: playbooks/contrail-base2/pre.yaml
+    pre-run: playbooks/contrail/ci-variables-init.yaml
     run: playbooks/packaging/contrail-vnc-el.yaml
     secrets:
       - name: nexus_credentials
