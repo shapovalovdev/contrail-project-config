@@ -13,3 +13,4 @@ unzip:
 wget:
 dhcp-client:
 gdisk:
+virtualenv:
