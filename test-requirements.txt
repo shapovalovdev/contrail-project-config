@@ -10,3 +10,7 @@ ansible-lint==3.5.1
 bashate>=0.2
 zuul-sphinx>=0.1.1
 ruamel.yaml>=0.15.85
+
+# upper versions requires python>=3.5.3 but we have 3.5.2 due to ubuntu 16.04
+yarl<1.2.1
+async-timeout<3.0
