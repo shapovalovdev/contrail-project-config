@@ -22,22 +22,25 @@
         - contrail-vnc-build-package-centos74:
             dependencies:
               - ci-variables-init
+
+#        - contrail-sanity-centos7-kolla-ocata:
+#            dependencies:
+#              - ci-variables-init
+#        - contrail-sanity-centos7-k8s:
+#            dependencies:
+#              - ci-variables-init
         - contrail-sanity-centos7-kolla-ocata:
             dependencies:
-              - ci-variables-init
-#              - contrail-vnc-build-package-centos74
+              - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-kolla-queens:
             dependencies:
-              - ci-variables-init
-#              - contrail-vnc-build-package-centos74
+              - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-kolla-rocky:
             dependencies:
-              - ci-variables-init
-#              - contrail-vnc-build-package-centos74
+              - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-k8s:
             dependencies:
-              - ci-variables-init
-#              - contrail-vnc-build-package-centos74
+              - contrail-vnc-build-package-centos74
 
     gate:
       queue: contrail-vnc
@@ -76,8 +79,7 @@
               - ci-variables-init
         - contrail-sanity-ubuntu1604-helm-ocata:
             dependencies:
-              - ci-variables-init
-#              - contrail-vnc-build-package-centos74
+              - contrail-vnc-build-package-centos74
     gate:
       queue: contrail-vnc
       jobs:
