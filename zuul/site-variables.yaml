@@ -2,7 +2,7 @@
 zuul_site_mirror_fqdn: 10.84.56.27
 #zuul_site_mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.opencontrail.org"
 nexus:
-  fqdn: 'ci-nexus.englab.juniper.net'
+  fqdn: 'ci-nexus'
   ip: '10.84.5.85'
   registry:
     tungsten_ci: 5001
@@ -24,3 +24,8 @@ zuul_log_url: "http://pnexus.sytes.net:8082"
 gerrit:
   scheme: "http"
 image_web_server: 10.84.5.120
+
+# input parameters for configure-mirrors
+mirror_fqdn: "{{ ci-nexus }}/repository"
+pypi_mirror: "http://{{ ci-nexus }}/repository/pypi/simple"
+wheel_mirror: ""
