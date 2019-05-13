@@ -11,6 +11,7 @@
     - add-build-sshkey
     - start-zuul-console
     - configure-hosts-entries
+    - configure-mirrors-contrail
     - validate-host
     - gitlog-upload
 - hosts: all
