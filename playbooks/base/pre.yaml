@@ -9,7 +9,7 @@
   roles:
     - add-build-sshkey
     - configure-hosts-entries
-    - configure-mirrors-contrail
+    - configure-mirrors
     - role: configure-maven-proxy
       maven_repo_mirror_url: 'http://{{ nexus.fqdn }}/repository/{{ nexus.repos.maven }}/'
     - validate-host
