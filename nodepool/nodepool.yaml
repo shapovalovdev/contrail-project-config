@@ -1,6 +1,8 @@
 elements-dir: /etc/nodepool/elements
 images-dir: /opt/nodepool_dib
 
+build-log-retention: 20
+
 cron:
   cleanup: '*/1 * * * *'
   check:   '*/15 * * * *'
