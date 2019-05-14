@@ -220,8 +220,6 @@ diskimages:
   - name: ubuntu-trusty
     elements:
       - ubuntu
-      - block-device-mbr-ext3
-      - trusty-hooks
       - vm
       - growroot
       - nodepool-base
@@ -231,6 +229,7 @@ diskimages:
       - qcow2
     env-vars:
       TMPDIR: /opt/dib_tmp
+      FS_TYPE: ext3
       DIB_CHECKSUM: '1'
       DIB_IMAGE_CACHE: /opt/dib_cache
       DIB_APT_LOCAL_CACHE: '0'
