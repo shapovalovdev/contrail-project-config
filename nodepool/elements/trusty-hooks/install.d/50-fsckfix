@@ -1,12 +1,12 @@
 #!/bin/bash
 
-DIB_RELEASE=${DIB_RELEASE:-}
-echo "fsckfix: ${DIB_RELEASE}"
-
 if [ 'trusty' == $DIB_RELEASE ]; then
     echo Automatically repair filesystems with inconsistencies during boot
     echo FSCKFIX=yes > /etc/default/rcS
 
     echo Trace /etc/default/rcS
     cat /etc/default/rcS
+
+    echo Trace /lib/init/vars.sh
+    cat /lib/init/vars.sh
 fi
