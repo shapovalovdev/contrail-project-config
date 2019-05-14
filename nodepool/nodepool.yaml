@@ -220,6 +220,7 @@ diskimages:
   - name: ubuntu-trusty
     elements:
       - ubuntu
+      - trusty-hooks
       - vm
       - growroot
       - nodepool-base
