@@ -7,6 +7,8 @@ if [ 'trusty' == $DIB_RELEASE ]; then
     echo Trace /etc/default/rcS
     cat /etc/default/rcS
 
+    sed -i 's/FSCKFIX=no/FSCKFIX=yes/' /lib/init/vars.sh
+
     echo Trace /lib/init/vars.sh
     cat /lib/init/vars.sh
 fi
