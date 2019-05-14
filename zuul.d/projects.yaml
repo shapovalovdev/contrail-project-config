@@ -34,8 +34,8 @@
 #              - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-k8s:
             dependencies:
-              - ci-variables-init
-#              - contrail-vnc-build-package-centos74
+#              - ci-variables-init
+              - contrail-vnc-build-package-centos74
 
     gate:
       queue: contrail-vnc
