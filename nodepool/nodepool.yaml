@@ -220,6 +220,7 @@ diskimages:
   - name: ubuntu-trusty
     elements:
       - ubuntu
+      - block-device-mbr-ext3
       - trusty-hooks
       - vm
       - growroot
