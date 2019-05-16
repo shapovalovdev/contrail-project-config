@@ -69,13 +69,13 @@
     check:
       jobs:
         - ci-variables-init
-        - contrail-vnc-build-package-centos74:
-            dependencies:
-              - ci-variables-init
-        - contrail-sanity-ubuntu1604-helm-ocata:
-            dependencies:
-              - ci-variables-init
-#              - contrail-vnc-build-package-centos74
+#        - contrail-vnc-build-package-centos74:
+#            dependencies:
+#              - ci-variables-init
+#        - contrail-sanity-ubuntu1604-helm-ocata:
+#            dependencies:
+#              - ci-variables-init
+##              - contrail-vnc-build-package-centos74
     gate:
       queue: contrail-vnc
       jobs:
