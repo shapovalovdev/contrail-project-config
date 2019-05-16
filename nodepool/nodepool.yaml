@@ -236,5 +236,3 @@ diskimages:
       DIB_DISTRIBUTION_MIRROR: 'http://nexus/repository/ubuntu'
       DIB_DEBOOTSTRAP_EXTRA_ARGS: '--no-check-gpg'
       DIB_DEBIAN_COMPONENTS: 'main,universe'
-      LC_ALL: 'en_US.UTF-8'
-      LANG: 'en_US.UTF-8'
