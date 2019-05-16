@@ -1,6 +1,6 @@
 automake:
 build-essential:
-default-jre:
+default-jdk:
 devscripts:
 equivs:
 git:
