@@ -10,7 +10,7 @@ if [[ $DISTRO_NAME = "ubuntu" || $DISTRO_NAME = "debian" ]]; then
     add-apt-repository ppa:openjdk-r/ppa
     apt-get update
     apt-get install -y openjdk-8-jdk
-    update-java-alternatives --list
+    update-java-alternatives --list || /bin/true
 else
     yum install -y default-jdk
 fi
