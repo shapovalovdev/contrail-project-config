@@ -11,6 +11,4 @@ if [[ $DISTRO_NAME = "ubuntu" || $DISTRO_NAME = "debian" ]]; then
     apt-get update
     apt-get install -y openjdk-8-jdk
     update-java-alternatives --list || /bin/true
-else
-    yum install -y default-jdk
 fi
