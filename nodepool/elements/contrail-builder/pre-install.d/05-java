@@ -6,14 +6,11 @@ fi
 set -eu
 set -o pipefail
 
-case "$DISTRO_NAME" in
-  'ubuntu'|'debian')
+if [[ $DISTRO_NAME = "ubuntu" || $DISTRO_NAME = "debian" ]]; then
     add-apt-repository ppa:openjdk-r/ppa
     apt-get update
     apt-get install -y openjdk-8-jdk
     update-java-alternatives --list
-    ;;
-  'fedora'|'centos'|'centos7'|'opensuse')
+else
     yum install -y default-jdk
-    ;;
-esac
+fi
