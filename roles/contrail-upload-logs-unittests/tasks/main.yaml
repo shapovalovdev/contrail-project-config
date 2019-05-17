@@ -26,8 +26,6 @@
 - name: Send summary logs to the executor
   synchronize:
     mode: pull
-    owner: no
-    group: no
     src: "{{ item.path }}.gz"
     dest: "{{ zuul.executor.log_root }}/"
   with_items: "{{ loglist.files }}"
@@ -40,8 +38,7 @@
 - name: Send unittest logs to the executor
   synchronize:
     mode: pull
-    owner: no
-    group: no
+    recursive: yes
     src: "{{ ansible_env.HOME }}/unittests-logs"
     dest: "{{ zuul.executor.log_root }}/"
     rsync_opts:

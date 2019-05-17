@@ -15,8 +15,6 @@
 - name: Send logs to the executor
   synchronize:
     mode: pull
-    owner: no
-    group: no
     src: "{{ item.path }}.gz"
     dest: "{{ zuul.executor.log_root }}/docker/"
   with_items: "{{ loglist.files }}"
