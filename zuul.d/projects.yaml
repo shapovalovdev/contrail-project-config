@@ -152,8 +152,9 @@
     name: windows-sanity
     check:
       jobs:
-        - contrail-sanity-win2016:
-            voting: False
+        - noop
+#        - contrail-sanity-win2016:
+#            voting: False
     gate:
       queue: contrail-vnc
       jobs:
