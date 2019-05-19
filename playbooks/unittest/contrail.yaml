@@ -1,11 +1,12 @@
 ---
 
-- hosts: all
+- hosts: localhost
   roles:
-    - dump-key
-    - skip-job
+    - role: skip-job
       vars:
         job_name: 'contrail-vnc-build-unittest-ubuntu-trusty'
+
+- hosts: all
     - contrail-common-libs
     - contrail-controller-hacks
     - packaging-prepare-contrail
