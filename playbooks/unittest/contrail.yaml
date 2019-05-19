@@ -7,8 +7,8 @@
         job_name: 'contrail-vnc-build-unittest-ubuntu-trusty'
 
 - hosts: all
+  roles:
     - contrail-common-libs
     - contrail-controller-hacks
     - packaging-prepare-contrail
     - contrail-unittests
-
