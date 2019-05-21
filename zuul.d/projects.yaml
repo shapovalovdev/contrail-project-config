@@ -2,7 +2,7 @@
     name: unittests
     check:
       jobs:
-        - contrail-vnc-build-unittest-ubuntu-xenial
+        - contrail-vnc-build-unittest-ubuntu-trusty
     gate:
       queue: contrail-vnc
       jobs:
@@ -22,17 +22,15 @@
         - contrail-vnc-build-package-centos74:
             dependencies:
               - ci-variables-init
-        - contrail-sanity-centos7-kolla-ocata:
-            dependencies:
-              - ci-variables-init
+#        - contrail-sanity-centos7-kolla-ocata:
+#            dependencies:
 #              - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-kolla-queens:
             dependencies:
               - ci-variables-init
 #              - contrail-vnc-build-package-centos74
-        - contrail-sanity-centos7-kolla-rocky:
-            dependencies:
-              - ci-variables-init
+#        - contrail-sanity-centos7-kolla-rocky:
+#            dependencies:
 #              - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-k8s:
             dependencies:
@@ -76,8 +74,7 @@
               - ci-variables-init
         - contrail-sanity-ubuntu1604-helm-ocata:
             dependencies:
-              - ci-variables-init
-#              - contrail-vnc-build-package-centos74
+              - contrail-vnc-build-package-centos74
     gate:
       queue: contrail-vnc
       jobs:
@@ -155,8 +152,9 @@
     name: windows-sanity
     check:
       jobs:
-        - contrail-sanity-win2016:
-            voting: False
+        - noop
+#        - contrail-sanity-win2016:
+#            voting: False
     gate:
       queue: contrail-vnc
       jobs:

@@ -11,7 +11,7 @@
       fileserver: '{{ site_logs }}'
 
 - hosts: '{{ site_logs.fqdn }}'
-  gather_facts: False
+  gather_facts: false
   roles:
     - role: upload-docs
       zuul_docserver_root: '/var/www/static/infra-doc'

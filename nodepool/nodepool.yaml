@@ -61,13 +61,13 @@ providers:
           - data
         labels:
           - name: centos-7-4-builder
-            flavor-name: v2-highcpu-16
+            flavor-name: v2-standard-8
             diskimage: centos-7-4
             console-log: True
             key-name: ci-infra-shared-key
             boot-from-volume: 1
           - name: centos-7-4-builder-c
-            flavor-name: v2-highcpu-16
+            flavor-name: v2-standard-8
             diskimage: centos-7-4
             console-log: True
             key-name: ci-infra-shared-key
@@ -227,6 +227,7 @@ diskimages:
       - qcow2
     env-vars:
       TMPDIR: /opt/dib_tmp
+      FS_TYPE: ext3
       DIB_CHECKSUM: '1'
       DIB_IMAGE_CACHE: /opt/dib_cache
       DIB_APT_LOCAL_CACHE: '0'

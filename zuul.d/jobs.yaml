@@ -77,8 +77,12 @@
 
 - job:
     name: contrail-vnc-base
-    branches: ^R5\.0$
+    branches:
+      - ^R5\.0$
+      - ^contrail_dpdk_17_11_3$
+      - ^release-3.9-contrail$
     parent: contrail-base-untrusted
+    override-checkout: R5.0
     description: |
       A base job that prepares Contrail VNC sandbox using Android repo,
       as opposed to the contrail-src-base job that copies the sources directly.
@@ -121,7 +125,7 @@
 
 - job:
     name: contrail-vnc-base
-    branches: ^(?!R5\.0).*$
+    branches: ^(?!(R5\.0|contrail_dpdk_17_11_3|release-3\.9-contrail)).*$
     parent: contrail-base-untrusted
     description: |
       A base job that prepares Contrail VNC sandbox using Android repo,
@@ -191,8 +195,10 @@
           label: ubuntu-xenial-builder
 
 - job:
-    name: contrail-vnc-build-unittest-ubuntu-xenial
-    branches: ^R5\.0$
+    name: contrail-vnc-build-unittest-ubuntu-trusty
+    branches:
+      - ^R5\.0$
+      - ^contrail_dpdk_17_11_3$
     required-projects:
       - Juniper/contrail-api-client
       - Juniper/contrail-build
@@ -216,11 +222,11 @@
     nodeset:
       nodes:
         - name: builder
-          label: ubuntu-xenial-builder
+          label: ubuntu-trusty-builder
 
 - job:
-    name: contrail-vnc-build-unittest-ubuntu-xenial
-    branches: ^(?!R5\.0).*$
+    name: contrail-vnc-build-unittest-ubuntu-trusty
+    branches: ^(?!(R5\.0|contrail_dpdk_17_11_3)).*$
     required-projects:
       - Juniper/contrail-api-client
       - Juniper/contrail-build
@@ -244,7 +250,7 @@
     nodeset:
       nodes:
         - name: builder
-          label: ubuntu-xenial-builder
+          label: ubuntu-trusty-builder
 
 - job:
     name: contrail-vnc-unittest-webui

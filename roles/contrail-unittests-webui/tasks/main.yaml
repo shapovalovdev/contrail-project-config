@@ -9,7 +9,7 @@
   lineinfile:
     dest: /etc/hosts
     line: "{{ ansible_default_ipv4.address }} {{ ansible_hostname }}"
-  become: True
+  become: true
   become_user: root
 
 - name: Copy over unittest scripts to the builder VM
@@ -26,21 +26,21 @@
     description: Google Chrome
     file: google-chrome
     baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
-    enabled: yes
-    gpgcheck: no
-  become: yes
+    enabled: true
+    gpgcheck: false
+  become: true
 
 - name: install the Development tools package group
   yum:
     name: "@Development tools"
     state: present
-  become: True
+  become: true
 
 - name: Install additional packages used by unittest scripts
   package:
     name: "{{ item }}"
     state: present
-  become: True
+  become: true
   become_user: root
   with_items:
     - nodejs-0.10.35
@@ -50,7 +50,7 @@
 
 - name: Run unittest script
   command: "{{ ansible_env.HOME }}/contrail-webui-unittest.sh"
-  become: yes
+  become: true
   environment:
     USER: root
     WORKSPACE: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"

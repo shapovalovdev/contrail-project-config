@@ -17,8 +17,7 @@
     src: "{{ ansible_env.HOME }}/logs"
     dest: "{{ zuul.executor.log_root }}/webui-unittests-logs"
     mode: pull
-    owner: no
-    group: no
+    recursive: true
   when: testrunner_logdir.stat.isdir is defined and testrunner_logdir.stat.isdir
   become: true
 
@@ -33,8 +32,7 @@
     src: "{{ ansible_env.HOME}}/test-reports"
     dest: "{{ zuul.executor.log_root }}/webui-unittests-logs"
     mode: pull
-    owner: no
-    group: no
+    recursive: true
   when: test_reports_dir.stat.isdir is defined and test_reports_dir.stat.isdir
   become: true
 
@@ -49,8 +47,7 @@
     src: "{{ ansible_env.HOME}}/coverage-reports"
     dest: "{{ zuul.executor.log_root }}/webui-unittests-logs"
     mode: pull
-    owner: no
-    group: no
+    recursive: true
   when: coverage_reports_dir.stat.isdir is defined and coverage_reports_dir.stat.isdir
   become: true
 

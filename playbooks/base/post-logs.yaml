@@ -7,7 +7,7 @@
     - emit-ara-html
 
 - hosts: "{{ site_logs.fqdn }}"
-  gather_facts: False
+  gather_facts: false
   roles:
     - role: upload-logs
       zuul_log_url: "{{ zuul_log_url }}"

@@ -42,31 +42,6 @@
     - queens
     - rocky
 
-- name: Push build to dockerhub
-  when: "contrail_packaging.version.public == 'master'"
-  block:
-    - name: Log in to dockerhub
-      command: "docker login -u {{ dockerhub.username }} -p {{ dockerhub.password }}"
-      no_log: true
-      become: true
-
-    - name: Push to Dockerhub
-      shell: |
-        . venv/bin/activate
-        python36 publisher.py --config publisher-dockerhub-config.yaml --build-registry {{ contrail_docker_registry }} --release {{ contrail_packaging.version.public }} --build {{ build_number }} --openstack_release {{ item }}
-      become: true
-      args:
-        chdir: "{{ publisher_path }}"
-      with_items:
-        - newton
-        - ocata
-        - queens
-        - rocky
-
-    - name: Log out of Dockerhub
-      command: "docker logout"
-      become: true
-
 - name: Show the list of docker images
   command: docker images
   become: true
