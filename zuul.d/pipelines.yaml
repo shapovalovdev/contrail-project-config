@@ -50,6 +50,15 @@
             - ^production$
           comment: (?i)recheck(( (?:bug|lp)[\s#:]*(\d+))|( zuulv3)|( no bug))?(\s+clean)?\s*$
 
+      opencontrail_gerrit:
+        - event: patchset-created
+          branch:
+            - ^master$
+        - event: comment-added
+          branch:
+            - ^master$
+          comment: (?i)recheck(( (?:bug|lp)[\s#:]*(\d+))|( zuulv3)|( no bug))?(\s+clean)?\s*$
+
     start:
       gerrit:
         Verified: 0
