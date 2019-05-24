@@ -22,20 +22,18 @@
         - contrail-vnc-build-package-centos74:
             dependencies:
               - ci-variables-init
-#        - contrail-sanity-centos7-kolla-ocata:
-#            dependencies:
-#              - contrail-vnc-build-package-centos74
+        - contrail-sanity-centos7-kolla-ocata:
+            dependencies:
+              - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-kolla-queens:
             dependencies:
-              - ci-variables-init
-#              - contrail-vnc-build-package-centos74
-#        - contrail-sanity-centos7-kolla-rocky:
-#            dependencies:
-#              - contrail-vnc-build-package-centos74
+              - contrail-vnc-build-package-centos74
+        - contrail-sanity-centos7-kolla-rocky:
+            dependencies:
+              - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-k8s:
             dependencies:
-              - ci-variables-init
-#              - contrail-vnc-build-package-centos74
+              - contrail-vnc-build-package-centos74
 
     gate:
       queue: contrail-vnc
@@ -515,6 +513,9 @@
         - build-third-party-rpms-centos7:
             files:
               - upstream/rpm/.*
+    experimental:
+      jobs:
+        - publish-third-party-packages
     post-merge:
       jobs:
         - publish-third-party-packages
