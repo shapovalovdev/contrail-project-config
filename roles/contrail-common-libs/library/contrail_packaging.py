@@ -60,7 +60,10 @@ def main():
         version['distrib'] = "ci{change}.{patchset}".format(
             change=change, patchset=patchset, date=date
         )
-        repo_name = "{change}-{patchset}".format(change=change, patchset=patchset)
+        if zuul['pipeline'] not in ['gate', 'experimental-sanity']:
+            repo_name = "{change}-{patchset}".format(change=change, patchset=patchset)
+        else:
+            repo_name = version['public']
     elif release_type == ReleaseType.NIGHTLY:
         version['distrib'] = "{}".format(build_number)
         repo_name = '{}-{}'.format(version['public'], build_number)

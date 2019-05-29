@@ -1,0 +1,4 @@
+---
+
+nexus_registry_port: '{{ nexus.registry.tungsten_gate_cache }}'
+nexus_registry_fqdn: '{{ nexus.fqdn }}'
