@@ -63,7 +63,7 @@ def main():
         if zuul['pipeline'] not in ['gate', 'experimental-sanity']:
             repo_name = "{change}-{patchset}".format(change=change, patchset=patchset)
         else:
-            repo_name = version['public']
+            repo_name = "{}-latest".format(version['public'])
     elif release_type == ReleaseType.NIGHTLY:
         version['distrib'] = "{}".format(build_number)
         repo_name = '{}-{}'.format(version['public'], build_number)
