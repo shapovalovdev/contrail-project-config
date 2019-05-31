@@ -6,6 +6,4 @@
 - hosts: localhost
   roles:
     - role: publish-rpm-nexus
-      remote_repo_path: '{{ nexus.repos.yum_tpc }}/{{ zuul.branch }}/source'
-    - role: run-nexus-script
-      nexus_task_uuid: '{{ nexus.scripts.yum_tpc.rebuild_metadata }}'
+      remote_repo_path: '{{ nexus.repos.yum_tpc_source }}/{{ zuul.branch }}'
