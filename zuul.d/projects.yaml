@@ -137,6 +137,16 @@
         - noop
 
 - project-template:
+    name: build-container-go
+    check:
+      jobs:
+        - noop
+    gate:
+      queue: contrail-vnc
+      jobs:
+        - noop
+
+- project-template:
     name: noops
     check:
       jobs:
