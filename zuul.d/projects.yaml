@@ -187,12 +187,12 @@
     name: Juniper/contrail-controller
     templates:
       - unittests
-#      - systests
+      - systests
 #      - windows-sanity
-#    check:
-#      jobs:
-#        - contrail-vnc-unittest-centos7-tntestr:
-#            voting: False
+    check:
+      jobs:
+        - contrail-vnc-unittest-centos7-tntestr:
+            voting: False
 
 - project:
     name: Juniper/contrail-generateDS
