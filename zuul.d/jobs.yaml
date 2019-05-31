@@ -181,9 +181,6 @@
       - Juniper/contrail-test
     pre-run: playbooks/contrail-base2/pre.yaml
     run: playbooks/packaging/contrail-vnc-el.yaml
-    secrets:
-      - name: nexus_credentials
-        secret: registry_tungsten_ci
 
 - job:
     name: contrail-vnc-specs-linter
@@ -314,9 +311,6 @@
     description: |
       A job containing access infomation for docker registry used for reviews.
     post-run: playbooks/contrail-build-containers-ci-base/post.yaml
-#    secrets:
-#      - name: pipeline_docker_registry
-#        secret: registry_tungsten_ci
 
 - job:
     name: publish-infra-doc
@@ -340,9 +334,6 @@
       - Juniper/contrail-zuul-jobs
     post-run: playbooks/publish-third-party-packages/post.yaml
     nodeset: builder-centos-7
-    secrets:
-      - name: nexus_credentials
-        secret: registry_tungsten_ci
 
 - job:
     name: trigger-win-base
