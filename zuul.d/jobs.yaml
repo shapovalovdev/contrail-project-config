@@ -178,6 +178,9 @@
       - Juniper/contrail-dev-env
       - Juniper/contrail-container-builder
       - Juniper/contrail-deployers-containers
+      - Juniper/openshift-ansible
+      - Juniper/contrail-ansible-deployer
+      - Juniper/contrail-kolla-ansible
       - Juniper/contrail-helm-deployer
       - Juniper/openstack-helm
       - Juniper/openstack-helm-infra
