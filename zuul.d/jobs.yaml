@@ -88,16 +88,21 @@
       as opposed to the contrail-src-base job that copies the sources directly.
     required-projects:
       - Juniper/contrail-analytics
+      - Juniper/contrail-ansible-deployer
       - Juniper/contrail-api-client
       - Juniper/contrail-build
       - Juniper/contrail-common
+      - Juniper/contrail-container-builder
       - Juniper/contrail-controller
+      - Juniper/contrail-deployers-containers
       - Juniper/contrail-fabric-utils
       - name: Juniper/contrail-dpdk
         override-checkout: contrail_dpdk_17_11_3
       - Juniper/contrail-generateDS
       - Juniper/contrail-heat
+      - Juniper/contrail-helm-deployer
       - Juniper/contrail-java-api
+      - Juniper/contrail-kolla-ansible
       - Juniper/contrail-neutron-plugin
       - Juniper/contrail-nova-vif-driver
       - Juniper/contrail-packages
@@ -109,6 +114,7 @@
       - Juniper/contrail-tripleo-puppet
       - Juniper/contrail-vcenter-plugin
       - Juniper/contrail-vcenter-manager
+      - Juniper/contrail-vcenter-fabric-manager
       - Juniper/contrail-vnc
       - Juniper/contrail-vrouter
       - Juniper/contrail-vrouter-java-api
@@ -118,6 +124,9 @@
       - Juniper/contrail-web-server-manager
       - Juniper/contrail-web-storage
       - Juniper/contrail-webui-third-party
+      - Juniper/openshift-ansible
+      - Juniper/openstack-helm
+      - Juniper/openstack-helm-infra
       - Juniper/vijava
     pre-run: playbooks/contrail/vnc-pre.yaml
     vars:
@@ -132,16 +141,21 @@
       as opposed to the contrail-src-base job that copies the sources directly.
     required-projects:
       - Juniper/contrail-analytics
+      - Juniper/contrail-ansible-deployer
       - Juniper/contrail-api-client
       - Juniper/contrail-build
       - Juniper/contrail-common
+      - Juniper/contrail-container-builder
       - Juniper/contrail-controller
+      - Juniper/contrail-deployers-containers
       - Juniper/contrail-fabric-utils
       - name: Juniper/contrail-dpdk
         override-checkout: contrail_dpdk_18_05_1
       - Juniper/contrail-generateDS
       - Juniper/contrail-heat
+      - Juniper/contrail-helm-deployer
       - Juniper/contrail-java-api
+      - Juniper/contrail-kolla-ansible
       - Juniper/contrail-neutron-plugin
       - Juniper/contrail-nova-vif-driver
       - Juniper/contrail-packages
@@ -153,6 +167,7 @@
       - Juniper/contrail-tripleo-puppet
       - Juniper/contrail-vcenter-plugin
       - Juniper/contrail-vcenter-manager
+      - Juniper/contrail-vcenter-fabric-manager
       - Juniper/contrail-vnc
       - Juniper/contrail-vrouter
       - Juniper/contrail-vrouter-java-api
@@ -162,6 +177,9 @@
       - Juniper/contrail-web-server-manager
       - Juniper/contrail-web-storage
       - Juniper/contrail-webui-third-party
+      - Juniper/openshift-ansible
+      - Juniper/openstack-helm
+      - Juniper/openstack-helm-infra
       - Juniper/vijava
     pre-run: playbooks/contrail/vnc-pre.yaml
 
@@ -176,15 +194,15 @@
       job are then added to the Juniper/contrail-packages project.
     required-projects:
       - Juniper/contrail-dev-env
+      - Juniper/contrail-ansible-deployer
       - Juniper/contrail-container-builder
       - Juniper/contrail-deployers-containers
-      - Juniper/openshift-ansible
-      - Juniper/contrail-ansible-deployer
-      - Juniper/contrail-kolla-ansible
       - Juniper/contrail-helm-deployer
+      - Juniper/contrail-kolla-ansible
+      - Juniper/contrail-test
+      - Juniper/openshift-ansible
       - Juniper/openstack-helm
       - Juniper/openstack-helm-infra
-      - Juniper/contrail-test
     pre-run: playbooks/contrail-base2/pre.yaml
     run: playbooks/packaging/contrail-vnc-el.yaml
 
