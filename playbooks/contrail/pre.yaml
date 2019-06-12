@@ -8,6 +8,7 @@
 - hosts: all
   roles:
     - contrail-common-libs
+    - disable-os-unattended-upgrades
     - add-build-sshkey
     - start-zuul-console
     - configure-hosts-entries
