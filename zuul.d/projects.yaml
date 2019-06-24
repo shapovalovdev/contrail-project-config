@@ -528,7 +528,7 @@
       - noops
 
 - project:
-    name: Juniper/contrail-dev-env
+    name: tungstenfabric/tf-dev-env
 
 - project:
     name: Juniper/contrail-vro-plugin

@@ -196,7 +196,7 @@
       Linux based distributions (CentOS, RHEL). Release-based variants of this
       job are then added to the Juniper/contrail-packages project.
     required-projects:
-      - Juniper/contrail-dev-env
+      - tungstenfabric/tf-dev-env
       - Juniper/contrail-ansible-deployer
       - Juniper/contrail-container-builder
       - Juniper/contrail-deployers-containers
