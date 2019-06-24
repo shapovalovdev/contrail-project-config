@@ -1,5 +1,6 @@
 - job:
     name: base-minimal
+    voting: false
     parent: null
     description: |
       A subset of what the 'base' job provides: the absolute minimum considered
@@ -24,6 +25,7 @@
 
 - job:
     name: base
+    voting: false
     parent: null
     description: |
       The base job all other OpenContrail jobs inherit from.
@@ -49,6 +51,7 @@
 
 - job:
     name: contrail-base
+    voting: false
     parent: null
     description: |
       A base job that prepares the builder
@@ -217,6 +220,7 @@
 
 - job:
     name: contrail-vnc-build-unittest-ubuntu-trusty
+    voting: false
     branches:
       - ^R5\.0$
       - ^contrail_dpdk_17_11_3$
@@ -247,6 +251,7 @@
 
 - job:
     name: contrail-vnc-build-unittest-ubuntu-trusty
+    voting: false
     branches: ^(?!(R5\.0|contrail_dpdk_17_11_3)).*$
     required-projects:
       - Juniper/contrail-api-client
@@ -317,6 +322,7 @@
 # Transition to contrail-base when all jobs are ported
 - job:
     name: contrail-base2
+    voting: false
     description: |
       A base job that prepares job environment to run contrail
       jobs (e.g. making version information available) as well as any
