@@ -187,9 +187,7 @@
       gerrit:
         Verified: -2
     footer-message: |
-      For more information about the OpenContrail CI system, see:
-      https://github.com/Juniper/contrail-project-config/wiki/OpenContrail-CI
-      Job live status page: http://zuulv3.opencontrail.org/
+      Job live status page: http://38.108.68.180:8080/
     window-floor: 20
     window-increase-factor: 2
 
