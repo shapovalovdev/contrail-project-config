@@ -362,7 +362,7 @@
       - noops
 
 - project:
-    name: Juniper/contrail-project-config
+    name: progmaticlab/contrail-project-config
     templates:
       - noops
     check:
