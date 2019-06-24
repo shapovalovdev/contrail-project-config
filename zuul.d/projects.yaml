@@ -544,21 +544,16 @@
     name: Juniper/contrail-third-party-packages
     check:
       jobs:
-        - build-third-party-rpms-centos7:
-            voting: False
+        - noop
+    experimental:
+      jobs:
+        - noop
+        - ctpp-per-review:
             files:
               - upstream/rpm/.*
     gate:
       jobs:
-        - build-third-party-rpms-centos7:
-            files:
-              - upstream/rpm/.*
-    experimental:
-      jobs:
-        - publish-third-party-packages:
-    post-merge:
-      jobs:
-        - publish-third-party-packages
+        - noop
 
 - project:
     name: Juniper/openshift-ansible
@@ -615,3 +610,4 @@
       - noops
 
 
+      
