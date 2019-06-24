@@ -2,7 +2,8 @@
     name: unittests
     check:
       jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty
+        - contrail-vnc-build-unittest-ubuntu-trusty:
+            voting: False
     gate:
       queue: contrail-vnc
       jobs:
@@ -12,26 +13,33 @@
     name: unittests-webui
     check:
       jobs:
-        - contrail-vnc-unittest-webui
+        - contrail-vnc-unittest-webui:
+            voting: False
 
 - project-template:
     name: systests
     check:
       jobs:
-        - ci-variables-init
+        - ci-variables-init:
+            voting: False
         - contrail-vnc-build-package-centos74:
+            voting: False
             dependencies:
               - ci-variables-init
         - contrail-sanity-centos7-kolla-ocata:
+            voting: False
             dependencies:
               - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-kolla-queens:
+            voting: False
             dependencies:
               - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-kolla-rocky:
+            voting: False
             dependencies:
               - contrail-vnc-build-package-centos74
         - contrail-sanity-centos7-k8s:
+            voting: False
             dependencies:
               - contrail-vnc-build-package-centos74
 
@@ -66,11 +74,14 @@
     name: helm-systests
     check:
       jobs:
-        - ci-variables-init
+        - ci-variables-init:
+            voting: False
         - contrail-vnc-build-package-centos74:
+            voting: False
             dependencies:
               - ci-variables-init
         - contrail-sanity-ubuntu1604-helm-ocata:
+            voting: False
             dependencies:
               - contrail-vnc-build-package-centos74
     gate:
@@ -92,11 +103,14 @@
     name: openshift-systests
     check:
       jobs:
-        - contrail-vnc-build-package-rhel7-queens
+        - contrail-vnc-build-package-rhel7-queens:
+            voting: False
         - contrail-build-containers-rhel7-queens:
+            voting: False
             dependencies:
               - contrail-vnc-build-package-rhel7-queens
         - contrail-build-test-containers:
+            voting: False
             dependencies:
               - contrail-vnc-build-package-rhel7-queens
     gate:
@@ -114,8 +128,10 @@
     name: build
     check:
       jobs:
-        - ci-variables-init
+        - ci-variables-init:
+            voting: False
         - contrail-vnc-build-package-centos74:
+            voting: False
             dependencies:
               - ci-variables-init
     gate:
@@ -127,8 +143,10 @@
     name: build-container
     check:
       jobs:
-        - ci-variables-init
+        - ci-variables-init:
+            voting: False
         - contrail-vnc-build-package-centos74:
+            voting: False
             dependencies:
               - ci-variables-init
     gate:
@@ -176,8 +194,9 @@
     check:
       jobs:
         - contrail-vnc-specs-linter:
-           files:
-             - specs/.*
+            voting: False
+            files:
+              - specs/.*
 
 - project:
     name: Juniper/contrail-common
@@ -217,7 +236,8 @@
       - systests
     check:
       jobs:
-        - contrail-vnc-build-package-rhel7-queens
+        - contrail-vnc-build-package-rhel7-queens:
+            voting: False
     gate:
       jobs:
         - contrail-vnc-build-package-rhel7-queens
@@ -234,7 +254,8 @@
       - noops
     check:
       jobs:
-        - contrail-vnc-specs-linter
+        - contrail-vnc-specs-linter:
+            voting: False
 
 - project:
     name: Juniper/contrail-vrouter
@@ -273,8 +294,10 @@
       - systests
     experimental:
       jobs:
-        - ci-variables-init
+        - ci-variables-init:
+            voting: False
         - contrail-vnc-build-package-centos74:
+            voting: False
             dependencies:
               - ci-variables-init
 
@@ -344,7 +367,8 @@
       - noops
     check:
       jobs:
-        - zuul-jobs-linters
+        - zuul-jobs-linters:
+            voting: False
     gate:
       queue: contrail-ci
       jobs:
@@ -357,6 +381,7 @@
     check:
       jobs:
         - contrail-sanity-centos7-kolla-queens-multinode:
+            voting: False
             dependencies:
               - contrail-vnc-build-package-centos74
         - contrail-windows-test-cad:
@@ -398,8 +423,9 @@
     check:
       jobs:
         - contrail-vnc-specs-linter:
-           files:
-             - specs/.*
+            voting: False
+            files:
+              - specs/.*
 
 - project:
     name: Juniper/contrail-webui-third-party
@@ -437,6 +463,7 @@
     check:
       jobs:
         - contrail-sanity-centos7-kolla-queens-multinode:
+            voting: False
             dependencies:
               - contrail-vnc-build-package-centos74
 
@@ -481,8 +508,10 @@
     name: Juniper/contrail-dpdk
     check:
       jobs:
-        - ci-variables-init
+        - ci-variables-init:
+            voting: False
         - contrail-vnc-build-package-centos74:
+            voting: False
             dependencies:
               - ci-variables-init
     gate:
@@ -516,6 +545,7 @@
     check:
       jobs:
         - build-third-party-rpms-centos7:
+            voting: False
             files:
               - upstream/rpm/.*
     gate:
@@ -525,7 +555,7 @@
               - upstream/rpm/.*
     experimental:
       jobs:
-        - publish-third-party-packages
+        - publish-third-party-packages:
     post-merge:
       jobs:
         - publish-third-party-packages
