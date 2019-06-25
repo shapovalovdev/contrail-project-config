@@ -333,6 +333,11 @@
       - build-container
 
 - project:
+    name: Juniper/contrail-vcenter-fabric-manager
+    templates:
+      - build-container
+
+- project:
     name: Juniper/contrail-docker
     templates:
       - systests
