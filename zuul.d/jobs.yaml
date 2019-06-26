@@ -187,10 +187,10 @@
     pre-run: playbooks/contrail/vnc-pre.yaml
 
 - job:
-    name: contrail-vnc-build-package-el-base
+    name: contrail-vnc-build-base
     parent: contrail-vnc-base
     description: |
-      Job that tests Contrail VNC (controller, analytics, etc.) packaging
+      Job that build Contrail VNC (controller, analytics, etc.)
 
       This is a base job for testing packaging of Contrail VNC for Enterprise
       Linux based distributions (CentOS, RHEL). Release-based variants of this
