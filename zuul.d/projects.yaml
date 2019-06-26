@@ -550,15 +550,22 @@
     check:
       jobs:
         - noop
-    experimental:
-      jobs:
-        - noop
-        - ctpp-per-review:
+        - build-third-party-rpms-centos7:
+            voting: False
             files:
               - upstream/rpm/.*
     gate:
       jobs:
         - noop
+        - build-third-party-rpms-centos7:
+            files:
+              - upstream/rpm/.*
+    experimental:
+      jobs:
+        - publish-third-party-packages
+    post-merge:
+      jobs:
+        - publish-third-party-packages
 
 - project:
     name: Juniper/openshift-ansible
@@ -615,4 +622,3 @@
       - noops
 
 
-      
