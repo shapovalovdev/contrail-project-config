@@ -7,7 +7,7 @@
           - Juniper/zuul-jobs:
               shadow: Juniper/contrail-project-config
           - Juniper/contrail-publisher
-          - Juniper/zuul:
+          - tungstenfabric/zuul:
               exclude:  ['pipeline', 'job', 'semaphore', 'project', 'secret', 'project-template', 'nodeset']
           - tungsten-infra/ci-utils
           - tungsten-infra/containerregistry
@@ -98,7 +98,7 @@
           - tungstenfabric-infra-preview/zuul-jobs:
               shadow: tungstenfabric-infra-preview/project-config
           - tungstenfabric-infra-preview/docker-publisher
-          - Juniper/zuul:
+          - tungstenfabric/zuul:
               exclude:  ['pipeline', 'job', 'semaphore', 'project', 'secret', 'project-template', 'nodeset']
           - tungstenfabric-infra-preview/ci-utils
           - tungstenfabric-infra-preview/containerregistry
