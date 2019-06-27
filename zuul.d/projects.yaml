@@ -312,6 +312,11 @@
       - noops
 
 - project:
+    name: Juniper/puppet-contrail
+    templates:
+      - noops
+
+- project:
     name: progmaticlab/contrail-project-config
     templates:
       - noops
