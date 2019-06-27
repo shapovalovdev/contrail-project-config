@@ -4,6 +4,8 @@
       jobs:
         - contrail-vnc-build-unittest-ubuntu-trusty:
             voting: False
+        - contrail-vnc-unittest-centos7-tntestr:
+            voting: False
     gate:
       queue: contrail-vnc
       jobs:
@@ -26,14 +28,6 @@
             voting: False
             dependencies:
               - ci-variables-init
-        - contrail-sanity-centos7-kolla-ocata:
-            voting: False
-            dependencies:
-              - contrail-vnc-build-centos74
-        - contrail-sanity-centos7-kolla-queens:
-            voting: False
-            dependencies:
-              - contrail-vnc-build-centos74
         - contrail-sanity-centos7-kolla-rocky:
             voting: False
             dependencies:
@@ -50,6 +44,15 @@
         - contrail-vnc-build-centos74:
             dependencies:
               - ci-variables-init
+        - contrail-sanity-centos7-kolla-ocata:
+            dependencies:
+              - contrail-vnc-build-centos74
+        - contrail-sanity-centos7-kolla-queens:
+            dependencies:
+              - contrail-vnc-build-centos74
+        - contrail-sanity-centos7-kolla-rocky:
+            dependencies:
+              - contrail-vnc-build-centos74
 
     experimental-sanity:
       jobs:
@@ -123,21 +126,6 @@
             vars:
               contrail_version: '{{ packaging.version.public }}-latest'
               contrail_docker_registry: '{{ docker_registry.fqdn }}:{{ docker_registry.port }}'
-
-- project-template:
-    name: build
-    check:
-      jobs:
-        - ci-variables-init:
-            voting: False
-        - contrail-vnc-build-centos74:
-            voting: False
-            dependencies:
-              - ci-variables-init
-    gate:
-      queue: contrail-vnc
-      jobs:
-        - noop
 
 - project-template:
     name: build-container
@@ -217,11 +205,7 @@
     templates:
       - unittests
       - systests
-#      - windows-sanity
-    check:
-      jobs:
-        - contrail-vnc-unittest-centos7-tntestr:
-            voting: False
+      - windows-sanity
 
 - project:
     name: Juniper/contrail-generateDS
@@ -307,21 +291,6 @@
       - systests
 
 - project:
-    name: Juniper/horizon
-    templates:
-      - systests
-
-- project:
-    name: Juniper/nova
-    templates:
-      - systests
-
-- project:
-    name: Juniper/contrail-puppet
-    templates:
-      - systests
-
-- project:
     name: Juniper/contrail-heat
     templates:
       - systests
@@ -338,31 +307,7 @@
       - build-container
 
 - project:
-    name: Juniper/contrail-docker
-    templates:
-      - systests
-      # validate-ansible
-
-- project:
-    name: Juniper/contrail-ansible
-    templates:
-      - systests
-      # validate-ansible
-
-- project:
-    name: Juniper/contrail-ansible-internal
-    templates:
-      - systests
-      # validate-ansible
-      # ansible-unittests
-
-- project:
     name: Juniper/contrail-community-docs
-    templates:
-      - noops
-
-- project:
-    name: Juniper/puppet-contrail
     templates:
       - noops
 
@@ -391,18 +336,6 @@
               - contrail-vnc-build-centos74
         - contrail-windows-test-cad:
             voting: False
-    experimental:
-      jobs:
-        - ci-variables-init
-        - contrail-vnc-build-centos74:
-            dependencies:
-              - ci-variables-init
-        - contrail-sanity-centos7-kolla-ocata:
-            dependencies:
-              - contrail-vnc-build-centos74
-        - contrail-sanity-centos7-k8s:
-            dependencies:
-              - contrail-vnc-build-centos74
 
 - project:
     name: Juniper/contrail-container-builder
@@ -451,17 +384,6 @@
       - systests
 
 - project:
-    name: Juniper/contrail-third-party-cache
-    templates:
-      - unittests-webui
-      - systests
-
-- project:
-    name: Juniper/contrail-server-manager
-    templates:
-      - noops
-
-- project:
     name: Juniper/contrail-kolla-ansible
     templates:
       - systests
@@ -480,7 +402,7 @@
 - project:
     name: Juniper/contrail-vnc
     templates:
-      - build
+      - build-container
 
 - project:
     name: Juniper/contrail-api-client
@@ -547,16 +469,16 @@
 
 - project:
     name: Juniper/contrail-third-party-packages
+    templates:
+      - noops
     check:
       jobs:
-        - noop
         - build-third-party-rpms-centos7:
             voting: False
             files:
               - upstream/rpm/.*
     gate:
       jobs:
-        - noop
         - build-third-party-rpms-centos7:
             files:
               - upstream/rpm/.*
