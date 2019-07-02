@@ -1,8 +1,0 @@
----
-
-- name: Verify connectivity to remote repo
-  wait_for:
-    host: "{{ zuul.project.canonical_hostname }}"
-    port: 29418
-    timeout: 10
-

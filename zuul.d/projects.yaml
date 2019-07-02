@@ -108,14 +108,6 @@
       jobs:
         - contrail-vnc-build-rhel7-queens:
             voting: False
-        - contrail-build-containers-rhel7-queens:
-            voting: False
-            dependencies:
-              - contrail-vnc-build-rhel7-queens
-        - contrail-build-test-containers:
-            voting: False
-            dependencies:
-              - contrail-vnc-build-rhel7-queens
     gate:
       queue: contrail-vnc
       jobs:
@@ -140,7 +132,10 @@
     gate:
       queue: contrail-vnc
       jobs:
-        - noop
+        - ci-variables-init
+        - contrail-vnc-build-centos74:
+            dependencies:
+              - ci-variables-init
 
 - project-template:
     name: build-container-go
@@ -461,6 +456,8 @@
 
 - project:
     name: tungstenfabric/tf-dev-env
+    templates:
+      - build-container
 
 - project:
     name: Juniper/contrail-vro-plugin

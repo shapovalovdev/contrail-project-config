@@ -132,8 +132,6 @@
       - Juniper/openstack-helm-infra
       - Juniper/vijava
     pre-run: playbooks/contrail/vnc-pre.yaml
-    vars:
-      tpc_branch: 'R5.0'
 
 - job:
     name: contrail-vnc-base
@@ -334,13 +332,6 @@
       - zuul: Juniper/zuul-jobs
       - zuul: progmaticlab/contrail-zuul-jobs
     timeout: 28800
-
-- job:
-    name: contrail-build-containers-ci-base
-    parent: contrail-build-containers-base
-    description: |
-      A job containing access infomation for docker registry used for reviews.
-    post-run: playbooks/contrail-build-containers-ci-base/post.yaml
 
 - job:
     name: publish-infra-doc

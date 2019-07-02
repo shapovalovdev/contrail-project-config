@@ -1,6 +1,0 @@
----
-
-- hosts: all
-  roles:
-    - zuulv3-self-test
-
