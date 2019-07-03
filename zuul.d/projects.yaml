@@ -433,21 +433,8 @@
 
 - project:
     name: Juniper/contrail-dpdk
-    check:
-      jobs:
-        - ci-variables-init:
-            voting: False
-        - contrail-vnc-build-centos74:
-            voting: False
-            dependencies:
-              - ci-variables-init
-    gate:
-      queue: contrail-vnc
-      jobs:
-        - ci-variables-init
-        - contrail-vnc-build-centos74:
-            dependencies:
-              - ci-variables-init
+    templates:
+      - build-container
 
 - project:
     name: Juniper/contrail-vrouter-java-api
