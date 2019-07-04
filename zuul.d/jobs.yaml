@@ -16,10 +16,7 @@
     roles:
       - zuul: Juniper/zuul-jobs
     timeout: 1800
-    nodeset:
-      nodes:
-        - name: ubuntu-xenial
-          label: ubuntu-xenial-small
+    nodeset: ubuntu-xenial-small
     secrets:
       - site_logs
 
@@ -42,10 +39,7 @@
       - zuul: Juniper/zuul-jobs
       - zuul: progmaticlab/contrail-zuul-jobs
     timeout: 28800
-    nodeset:
-      nodes:
-        - name: ubuntu-xenial
-          label: ubuntu-xenial-small
+    nodeset: ubuntu-xenial-small
     secrets:
       - site_logs
 
@@ -212,10 +206,6 @@
     name: contrail-vnc-specs-linter
     voting: false
     run: playbooks/contrail/specs.yaml
-    nodeset:
-      nodes:
-        - name: builder
-          label: ubuntu-xenial-builder
 
 - job:
     name: contrail-vnc-build-unittest-ubuntu-trusty
@@ -243,10 +233,7 @@
     run: playbooks/unittest/contrail.yaml
     post-run: playbooks/unittest/post.yaml
     timeout: 36000
-    nodeset:
-      nodes:
-        - name: builder
-          label: ubuntu-trusty-builder
+    nodeset: ubuntu-trusty
 
 - job:
     name: contrail-vnc-build-unittest-ubuntu-trusty
@@ -272,20 +259,14 @@
     run: playbooks/unittest/contrail.yaml
     post-run: playbooks/unittest/post.yaml
     timeout: 36000
-    nodeset:
-      nodes:
-        - name: builder
-          label: ubuntu-trusty-builder
+    nodeset: ubuntu-trusty
 
 - job:
     name: contrail-vnc-unittest-webui
     parent: contrail-vnc-base
     run: playbooks/unittest/webui.yaml
     post-run: playbooks/unittest/webui-post.yaml
-    nodeset:
-      nodes:
-        - name: builder
-          label: centos-7-4-builder
+    nodeset: builder-centos-7
 
 # XXX(kklimonda): temporary jobs to test periodic pipelines
 
@@ -310,10 +291,7 @@
 #      - Juniper/contrail-publisher
 #      - tungsten-infra/containerregistry
 #    run: playbooks/docker/publish-nightly.yaml
-#    nodeset:
-#      nodes:
-#        - name: builder
-#          label: centos-7-4-builder
+#    nodeset: builder-centos-7
 #    secrets:
 #      - docker_registry
 #      - dockerhub
@@ -367,7 +345,7 @@
     required-projects:
       - Juniper/contrail-windows
       - Juniper/contrail-windows-docker-driver
-    nodeset: ubuntu-xenial
+    nodeset: ubuntu-xenial-small
     vars:
       manifest_file: windows.xml
 #    secrets:
