@@ -188,7 +188,7 @@
       Linux based distributions (CentOS, RHEL). Release-based variants of this
       job are then added to the Juniper/contrail-packages project.
     required-projects:
-      - tungstenfabric/tf-dev-env
+      - name: tungstenfabric/tf-dev-env
         override-checkout: master
       - Juniper/contrail-ansible-deployer
       - Juniper/contrail-container-builder
