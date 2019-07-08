@@ -1,9 +1,6 @@
 - project-template:
     name: unittests
     check:
-      jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty:
-            voting: False
         - contrail-vnc-unittest-centos7-tntestr:
             voting: False
     gate:
