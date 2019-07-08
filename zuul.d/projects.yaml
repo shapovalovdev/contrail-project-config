@@ -1,6 +1,7 @@
 - project-template:
     name: unittests
     check:
+      jobs:
         - contrail-vnc-unittest-centos7-tntestr:
             voting: False
     gate:
