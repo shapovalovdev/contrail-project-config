@@ -15,7 +15,7 @@
       - playbooks/base-minimal/post-logs.yaml
     roles:
       - zuul: openstack-infra/zuul-jobs
-    timeout: 1800
+    timeout: 3600
     nodeset: ubuntu-xenial-small
     secrets:
       - site_logs
@@ -38,7 +38,7 @@
     roles:
       - zuul: openstack-infra/zuul-jobs
       - zuul: progmaticlab/contrail-zuul-jobs
-    timeout: 28800
+    timeout: 3600
     nodeset: ubuntu-xenial-small
     secrets:
       - site_logs
@@ -57,7 +57,7 @@
     roles:
       - zuul: openstack-infra/zuul-jobs
       - zuul: progmaticlab/contrail-zuul-jobs
-    timeout: 28800
+    timeout: 3600
     secrets:
       - site_logs
 
@@ -256,7 +256,7 @@
     roles:
       - zuul: openstack-infra/zuul-jobs
       - zuul: progmaticlab/contrail-zuul-jobs
-    timeout: 28800
+    timeout: 3600
 
 - job:
     name: publish-infra-doc
