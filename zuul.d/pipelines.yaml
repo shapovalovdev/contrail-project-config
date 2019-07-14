@@ -52,14 +52,14 @@
 
     start:
       gerrit:
-        Verified: 0
+        VerifiedTF: 0
     success:
       gerrit:
-        Verified: 1
+        VerifiedTF: 1
     failure:
       gerrit:
-        Verified: -1
-          
+        VerifiedTF: -1
+
     footer-message: |
       Job live status page: http://38.108.68.180:8080/
 
@@ -77,7 +77,7 @@
         open: True
         current-patchset: True
         approval:
-          - Verified: [1, 2, -2]
+          - VerifiedTF: [1, 2, -2]
             username: ^zuul$
           - Approved: 1
           - Code-Review: 2
@@ -147,7 +147,7 @@
             - ^stable/newton$
             - ^production$
           approval:
-            - Verified: 1
+            - VerifiedTF: 1
           username:
            - ^zuul$
            - ^codilime-ci$
@@ -175,14 +175,14 @@
             - Code-Review: 2
     start:
       gerrit:
-        Verified: 0
+        VerifiedTF: 0
     success:
       gerrit:
-        Verified: 2
+        VerifiedTF: 2
         submit: true
     failure:
       gerrit:
-        Verified: -2
+        VerifiedTF: -2
     footer-message: |
       Job live status page: http://38.108.68.180:8080/
     window-floor: 20
