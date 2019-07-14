@@ -4,7 +4,7 @@
   roles:
     - role: add-fileserver
       fileserver: "{{ site_logs }}"
-    - ara-report
+    - emit-ara-html
 
 - hosts: "{{ site_logs.fqdn }}"
   gather_facts: false

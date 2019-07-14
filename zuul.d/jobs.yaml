@@ -14,8 +14,8 @@
       - playbooks/base-minimal/post-ssh.yaml
       - playbooks/base-minimal/post-logs.yaml
     roles:
-      - zuul: openstack-infra/zuul-jobs
-    timeout: 3600
+      - zuul: Juniper/zuul-jobs
+    timeout: 1800
     nodeset: ubuntu-xenial-small
     secrets:
       - site_logs
@@ -36,7 +36,7 @@
       - playbooks/base/post-ssh.yaml
       - playbooks/base/post-logs.yaml
     roles:
-      - zuul: openstack-infra/zuul-jobs
+      - zuul: Juniper/zuul-jobs
       - zuul: progmaticlab/contrail-zuul-jobs
     timeout: 3600
     nodeset: ubuntu-xenial-small
@@ -55,7 +55,7 @@
       - playbooks/base/post-ssh.yaml
       - playbooks/base/post-logs.yaml
     roles:
-      - zuul: openstack-infra/zuul-jobs
+      - zuul: Juniper/zuul-jobs
       - zuul: progmaticlab/contrail-zuul-jobs
     timeout: 3600
     secrets:
@@ -69,7 +69,7 @@
       as opposed to the contrail-vnc-base job that uses Android repo to prepare the source tree.
     pre-run: playbooks/contrail/src-pre.yaml
     roles:
-      - zuul: openstack-infra/zuul-jobs
+      - zuul: Juniper/zuul-jobs
       - zuul: progmaticlab/contrail-zuul-jobs
 
 - job:
@@ -254,7 +254,7 @@
     pre-run: playbooks/contrail-base2/pre.yaml
     post-run: playbooks/contrail-base2/post.yaml
     roles:
-      - zuul: openstack-infra/zuul-jobs
+      - zuul: Juniper/zuul-jobs
       - zuul: progmaticlab/contrail-zuul-jobs
     timeout: 3600
 
