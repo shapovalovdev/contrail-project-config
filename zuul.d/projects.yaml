@@ -99,7 +99,7 @@
         - ci-variables-init
         - contrail-sanity-ubuntu1604-helm-ocata:
             dependencies:
-              - contrail-vnc-build-centos74
+              - ci-variables-init
     experimental-sanity:
       jobs:
         - contrail-sanity-ubuntu1604-helm-ocata:
