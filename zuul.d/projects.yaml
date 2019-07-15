@@ -79,6 +79,7 @@
     name: helm-systests
     check:
       jobs:
+        - zuul-jobs-linters
         - ci-variables-init:
             voting: False
         - contrail-vnc-build-centos74:
@@ -93,6 +94,12 @@
       queue: contrail-vnc
       jobs:
         - noop
+    experimental:
+      jobs:
+        - ci-variables-init:
+        - contrail-sanity-ubuntu1604-helm-ocata:
+            dependencies:
+              - contrail-vnc-build-centos74
     experimental-sanity:
       jobs:
         - contrail-sanity-ubuntu1604-helm-ocata:

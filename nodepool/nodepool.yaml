@@ -20,6 +20,8 @@ labels:
     min-ready: 0
   - name: ubuntu-xenial-xsmall
     min-ready: 0
+  - name: ubuntu-xenial-medium
+    min-ready: 0
   - name: ubuntu-xenial-large
     min-ready: 0
 
@@ -88,6 +90,12 @@ providers:
             boot-from-volume: 1
           - name: ubuntu-xenial-xsmall
             flavor-name: v2-standard-1
+            diskimage: ubuntu-xenial
+            console-log: True
+            key-name: ci-infra-shared-key
+            boot-from-volume: 1
+          - name: ubuntu-xenial-medium
+            flavor-name: v2-standard-4
             diskimage: ubuntu-xenial
             console-log: True
             key-name: ci-infra-shared-key
