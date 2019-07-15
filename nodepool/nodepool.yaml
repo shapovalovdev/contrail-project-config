@@ -10,18 +10,32 @@ zookeeper-servers:
     port: 2181
 
 labels:
-  - name: centos-7-4-builder
+  - name: centos-7-small
     min-ready: 0
-  - name: c7-systest-c
+  - name: centos-7-medium
     min-ready: 0
-  - name: rhel-7-builder
+  - name: centos-7-large
     min-ready: 0
-  - name: ubuntu-xenial-small
+  - name: rhel-7-medium
+    min-ready: 0
+  - name: ubuntu-xenial-xsmall
     min-ready: 0
   - name: ubuntu-xenial-large
     min-ready: 0
 
 providers:
+  #                CPU     Memory
+  # v2-standard-1   1       4 GB
+  # v2-standard-2   2       8 GB
+  # v2-standard-4   4       16 GB
+  # v2-standard-8   8       32 GB
+  # v2-standard-16  16      64 GB
+  # v2-highcpu-1    1       1 GB
+  # v2-highcpu-2    2       2 GB
+  # v2-highcpu-4    4       4 GB
+  # v2-highcpu-8    8       8 GB
+  # v2-highcpu-16   16      16 GB
+  # v2-highcpu-32   32      32 GB
   - name: tf-ci
     region-name: "sjc1"
     cloud: tf-ci
@@ -35,7 +49,6 @@ providers:
     hostname-format: '{label.name}-{provider.name}-{node.id}'
     diskimages:
       - name: centos-7
-      - name: centos-7-4
       - name: rhel-7
       - name: ubuntu-xenial
     pools:
@@ -49,25 +62,31 @@ providers:
           - api
           - data
         labels:
-          - name: centos-7-4-builder
-            flavor-name: v2-standard-8
-            diskimage: centos-7-4
+          - name: centos-7-small
+            flavor-name: v2-standard-2
+            diskimage: centos-7
             console-log: True
             key-name: ci-infra-shared-key
             boot-from-volume: 1
-          - name: c7-systest-c
-            flavor-name: v2-standard-8
-            diskimage: centos-7-4
+          - name: centos-7-medium
+            flavor-name: v2-standard-4
+            diskimage: centos-7
             console-log: True
             key-name: ci-infra-shared-key
             boot-from-volume: 1
-          - name: rhel-7-builder
+          - name: centos-7-large
+            flavor-name: v2-standard-8
+            diskimage: centos-7
+            console-log: True
+            key-name: ci-infra-shared-key
+            boot-from-volume: 1
+          - name: rhel-7-medium
             flavor-name: v2-standard-4
             diskimage: rhel-7
             console-log: True
             key-name: ci-infra-shared-key
             boot-from-volume: 1
-          - name: ubuntu-xenial-small
+          - name: ubuntu-xenial-xsmall
             flavor-name: v2-standard-1
             diskimage: ubuntu-xenial
             console-log: True
@@ -99,26 +118,8 @@ diskimages:
       DIB_EPEL_DISABLED: '0'
       DIB_YUM_MINIMAL_CREATE_INTERFACES: '0'
       DIB_INSTALLTYPE_pip_and_virtualenv: package
-  - name: centos-7-4
-    elements:
-      - centos7
-      - vm
-      - growroot
-      - epel
-      - cloud-init
-      - openssh-server
-      - nodepool-base
-      - contrail-builder
-    env-vars:
-      TMPDIR: /opt/dib_tmp
-      DIB_CHECKSUM: '1'
-      DIB_IMAGE_CACHE: /opt/dib_cache
-      DIB_GRUB_TIMEOUT: '0'
-      DIB_EPEL_DISABLED: '0'
-      DIB_YUM_MINIMAL_CREATE_INTERFACES: '0'
-      DIB_INSTALLTYPE_pip_and_virtualenv: package
   - name: rhel-7
-# TODO: Rework rhel7 jobs and image. Now centos-7-4 used instead of rhel7
+# TODO: Rework rhel7 jobs and image. Now centos-7 used instead of rhel7
 #    elements:
 #      - rhel7
 #      - rhel-common
