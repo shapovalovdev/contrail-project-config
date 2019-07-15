@@ -96,7 +96,7 @@
         - noop
     experimental:
       jobs:
-        - ci-variables-init:
+        - ci-variables-init
         - contrail-sanity-ubuntu1604-helm-ocata:
             dependencies:
               - contrail-vnc-build-centos74
