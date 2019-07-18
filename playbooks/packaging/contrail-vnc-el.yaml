@@ -1,6 +1,5 @@
 ---
 - hosts: builder
   roles:
-    - contrail-common-libs
     - zuul-include-vars
     - contrail-build-containers-devenv

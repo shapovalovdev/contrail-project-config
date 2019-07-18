@@ -1,6 +1,0 @@
----
-
-- hosts: all
-  roles:
-    - contrail-common-libs
-

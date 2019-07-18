@@ -170,11 +170,6 @@
     templates:
       - unittests
       - systests
-    check:
-      jobs:
-        - contrail-vnc-specs-linter:
-            files:
-              - specs/.*
 
 - project:
     name: Juniper/contrail-common
@@ -225,9 +220,6 @@
     name: Juniper/contrail-specs
     templates:
       - noops
-    check:
-      jobs:
-        - contrail-vnc-specs-linter
 
 - project:
     name: Juniper/contrail-vrouter
@@ -341,11 +333,6 @@
     templates:
       - unittests-webui
       - systests
-    check:
-      jobs:
-        - contrail-vnc-specs-linter:
-            files:
-              - specs/.*
 
 - project:
     name: Juniper/contrail-webui-third-party
