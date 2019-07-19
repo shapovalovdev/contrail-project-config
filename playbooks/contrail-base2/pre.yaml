@@ -12,7 +12,6 @@
         - fqdn: "{{ ansible_fqdn }}"
           address: "{{ ansible_all_ipv4_addresses[0] }}"
 
-# NOTE: here was site_pulp host
 - hosts: localhost
   roles:
     - zuul-include-vars

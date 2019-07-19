@@ -209,7 +209,7 @@
 - job:
     name: ci-variables-init
     parent: contrail-base-untrusted
-    run: playbooks/contrail/ci-variables-init.yaml
+    run: playbooks/contrail-base2/pre.yaml
 
 - job:
     name: build-variables-init
