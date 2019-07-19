@@ -430,7 +430,7 @@
       - noops
     check:
       jobs:
-        - build-third-party-rpms-centos7
+        - build-third-party-rpms-centos7:
             files:
               - upstream/rpm/.*
     gate:
