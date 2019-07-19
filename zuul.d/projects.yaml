@@ -415,6 +415,7 @@
 - project:
     name: Juniper/contrail-windows-docker-driver
     templates:
+      - noops
 
 - project:
     name: Juniper/contrail-vcenter-manager
@@ -424,6 +425,7 @@
 - project:
     name: Juniper/contrail-windows
     templates:
+      - noops
 
 - project:
     name: tungstenfabric/docs
