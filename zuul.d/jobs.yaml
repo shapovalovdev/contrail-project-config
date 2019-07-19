@@ -175,7 +175,7 @@
 
 - job:
     name: contrail-vnc-build-base
-    parent: contrail-vnc-base
+    parent: contrail-vnc-base2
     description: |
       Job that build Contrail VNC (controller, analytics, etc.)
 
@@ -199,17 +199,10 @@
 
 - job:
     name: contrail-vnc-unittest-webui
-    parent: contrail-vnc-base
+    parent: contrail-vnc-base2
     run: playbooks/unittest/webui.yaml
     post-run: playbooks/unittest/webui-post.yaml
     nodeset: worker-centos-7
-
-# XXX(kklimonda): temporary jobs to test periodic pipelines
-
-- job:
-    name: ci-variables-init
-    parent: contrail-base-untrusted
-    run: playbooks/contrail-base2/pre.yaml
 
 - job:
     name: build-variables-init
@@ -240,6 +233,7 @@
       jobs (e.g. making version information available) as well as any
       post tasks like uploading packages to the repository host, and
       containers to docker registries.
+      It copies artifacts dir from workers to executor as a post step.
     pre-run: playbooks/contrail-base2/pre.yaml
     post-run: playbooks/contrail-base2/post.yaml
     roles:

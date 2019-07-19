@@ -18,10 +18,7 @@
     name: systests
     check:
       jobs:
-        - ci-variables-init
-        - contrail-vnc-build-centos74:
-            dependencies:
-              - ci-variables-init
+        - contrail-vnc-build-centos74
         - contrail-sanity-centos7-kolla-queens:
             dependencies:
               - contrail-vnc-build-centos74
@@ -35,10 +32,7 @@
     gate:
       queue: contrail-vnc
       jobs:
-        - ci-variables-init
-        - contrail-vnc-build-centos74:
-            dependencies:
-              - ci-variables-init
+        - contrail-vnc-build-centos74
         - contrail-sanity-centos7-kolla-ocata:
             dependencies:
               - contrail-vnc-build-centos74
@@ -73,10 +67,7 @@
     check:
       jobs:
         - zuul-jobs-linters
-        - ci-variables-init
-        - contrail-vnc-build-centos74:
-            dependencies:
-              - ci-variables-init
+        - contrail-vnc-build-centos74
         - contrail-sanity-ubuntu1604-helm-ocata:
             dependencies:
               - contrail-vnc-build-centos74
@@ -86,10 +77,7 @@
         - noop
     experimental:
       jobs:
-        - ci-variables-init
-        - contrail-sanity-ubuntu1604-helm-ocata:
-            dependencies:
-              - ci-variables-init
+        - contrail-sanity-ubuntu1604-helm-ocata
     experimental-sanity:
       jobs:
         - contrail-sanity-ubuntu1604-helm-ocata:
@@ -121,17 +109,11 @@
     name: build-container
     check:
       jobs:
-        - ci-variables-init
-        - contrail-vnc-build-centos74:
-            dependencies:
-              - ci-variables-init
+        - contrail-vnc-build-centos74
     gate:
       queue: contrail-vnc
       jobs:
-        - ci-variables-init
-        - contrail-vnc-build-centos74:
-            dependencies:
-              - ci-variables-init
+        - contrail-vnc-build-centos74
 
 - project-template:
     name: build-container-go
