@@ -2,4 +2,6 @@
 - hosts: builder
   roles:
     - zuul-include-vars
+    - yum-repos-prepare
+    - install-pip-virtualenv
     - contrail-build-containers-devenv
