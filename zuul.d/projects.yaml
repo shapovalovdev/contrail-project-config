@@ -135,18 +135,6 @@
       jobs:
         - noop
 
-- project-template:
-    name: windows-sanity
-    check:
-      jobs:
-        - noop
-#        - contrail-sanity-win2016:
-#            voting: False
-    gate:
-      queue: contrail-vnc
-      jobs:
-        - noop
-
 - project:
     name: Juniper/contrail-analytics
     templates:
@@ -158,21 +146,18 @@
     templates:
       - unittests
       - systests
-      - windows-sanity
 
 - project:
     name: Juniper/contrail-build
     templates:
       - unittests
       - systests
-      - windows-sanity
 
 - project:
     name: Juniper/contrail-controller
     templates:
       - unittests
       - systests
-      - windows-sanity
 
 - project:
     name: Juniper/contrail-generateDS
@@ -208,14 +193,12 @@
     templates:
       - unittests
       - systests
-      - windows-sanity
 
 - project:
     name: Juniper/contrail-third-party
     templates:
       - unittests
       - systests
-      - windows-sanity
 
 - project:
     name: Juniper/contrail-neutron-plugin
@@ -291,8 +274,6 @@
         - contrail-sanity-centos7-kolla-queens-multinode:
             dependencies:
               - contrail-vnc-build-centos74
-        #- contrail-windows-test-cad:
-        #    voting: False
 
 - project:
     name: Juniper/contrail-container-builder
@@ -359,7 +340,6 @@
     templates:
       - unittests
       - systests
-      - windows-sanity
 
 - project:
     name: Juniper/contrail-java-api
@@ -435,7 +415,6 @@
 - project:
     name: Juniper/contrail-windows-docker-driver
     templates:
-      - windows-sanity
 
 - project:
     name: Juniper/contrail-vcenter-manager
@@ -445,7 +424,6 @@
 - project:
     name: Juniper/contrail-windows
     templates:
-      - windows-sanity
 
 - project:
     name: tungstenfabric/docs

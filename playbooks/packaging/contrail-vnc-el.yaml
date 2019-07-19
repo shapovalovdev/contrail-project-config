@@ -1,5 +1,0 @@
----
-- hosts: builder
-  roles:
-    - zuul-include-vars
-    - contrail-build-containers-devenv
