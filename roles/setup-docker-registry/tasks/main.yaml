@@ -9,6 +9,5 @@
 - name: 'Return registry location back to zuul for children jobs'
   zuul_return:
     data:
-      docker_registry_port: "{{ nexus_registry_port }}"
       contrail_docker_registry: "{{ nexus_registry_fqdn }}:{{ nexus_registry_port }}"
   delegate_to: localhost
