@@ -90,6 +90,7 @@
       - Juniper/openstack-helm-infra
     pre-run: playbooks/contrail-base2/pre.yaml
     run: playbooks/packaging/contrail-vnc-el.yaml
+    post-run: playbooks/packaging/contrail-vnc-el-post.yaml
 
 - job:
     name: contrail-vnc-unittest-webui

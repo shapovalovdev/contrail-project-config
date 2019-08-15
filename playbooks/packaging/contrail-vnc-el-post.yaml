@@ -1,0 +1,6 @@
+---
+- hosts: builder
+  tasks:
+  - include_role:
+      name: contrail-build-containers-devenv
+      tasks_from: fetch_logs
