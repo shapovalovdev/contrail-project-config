@@ -46,7 +46,6 @@
       A base job that prepares the builder
     pre-run: playbooks/contrail/pre.yaml
     post-run:
-      - playbooks/contrail/post.yaml
       - playbooks/base/post-ssh.yaml
       - playbooks/base/post-logs.yaml
     roles:
