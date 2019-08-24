@@ -138,6 +138,12 @@
       - systests
 
 - project:
+    name: tungstenfabric/analytics
+    templates:
+      - unittests
+      - systests
+
+- project:
     name: Juniper/contrail-common
     templates:
       - unittests
