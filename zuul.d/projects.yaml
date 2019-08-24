@@ -132,12 +132,6 @@
         - noop
 
 - project:
-    name: Juniper/contrail-analytics
-    templates:
-      - unittests
-      - systests
-
-- project:
     name: tungstenfabric/analytics
     templates:
       - unittests
