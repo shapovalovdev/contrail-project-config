@@ -61,10 +61,10 @@
             vars:
               contrail_version: '{{ packaging.version.public }}-latest'
               contrail_docker_registry: '{{ nexus.fqdn }}:{{ nexus.registry.tungsten_ci }}'
-        - contrail-charms-xenial:
-            vars:
-              contrail_version: '{{ packaging.version.public }}-latest'
-              contrail_docker_registry: '{{ nexus.fqdn }}:{{ nexus.registry.tungsten_ci }}'
+        #- contrail-charms-xenial:
+        #    vars:
+        #      contrail_version: '{{ packaging.version.public }}-latest'
+        #      contrail_docker_registry: '{{ nexus.fqdn }}:{{ nexus.registry.tungsten_ci }}'
 
 - project-template:
     name: helm-systests
