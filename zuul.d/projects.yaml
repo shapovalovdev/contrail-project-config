@@ -310,18 +310,6 @@
       - systests
 
 - project:
-    name: Juniper/contrail-web-server-manager
-    templates:
-      - unittests-webui
-      - systests
-
-- project:
-    name: Juniper/contrail-web-storage
-    templates:
-      - unittests-webui
-      - systests
-
-- project:
     name: Juniper/contrail-kolla-ansible
     templates:
       - systests
