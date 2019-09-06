@@ -154,6 +154,12 @@
       - systests
 
 - project:
+    name: tungstenfabric/common
+    templates:
+      - unittests
+      - systests
+
+- project:
     name: Juniper/contrail-build
     templates:
       - unittests
@@ -161,6 +167,12 @@
 
 - project:
     name: Juniper/contrail-controller
+    templates:
+      - unittests
+      - systests
+
+- project:
+    name: tungstenfabric/controller
     templates:
       - unittests
       - systests
@@ -331,6 +343,12 @@
 
 - project:
     name: Juniper/contrail-api-client
+    templates:
+      - unittests
+      - systests
+
+- project:
+    name: tungstenfabric/api-client
     templates:
       - unittests
       - systests
