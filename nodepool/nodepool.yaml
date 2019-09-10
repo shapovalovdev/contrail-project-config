@@ -154,18 +154,9 @@ diskimages:
       DIB_INSTALLTYPE_pip_and_virtualenv: package
   - name: rhel-7
 # TODO: Rework rhel7 jobs and image. Now centos-7 used instead of rhel7
-#    elements:
-#      - rhel7
-#      - rhel-common
-#      - vm
-#      - growroot
-#      - epel
-#      - cloud-init
-#      - openssh-server
-#      - nodepool-base
-#      - contrail-builder
     elements:
-      - centos7
+      - rhel7
+      - rhel-common
       - vm
       - growroot
       - epel
@@ -185,7 +176,7 @@ diskimages:
 #      REG_PASSWORD: password
 #      REG_METHOD: portal
 #      REG_POOL_ID: 12345
-#      DIB_LOCAL_IMAGE: /opt/cloud_images/image.qcow2
+      DIB_LOCAL_IMAGE: /opt/cloud_images/rhel76.qcow2
   - name: ubuntu-xenial
     elements:
       - ubuntu
