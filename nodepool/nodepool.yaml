@@ -172,11 +172,12 @@ diskimages:
       DIB_EPEL_DISABLED: '0'
       DIB_YUM_MINIMAL_CREATE_INTERFACES: '0'
       DIB_INSTALLTYPE_pip_and_virtualenv: package
+      DIB_LOCAL_IMAGE: /opt/cloud_images/rhel76.qcow2
+# Red Hat registration goes here
 #      REG_USER: username
 #      REG_PASSWORD: password
 #      REG_METHOD: portal
 #      REG_POOL_ID: 12345
-      DIB_LOCAL_IMAGE: /opt/cloud_images/rhel76.qcow2
   - name: ubuntu-xenial
     elements:
       - ubuntu
