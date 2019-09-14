@@ -354,12 +354,6 @@
       - systests
 
 - project:
-    name: Juniper/api-client
-    templates:
-      - unittests
-      - systests
-
-- project:
     name: Juniper/contrail-java-api
     templates:
       - build-container
