@@ -2,6 +2,13 @@
 
 - hosts: all
   roles:
+    - role: contrail-rh-reg
+      vars:
+        rh_reg_mode: unregister
+      when: ansible_distribution == "RedHat"
+
+- hosts: all
+  roles:
     - fetch-artifacts
 
 # NOTE: here was site_pulp host
