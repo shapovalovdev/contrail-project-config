@@ -4,6 +4,10 @@
   roles:
     - contrail-common-libs2
     - configure-hosts-entries
+    - role: contrail-rh-reg
+      vars:
+        rh_reg_mode: register
+      when: ansible_distribution == "RedHat"
 
 - hosts: all
   roles:

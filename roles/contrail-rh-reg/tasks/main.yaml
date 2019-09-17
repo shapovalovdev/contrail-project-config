@@ -1,0 +1,9 @@
+---
+- name: Register RHEL host
+  command: subscription-manager register {{ lookup('file', '/etc/zuul/rh_reg_options') }}
+  no_log: true
+  when: rh_reg_mode == "register"
+
+- name: Unregister RHEL host
+  command: subscription-manager unregister
+  when: rh_reg_mode == "unregister"
