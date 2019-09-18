@@ -1,16 +1,14 @@
 ---
 - name: Register RHEL host
   command: subscription-manager register {{ lookup('file', '/etc/zuul/rh_reg_options') }}
-  no_log: true
+#  no_log: true
   when: rh_reg_mode == "register"
   register: rh_reg
   failed_when: false
 
 - name: debug RHEL registration
   debug:
-    msg:
-      stdout: "{{ rh_reg.stdout }}"
-      stderr: "{{ rh_reg.stderr }}"
+    msg: "{{ rh_reg }}"
 
 - fail:
   when: rh_reg.rc != 0
