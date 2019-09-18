@@ -1,10 +1,10 @@
 ---
 
 - hosts: all
+  vars:
+    rh_reg_mode: unregister
   roles:
     - role: contrail-rh-reg
-      vars:
-        rh_reg_mode: unregister
       when: ansible_distribution == "RedHat"
 
 - hosts: all
