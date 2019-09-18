@@ -77,8 +77,8 @@
         open: True
         current-patchset: True
         approval:
-          - VerifiedDNM: [1, 2, -2]
-            username: ^zuul$-tf
+          - VerifiedTF: [1, 2, -2]
+            username: ^zuul-tf$
           - Approved: 1
           - Code-Review: 2
     trigger:
@@ -179,7 +179,7 @@
     success:
       gerrit:
         VerifiedTF: 2
-        submit: true
+        submit: false
     failure:
       gerrit:
         VerifiedTF: -2
