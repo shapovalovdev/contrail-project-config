@@ -8,10 +8,7 @@
 
 - name: debug RHEL registration
   debug:
-    msg: "{{ rh_reg }}"
-
-- fail:
-  when: rh_reg.rc != 0
+    msg: "{{ rh_reg | default('nothing') }}"
 
 - name: Unregister RHEL host
   command: subscription-manager unregister
