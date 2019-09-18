@@ -2,6 +2,8 @@
 
 - hosts: all
   roles:
+    - acquire-ip-address
+    - disable-os-unattended-upgrades
     - add-build-sshkey
-    - start-zuul-console
     - validate-host
+

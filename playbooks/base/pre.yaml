@@ -7,13 +7,12 @@
 
 - hosts: all
   roles:
-    - acquire-ip-address
     - disable-os-unattended-upgrades
     - add-build-sshkey
-    - validate-host
     - configure-hosts-entries
     - configure-mirrors-contrail
     - role: configure-maven-proxy
       maven_repo_mirror_url: 'http://{{ nexus.fqdn }}/repository/{{ nexus.repos.maven }}/'
+    - validate-host
     - prepare-workspace
     - gitlog-upload
