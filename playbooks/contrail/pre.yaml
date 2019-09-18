@@ -7,12 +7,12 @@
 
 - hosts: all
   roles:
+    - acquire-ip-address
     - disable-os-unattended-upgrades
     - add-build-sshkey
-    - start-zuul-console
+    - validate-host
     - configure-hosts-entries
     - configure-mirrors-contrail
-    - validate-host
     - gitlog-upload
 - hosts: all
   roles:
