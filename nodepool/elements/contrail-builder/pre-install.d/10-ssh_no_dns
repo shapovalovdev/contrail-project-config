@@ -8,7 +8,7 @@ set -o pipefail
 
 # Insert or replace options in sshd daemon options
 if [[ $DISTRO_NAME = "ubuntu" || $DISTRO_NAME = "debian" ]]; then
-    sed -i -n -e '/^SSHD_OPTS=/!p' -e '$aSSHD_OPTS="-u0"' /etc/defaults/ssh
+    sed -i -n -e '/^SSHD_OPTS=/!p' -e '$aSSHD_OPTS="-u0"' /etc/default/ssh
 else
     sed -i -n -e '/^OPTIONS=/!p' -e '$aOPTIONS="-u0"' /etc/sysconfig/sshd
 fi
