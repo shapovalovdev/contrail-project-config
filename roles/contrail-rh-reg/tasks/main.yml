@@ -1,9 +1,10 @@
 ---
 - name: Register RHEL host
   command: subscription-manager register {{ lookup('file', '/etc/zuul/rh_reg_options') }}
-  no_log: true
-  when: rh_reg_mode == "register"
+#  no_log: true
   register: rh_reg
+  become: true
+  when: rh_reg_mode == "register"
   failed_when: false
 
 - name: debug RHEL registration
@@ -15,4 +16,5 @@
 
 - name: Unregister RHEL host
   command: subscription-manager unregister
+  become: true
   when: rh_reg_mode == "unregister"
