@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ ${DIB_DEBUG_TRACE:-0} -gt 0 ]; then
+    set -x
+fi
+set -eu
+set -o pipefail
+
+# Insert or replace options in sshd daemon options
+if [[ $DISTRO_NAME = "ubuntu" || $DISTRO_NAME = "debian" ]]; then
+    sed -i -n -e '/^SSHD_OPTS=/!p' -e '$aSSHD_OPTS="-u0"' /etc/defaults/ssh
+else
+    sed -i -n -e '/^OPTIONS=/!p' -e '$aOPTIONS="-u0"' /etc/sysconfig/sshd
+fi
+
+# Insert or replace options in sshd_config
+sed -i -n -e '/^GSSAPIAuthentication/!p' -e '$aGSSAPIAuthentication no' /etc/ssh/sshd_config
+sed -i -n -e '/^UseDNS/!p' -e '$aUseDNS no' /etc/ssh/sshd_config
+
