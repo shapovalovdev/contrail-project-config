@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "Removing nameserver entries that were used in nodepool setup"
+sed -i '/^nameserver /d' resolv.conf
