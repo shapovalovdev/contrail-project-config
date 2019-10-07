@@ -149,8 +149,7 @@
           approval:
             - VerifiedTF: 1
           username:
-           - ^zuul$
-           - ^codilime-ci$
+           - ^zuul-tf$
         - event: comment-added
           branch:
             - ^master$
