@@ -1,0 +1,10 @@
+- name: install python deps
+  package:
+    name: python-requests
+    state: present
+- name: Run script to resolve the public build number
+  script: get_latest_build_number.py {{ docker_registry.fqdn }}:{{ docker_registry.port }} {{ zuul.branch }}
+  register: public_build_number
+- name: Extract the build number from script stdout
+  set_fact:
+    build_number: "{{ public_build_number.stdout_lines[0] }}"

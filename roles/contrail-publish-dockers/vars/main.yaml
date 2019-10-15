@@ -1,3 +1,15 @@
 ---
-publisher_path: "{{ ansible_env.HOME }}/src/github.com/Juniper/contrail-publisher"
-
+stable: false
+contrail_version: >-
+  {%- if zuul.change is defined -%}
+    {{ zuul.change }}-{{ zuul.patchset }}
+  {%- else -%}
+    {{ packaging.docker_version }}
+  {%- endif -%}
+contrail_docker_registry: "{{ nexus.fqdn }}:{{ nexus.registry.tungsten_ci }}"
+contrail_docker_registry_insecure: "{{ nexus.registry.insecure | default('true') }}"
+target_account_file_data: "/etc/zuul/dockerhub_account.yaml"
+# Might be an explicit list of containers for publishing (including registr & tags)
+# server:port/namespace/contaner:tag,...
+# auto - will try to enumerate containers in registry
+container_for_publishing: "auto"

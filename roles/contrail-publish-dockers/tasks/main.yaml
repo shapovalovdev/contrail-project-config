@@ -1,48 +1,55 @@
 ---
+- name: DBG 
+  debug:
+    msg: "contrail_packaging {{ contrail_packaging | default('') }} "
+  ignore_errors: true
 
-- name: install packages
+- name: DBG2
+  debug:
+    msg: "contrail_docker_registry {{ contrail_docker_registry }} contrail_version {{ contrail_version }} stable {{ stable }}"
+  ignore_errors: true
+
+- name: install required packages
   package:
-    name: "{{ item }}"
+    name: jq
     state: present
   become: true
-  with_items:
-    - epel-release
-    - python36
 
-- name: install virtualenv for publisher
-  command: python36 -m venv venv
-  args:
-    chdir: "{{ publisher_path }}"
+- name: check that the target account data file exists
+  stat:
+    path: "{{ target_account_file_data }}"
+  register: stat_result
+  delegate_to: localhost
 
-- name: install requirements
-  shell: |
-    . venv/bin/activate
-    pip install -r requirements.txt
-  args:
-    chdir: "{{ publisher_path }}"
+- name: load target account data file
+  include_vars:
+    file: "{{ target_account_file_data }}"
+  when: stat_result.stat.exists == True
+  delegate_to: localhost
 
-- name: copy publisher config
+- name: define containers publish tag as current date 
+  set_fact:
+    PUBLISH_TAG: "{{ ansible_date_time.date }}"
+  when: not stable
+
+- name: define containers publish tag as current date stable
+  set_fact:
+    PUBLISH_TAG: "{{ ansible_date_time.date }}-stable"
+  when: stable
+
+- name: copy publish script to target machine
   copy:
-    src: publisher-{{ item }}-config.yaml
-    dest: "{{ publisher_path }}/publisher-{{ item }}-config.yaml"
-  with_items:
-    - internal
-    - dockerhub
+    src: publish.sh
+    dest: "{{ ansible_env.HOME }}"
+    mode: 0755
 
-- name: Push to internal registry
-  shell: |
-    . venv/bin/activate
-    python36 publisher.py --config publisher-internal-config.yaml --build-registry {{ contrail_docker_registry }} --release {{ contrail_packaging.version.public }} --build {{ build_number }} --openstack_release {{ item }}
+- name: options for publishing
+  template:
+    src: "publish.env.j2"
+    dest: "{{ ansible_env.HOME }}/publish.env"
+
+- name: publish containers
+  command: ./publish.sh
   become: true
   args:
-    chdir: "{{ publisher_path }}"
-  with_items:
-    - newton
-    - ocata
-    - queens
-    - rocky
-
-- name: Show the list of docker images
-  command: docker images
-  become: true
-
+    chdir: "{{ ansible_env.HOME }}"

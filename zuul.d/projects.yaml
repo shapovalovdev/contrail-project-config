@@ -297,6 +297,49 @@
     name: Juniper/contrail-container-builder
     templates:
       - systests
+      - unittests-webui
+    periodic-nightly:
+      jobs:
+        - contrail-vnc-unittest-centos7-tntestr:
+            branches: master
+        - contrail-vnc-unittest-webui:
+            branches: master
+        - contrail-vnc-build-centos74:
+            branches: master
+        - tf-publish-containers-nightly:
+            branches: master
+            dependencies:
+              - contrail-vnc-build-centos74
+        - contrail-sanity-centos7-kolla-rocky:
+            branches: master
+            dependencies:
+              - contrail-vnc-build-centos74
+        - contrail-sanity-centos7-k8s:
+            branches: master
+            dependencies:
+              - contrail-vnc-build-centos74
+        - tf-publish-containers-stable-nightly:
+            branches: master
+            dependencies:
+              - contrail-vnc-unittest-centos7-tntestr
+              - contrail-vnc-unittest-webui
+              - contrail-sanity-centos7-kolla-rocky
+              - contrail-sanity-centos7-k8s
+
+# - generate-build-change-info:
+#     voting: false
+#     dependencies:
+#       - tf-publish-containers-nightly
+#     vars:
+#       release_type: nightly
+
+# - publish-dev-env:
+#     dependencies:
+#       - build-variables-init
+#     voting: False
+#     vars:
+#       release_type: nightly
+
 
 - project:
     name: Juniper/contrail-deployers-containers

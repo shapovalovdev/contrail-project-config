@@ -105,19 +105,21 @@
     secrets:
       - build_cache_db
 
-#- job:
-#    name: contrail-vnc-publish-containers-nightly
-#    parent: contrail-src-base
-#    description: |
-#      A job for publishing Docker containers to DockerHub.
-#    required-projects:
-#      - Juniper/contrail-publisher
-#      - tungsten-infra/containerregistry
-#    run: playbooks/docker/publish-nightly.yaml
-#    nodeset: worker-centos-7
-#    secrets:
-#      - docker_registry
-#      - dockerhub
+- job:
+    name: tf-publish-containers-nightly
+    parent: contrail-vnc-build-base
+    description: |
+      A job for publishing Docker containers to DockerHub.
+    run: playbooks/docker/publish-nightly.yaml
+    nodeset: worker-centos-7
+
+- job:
+    name: tf-publish-containers-stable-nightly
+    parent: contrail-vnc-build-base
+    description: |
+      A job for publishing Docker containers to DockerHub as stable.
+    run: playbooks/docker/publish-nightly-stable.yaml
+    nodeset: worker-centos-7
 
 # Transition to contrail-base when all jobs are ported
 - job:

@@ -187,33 +187,40 @@
     window-floor: 20
     window-increase-factor: 2
 
-#- pipeline:
-#    name: periodic-nightly
-#    description: Periodic pipeline for building OpenContrail every 12h.
-#    manager: independent
-#    precedence: high
-#    post-review: true
-#    trigger:
-#      timer:
-#        - time: "0 7,19 * * *"
-#    start:
-#      stats:
-#      smtp:
-#        to: cf-test@juniper.net, ci-admin@opencontrail.org, dl-contrail-sw@juniper.net
-#        subject: "[periodic-nightly] Starting jobs - {change.branch}"
-#    success:
-#      stats:
-#      smtp:
-#        to: cf-test@juniper.net, ci-admin@opencontrail.org, dl-contrail-sw@juniper.net
-#        subject: "[periodic-nightly] SUCCESS - {change.branch}"
-#    failure:
-#      stats:
-#      smtp:
-#        to: cf-test@juniper.net, ci-admin@opencontrail.org, dl-contrail-sw@juniper.net
-#        subject: "[periodic-nightly] FAILURE - {change.branch}"
-#    footer-message: |
-#
-#      Dockerhub: https://hub.docker.com/u/opencontrailnightly/
+- pipeline:
+    name: periodic-nightly
+    description: Periodic pipeline for building Tungsten Fabric containers every 24 at midnight.
+    manager: independent
+    precedence: high
+    post-review: true
+    trigger:
+      timer:
+        - time: "0 0 * * *"
+      gerrit:
+        - event: comment-added
+          branch:
+            - ^master$
+          comment: (?i)periodic-nightly tf-periodic-nightly\s*$
+    start:
+      # smtp:
+      #   from: zuul@tungstenfabric.com
+      #   to: amorlang@progmaticlab.com
+      #   subject: '[periodic-nightly] Starting jobs - {change}'
+      gerrit: {}
+    success:
+      gerrit: {}
+      # smtp:
+      #   from: zuul@tungstenfabric.com
+      #   to: amorlang@progmaticlab.com
+      #   subject: '[periodic-nightly] SUCCESS - {change}'
+    failure:
+      gerrit: {}
+      # smtp:
+      #   from: zuul@tungstenfabric.com
+      #   to: amorlang@progmaticlab.com
+      #   subject: '[periodic-nightly] FAILURE - {change}'
+    footer-message: |
+      TF Nightly Job live status page: http://38.108.68.117:8080/
 
 - pipeline:
     name: experimental
