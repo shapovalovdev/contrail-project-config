@@ -302,12 +302,20 @@
       jobs:
         - contrail-vnc-unittest-centos7-tntestr:
             branches: master
+            vars:
+              release_type: nightly
         - contrail-vnc-unittest-webui:
             branches: master
+            vars:
+              release_type: nightly
         - contrail-vnc-build-centos74:
             branches: master
+            vars:
+              release_type: nightly
         - tf-publish-containers-nightly:
             branches: master
+            vars:
+              release_type: nightly
             dependencies:
               - contrail-vnc-build-centos74
         - contrail-sanity-centos7-kolla-rocky:
@@ -316,10 +324,14 @@
               - contrail-vnc-build-centos74
         - contrail-sanity-centos7-k8s:
             branches: master
+            vars:
+              release_type: nightly
             dependencies:
               - contrail-vnc-build-centos74
         - tf-publish-containers-stable-nightly:
             branches: master
+            vars:
+              release_type: nightly
             dependencies:
               - contrail-vnc-unittest-centos7-tntestr
               - contrail-vnc-unittest-webui
