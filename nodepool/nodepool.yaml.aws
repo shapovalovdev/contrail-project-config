@@ -57,7 +57,10 @@ providers:
     pools:
       - name: ci-zuulv3-aws
         max-servers: 5
-        subnet-id: subnet-05151ae63f9d5eef3
+        subnets:
+          - subnet-05151ae63f9d5eef3
+          - subnet-011df0d7f9ce7d79d
+          - subnet-041b456168396813b
         security-group-id: sg-00c3713629ba82bdd
         labels:
           - name: centos-7-small
