@@ -1,0 +1,122 @@
+elements-dir: /etc/nodepool/elements
+images-dir: /opt/nodepool_dib
+
+cron:
+  cleanup: '*/1 * * * *'
+  check:   '*/15 * * * *'
+
+zookeeper-servers:
+  - host: ip-10-0-14-84
+    port: 2181
+
+labels:
+  - name: centos-7-small
+    min-ready: 0
+  - name: centos-7-medium
+    min-ready: 0
+  - name: centos-7-large
+    min-ready: 0
+  - name: rhel-7-medium
+    min-ready: 0
+  - name: ubuntu-xenial-xsmall
+    min-ready: 0
+  - name: ubuntu-xenial-medium
+    min-ready: 0
+  - name: ubuntu-xenial-large
+    min-ready: 0
+  - name: ubuntu-bionic-xsmall
+    min-ready: 0
+  - name: ubuntu-bionic-medium
+    min-ready: 0
+  - name: ubuntu-bionic-large
+    min-ready: 0
+
+providers:
+  #                CPU     Memory     AWS (Canada)
+  # v2-standard-1   1       4 GB      t2.small
+  # v2-standard-2   2       8 GB      t2.large
+  # v2-standard-4   4       16 GB     t2.xlarge
+  # v2-standard-8   8       32 GB     m5.2xlarge
+  - name: tf-ci-aws
+    driver: aws
+    region-name: ca-central-1
+    # profile-name: default
+    cloud-images:
+      - name: centos-7
+        image-id: ami-068051358509d0288
+        username: centos
+      - name: rhel-7
+        image-id: ami-05508913d3360e9af
+        username: redhat
+      - name: ubuntu-xenial
+        image-id: ami-06a6f79d24f2b6a21
+        username: ubuntu
+      - name: ubuntu-bionic
+        image-id: ami-0a5d8bc3b2b741f1b
+        username: ubuntu
+    pools:
+      - name: ci-zuulv3-aws
+        max-servers: 5
+        subnet-id: subnet-05151ae63f9d5eef3
+        security-group-id: sg-00c3713629ba82bdd
+        labels:
+          - name: centos-7-small
+            instance-type: t2.large
+            cloud-image: centos-7
+            volume-size: 120
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: centos-7-medium
+            instance-type: t2.xlarge
+            cloud-image: centos-7
+            volume-size: 120
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: centos-7-large
+            instance-type: m5.2xlarge
+            cloud-image: centos-7
+            volume-size: 120
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: rhel-7-medium
+            instance-type: t2.xlarge
+            cloud-image: rhel-7
+            volume-size: 120
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: ubuntu-xenial-xsmall
+            instance-type: t2.small
+            cloud-image: ubuntu-xenial
+            volume-size: 120
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: ubuntu-xenial-medium
+            instance-type: t2.xlarge
+            cloud-image: ubuntu-xenial
+            volume-size: 120
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: ubuntu-xenial-large
+            instance-type: m5.2xlarge
+            cloud-image: ubuntu-xenial
+            volume-size: 120
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: ubuntu-bionic-xsmall
+            instance-type: t2.small
+            cloud-image: ubuntu-bionic
+            volume-size: 120
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: ubuntu-bionic-medium
+            instance-type: t2.xlarge
+            cloud-image: ubuntu-bionic
+            volume-size: 120
+            console-log: True
+            key-name: ci-infra-shared-key
+          - name: ubuntu-bionic-large
+            instance-type: m5.2xlarge
+            cloud-image: ubuntu-bionic
+            volume-size: 120
+            console-log: True
+            key-name: ci-infra-shared-key
