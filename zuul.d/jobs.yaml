@@ -107,7 +107,7 @@
 
 - job:
     name: tf-publish-containers-nightly
-    parent: contrail-vnc-build-base
+    parent: contrail-base2
     description: |
       A job for publishing Docker containers to DockerHub.
     run: playbooks/docker/publish-nightly.yaml
@@ -115,7 +115,7 @@
 
 - job:
     name: tf-publish-containers-stable-nightly
-    parent: contrail-vnc-build-base
+    parent: contrail-base2
     description: |
       A job for publishing Docker containers to DockerHub as stable.
     run: playbooks/docker/publish-nightly-stable.yaml

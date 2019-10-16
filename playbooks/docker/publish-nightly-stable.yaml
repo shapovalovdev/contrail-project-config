@@ -6,5 +6,7 @@
     - yum-repos-prepare
     - install-ntp
     - install-docker-daemon
+    - role: add-insecure-registry
+      new_registry: "{{ contrail_docker_registry }}"
     - role: contrail-publish-dockers
       stable: true
