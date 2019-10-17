@@ -311,12 +311,22 @@
             branches: master
             vars:
               release_type: nightly
+        - contrail-vnc-build-rhel7-queens:
+            branches: master
+            vars:
+              release_type: nightly
         - contrail-vnc-security-scan-centos74:
             branches: master
             vars:
               release_type: nightly
             dependencies:
               - contrail-vnc-build-centos74
+        - contrail-security-scan-rhel-queens:
+            branches: master
+            vars:
+              release_type: nightly
+            dependencies:
+              - contrail-vnc-build-rhel7-queens
         - tf-publish-containers-nightly:
             branches: master
             vars:
