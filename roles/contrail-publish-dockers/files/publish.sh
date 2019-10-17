@@ -102,14 +102,14 @@ function do_publish() {
   local container=$1
 
   local full_name=$(get_container_full_name $container)
-  if [[ $? != 0 ]] ; then
+  if [[ "$?" != "0" || -z "$full_name" ]] ; then
     warn "$container skipped"
     return 0
   fi
   
   log "Pull $full_name"
   if ! run_with_retry docker pull $full_name ; then
-    err "Failed to execute docker pull ${CONTRAIL_REGISTRY}/${container}:${CONTAINER_TAG}"
+    err "Failed to execute docker pull ${full_name}"
     return 1  
   fi
 
@@ -117,8 +117,8 @@ function do_publish() {
   [ -n "$target_tag" ] && target_tag+="/"
   target_tag+="${container}:${PUBLISH_TAG}"
   log "Publish $target_tag started"
-  if ! run_with_retry docker tag ${CONTRAIL_REGISTRY}/${container}:${CONTAINER_TAG} ${target_tag} ; then
-    err "Failed to execute docker tag ${CONTRAIL_REGISTRY}/${container}:${CONTAINER_TAG} ${target_tag}"
+  if ! run_with_retry docker tag ${full_name} ${target_tag} ; then
+    err "Failed to execute docker tag ${full_name} ${target_tag}"
     return 1  
   fi
   if ! run_with_retry docker push $target_tag ; then
