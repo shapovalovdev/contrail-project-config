@@ -297,7 +297,6 @@
     name: Juniper/contrail-container-builder
     templates:
       - systests
-      - unittests-webui
     periodic-nightly:
       jobs:
         - contrail-vnc-unittest-centos7-tntestr:
