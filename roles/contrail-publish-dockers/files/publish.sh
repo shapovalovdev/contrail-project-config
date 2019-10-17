@@ -122,7 +122,7 @@ function do_publish() {
     return 1  
   fi
   if ! run_with_retry docker push $target_tag ; then
-    log "Failed to execute docker push $target_tag"
+    err "Failed to execute docker push $target_tag"
     return 1
   fi
   log "Publish $container finished succesfully"
