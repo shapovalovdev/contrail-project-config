@@ -312,6 +312,10 @@
             branches: master
             vars:
               release_type: nightly
+        - contrail-vnc-security-scan-centos74:
+            branches: master
+            dependencies:
+              - contrail-vnc-build-centos74
         - tf-publish-containers-nightly:
             branches: master
             vars:
