@@ -70,7 +70,6 @@
     name: helm-systests
     check:
       jobs:
-        - zuul-jobs-linters
         - contrail-vnc-build-centos74
         - contrail-sanity-ubuntu1604-helm-ocata:
             dependencies:
@@ -407,6 +406,9 @@
     name: Juniper/contrail-helm-deployer
     templates:
       - helm-systests
+    check:
+      jobs:
+        - zuul-jobs-linters
 
 - project:
     name: Juniper/contrail-vnc
