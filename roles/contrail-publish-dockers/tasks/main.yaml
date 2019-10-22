@@ -1,10 +1,10 @@
 ---
-- name: DBG 
+- name: packaging info
   debug:
     msg: "contrail_packaging {{ contrail_packaging | default('') }} "
   ignore_errors: true
 
-- name: DBG2
+- name: docker registry info
   debug:
     msg: "contrail_docker_registry {{ contrail_docker_registry }} contrail_version {{ contrail_version }} stable {{ stable }}"
   ignore_errors: true
