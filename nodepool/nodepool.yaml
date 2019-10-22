@@ -6,7 +6,7 @@ cron:
   check:   '*/15 * * * *'
 
 zookeeper-servers:
-  - host: zuul
+  - host: zuul.zytes.net
     port: 2181
 
 labels:
