@@ -24,13 +24,12 @@ labels:
     min-ready: 0
   - name: ubuntu-xenial-large
     min-ready: 0
-# TODO: rework bionic diskimage - now gets squashfs image and cannot unsquash it 
-  # - name: ubuntu-bionic-xsmall
-  #   min-ready: 0
-  # - name: ubuntu-bionic-medium
-  #   min-ready: 0
-  # - name: ubuntu-bionic-large
-  #   min-ready: 0
+  - name: ubuntu-bionic-xsmall
+    min-ready: 0
+  - name: ubuntu-bionic-medium
+    min-ready: 0
+  - name: ubuntu-bionic-large
+    min-ready: 0
 
 providers:
 
@@ -199,7 +198,7 @@ providers:
             console-log: True
             key-name: ci-infra-shared-key
             boot-from-volume: 1
-# TODO: rework bionic diskimage - now gets squashfs image and cannot unsquash it 
+# TODO: rework bionic diskimage - now gets squashfs image and cannot unsquash it
           # - name: ubuntu-bionic-xsmall
           #   flavor-name: v2-standard-1
           #   diskimage: ubuntu-bionic
