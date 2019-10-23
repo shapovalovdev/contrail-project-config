@@ -45,7 +45,7 @@ providers:
     cloud-images:
       - name: centos-7
         image-id: ami-068051358509d0288
-        username: centos
+        username: ec2-user
       - name: rhel-7
         image-id: ami-05508913d3360e9af
         username: redhat
