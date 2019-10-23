@@ -48,7 +48,7 @@ providers:
         username: ec2-user
       - name: rhel-7
         image-id: ami-05508913d3360e9af
-        username: redhat
+        username: ec2-user
       - name: ubuntu-xenial
         image-id: ami-06a6f79d24f2b6a21
         username: ubuntu
