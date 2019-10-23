@@ -6,7 +6,7 @@ cron:
   check:   '*/15 * * * *'
 
 zookeeper-servers:
-  - host: 38.108.68.113
+  - host: zuul
     port: 2181
 
 labels:
@@ -77,7 +77,7 @@ providers:
             console-log: True
             key-name: ci-infra-shared-key
           - name: centos-7-large
-            instance-type: m5.2xlarge
+            instance-type: m4.2xlarge
             cloud-image: centos-7
             volume-size: 120
             console-log: True
