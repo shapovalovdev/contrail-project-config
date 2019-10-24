@@ -43,6 +43,10 @@
             dependencies:
               - contrail-vnc-build-centos74
 
+    experimental:
+      jobs:
+        - contrail-sanity-centos7-k8s-manifest-aio
+
     experimental-sanity:
       jobs:
         - contrail-sanity-centos7-kolla-ocata:
@@ -542,5 +546,8 @@
     name: Juniper/contrail-infra
     templates:
       - noops
-
-
+      
+- project:
+    name: tungstenfabric/tf-devstack
+    templates:
+      - noops
